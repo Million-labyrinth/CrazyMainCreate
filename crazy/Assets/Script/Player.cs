@@ -54,8 +54,6 @@ public class Player : MonoBehaviour
         Move();
         Skill();
  
-        
-
     }
     void FixedUpdate()
     {
@@ -175,7 +173,6 @@ public class Player : MonoBehaviour
     }
     //플레이어가 먹은 아이템 저장배열
 
-    //플레이어 상태 스크립트(행동가능, 물풍선 같힌상태, 죽음)
    
 
     //아이템 먹었을때 스탯 값 증감
