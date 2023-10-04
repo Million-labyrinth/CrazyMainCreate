@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 
         Move();
         Skill();
-        GetPlayerState()
+        GetPlayerState();
         
 
     }
