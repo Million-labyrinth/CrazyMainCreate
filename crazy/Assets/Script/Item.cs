@@ -25,7 +25,7 @@ public class Item : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
-
+    
 
 
     //�������� �����صа�

@@ -23,7 +23,7 @@ public class Block : MonoBehaviour
     {
         gameObject.SetActive(false);
         anim.SetBool("Hit", false);
-        Debug.Log("진욱이 왔다감");
+        
     }
 
     void OnTriggerEnter2D(Collider2D obj)
