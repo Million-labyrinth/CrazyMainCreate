@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+//ê¹€ì¸ì„­ ì™”ë‹¤ê°1
 public class Item : MonoBehaviour
 {
     public Player player;
 
-    //½´ÆÛ¸Ç¿ë ÀúÀåÇÒ ´É·ÂÄ¡
+    //ï¿½ï¿½ï¿½Û¸Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½É·ï¿½Ä¡
     private int previousBombPower;
     private int previousBombRange;
     private float previousPlayerSpeed;
@@ -28,51 +28,51 @@ public class Item : MonoBehaviour
 
 
 
-    //³×ÀÓÀ¸·Î ±¸ºĞÇØµĞ°Í
-    //ÆÄ¿ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµĞ°ï¿½
+    //ï¿½Ä¿ï¿½
     public void PowerAdd(string name)
     {
         if(name.Contains("basicBubble"))
         {
             player.bombPower++;
-            Debug.Log("±âº»Ç³¼± : °¹¼ö Áõ°¡");
+            Debug.Log("ï¿½âº»Ç³ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
         
     }
-    //½ºÇÇµå
+    //ï¿½ï¿½ï¿½Çµï¿½
     public void SpeedAdd(string name)
     {
             if (name.Contains("roller"))
             {
-                Debug.Log("·Ñ·¯ : ½ºÇÇµå Áõ°¡");
+                Debug.Log("ï¿½Ñ·ï¿½ : ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½");
                 player.playerSpeed++ ;
                
             } 
             else if(name.Contains("redDevil"))
             {
-                Debug.Log("ºÓÀº¾Ç¸¶ : ÀÌ¼Ó ÃÖ´ëÄ¡");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ : ï¿½Ì¼ï¿½ ï¿½Ö´ï¿½Ä¡");
                 player.playerSpeed = player.playerSpeedMax;
             }
         
 
 
     }
-    //»ç°Å¸®
+    //ï¿½ï¿½Å¸ï¿½
     public void RangeAdd(string name)
     {
         if(name.Contains("basicFluid"))
         {
             player.bombRange++;
-            Debug.Log("±âº» ¹°ÁÙ±â : »ç°Å¸® Áõ°¡");
+            Debug.Log("ï¿½âº» ï¿½ï¿½ï¿½Ù±ï¿½ : ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
         else if(name.Contains("ultraFluid"))
         {
             player.bombRange = player.bombRangeMax;
-            Debug.Log("¿ïÆ®¶ó ¹°ÁÙ±â : »ç°Å¸® ÃÖ´ëÄ¡");
+            Debug.Log("ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ù±ï¿½ : ï¿½ï¿½Å¸ï¿½ ï¿½Ö´ï¿½Ä¡");
         }
     }
 
-    //´É·ÂÄ¡ ºÒ·¯¿À±â
+    //ï¿½É·ï¿½Ä¡ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     public void LoadState()
     {
         player.bombPower = previousBombPower;
@@ -81,31 +81,31 @@ public class Item : MonoBehaviour
     }
 
 
-    //½´ÆÛ¸Ç
+    //ï¿½ï¿½ï¿½Û¸ï¿½
     public void SuperMan(string name)
     {
         if (name.Contains("superMan") && !isSupermanActive)
         {
-            // ½´ÆÛ¸Ç ¾ÆÀÌÅÛÀÌ ÀÌ¹Ì È°¼ºÈ­ ÁßÀÓÀ» Ç¥½Ã
+            // ï¿½ï¿½ï¿½Û¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
             isSupermanActive = true;
 
-            // ÇöÀç ´É·ÂÄ¡ ÀúÀå
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½É·ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
             previousBombPower = player.bombPower;
             previousBombRange = player.bombRange;
             previousPlayerSpeed = player.playerSpeed;
 
-            // ¿øÇÏ´Â ´É·ÂÄ¡·Î ¼³Á¤
+            // ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½É·ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             player.bombPower = player.bombPowerMax;
             player.bombRange = player.bombRangeMax;
             player.playerSpeed = player.playerSpeedMax;
 
-            // 5ÃÊ µ¿¾È ´ë±â ÈÄ º¹±¸
+            // 5ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             StartCoroutine(RestoreAbilitiesAfterDelay(5f));
         }
     }
 
 
-    // ¾ÆÀÌÅÛÀ» Activeitem ¹è¿­¿¡ Ãß°¡ÇÏ´Â ÇÔ¼ö (¾ÆÀÌÅÛ È¹µæ ½Ã È£Ãâ)
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Activeitem ï¿½è¿­ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½)
     public void AddActiveItem(GameObject item, int index)
     {
         if (index >= 0 && index < Activeitem.Length)
@@ -114,22 +114,22 @@ public class Item : MonoBehaviour
         }
     }
 
-    //¾×Æ¼ºê ¾ÆÀÌÅÛ »ç¿ë ÄÚµå
+    //ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Úµï¿½
     public void ActiveUseItem(string name)
     {
         if (Activeitem[0].name.Contains("niddle"))
         {
-            Debug.Log("ÇÃ·¹ÀÌ¾î°¡ ¹Ù´Ã ¾ÆÀÌÅÛÀ» »ç¿ëÇØ È¸º¹");
+            Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½");
             player.playerHealth = 0f;
         }
         else if (Activeitem[0].name.Contains("shield"))
         {
-            Debug.Log("ÇÃ·¹ÀÌ¾î°¡ ½¯µå ¾ÆÀÌÅÛÀ» »ç¿ë");
+            Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½");
             
         }
 
 
-        // ¾ÆÀÌÅÛ »ç¿ë ÈÄ, »ç¿ëÇÑ ¾ÆÀÌÅÛÀ» Activeitem ¹è¿­¿¡¼­ Á¦°Å
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Activeitem ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < Activeitem.Length; i++)
         {
             if (Activeitem[i] != null && Activeitem[i].name == name)
@@ -145,12 +145,12 @@ public class Item : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        // 5ÃÊ ÈÄ¿¡ ÀúÀåµÈ ´É·ÂÄ¡·Î º¹±¸
+        // 5ï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½É·ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         player.bombPower = previousBombPower;
         player.bombRange = previousBombRange;
         player.playerSpeed = previousPlayerSpeed;
 
-        // ½´ÆÛ¸Ç ¾ÆÀÌÅÛ ºñÈ°¼ºÈ­
+        // ï¿½ï¿½ï¿½Û¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
         isSupermanActive = false;
     }
 }
