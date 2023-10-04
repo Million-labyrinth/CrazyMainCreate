@@ -2,7 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-//김인섭 왔다감1
+
+//����� �׽�Ʈ�� ���� 
+
+//github test
+
+
 public class Item : MonoBehaviour
 {
     public Player player;
@@ -25,8 +30,8 @@ public class Item : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
-    
-    
+
+
 
     //�������� �����صа�
     //�Ŀ�
@@ -35,7 +40,7 @@ public class Item : MonoBehaviour
         if(name.Contains("basicBubble"))
         {
             player.bombPower++;
-            Debug.Log("�⺻ǳ�� : ���� ����");
+            Debug.Log("basicBubble touch");
         }
         
     }
@@ -44,13 +49,13 @@ public class Item : MonoBehaviour
     {
             if (name.Contains("roller"))
             {
-                Debug.Log("�ѷ� : ���ǵ� ����");
+                Debug.Log("roller touch");
                 player.playerSpeed++ ;
                
             } 
             else if(name.Contains("redDevil"))
             {
-                Debug.Log("�����Ǹ� : �̼� �ִ�ġ");
+                Debug.Log("redDevil touch");
                 player.playerSpeed = player.playerSpeedMax;
             }
         
@@ -63,12 +68,12 @@ public class Item : MonoBehaviour
         if(name.Contains("basicFluid"))
         {
             player.bombRange++;
-            Debug.Log("�⺻ ���ٱ� : ��Ÿ� ����");
+            Debug.Log("BasicFluid touch");
         }
         else if(name.Contains("ultraFluid"))
         {
             player.bombRange = player.bombRangeMax;
-            Debug.Log("��Ʈ�� ���ٱ� : ��Ÿ� �ִ�ġ");
+            Debug.Log("ultraFluid touch");
         }
     }
 
@@ -119,12 +124,12 @@ public class Item : MonoBehaviour
     {
         if (Activeitem[0].name.Contains("niddle"))
         {
-            Debug.Log("�÷��̾ �ٴ� �������� ����� ȸ��");
+            Debug.Log("niddle item touch");
             player.playerHealth = 0f;
         }
         else if (Activeitem[0].name.Contains("shield"))
         {
-            Debug.Log("�÷��̾ ���� �������� ���");
+            Debug.Log("shield item touch");
             
         }
 

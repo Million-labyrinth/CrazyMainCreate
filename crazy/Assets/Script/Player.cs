@@ -54,6 +54,8 @@ public class Player : MonoBehaviour
         Move();
         Skill();
  
+        
+
     }
     void FixedUpdate()
     {
@@ -149,11 +151,12 @@ public class Player : MonoBehaviour
             }
         }
         //바늘 아이템 사용
-        if (Input.GetKeyDown(KeyCode.RightControl) && playerHealth == 0f)//왼쪽컨트롤키를 누르고 플레이어의 피가 0인 경우에만 실행
+        if (Input.GetKeyDown(KeyCode.LeftControl) && playerHealth == 0f)//왼쪽컨트롤키를 누르고 플레이어의 피가 0인 경우에만 실행
             // 0번째 활성화된 아이템을 사용
             if (item.Activeitem.Length > 0 && item.Activeitem[0] != null)
             {
-                UnityEngine.Debug.Log("플레이어A가 액티브 아이템을 사용함");
+                string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
+                UnityEngine.Debug.Log("플레이어A가" + itemName + "아이템을 사용함");
                 // 0번째 아이템을 사용하려면 아래와 같이 호출
                 item.ActiveUseItem(item.Activeitem[0].name);
 
@@ -173,6 +176,7 @@ public class Player : MonoBehaviour
     }
     //플레이어가 먹은 아이템 저장배열
 
+    //플레이어 상태 스크립트(행동가능, 물풍선 같힌상태, 죽음)
    
 
     //아이템 먹었을때 스탯 값 증감
@@ -225,14 +229,15 @@ public class Player : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
 
-        // 먹은 아이템을 Activeitem 배열에 추가 (ActiveItem 태그를 가진 아이템만 추가)
+      // 먹은 아이템을 Activeitem 배열에 추가 (ActiveItem 태그를 가진 아이템만 추가)
         if (collision.gameObject.CompareTag("ActiveItem"))
         {
+            UnityEngine.Debug.Log("ActiveItem ADD");
             item.AddActiveItem(collision.gameObject, 0);
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
-
         }
+
       
         
     }
