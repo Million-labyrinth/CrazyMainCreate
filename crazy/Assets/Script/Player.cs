@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,6 @@ public class Player : MonoBehaviour
     public float playerMaxHealth = 2f;
     public string basicBubble;
 
-    public int playerHP = 2;
 
     public Item item;
 
@@ -35,20 +35,17 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rigid;
     CircleCollider2D circol;
-    private PlayerStateManager stateManager;
 
 
     void Awake() {
         rigid = GetComponent<Rigidbody2D>();
         circol = GetComponent<CircleCollider2D>();
-        stateManager = GetComponent<PlayerStateManager>();
 
         //플레이어 시작시 기본 스탯
         bombPower = 1;
         bombRange = 1;
         playerSpeed = 4.0f;
         playerHealth = 0f;
-        playerHP = 2;
 
     }
 
@@ -56,7 +53,7 @@ public class Player : MonoBehaviour
 
         Move();
         Skill();
-        GetPlayerState()
+ 
         
 
     }
@@ -158,7 +155,7 @@ public class Player : MonoBehaviour
             // 0번째 활성화된 아이템을 사용
             if (item.Activeitem.Length > 0 && item.Activeitem[0] != null)
             {
-                Debug.Log("플레이어A가 액티브 아이템을 사용함");
+                UnityEngine.Debug.Log("플레이어A가 액티브 아이템을 사용함");
                 // 0번째 아이템을 사용하려면 아래와 같이 호출
                 item.ActiveUseItem(item.Activeitem[0].name);
 
@@ -172,38 +169,21 @@ public class Player : MonoBehaviour
 
             else
             {
-                Debug.Log("활성화된 아이템 없음");
+                UnityEngine.Debug.Log("활성화된 아이템 없음");
             }
 
     }
     //플레이어가 먹은 아이템 저장배열
 
     //플레이어 상태 스크립트(행동가능, 물풍선 같힌상태, 죽음)
-    void GetPlayerState(){
-    // 예: 플레이어 상태를 물풍선 같힌 상태로 설정
-    if (Input.GetKeyDown(KeyCode.Alpha1))
-    {
-        stateManager.SetPlayerState(1);
-    }
-
-    // 예: 플레이어 상태를 죽음 상태로 설정
-    if (Input.GetKeyDown(KeyCode.Alpha2))
-    {
-        stateManager.SetPlayerState(2);
-    }
-
-    // 예: 현재 플레이어 상태를 가져와서 확인
-    int currentPlayerState = stateManager.GetPlayerState();
-    Debug.Log("현재 플레이어 상태: " + currentPlayerState);
-    }
-    
+   
 
     //아이템 먹었을때 스탯 값 증감
     void OnTriggerEnter2D(Collider2D collision)
     {
         string iname = collision.gameObject.name;
 
-        Debug.Log("플레이어가 오브젝트에 닿음");
+        UnityEngine.Debug.Log("플레이어가 오브젝트에 닿음");
 
         if (collision.gameObject.CompareTag("powerItem"))
         {
@@ -213,7 +193,7 @@ public class Player : MonoBehaviour
             }
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
-            Debug.Log("물풍선 아이템에 닿음");
+           UnityEngine.Debug.Log("물풍선 아이템에 닿음");
         }
 
         else if (collision.gameObject.CompareTag("speedItem"))
@@ -223,7 +203,7 @@ public class Player : MonoBehaviour
             {
                 item.SpeedAdd(iname);
             }
-            Debug.Log("스피드 아이템에 닿았음");
+            UnityEngine.Debug.Log("스피드 아이템에 닿았음");
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
         }
@@ -234,16 +214,16 @@ public class Player : MonoBehaviour
             if (bombRange < bombRangeMax)
             {
                 item.RangeAdd(iname);
+            }
+            UnityEngine.Debug.Log("사거리 증가 아이템에 닿음");
                 // 먹은 아이템 비활성화
                 collision.gameObject.SetActive(false);
-                Debug.Log("사거리 증가 아이템에 닿음");
-            }
         }
 
         else if (collision.gameObject.CompareTag("superMan"))
         {
             item.SuperMan(iname);
-            Debug.Log("슈퍼맨!!");
+            UnityEngine.Debug.Log("슈퍼맨!!");
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
         }
