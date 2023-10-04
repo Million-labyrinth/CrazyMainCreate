@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     public float playerMaxHealth = 2f;
     public string basicBubble;
 
+    public int playerHP = 2;
+
     public Item item;
 
 
@@ -33,18 +35,20 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rigid;
     CircleCollider2D circol;
-
+    private PlayerStateManager stateManager;
 
 
     void Awake() {
         rigid = GetComponent<Rigidbody2D>();
         circol = GetComponent<CircleCollider2D>();
+        stateManager = GetComponent<PlayerStateManager>();
 
         //플레이어 시작시 기본 스탯
         bombPower = 1;
         bombRange = 1;
         playerSpeed = 4.0f;
         playerHealth = 0f;
+        playerHP = 2;
 
     }
 
@@ -52,6 +56,8 @@ public class Player : MonoBehaviour
 
         Move();
         Skill();
+        GetPlayerState()
+        
 
     }
     void FixedUpdate()
@@ -172,6 +178,25 @@ public class Player : MonoBehaviour
     }
     //플레이어가 먹은 아이템 저장배열
 
+    //플레이어 상태 스크립트(행동가능, 물풍선 같힌상태, 죽음)
+    void GetPlayerState(){
+    // 예: 플레이어 상태를 물풍선 같힌 상태로 설정
+    if (Input.GetKeyDown(KeyCode.Alpha1))
+    {
+        stateManager.SetPlayerState(1);
+    }
+
+    // 예: 플레이어 상태를 죽음 상태로 설정
+    if (Input.GetKeyDown(KeyCode.Alpha2))
+    {
+        stateManager.SetPlayerState(2);
+    }
+
+    // 예: 현재 플레이어 상태를 가져와서 확인
+    int currentPlayerState = stateManager.GetPlayerState();
+    Debug.Log("현재 플레이어 상태: " + currentPlayerState);
+    }
+    
 
     //아이템 먹었을때 스탯 값 증감
     void OnTriggerEnter2D(Collider2D collision)

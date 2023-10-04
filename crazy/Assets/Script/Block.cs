@@ -48,8 +48,7 @@ public class Block : MonoBehaviour
             }
         }
     }
-
-    void OnCollisionExit2D(Collision2D other)
+        void OnCollisionExit2D(Collision2D other)
     {
         curPushTime = 0;
     }
