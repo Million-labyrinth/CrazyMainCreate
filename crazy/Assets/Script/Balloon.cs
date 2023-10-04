@@ -30,6 +30,7 @@ public class Balloon : MonoBehaviour
     {
         Invoke("Boom", 3f);
         Invoke("Finish", 5f);
+        Debug.Log("테스트");
     }
 
     void Update()
