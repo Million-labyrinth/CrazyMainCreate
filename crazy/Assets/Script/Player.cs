@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
     public float playerMaxHealth = 2f;
     public string basicBubble;
 
+    int playerAballonIndex = 10; // 물풍선 오브젝트 풀 사용할 때 필요한 playerAballonIndex 변수
+    public int playerAcountIndex = 0; // 물풍선을 생성할 때, playerAmakeBalloon 을 false 값으로 바꿔 줄 때 필요한 조건문의 변수
+    public bool playerAmakeBalloon = false; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
+    public ObjectManager objectManager;
 
     public Item item;
 
@@ -31,7 +35,6 @@ public class Player : MonoBehaviour
     float hAxis;
     float vAxis;
     bool isHorizonMove; // 대각선 이동 제한
-    bool sDown; // 스페이스 바 다운
 
     Rigidbody2D rigid;
     CircleCollider2D circol;
@@ -92,61 +95,31 @@ public class Player : MonoBehaviour
 
     void Skill()
     {
-        Vector3 MoveVec = transform.position;
-        MoveVec = new Vector3((float)Math.Round(MoveVec.x) , (float)Math.Round(MoveVec.y) , MoveVec.z); //소수점 버림
         // 물풍선
         if (Input.GetKeyDown(KeyCode.RightShift))
         {
-            switch (bombPower)
+            switch (bombRange)
             {
                 case 1:
-                    if (!WaterBalloon1.activeInHierarchy)
-                    {
-                        WaterBalloon1.SetActive(true);
-                        WaterBalloon1.transform.position = MoveVec;
-                    }
+                    MakeBalloon("WaterBalloon1");
                     break;
                 case 2:
-                    if (!WaterBalloon2.activeInHierarchy)
-                    {
-                        WaterBalloon2.SetActive(true);
-                        WaterBalloon2.transform.position = MoveVec;
-                    }
+                    MakeBalloon("WaterBalloon2");
                     break;
                 case 3:
-                    if (!WaterBalloon3.activeInHierarchy)
-                    {
-                        WaterBalloon3.SetActive(true);
-                        WaterBalloon3.transform.position = MoveVec;
-                    }
+                    MakeBalloon("WaterBalloon3");
                     break;
                 case 4:
-                    if (!WaterBalloon4.activeInHierarchy)
-                    {
-                        WaterBalloon4.SetActive(true);
-                        WaterBalloon4.transform.position = MoveVec;
-                    }
+                    MakeBalloon("WaterBalloon4");
                     break;
                 case 5:
-                    if (!WaterBalloon5.activeInHierarchy)
-                    {
-                        WaterBalloon5.SetActive(true);
-                        WaterBalloon5.transform.position = MoveVec;
-                    }
+                    MakeBalloon("WaterBalloon5");
                     break;
                 case 6:
-                    if (!WaterBalloon6.activeInHierarchy)
-                    {
-                        WaterBalloon6.SetActive(true);
-                        WaterBalloon6.transform.position = MoveVec;
-                    }
+                    MakeBalloon("WaterBalloon6");
                     break;
                 case 7:
-                    if (!WaterBalloon7.activeInHierarchy)
-                    {
-                        WaterBalloon7.SetActive(true);
-                        WaterBalloon7.transform.position = MoveVec;
-                    }
+                    MakeBalloon("WaterBalloon7");
                     break;
             }
         }
@@ -178,6 +151,36 @@ public class Player : MonoBehaviour
 
     //플레이어 상태 스크립트(행동가능, 물풍선 같힌상태, 죽음)
    
+   void CountDown()
+{
+    playerAcountIndex--;
+}
+void MakeBalloon(string Power)
+{
+    // 포지션
+    Vector3 MoveVec = transform.position;
+    MoveVec = new Vector3((float)Math.Round(MoveVec.x) , (float)Math.Round(MoveVec.y) , MoveVec.z); //소수점 버림
+
+    GameObject[] WaterBalloon;
+    WaterBalloon = objectManager.GetPool(Power);
+    if (playerAcountIndex < bombPower && !playerAmakeBalloon)
+    {
+        if (!WaterBalloon[playerAballonIndex].activeInHierarchy)
+        {
+            WaterBalloon[playerAballonIndex].SetActive(true);
+            WaterBalloon[playerAballonIndex].transform.position = MoveVec;
+            playerAballonIndex += 1;
+            // playerAballonIndex 가 20 을 넘어가면 0으로 초기화
+            if (WaterBalloon.Length == 10)
+            {
+                playerAballonIndex = 0;
+            }
+            playerAcountIndex++;
+            Invoke("CountDown", 5f);
+        }
+        playerAmakeBalloon = true;
+    }
+}
 
     //아이템 먹었을때 스탯 값 증감
     void OnTriggerEnter2D(Collider2D collision)
@@ -185,6 +188,12 @@ public class Player : MonoBehaviour
         string iname = collision.gameObject.name;
 
         UnityEngine.Debug.Log("플레이어가 오브젝트에 닿음");
+
+        // 플레이어가 물풍선 밖으로 나갈 시, 트리거 비활성화
+        if (collision.gameObject.tag == "Balloon")
+        {
+            playerAmakeBalloon = false;
+        }
 
         if (collision.gameObject.CompareTag("powerItem"))
         {

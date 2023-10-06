@@ -5,137 +5,131 @@ using UnityEngine;
 public class Player2 : MonoBehaviour
 {
     public float speed;
-    public int power;
-    public int count; // 물풍선 횟수
-    public int remeberCount; // count 저장 변수
-    public GameObject WaterBalloon1; // 물풍선 1
-    public GameObject WaterBalloon2; // 물풍선 2
-    public GameObject WaterBalloon3; // 물풍선 3
-    public GameObject WaterBalloon4; // 물풍선 4
-    public GameObject WaterBalloon5; // 물풍선 5
-    public GameObject WaterBalloon6; // 물풍선 6
-    public GameObject WaterBalloon7; // 물풍선 7
-
-    float hAxis;
-    float vAxis;
-    bool isHorizonMove; // 대각선 이동 제한
-    bool sDown; // 스페이스 바 다운
-
-    Rigidbody2D rigid;
+public int power;
+public int count; // 물풍선 횟수
 
 
-    void Awake() {
-        rigid = GetComponent<Rigidbody2D>();
-    }
+float hAxis;
+float vAxis;
+bool isHorizonMove; // 대각선 이동 제한
 
-    void Update() {
+int playerBballonIndex = 10; // 물풍선 오브젝트 풀 사용할 때 필요한 playerBballonIndex 변수
+public int playerBcountIndex = 0; // 물풍선을 생성할 때, playerBmakeBalloon 을 false 값으로 바꿔 줄 때 필요한 조건문의 변수
+public bool playerBmakeBalloon = false; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
+public ObjectManager objectManager;
 
-        Move();
-        Skill();
+Rigidbody2D rigid;
 
-    }
-    
-    void FixedUpdate() {
 
-        // 대각선 이동 제한
-        Vector2 moveVec = isHorizonMove ? new Vector2(hAxis, 0) : new Vector2(0, vAxis);
-        rigid.velocity = moveVec * speed;
-    }
+void Awake() {
+    rigid = GetComponent<Rigidbody2D>();
+}
 
-    void Move()
+void Update() {
+
+    Move();
+    Skill();
+
+}
+
+void FixedUpdate() {
+
+    // 대각선 이동 제한
+    Vector2 moveVec = isHorizonMove ? new Vector2(hAxis, 0) : new Vector2(0, vAxis);
+    rigid.velocity = moveVec * speed;
+}
+
+void Move()
+{
+    // 이동
+    hAxis = Input.GetAxisRaw("2PH");
+    vAxis = Input.GetAxisRaw("2PV");
+
+    bool hDown = Input.GetButtonDown("2PH");
+    bool vDown = Input.GetButtonDown("2PV");
+    bool hUp = Input.GetButtonUp("2PH");
+    bool vUp = Input.GetButtonUp("2PV");
+
+
+    if (vDown)
     {
-        // 이동
-        hAxis = Input.GetAxisRaw("2PH");
-        vAxis = Input.GetAxisRaw("2PV");
-
-        bool hDown = Input.GetButtonDown("2PH");
-        bool vDown = Input.GetButtonDown("2PV");
-        bool hUp = Input.GetButtonUp("2PH");
-        bool vUp = Input.GetButtonUp("2PV");
-
-
-        if (vDown)
+        isHorizonMove = false;
+    }
+    else if (hDown)
+    {
+        isHorizonMove = true;
+    }
+    else if (vUp || hUp)
+    {
+        isHorizonMove = hAxis != 0;
+    }
+}
+void Skill()
+{
+    // 물풍선
+    if (Input.GetKeyDown(KeyCode.LeftShift))
+    {
+        switch (power)
         {
-            isHorizonMove = false;
-        }
-        else if (hDown)
-        {
-            isHorizonMove = true;
-        }
-        else if (vUp || hUp)
-        {
-            isHorizonMove = hAxis != 0;
+            case 1:
+                MakeBalloon("WaterBalloon1");
+                break;
+            case 2:
+                MakeBalloon("WaterBalloon2");
+                break;
+            case 3:
+                MakeBalloon("WaterBalloon3");
+                break;
+            case 4:
+                MakeBalloon("WaterBalloon4");
+                break;
+            case 5:
+                MakeBalloon("WaterBalloon5");
+                break;
+            case 6:
+                MakeBalloon("WaterBalloon6");
+                break;
+            case 7:
+                MakeBalloon("WaterBalloon7");
+                break;
         }
     }
-    void Skill()
+}
+void CountDown()
+{
+    playerBcountIndex--;
+}
+void MakeBalloon(string Power)
+{
+    Vector3 MoveVec = transform.position;
+    MoveVec = new Vector3((float)Math.Round(MoveVec.x), (float)Math.Round(MoveVec.y), MoveVec.z); //소수점 버림
+
+    GameObject[] WaterBalloon;
+    WaterBalloon = objectManager.GetPool(Power);
+    if (playerBcountIndex < count && !playerBmakeBalloon)
     {
-        // 물풍선
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (!WaterBalloon[playerBballonIndex].activeInHierarchy)
         {
-            switch (power)
+            WaterBalloon[playerBballonIndex].SetActive(true);
+            WaterBalloon[playerBballonIndex].transform.position = MoveVec;
+            playerBballonIndex += 1;
+            // playerBballonIndex 가 20 을 넘어가면 0으로 초기화
+            if (WaterBalloon.Length == playerBballonIndex)
             {
-                case 1:
-                    if (!WaterBalloon1.activeInHierarchy)
-                    {
-                        WaterBalloon1.SetActive(true);
-                        WaterBalloon1.transform.position = transform.position;
-                    }
-                    break;
-                case 2:
-                    if (!WaterBalloon2.activeInHierarchy)
-                    {
-                        WaterBalloon2.SetActive(true);
-                        WaterBalloon2.transform.position = transform.position;
-                    }
-                    break;
-                case 3:
-                    if (!WaterBalloon3.activeInHierarchy)
-                    {
-                        WaterBalloon3.SetActive(true);
-                        WaterBalloon3.transform.position = transform.position;
-                    }
-                    break;
-                case 4:
-                    if (!WaterBalloon4.activeInHierarchy)
-                    {
-                        WaterBalloon4.SetActive(true);
-                        WaterBalloon4.transform.position = transform.position;
-                    }
-                    break;
-                case 5:
-                    if (!WaterBalloon5.activeInHierarchy)
-                    {
-                        WaterBalloon5.SetActive(true);
-                        WaterBalloon5.transform.position = transform.position;
-                    }
-                    break;
-                case 6:
-                    if (!WaterBalloon6.activeInHierarchy)
-                    {
-                        WaterBalloon6.SetActive(true);
-                        WaterBalloon6.transform.position = transform.position;
-                    }
-                    break;
-                case 7:
-                    if (!WaterBalloon7.activeInHierarchy)
-                    {
-                        WaterBalloon7.SetActive(true);
-                        WaterBalloon7.transform.position = transform.position;
-                    }
-                    break;
+                playerBballonIndex = 10;
             }
+            playerBcountIndex++;
+            Invoke("CountDown", 5f);
         }
-        if (Input.GetButtonDown("Leftctrl2"))
-        {
-            Debug.Log("아이템 사용");
-        }
+        playerBmakeBalloon = true;
     }
-
-    void FinishBoom() {
-        WaterBalloon1.SetActive(false);
-        WaterBalloon2.SetActive(false);
-        WaterBalloon3.SetActive(false);
-        WaterBalloon4.SetActive(false);
-        WaterBalloon5.SetActive(false);
+}
+void OnTriggerExit2D(Collider2D collision)
+{
+    // 플레이어가 물풍선 밖으로 나갈 시, 트리거 비활성화
+    if (collision.gameObject.tag == "Balloon")
+    {
+        playerBmakeBalloon = false;
     }
+}
 }

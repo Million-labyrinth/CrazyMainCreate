@@ -34,6 +34,7 @@ public class ObjectManager : MonoBehaviour
     GameObject[] targetPool; // switch 문을 통해 생성될 오브젝트 배열을 용도
 
     void Awake() {
+
         // 첫 로딩 시간 = 장면 배치 + 오브젝트 풀 생성
 
         // 한번에 등장할 개수를 고려하여 배열 길이 할당
@@ -45,9 +46,9 @@ public class ObjectManager : MonoBehaviour
         waterBalloon6 = new GameObject[20];
         waterBalloon7 = new GameObject[20];
 
-        bubbleItem = new GameObject[15];
-        fluidItem = new GameObject[10];
-        rollerItem = new GameObject[10];
+        //bubbleItem = new GameObject[15];
+        //fluidItem = new GameObject[10];
+        //rollerItem = new GameObject[10];
 
         Generate();
 
@@ -86,65 +87,19 @@ public class ObjectManager : MonoBehaviour
         }
 
         // Item
-        for(int index = 0; index < bubbleItem.Length; index++) {
-            bubbleItem[index] = Instantiate(bubbleItemPrefab);
-            bubbleItem[index].SetActive(false);
-        }
-        for(int index = 0; index < fluidItem.Length; index++) {
-            fluidItem[index] = Instantiate(fluidItemPrefab);
-            fluidItem[index].SetActive(false);
-        }
-        for(int index = 0; index < rollerItem.Length; index++) {
-            rollerItem[index] = Instantiate(rollerItemPrefab);
-            rollerItem[index].SetActive(false);
-        }
-        
-    }
+        //for(int index = 0; index < bubbleItem.Length; index++) {
+        //    bubbleItem[index] = Instantiate(bubbleItemPrefab);
+        //    bubbleItem[index].SetActive(false);
+        //}
+        //for(int index = 0; index < fluidItem.Length; index++) {
+        //    fluidItem[index] = Instantiate(fluidItemPrefab);
+        //    fluidItem[index].SetActive(false);
+        //}
+        //for(int index = 0; index < rollerItem.Length; index++) {
+        //    rollerItem[index] = Instantiate(rollerItemPrefab);
+        //    rollerItem[index].SetActive(false);
+        //}
 
-    // 풀 활용 -> 오브젝트 풀에 접근할 수 있는 함수 생성
-    public GameObject MakeObj(string type) {
-        switch(type) {
-            case "WaterBalloon1":
-                targetPool = waterBalloon1;
-                break;
-            case "WaterBalloon2":
-                targetPool = waterBalloon2;
-                break;
-            case "WaterBalloon3":
-                targetPool = waterBalloon3;
-                break;
-            case "WaterBalloon4":
-                targetPool = waterBalloon4;
-                break;
-            case "WaterBalloon5":
-                targetPool = waterBalloon5;
-                break;
-            case "WaterBalloon6":
-                targetPool = waterBalloon6;
-                break;
-            case "WaterBalloon7":
-                targetPool = waterBalloon7;
-                break;
-            case "BubbleItem":
-                targetPool = bubbleItem;
-                break;
-            case "FluidItem":
-                targetPool = fluidItem;
-                break;
-            case "RollerItem":
-                targetPool = rollerItem;
-                break;
-        }
-        for(int index = 0; index < targetPool.Length; index++) {
-                    // 비활성화 된 오브젝트에 접근하여 활성화 후, 반환
-                    if(!targetPool[index].activeSelf) { // activeSelf : 오브젝트 활성화
-                        targetPool[index].SetActive(true);
-                        return targetPool[index];
-                    }  
-                }
-        // 풀(Pool)에 더 이상 활성화되지 않은 오브젝트가 남아있지 않을 때 null 값을 return 해줌
-        // 오브젝트가 모두 사용 중인 경우에는 targetPool[index].SetActive(true);에 도달하지 않게 됨
-        return null;
     }
 
     // 지정한 오브젝트 풀을 가져오는 함수 추가
@@ -171,15 +126,15 @@ public class ObjectManager : MonoBehaviour
             case "WaterBalloon7":
                 targetPool = waterBalloon7;
                 break;
-            case "BubbleItem":
-                targetPool = bubbleItem;
-                break;
-            case "FluidItem":
-                targetPool = fluidItem;
-                break;
-            case "RollerItem":
-                targetPool = rollerItem;
-                break;
+            //case "BubbleItem":
+            //    targetPool = bubbleItem;
+            //    break;
+            //case "FluidItem":
+            //    targetPool = fluidItem;
+            //    break;
+            //case "RollerItem":
+            //    targetPool = rollerItem;
+            //    break;
         }
 
         return targetPool;
