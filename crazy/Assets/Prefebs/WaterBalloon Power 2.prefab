@@ -154,7 +154,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &7101116995428918378
 Rigidbody2D:
@@ -282,7 +282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2279731586601234555
 Transform:
   m_ObjectHideFlags: 0
@@ -301,7 +301,7 @@ Transform:
   - {fileID: 5134497923626552121}
   - {fileID: 7668400277309244128}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2552933208618940439
 GameObject:
@@ -457,7 +457,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &2802665109669295557
 Rigidbody2D:
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 5085237360156951698}
   m_Layer: 0
   m_Name: BlueBub_Center
-  m_TagString: Untagged
+  m_TagString: Balloon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -625,7 +625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5a9b6306195704dba2ab6139a155a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   up: {fileID: 7279597989520802382}
   down: {fileID: 1417956431206769166}
   left: {fileID: 1187750727462031067}
@@ -831,7 +830,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &4795983634224556522
 Rigidbody2D:
@@ -1032,7 +1031,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &6670584296821608137
 Rigidbody2D:
@@ -1266,7 +1265,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &5568796211522646123
 MonoBehaviour:
@@ -1500,7 +1499,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &3057805596223434534
 MonoBehaviour:
@@ -1701,7 +1700,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &3082123399674135718
 MonoBehaviour:
@@ -1892,7 +1891,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.55, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1902,7 +1901,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 2.3, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7944226294214797824
 MonoBehaviour:

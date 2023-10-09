@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
+    public GameObject player;
+
+
     // 프리펩
     public GameObject waterBalloon1Prefab;
     public GameObject waterBalloon2Prefab;
@@ -99,7 +102,7 @@ public class ObjectManager : MonoBehaviour
         //    rollerItem[index] = Instantiate(rollerItemPrefab);
         //    rollerItem[index].SetActive(false);
         //}
-
+        
     }
 
     // 지정한 오브젝트 풀을 가져오는 함수 추가

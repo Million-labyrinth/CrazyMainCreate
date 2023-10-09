@@ -154,7 +154,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &7126151152650209273
 Rigidbody2D:
@@ -396,7 +396,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &7021707220417655425
 Rigidbody2D:
@@ -601,7 +601,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7901324805729778931
 MonoBehaviour:
@@ -806,7 +806,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &6039740960480280436
 MonoBehaviour:
@@ -872,7 +872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2170469221732850555
 Transform:
   m_ObjectHideFlags: 0
@@ -891,7 +891,7 @@ Transform:
   - {fileID: 1585612294035361149}
   - {fileID: 5480868010360276660}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2597277393519312137
 GameObject:
@@ -1047,7 +1047,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &8294234943194986299
 MonoBehaviour:
@@ -1289,7 +1289,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &5536070087024957918
 MonoBehaviour:
@@ -1355,7 +1355,7 @@ GameObject:
   - component: {fileID: 5780967720722795032}
   m_Layer: 0
   m_Name: BlueBub_Center
-  m_TagString: Untagged
+  m_TagString: Balloon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1507,7 +1507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5a9b6306195704dba2ab6139a155a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   up: {fileID: 7855939753284896578}
   down: {fileID: 783525788987030204}
   left: {fileID: 5360450656888955364}
@@ -1667,7 +1666,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &41961295359559209
 MonoBehaviour:
@@ -1872,7 +1871,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &5075318790017306466
 Rigidbody2D:
@@ -2077,7 +2076,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &3132595048991297330
 MonoBehaviour:
@@ -2319,7 +2318,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &5202900342812250168
 MonoBehaviour:
@@ -2524,7 +2523,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &3515129560551293284
 MonoBehaviour:
@@ -2729,7 +2728,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &7741946678019323866
 Rigidbody2D:
@@ -2934,7 +2933,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &4397715258726554362
 MonoBehaviour:
@@ -3139,7 +3138,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &6666557738287220120
 MonoBehaviour:
@@ -3344,7 +3343,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1217418538348624153
 MonoBehaviour:
@@ -3539,7 +3538,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.55, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3549,7 +3548,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 2.3, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &4255345408096123058
 MonoBehaviour:
@@ -3754,7 +3753,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &5044364495445338195
 MonoBehaviour:
@@ -3959,7 +3958,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &6507653806059494244
 MonoBehaviour:
@@ -4164,7 +4163,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &6880323534048130388
 MonoBehaviour:
@@ -4406,7 +4405,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &8494802036553297022
 MonoBehaviour:
@@ -4611,7 +4610,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &5853202114913027857
 MonoBehaviour:
@@ -4816,7 +4815,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &743379508753938775
 MonoBehaviour:
@@ -5021,7 +5020,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &608389398769113123
 MonoBehaviour:
@@ -5226,7 +5225,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &475443780139475581
 MonoBehaviour:
