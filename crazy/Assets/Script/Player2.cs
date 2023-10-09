@@ -16,9 +16,9 @@ public class Player2 : MonoBehaviour
     public float playerMaxHealth = 2f;
     public string basicBubble;
 
-    int playerAballonIndex = 10; // 물풍선 오브젝트 풀 사용할 때 필요한 playerAballonIndex 변수
-    public int playerAcountIndex = 0; // 물풍선을 생성할 때, playerAmakeBalloon 을 false 값으로 바꿔 줄 때 필요한 조건문의 변수
-    public bool playerAmakeBalloon = false; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
+    int playerBballonIndex = 10; // 물풍선 오브젝트 풀 사용할 때 필요한 playerAballonIndex 변수
+    public int playerBcountIndex = 0; // 물풍선을 생성할 때, playerAmakeBalloon 을 false 값으로 바꿔 줄 때 필요한 조건문의 변수
+    public bool playerBmakeBalloon = false; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
     public ObjectManager objectManager;
 
     public Item item;
@@ -78,7 +78,7 @@ public class Player2 : MonoBehaviour
 void Skill()
     {
         // 물풍선 풀 가져오기
-        switch (power)
+        switch (bombPower)
         {
             case 1:
                 MakeBalloon("WaterBalloon1");
@@ -133,7 +133,7 @@ void Skill()
 
     void CountDown()
     {
-        playerAcountIndex--;
+        playerBcountIndex--;
     }
     void MakeBalloon(string Power)
     {
@@ -145,7 +145,7 @@ void Skill()
         GameObject[] WaterBalloon;
         WaterBalloon = objectManager.GetPool(Power);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !playerBmakeBalloon && playerBcountIndex < power)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !playerBmakeBalloon && playerBcountIndex < bombPower)
         {
             if (!WaterBalloon[playerBballonIndex].activeInHierarchy)
             {

@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ObjectManager : MonoBehaviour
 {
-    public GameObject player;
-
-
     // 프리펩
     public GameObject waterBalloon1Prefab;
     public GameObject waterBalloon2Prefab;
@@ -33,6 +31,9 @@ public class ObjectManager : MonoBehaviour
     GameObject[] bubbleItem;
     GameObject[] fluidItem;
     GameObject[] rollerItem;
+
+    SpriteRenderer spriteRenderer;
+    int order = 20; // Order in Layer 변수
 
     GameObject[] targetPool; // switch 문을 통해 생성될 오브젝트 배열을 용도
 
@@ -87,22 +88,7 @@ public class ObjectManager : MonoBehaviour
         for(int index = 0; index < waterBalloon7.Length; index++) {
             waterBalloon7[index] = Instantiate(waterBalloon7Prefab);
             waterBalloon7[index].SetActive(false);
-        }
-
-        // Item
-        //for(int index = 0; index < bubbleItem.Length; index++) {
-        //    bubbleItem[index] = Instantiate(bubbleItemPrefab);
-        //    bubbleItem[index].SetActive(false);
-        //}
-        //for(int index = 0; index < fluidItem.Length; index++) {
-        //    fluidItem[index] = Instantiate(fluidItemPrefab);
-        //    fluidItem[index].SetActive(false);
-        //}
-        //for(int index = 0; index < rollerItem.Length; index++) {
-        //    rollerItem[index] = Instantiate(rollerItemPrefab);
-        //    rollerItem[index].SetActive(false);
-        //}
-        
+        }      
     }
 
     // 지정한 오브젝트 풀을 가져오는 함수 추가
@@ -129,15 +115,6 @@ public class ObjectManager : MonoBehaviour
             case "WaterBalloon7":
                 targetPool = waterBalloon7;
                 break;
-            //case "BubbleItem":
-            //    targetPool = bubbleItem;
-            //    break;
-            //case "FluidItem":
-            //    targetPool = fluidItem;
-            //    break;
-            //case "RollerItem":
-            //    targetPool = rollerItem;
-            //    break;
         }
 
         return targetPool;
