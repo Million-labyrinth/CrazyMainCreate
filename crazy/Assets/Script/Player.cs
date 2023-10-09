@@ -6,13 +6,6 @@ using System;
 //김인섭 왔다감2
 public class Player : MonoBehaviour
 {
-    public GameObject WaterBalloon1; // 물풍선 1
-    public GameObject WaterBalloon2; // 물풍선 2
-    public GameObject WaterBalloon3; // 물풍선 3
-    public GameObject WaterBalloon4; // 물풍선 4
-    public GameObject WaterBalloon5; // 물풍선 5
-    public GameObject WaterBalloon6; // 물풍선 6
-    public GameObject WaterBalloon7; // 물풍선 7
 
     public int bombPower;
     public int bombPowerMax = 10;
