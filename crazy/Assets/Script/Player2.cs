@@ -5,13 +5,6 @@ using UnityEngine;
 using System;
 public class Player2 : MonoBehaviour
 {
-    public GameObject WaterBalloon1; // 물풍선 1
-    public GameObject WaterBalloon2; // 물풍선 2
-    public GameObject WaterBalloon3; // 물풍선 3
-    public GameObject WaterBalloon4; // 물풍선 4
-    public GameObject WaterBalloon5; // 물풍선 5
-    public GameObject WaterBalloon6; // 물풍선 6
-    public GameObject WaterBalloon7; // 물풍선 7
 
     public int bombPower;
     public int bombPowerMax = 10;
@@ -84,34 +77,32 @@ public class Player2 : MonoBehaviour
     }
 void Skill()
     {
-        // 물풍선
-        if (Input.GetKeyDown(KeyCode.RightShift))
+        // 물풍선 풀 가져오기
+        switch (power)
         {
-            switch (bombRange)
-            {
-                case 1:
-                    MakeBalloon("WaterBalloon1");
-                    break;
-                case 2:
-                    MakeBalloon("WaterBalloon2");
-                    break;
-                case 3:
-                    MakeBalloon("WaterBalloon3");
-                    break;
-                case 4:
-                    MakeBalloon("WaterBalloon4");
-                    break;
-                case 5:
-                    MakeBalloon("WaterBalloon5");
-                    break;
-                case 6:
-                    MakeBalloon("WaterBalloon6");
-                    break;
-                case 7:
-                    MakeBalloon("WaterBalloon7");
-                    break;
-            }
+            case 1:
+                MakeBalloon("WaterBalloon1");
+                break;
+            case 2:
+                MakeBalloon("WaterBalloon2");
+                break;
+            case 3:
+                MakeBalloon("WaterBalloon3");
+                break;
+            case 4:
+                MakeBalloon("WaterBalloon4");
+                break;
+            case 5:
+                MakeBalloon("WaterBalloon5");
+                break;
+            case 6:
+                MakeBalloon("WaterBalloon6");
+                break;
+            case 7:
+                MakeBalloon("WaterBalloon7");
+                break;
         }
+
         //바늘 아이템 사용
         if (Input.GetKeyDown(KeyCode.LeftControl) && playerHealth == 0f)//왼쪽컨트롤키를 누르고 플레이어의 피가 0인 경우에만 실행
             // 0번째 활성화된 아이템을 사용
@@ -139,37 +130,44 @@ void Skill()
     //플레이어가 먹은 아이템 저장배열
 
     //플레이어 상태 스크립트(행동가능, 물풍선 같힌상태, 죽음)
-   
-   void CountDown()
-{
-    playerAcountIndex--;
-}
-void MakeBalloon(string Power)
-{
-    // 포지션
-    Vector3 MoveVec = transform.position;
-    MoveVec = new Vector3((float)Math.Round(MoveVec.x) , (float)Math.Round(MoveVec.y) , MoveVec.z); //소수점 버림
 
-    GameObject[] WaterBalloon;
-    WaterBalloon = objectManager.GetPool(Power);
-    if (playerAcountIndex < bombPower && !playerAmakeBalloon)
+    void CountDown()
     {
-        if (!WaterBalloon[playerAballonIndex].activeInHierarchy)
-        {
-            WaterBalloon[playerAballonIndex].SetActive(true);
-            WaterBalloon[playerAballonIndex].transform.position = MoveVec;
-            playerAballonIndex += 1;
-            // playerAballonIndex 가 20 을 넘어가면 0으로 초기화
-            if (WaterBalloon.Length == 10)
-            {
-                playerAballonIndex = 0;
-            }
-            playerAcountIndex++;
-            Invoke("CountDown", 5f);
-        }
-        playerAmakeBalloon = true;
+        playerAcountIndex--;
     }
-}
+    void MakeBalloon(string Power)
+    {
+        // 포지션
+        Vector3 MoveVec = transform.position;
+        MoveVec = new Vector3((float)Math.Round(MoveVec.x), (float)Math.Round(MoveVec.y), MoveVec.z); //소수점 버림
+
+
+        GameObject[] WaterBalloon;
+        WaterBalloon = objectManager.GetPool(Power);
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !playerBmakeBalloon && playerBcountIndex < power)
+        {
+            if (!WaterBalloon[playerBballonIndex].activeInHierarchy)
+            {
+                WaterBalloon[playerBballonIndex].SetActive(true);
+                WaterBalloon[playerBballonIndex].transform.position = MoveVec;
+
+            }
+
+            // playerAballonIndex 가 20 을 넘어가면 0으로 초기화
+            if (playerBballonIndex == 20)
+            {
+                playerBballonIndex = 10;
+            }
+            else
+            {
+                playerBballonIndex++;
+            }
+
+            playerBcountIndex++;
+            Invoke("CountDown", 3f);
+        }
+    }
 
     //아이템 먹었을때 스탯 값 증감
     void OnTriggerEnter2D(Collider2D collision)
@@ -178,10 +176,10 @@ void MakeBalloon(string Power)
 
         UnityEngine.Debug.Log("플레이어가 오브젝트에 닿음");
 
-        // 플레이어가 물풍선 밖으로 나갈 시, 트리거 비활성화
+        // 플레이어가 물풍선 안에 있을 시, 물풍선 생성 불가능하게 변경
         if (collision.gameObject.tag == "Balloon")
         {
-            playerAmakeBalloon = false;
+                playerBmakeBalloon = true;
         }
 
         if (collision.gameObject.CompareTag("powerItem"))
@@ -238,6 +236,15 @@ void MakeBalloon(string Power)
 
       
         
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        // 플레이어가 물풍선 밖으로 나갈 시, 물풍선 생성 가능하게 변경
+        if (collision.gameObject.tag == "Balloon")
+        {
+            playerBmakeBalloon = false;
+        }
     }
 
 
