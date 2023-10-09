@@ -730,7 +730,7 @@ Transform:
   m_GameObject: {fileID: 435125915}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.51, y: 7.6, z: 0}
+  m_LocalPosition: {x: 5.98, y: -3.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -775,10 +775,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d80758d13ce48e46b68f921c8aa7e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  power: 1
-  count: 0
-  remeberCount: 0
   WaterBalloon1: {fileID: 206138836}
   WaterBalloon2: {fileID: 368641171}
   WaterBalloon3: {fileID: 990599424}
@@ -786,6 +782,19 @@ MonoBehaviour:
   WaterBalloon5: {fileID: 1056843119}
   WaterBalloon6: {fileID: 115333504}
   WaterBalloon7: {fileID: 343069560}
+  bombPower: 0
+  bombPowerMax: 10
+  bombRange: 0
+  bombRangeMax: 7
+  playerSpeed: 0
+  playerSpeedMax: 7
+  playerHealth: 0
+  playerMaxHealth: 2
+  basicBubble: 
+  playerAcountIndex: 0
+  playerAmakeBalloon: 0
+  objectManager: {fileID: 0}
+  item: {fileID: 0}
 --- !u!58 &435125921
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5216,7 +5225,7 @@ Transform:
   m_GameObject: {fileID: 1814193079}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.12, y: -0.2, z: 0}
+  m_LocalPosition: {x: 5.86, y: -2.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5268,7 +5277,7 @@ MonoBehaviour:
   WaterBalloon5: {fileID: 101580186}
   WaterBalloon6: {fileID: 1562398204}
   WaterBalloon7: {fileID: 1654665971}
-  bombPower: 0
+  bombPower: 1
   bombPowerMax: 10
   bombRange: 0
   bombRangeMax: 7
@@ -5277,6 +5286,9 @@ MonoBehaviour:
   playerHealth: 0
   playerMaxHealth: 2
   basicBubble: 
+  playerAcountIndex: 0
+  playerAmakeBalloon: 0
+  objectManager: {fileID: 0}
   item: {fileID: 868673168}
 --- !u!58 &1814193089
 CircleCollider2D:
