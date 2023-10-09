@@ -1,4 +1,4 @@
-using System.Diagnostics;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     public int playerAcountIndex = 0; // 물풍선을 생성할 때, playerAmakeBalloon 을 false 값으로 바꿔 줄 때 필요한 조건문의 변수
     public bool playerAmakeBalloon = false; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
     public ObjectManager objectManager;
+    GameObject[] WaterBalloon; // 오브젝트 풀을 가져오기 위한 변수
+
+    CircleCollider2D collider;
 
     public Item item;
 
@@ -30,12 +33,11 @@ public class Player : MonoBehaviour
     bool isHorizonMove; // 대각선 이동 제한
 
     Rigidbody2D rigid;
-    CircleCollider2D circol;
 
 
     void Awake() {
         rigid = GetComponent<Rigidbody2D>();
-        circol = GetComponent<CircleCollider2D>();
+        collider = GetComponent<CircleCollider2D>();
 
         //플레이어 시작시 기본 스탯
         bombPower = 1;
@@ -151,12 +153,11 @@ void MakeBalloon(string Power)
     Vector3 MoveVec = transform.position;
     MoveVec = new Vector3((float)Math.Round(MoveVec.x) , (float)Math.Round(MoveVec.y) , MoveVec.z); //소수점 버림
 
-
-    GameObject[] WaterBalloon;
     WaterBalloon = objectManager.GetPool(Power);
 
     if (Input.GetKeyDown(KeyCode.RightShift) && !playerAmakeBalloon && playerAcountIndex < bombPower)
     {
+            Debug.Log("RightShift");
         if (!WaterBalloon[playerAballonIndex].activeInHierarchy)
         {
             WaterBalloon[playerAballonIndex].SetActive(true);
@@ -164,8 +165,8 @@ void MakeBalloon(string Power)
 
         }
 
-        // playerAballonIndex 가 10 을 넘어가면 0으로 초기화
-        if (playerAballonIndex == 10)
+            // playerAballonIndex 가 10 을 넘어가지 않게 0으로 초기화
+            if (playerAballonIndex == 9)
         {
             playerAballonIndex = 0;
         }
@@ -190,6 +191,8 @@ void MakeBalloon(string Power)
         if (collision.gameObject.tag == "Balloon")
         {
             playerAmakeBalloon = true;
+        } else { 
+            playerAmakeBalloon = false; 
         }
 
         if (collision.gameObject.CompareTag("powerItem"))

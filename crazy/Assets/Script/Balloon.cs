@@ -26,6 +26,11 @@ public class Balloon : MonoBehaviour
         Invoke("WaterLineActive", 0.1f);
         Invoke("Boom", 2.5f);
         Invoke("Finish", 3f);
+
+        upWater.SetActive(false);
+        downWater.SetActive(false);
+        leftWater.SetActive(false);
+        rightWater.SetActive(false);
     }
 
     void Boom() {
@@ -71,18 +76,23 @@ public class Balloon : MonoBehaviour
             }
         }
     }
-
-    void OnTriggerStay2D(Collider2D collision) {
+    void OnTriggerStay2D(Collider2D collision)
+    {
         // 플레이어가 물풍선 설치 후 위에 있을 시, 트리거 활성화
-        if(collision.gameObject.tag == "Player") {
+        if (collision.gameObject.tag == "PlayerA" || collision.gameObject.tag == "PlayerB")
+        {
             collider.isTrigger = true;
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision) {
+    void OnTriggerExit2D(Collider2D collision)
+    {
         // 플레이어가 물풍선 밖으로 나갈 시, 트리거 비활성화
-        if(collision.gameObject.tag == "Player") {
+        // 오류 수정 해야 됨. -> 동시에 같이 있다가 한명만 나가면 Trigger 가 비활성화돼서 한명은 튕겨남.
+        if (collision.gameObject.tag == "PlayerA" || collision.gameObject.tag == "PlayerB")
+        {
             collider.isTrigger = false;
         }
     }
+
 }

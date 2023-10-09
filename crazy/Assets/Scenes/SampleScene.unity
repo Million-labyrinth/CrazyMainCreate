@@ -451,7 +451,7 @@ MonoBehaviour:
   basicBubble: 
   playerBcountIndex: 0
   playerBmakeBalloon: 0
-  objectManager: {fileID: 0}
+  objectManager: {fileID: 1191335681}
   item: {fileID: 0}
 --- !u!58 &435125921
 CircleCollider2D:
@@ -4338,7 +4338,7 @@ MonoBehaviour:
   basicBubble: 
   playerAcountIndex: 0
   playerAmakeBalloon: 0
-  objectManager: {fileID: 0}
+  objectManager: {fileID: 1191335681}
   item: {fileID: 868673168}
 --- !u!58 &1814193089
 CircleCollider2D:

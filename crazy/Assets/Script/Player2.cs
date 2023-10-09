@@ -1,4 +1,4 @@
-using System.Diagnostics;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,11 +29,18 @@ public class Player2 : MonoBehaviour
     bool isHorizonMove; // 대각선 이동 제한
 
     Rigidbody2D rigid;
-    CircleCollider2D circol;
+    CircleCollider2D collider;
 
 
     void Awake() {
         rigid = GetComponent<Rigidbody2D>();
+        collider = GetComponent<CircleCollider2D>();
+
+        //플레이어 시작시 기본 스탯
+        bombPower = 1;
+        bombRange = 1;
+        playerSpeed = 4.0f;
+        playerHealth = 0f;
     }
 
     void Update() {
@@ -76,31 +83,34 @@ public class Player2 : MonoBehaviour
         }
     }
 void Skill()
-    {
-        // 물풍선 풀 가져오기
-        switch (bombPower)
+    {  
+        if(Input.GetKeyDown(KeyCode.LeftShift))
         {
-            case 1:
-                MakeBalloon("WaterBalloon1");
-                break;
-            case 2:
-                MakeBalloon("WaterBalloon2");
-                break;
-            case 3:
-                MakeBalloon("WaterBalloon3");
-                break;
-            case 4:
-                MakeBalloon("WaterBalloon4");
-                break;
-            case 5:
-                MakeBalloon("WaterBalloon5");
-                break;
-            case 6:
-                MakeBalloon("WaterBalloon6");
-                break;
-            case 7:
-                MakeBalloon("WaterBalloon7");
-                break;
+            // 물풍선 풀 가져오기
+            switch (bombRange)
+            {
+                case 1:
+                    MakeBalloon("WaterBalloon1");
+                    break;
+                case 2:
+                    MakeBalloon("WaterBalloon2");
+                    break;
+                case 3:
+                    MakeBalloon("WaterBalloon3");
+                    break;
+                case 4:
+                    MakeBalloon("WaterBalloon4");
+                    break;
+                case 5:
+                    MakeBalloon("WaterBalloon5");
+                    break;
+                case 6:
+                    MakeBalloon("WaterBalloon6");
+                    break;
+                case 7:
+                    MakeBalloon("WaterBalloon7");
+                    break;
+            }
         }
 
         //바늘 아이템 사용
@@ -145,8 +155,9 @@ void Skill()
         GameObject[] WaterBalloon;
         WaterBalloon = objectManager.GetPool(Power);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !playerBmakeBalloon && playerBcountIndex < bombPower)
+        if (!playerBmakeBalloon && playerBcountIndex < bombPower)
         {
+            Debug.Log("LeftShift");
             if (!WaterBalloon[playerBballonIndex].activeInHierarchy)
             {
                 WaterBalloon[playerBballonIndex].SetActive(true);
@@ -154,8 +165,8 @@ void Skill()
 
             }
 
-            // playerAballonIndex 가 20 을 넘어가면 0으로 초기화
-            if (playerBballonIndex == 20)
+            // playerAballonIndex 가 20 을 넘어가지 않게 10으로 초기화
+            if (playerBballonIndex == 19)
             {
                 playerBballonIndex = 10;
             }
@@ -180,6 +191,9 @@ void Skill()
         if (collision.gameObject.tag == "Balloon")
         {
                 playerBmakeBalloon = true;
+        } else
+        {
+            playerBmakeBalloon = false;
         }
 
         if (collision.gameObject.CompareTag("powerItem"))
