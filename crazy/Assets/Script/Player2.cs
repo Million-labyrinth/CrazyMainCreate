@@ -23,6 +23,7 @@ public class Player2 : MonoBehaviour
 
     public Item2 item2;
 
+    public GameManager gameManager;
 
     float hAxis;
     float vAxis;

@@ -399,7 +399,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &435125919
 Rigidbody2D:
@@ -452,7 +452,8 @@ MonoBehaviour:
   playerBcountIndex: 0
   playerBmakeBalloon: 0
   objectManager: {fileID: 1191335681}
-  item: {fileID: 868673168}
+  item2: {fileID: 868673171}
+  gameManager: {fileID: 868673170}
 --- !u!58 &435125921
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1842,6 +1843,8 @@ GameObject:
   m_Component:
   - component: {fileID: 868673169}
   - component: {fileID: 868673168}
+  - component: {fileID: 868673171}
+  - component: {fileID: 868673170}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1862,7 +1865,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1814193088}
-  player2: {fileID: 435125920}
   speedItem: []
   bombItem: []
   rangeItem: []
@@ -1883,6 +1885,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &868673170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868673167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4930d2f8b5dd72646aeb17078b58e9f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerA: {fileID: 1814193088}
+  playerB: {fileID: 435125920}
+--- !u!114 &868673171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868673167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b2b820c2926984bbb51aae8a93a422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 435125920}
+  speedItem: []
+  bombItem: []
+  rangeItem: []
+  Activeitem:
+  - {fileID: 0}
 --- !u!1001 &1026899325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1996,7 +2030,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1583763137
 GameObject:
@@ -4402,6 +4436,7 @@ MonoBehaviour:
   playerAmakeBalloon: 0
   objectManager: {fileID: 1191335681}
   item: {fileID: 868673168}
+  gameManager: {fileID: 868673170}
 --- !u!58 &1814193089
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5373,7 +5408,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 439644136204440042, guid: a6887caa78e890e4682bf628b5ca6901, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439644136204440042, guid: a6887caa78e890e4682bf628b5ca6901, type: 3}
       propertyPath: m_LocalPosition.x
