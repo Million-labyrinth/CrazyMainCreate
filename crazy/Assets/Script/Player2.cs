@@ -21,7 +21,7 @@ public class Player2 : MonoBehaviour
     public bool playerBmakeBalloon = false; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
     public ObjectManager objectManager;
 
-    public Item item;
+    public Item2 item2;
 
 
     float hAxis;
@@ -116,18 +116,18 @@ void Skill()
         //바늘 아이템 사용
         if (Input.GetKeyDown(KeyCode.LeftControl) && playerHealth == 0f)//왼쪽컨트롤키를 누르고 플레이어의 피가 0인 경우에만 실행
             // 0번째 활성화된 아이템을 사용
-            if (item.Activeitem.Length > 0 && item.Activeitem[0] != null)
+            if (item2.Activeitem.Length > 0 && item2.Activeitem[0] != null)
             {
-                string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
+                string itemName = item2.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
                 UnityEngine.Debug.Log("플레이어A가" + itemName + "아이템을 사용함");
                 // 0번째 아이템을 사용하려면 아래와 같이 호출
-                item.ActiveUseItem(item.Activeitem[0].name);
+                item2.ActiveUseItem(item2.Activeitem[0].name);
 
                 // 1번째 아이템을 0번째로 끌어올림
-                if (item.Activeitem.Length > 1 && item.Activeitem[1] != null)
+                if (item2.Activeitem.Length > 1 && item2.Activeitem[1] != null)
                 {
-                    item.Activeitem[0] = item.Activeitem[1];
-                    item.Activeitem[1] = null;
+                    item2.Activeitem[0] = item2.Activeitem[1];
+                    item2.Activeitem[1] = null;
                 }
             }
 
@@ -200,7 +200,7 @@ void Skill()
         {
             if (bombPower < bombPowerMax)
             {
-                item.PowerAdd(iname);
+                item2.PowerAdd(iname);
             }
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
@@ -212,7 +212,7 @@ void Skill()
 
             if (playerSpeed < playerSpeedMax)
             {
-                item.SpeedAdd(iname);
+                item2.SpeedAdd(iname);
             }
             UnityEngine.Debug.Log("스피드 아이템에 닿았음");
             // 먹은 아이템 비활성화
@@ -224,7 +224,7 @@ void Skill()
         {
             if (bombRange < bombRangeMax)
             {
-                item.RangeAdd(iname);
+                item2.RangeAdd(iname);
             }
             UnityEngine.Debug.Log("사거리 증가 아이템에 닿음");
                 // 먹은 아이템 비활성화
@@ -233,7 +233,7 @@ void Skill()
 
         else if (collision.gameObject.CompareTag("superMan"))
         {
-            item.SuperMan(iname);
+            item2.SuperMan(iname);
             UnityEngine.Debug.Log("슈퍼맨!!");
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
@@ -243,7 +243,7 @@ void Skill()
         if (collision.gameObject.CompareTag("ActiveItem"))
         {
             UnityEngine.Debug.Log("ActiveItem ADD");
-            item.AddActiveItem(collision.gameObject, 0);
+            item2.AddActiveItem(collision.gameObject, 0);
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
         }

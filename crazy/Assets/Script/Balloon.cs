@@ -42,6 +42,8 @@ public class Balloon : MonoBehaviour
         downWater.SetActive(true);
         leftWater.SetActive(true);
         rightWater.SetActive(true);
+
+        
     }
 
     void Finish() {
@@ -58,6 +60,7 @@ public class Balloon : MonoBehaviour
         rightWater.SetActive(false);
 
         waterLineActive = true;
+
     }
     void WaterLineActive()
     {
