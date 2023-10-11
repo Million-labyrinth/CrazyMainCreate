@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-//����� �׽�Ʈ�� ���� 
+
 
 //github test
 
@@ -11,8 +11,8 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public Player player;
-
-    //���۸ǿ� ������ �ɷ�ġ
+    public Player2 player2;
+    //
     private int previousBombPower;
     private int previousBombRange;
     private float previousPlayerSpeed;
@@ -33,84 +33,93 @@ public class Item : MonoBehaviour
 
 
 
-    //�������� �����صа�
-    //�Ŀ�
+    
+    //
     public void PowerAdd(string name)
     {
         if(name.Contains("basicBubble"))
         {
+
             player.bombPower++;
+            
             Debug.Log("basicBubble touch");
         }
         
     }
-    //���ǵ�
+ 
     public void SpeedAdd(string name)
     {
             if (name.Contains("roller"))
             {
                 Debug.Log("roller touch");
                 player.playerSpeed++ ;
-               
-            } 
+              
+        } 
             else if(name.Contains("redDevil"))
             {
                 Debug.Log("redDevil touch");
                 player.playerSpeed = player.playerSpeedMax;
-            }
+               
+        }
         
 
 
     }
-    //��Ÿ�
+
     public void RangeAdd(string name)
     {
         if(name.Contains("basicFluid"))
         {
             player.bombRange++;
+            
             Debug.Log("BasicFluid touch");
         }
         else if(name.Contains("ultraFluid"))
         {
             player.bombRange = player.bombRangeMax;
+            
             Debug.Log("ultraFluid touch");
         }
     }
 
-    //�ɷ�ġ �ҷ�����
+   
     public void LoadState()
     {
         player.bombPower = previousBombPower;
         player.bombRange = previousBombRange;
-        player.playerSpeed = previousPlayerSpeed; 
+        player.playerSpeed = previousPlayerSpeed;
+
+       
     }
 
 
-    //���۸�
+ 
     public void SuperMan(string name)
     {
         if (name.Contains("superMan") && !isSupermanActive)
         {
-            // ���۸� �������� �̹� Ȱ��ȭ ������ ǥ��
+            
             isSupermanActive = true;
 
-            // ���� �ɷ�ġ ����
+            
             previousBombPower = player.bombPower;
             previousBombRange = player.bombRange;
             previousPlayerSpeed = player.playerSpeed;
 
-            // ���ϴ� �ɷ�ġ�� ����
+            
+
+           
             player.bombPower = player.bombPowerMax;
             player.bombRange = player.bombRangeMax;
             player.playerSpeed = player.playerSpeedMax;
 
-            // 5�� ���� ��� �� ����
+      
             StartCoroutine(RestoreAbilitiesAfterDelay(5f));
         }
     }
 
 
-    // �������� Activeitem �迭�� �߰��ϴ� �Լ� (������ ȹ�� �� ȣ��)
+
     public void AddActiveItem(GameObject item, int index)
     {
         if (index >= 0 && index < Activeitem.Length)
@@ -119,7 +128,7 @@ public class Item : MonoBehaviour
         }
     }
 
-    //��Ƽ�� ������ ��� �ڵ�
+
     public void ActiveUseItem(string name)
     {
         if (Activeitem[0].name.Contains("niddle"))
@@ -134,7 +143,7 @@ public class Item : MonoBehaviour
         }
 
 
-        // ������ ��� ��, ����� �������� Activeitem �迭���� ����
+    
         for (int i = 0; i < Activeitem.Length; i++)
         {
             if (Activeitem[i] != null && Activeitem[i].name == name)
@@ -150,12 +159,12 @@ public class Item : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        // 5�� �Ŀ� ����� �ɷ�ġ�� ����
+     
         player.bombPower = previousBombPower;
         player.bombRange = previousBombRange;
         player.playerSpeed = previousPlayerSpeed;
 
-        // ���۸� ������ ��Ȱ��ȭ
+       
         isSupermanActive = false;
     }
 }
