@@ -8,9 +8,9 @@ using UnityEngine;
 //github test
 
 
-public class Item : MonoBehaviour
+public class Item2 : MonoBehaviour
 {
-    public Player player;
+    public Player2 player;
     
     
     private int previousBombPower;
@@ -41,7 +41,7 @@ public class Item : MonoBehaviour
         {
            
                 player.bombPower++;
-                Debug.Log("PlayerA PowerUp");
+                Debug.Log("PlayerB PowerUp");
        
             Debug.Log("basicBubble touch");
         }
