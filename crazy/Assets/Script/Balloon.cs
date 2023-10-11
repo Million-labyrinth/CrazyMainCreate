@@ -13,6 +13,7 @@ public class Balloon : MonoBehaviour
     public GameObject rightWater;
 
     public GameObject mainBalloon; // 물풍선 본체
+    public GameObject MainCollider; // 물풍선이 터지면 활성화 될, 물풍선 Collider
 
     bool waterLineActive = true; // 물줄기 위에 물풍선 설치 시, 안 터지게 만들기 위한 변수
 
@@ -31,19 +32,21 @@ public class Balloon : MonoBehaviour
         downWater.SetActive(false);
         leftWater.SetActive(false);
         rightWater.SetActive(false);
+        MainCollider.SetActive(false);
     }
+
+
 
     void Boom() {
         // 애니메이션
         anim.SetBool("Boom", true);
 
-        // 물줄기 활성화
+        // 물줄기, Main Collider 활성화
         upWater.SetActive(true);
         downWater.SetActive(true);
         leftWater.SetActive(true);
         rightWater.SetActive(true);
-
-        
+        MainCollider.SetActive(true);
     }
 
     void Finish() {
@@ -53,14 +56,15 @@ public class Balloon : MonoBehaviour
         collider.isTrigger = true;
         mainBalloon.SetActive(false);
 
-        // 물줄기 비활성화
+        // 물줄기, Main Collider 비활성화
         upWater.SetActive(false);
         downWater.SetActive(false);
         leftWater.SetActive(false);
         rightWater.SetActive(false);
+        MainCollider.SetActive(false);
+
 
         waterLineActive = true;
-
     }
     void WaterLineActive()
     {
