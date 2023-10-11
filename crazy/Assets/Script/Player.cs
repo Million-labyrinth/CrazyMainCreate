@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     CircleCollider2D collider;
 
     public Item item;
-
+    public GameManager gameManager;
 
     float hAxis;
     float vAxis;
@@ -191,6 +191,7 @@ void MakeBalloon(string Power)
         if (collision.gameObject.tag == "Balloon")
         {
             playerAmakeBalloon = true;
+            Invoke("DeatTime", 5);
         } else { 
             playerAmakeBalloon = false; 
         }
@@ -257,6 +258,9 @@ void MakeBalloon(string Power)
         }
     }
 
-
+    void DeatTime()
+    {
+        gameManager.Death();
+    }
 
 }
