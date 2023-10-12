@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-//github test
+//github test222222222 kim in seob
 
 
 public class Item : MonoBehaviour
