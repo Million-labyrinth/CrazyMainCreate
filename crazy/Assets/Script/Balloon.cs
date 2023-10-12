@@ -15,10 +15,10 @@ public class Balloon : MonoBehaviour
     public GameObject mainBalloon; // 물풍선 본체
     public GameObject MainCollider; // 물풍선이 터지면 활성화 될, 물풍선 Collider
 
-    GameObject upScanObject;
-    GameObject downScanObject;
-    GameObject leftScanObject;
-    GameObject rightScanObject;
+    GameObject upScanObject; // upRay 에 인식되는 오브젝트 변수
+    GameObject downScanObject; // downRay 에 인식되는 오브젝트 변수
+    GameObject leftScanObject; // leftRay 에 인식되는 오브젝트 변수
+    GameObject rightScanObject; // rightRay 에 인식되는 오브젝트 변수
 
     bool waterLineActive = true; // 물줄기 위에 물풍선 설치 시, 안 터지게 만들기 위한 변수
 
@@ -42,6 +42,12 @@ public class Balloon : MonoBehaviour
 
     void Update()
     {
+        BalloonRay();
+    }
+
+
+    void BalloonRay()
+    {
         // Ray
         Debug.DrawRay(transform.position, Vector3.up * 0.7f, new Color(0, 1, 0));
         Debug.DrawRay(transform.position, Vector3.down * 0.7f, new Color(0, 1, 0));
@@ -52,10 +58,11 @@ public class Balloon : MonoBehaviour
         RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position, Vector3.left, 0.7f, LayerMask.GetMask("Block"));
         RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position, Vector3.right, 0.7f, LayerMask.GetMask("Block"));
 
-        if(upRayHit.collider != null)
+        if (upRayHit.collider != null)
         {
             upScanObject = upRayHit.collider.gameObject;
-        } else
+        }
+        else
         {
             upScanObject = null;
         }
@@ -86,12 +93,12 @@ public class Balloon : MonoBehaviour
     }
 
 
-
     void Boom() {
         // 애니메이션
         anim.SetBool("Boom", true);
 
         // 물줄기, Main Collider 활성화
+        // Ray 에 블럭이 인식이 안될 경우에만 활성화
         if(upScanObject == null) { upWater.SetActive(true); }
         if(downScanObject == null) {  downWater.SetActive(true); }
         if(leftScanObject == null) { leftWater.SetActive(true); }
@@ -105,7 +112,6 @@ public class Balloon : MonoBehaviour
         // 애니메이션
         anim.SetBool("Boom", false);
 
-        collider.isTrigger = true;
         mainBalloon.SetActive(false);
 
         // 물줄기, Main Collider 비활성화
@@ -141,16 +147,6 @@ public class Balloon : MonoBehaviour
         if (collision.gameObject.tag == "PlayerA" || collision.gameObject.tag == "PlayerB")
         {
             collider.isTrigger = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        // 플레이어가 물풍선 밖으로 나갈 시, 트리거 비활성화
-        // 오류 수정 해야 됨. -> 동시에 같이 있다가 한명만 나가면 Trigger 가 비활성화돼서 한명은 튕겨남.
-        if (collision.gameObject.tag == "PlayerA" || collision.gameObject.tag == "PlayerB")
-        {
-            collider.isTrigger = false;
         }
     }
 
