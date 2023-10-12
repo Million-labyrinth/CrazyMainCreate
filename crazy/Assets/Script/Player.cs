@@ -253,6 +253,9 @@ void MakeBalloon(string Power)
         if (collision.gameObject.tag == "Balloon")
         {
             playerAmakeBalloon = true;
+            /*if () { niddle 사용하지 않았을때의 조건문
+                Invoke("DeatTime", 5);
+            }*/
             Invoke("DeatTime", 5);
         } else { 
             playerAmakeBalloon = false; 
@@ -322,7 +325,8 @@ void MakeBalloon(string Power)
 
     void DeatTime()
     {
-        gameManager.Death();
+        string playername = "A";
+        gameManager.Death(playername);
     }
 
 }
