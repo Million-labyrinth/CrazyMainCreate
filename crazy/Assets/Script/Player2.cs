@@ -265,10 +265,10 @@ void Skill()
             playerBmakeBalloon = false;
         }
     }
-    public void DeatTime()
+    void DeatTime()
     {
-        int playername2 =1;
-        gameManager.Death(playername2);
+        string playername = "B";
+        gameManager.Death2(playername);
     }
 
 }
