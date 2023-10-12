@@ -15,6 +15,9 @@ TagManager:
   - superMan
   - ActiveItem
   - Block
+  - PlayerA
+  - PlayerB
+  - MainCollider
   layers:
   - Default
   - TransparentFX
@@ -23,7 +26,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - Player2
+  - Block
   - 
   - 
   - 
