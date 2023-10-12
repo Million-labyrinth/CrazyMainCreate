@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 //김인섭 왔다감2
 public class Player : MonoBehaviour
 {
@@ -34,6 +35,11 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rigid;
 
+    Vector2 moveVec; // 플레이어가 움직이는 방향
+    Vector2 dirVec; // Ray 방향
+    Vector2 PlusVec; // Ray 시작지점
+
+    GameObject scanObject;
 
     void Awake() {
         rigid = GetComponent<Rigidbody2D>();
@@ -48,18 +54,13 @@ public class Player : MonoBehaviour
     }
 
     void Update() {
-
         Move();
         Skill();
- 
-        
-
     }
-    void FixedUpdate()
+    void LateUpdate()
     {
-
         // 대각선 이동 제한
-        Vector2 moveVec = isHorizonMove ? new Vector2(hAxis, 0) : new Vector2(0, vAxis);
+        moveVec = isHorizonMove ? new Vector2(hAxis, 0) : new Vector2(0, vAxis);
         rigid.velocity = moveVec * playerSpeed;
     }
     void Move()
@@ -86,7 +87,68 @@ public class Player : MonoBehaviour
         {
             isHorizonMove = hAxis != 0;
         }
+
+        // Ray 방향
+        if (vDown && vAxis == 1)
+        {
+            dirVec = Vector3.up;
+        }
+        else if (vDown && vAxis == -1)
+        {
+            dirVec = Vector3.down;
+        }
+        else if (hDown && hAxis == -1)
+        {
+            dirVec = Vector3.left;
+        }
+        else if (hDown && hAxis == 1)
+        {
+            dirVec = Vector3.right;
+        }
+
+        // Ray
+        Ray();
+
     }
+
+    void Ray()
+    {
+        // 시작점 및 방향 설정
+        if(moveVec.x == 0 && moveVec.y == 1)
+        {
+            PlusVec = new Vector2(0, 0.9f);
+            dirVec = Vector2.up;
+        } else if(moveVec.x == 0 && moveVec.y == -1)
+        {
+            PlusVec = new Vector2(0, -0.9f);
+            dirVec = Vector2.down;
+        } else if(moveVec.x == -1 && moveVec.y == 0)
+        {
+            PlusVec = new Vector2(-0.9f, 0);
+            dirVec = Vector2.left;
+        } else if (moveVec.x == 1 && moveVec.y == 0)
+        {
+            PlusVec = new Vector2(0.9f, 0);
+            dirVec = Vector2.right;
+        }
+
+        // Ray
+        Debug.DrawRay(rigid.position + PlusVec, dirVec * 0.3f, new Color(0, 1, 0));
+        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position + PlusVec, dirVec, 0.3f, LayerMask.GetMask("Balloon"));
+
+            if (rayHit.collider != null)
+            {
+                scanObject = rayHit.collider.gameObject;
+                moveVec = Vector2.zero;
+                Debug.Log(scanObject.name);
+            }
+            else
+            {
+                scanObject = null;
+
+            }
+    }
+
 
     void Skill()
     {
