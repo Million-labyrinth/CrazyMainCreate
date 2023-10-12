@@ -6,14 +6,16 @@ public class GameManager : MonoBehaviour
 {
     public Player playerA;
     public Player2 playerB;
-
+    int pla = 0;
+    int plb = 0;
 
     public void Death(string playername)
     {
        if(playername == "A")
         {
-            Debug.Log("player B Win");
-           
+           // Debug.Log("player B Win");
+            pla = 1;
+            Judgment();
         }
         
     }
@@ -21,14 +23,26 @@ public class GameManager : MonoBehaviour
     {
         if (playername2 == "B")
         {
-            Debug.Log("player A Win");
+            
+            //Debug.Log("player A Win");
+            plb = 1;
+            Judgment();
         }
     }
-    public void Draw()
+    public void Judgment()
     {
-        /*if (playername == "A" && playername2 == 1)
+        if(pla == plb)
         {
             Debug.Log("Draw");
-        }*/
+        }
+        if (pla == 1)
+        {
+            Debug.Log("player B Win2");
+        }
+        if (plb == 1)
+        {
+            Debug.Log("player A Win2");
+        }
+
     }
 }
