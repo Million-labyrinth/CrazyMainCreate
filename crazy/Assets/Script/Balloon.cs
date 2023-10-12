@@ -15,6 +15,11 @@ public class Balloon : MonoBehaviour
     public GameObject mainBalloon; // 물풍선 본체
     public GameObject MainCollider; // 물풍선이 터지면 활성화 될, 물풍선 Collider
 
+    GameObject upScanObject;
+    GameObject downScanObject;
+    GameObject leftScanObject;
+    GameObject rightScanObject;
+
     bool waterLineActive = true; // 물줄기 위에 물풍선 설치 시, 안 터지게 만들기 위한 변수
 
     void Awake()
@@ -35,6 +40,51 @@ public class Balloon : MonoBehaviour
         MainCollider.SetActive(false);
     }
 
+    void Update()
+    {
+        // Ray
+        Debug.DrawRay(transform.position, Vector3.up * 0.7f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position, Vector3.down * 0.7f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position, Vector3.left * 0.7f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position, Vector3.right * 0.7f, new Color(0, 1, 0));
+        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position, Vector3.up, 0.7f, LayerMask.GetMask("Block"));
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position, Vector3.down, 0.7f, LayerMask.GetMask("Block"));
+        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position, Vector3.left, 0.7f, LayerMask.GetMask("Block"));
+        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position, Vector3.right, 0.7f, LayerMask.GetMask("Block"));
+
+        if(upRayHit.collider != null)
+        {
+            upScanObject = upRayHit.collider.gameObject;
+        } else
+        {
+            upScanObject = null;
+        }
+        if (downRayHit.collider != null)
+        {
+            downScanObject = downRayHit.collider.gameObject;
+        }
+        else
+        {
+            downScanObject = null;
+        }
+        if (leftRayHit.collider != null)
+        {
+            leftScanObject = leftRayHit.collider.gameObject;
+        }
+        else
+        {
+            leftScanObject = null;
+        }
+        if (rightRayHit.collider != null)
+        {
+            rightScanObject = rightRayHit.collider.gameObject;
+        }
+        else
+        {
+            rightScanObject = null;
+        }
+    }
+
 
 
     void Boom() {
@@ -42,12 +92,14 @@ public class Balloon : MonoBehaviour
         anim.SetBool("Boom", true);
 
         // 물줄기, Main Collider 활성화
-        upWater.SetActive(true);
-        downWater.SetActive(true);
-        leftWater.SetActive(true);
-        rightWater.SetActive(true);
+        if(upScanObject == null) { upWater.SetActive(true); }
+        if(downScanObject == null) {  downWater.SetActive(true); }
+        if(leftScanObject == null) { leftWater.SetActive(true); }
+        if(rightScanObject == null) {  rightWater.SetActive(true); }
+        
         MainCollider.SetActive(true);
     }
+
 
     void Finish() {
         // 애니메이션
@@ -63,7 +115,6 @@ public class Balloon : MonoBehaviour
         rightWater.SetActive(false);
         MainCollider.SetActive(false);
 
-
         waterLineActive = true;
     }
     void WaterLineActive()
@@ -72,16 +123,17 @@ public class Balloon : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D obj) {
-        // 다른 물풍선의 물줄기에 맞으면 바로 터지게 만듦
-        if(obj.gameObject.tag == "upWater" || obj.gameObject.tag == "downWater" || obj.gameObject.tag == "leftWater" || obj.gameObject.tag == "rightWater") {
 
-            // 물줄기 위에서는 작동을 안하게 만듦
-            if (!waterLineActive)
-            {
-                Boom();
-                Invoke("Finish", 0.5f);
-            }
-        }
+         // 다른 물풍선의 물줄기에 맞으면 바로 터지게 만듦
+         if (obj.gameObject.tag == "upWater" || obj.gameObject.tag == "downWater" || obj.gameObject.tag == "leftWater" || obj.gameObject.tag == "rightWater")
+         {
+             // 물줄기 위에서는 작동을 안하게 만듦
+             if (!waterLineActive)
+             {
+                 Boom();
+                 Invoke("Finish", 0.5f);
+             }
+         }
     }
     void OnTriggerStay2D(Collider2D collision)
     {
