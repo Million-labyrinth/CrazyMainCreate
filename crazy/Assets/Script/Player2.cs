@@ -192,6 +192,10 @@ void Skill()
         if (collision.gameObject.tag == "Balloon")
         {
                 playerBmakeBalloon = true;
+            /*if () { niddle 사용하지 않았을때의 조건문
+               Invoke("DeatTime", 5);
+           }*/
+            Invoke("DeatTime", 5);
         } else
         {
             playerBmakeBalloon = false;
@@ -261,6 +265,10 @@ void Skill()
             playerBmakeBalloon = false;
         }
     }
-
+    public void DeatTime()
+    {
+        int playername2 =1;
+        gameManager.Death(playername2);
+    }
 
 }
