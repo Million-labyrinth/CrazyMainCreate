@@ -16,9 +16,9 @@ public class Player2 : MonoBehaviour
     public float playerMaxHealth = 2f;
     public string basicBubble;
 
-    int playerBballonIndex = 10; // 물풍선 오브젝트 풀 사용할 때 필요한 playerAballonIndex 변수
-    public int playerBcountIndex = 0; // 물풍선을 생성할 때, playerAmakeBalloon 을 false 값으로 바꿔 줄 때 필요한 조건문의 변수
-    public bool playerBmakeBalloon = false; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
+    int playerBballonIndex = 10; // 물풍선 오브젝트 풀 사용할 때 필요한 playerㅠballonIndex 변수
+    public int playerBcountIndex = 0; // 물풍선을 생성할 때, 플레이어가 생성한 물풍선의 개수를 체크할 때 필요한 변수
+    public bool playerBmakeBalloon; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
     public ObjectManager objectManager;
 
     public Item2 item2;
@@ -28,6 +28,13 @@ public class Player2 : MonoBehaviour
     float hAxis;
     float vAxis;
     bool isHorizonMove; // 대각선 이동 제한
+
+    RaycastHit2D rayHit; // 물풍선 충돌 판정에 필요한 Ray
+    Vector2 moveVec; // 플레이어가 움직이는 방향
+    Vector2 dirVec; // Ray 방향
+    Vector2 PlusVec; // 물풍선 충돌 판정Ray 시작지점
+    Vector2 MakeVec; // 물풍선 생성 판정 Ray 시작지점
+    GameObject scanObject; // Ray 로 스캔한 오브젝트
 
     Rigidbody2D rigid;
     CircleCollider2D collider;
@@ -42,21 +49,28 @@ public class Player2 : MonoBehaviour
         bombRange = 1;
         playerSpeed = 4.0f;
         playerHealth = 0f;
+
+        playerBmakeBalloon = true;
+
+        PlusVec = new Vector2(0, 1.3f);
+        dirVec = Vector2.up;
+        rayHit = Physics2D.Raycast(rigid.position + PlusVec, dirVec, 0.4f, LayerMask.GetMask("Balloon B"));
     }
 
     void Update() {
 
         Move();
         Skill();
-
+        Ray();
     }
 
-    void FixedUpdate() {
-
+    void LateUpdate()
+    {
         // 대각선 이동 제한
-        Vector2 moveVec = isHorizonMove ? new Vector2(hAxis, 0) : new Vector2(0, vAxis);
+        moveVec = isHorizonMove ? new Vector2(hAxis, 0) : new Vector2(0, vAxis);
         rigid.velocity = moveVec * playerSpeed;
     }
+
 
     void Move()
     {
@@ -82,8 +96,83 @@ public class Player2 : MonoBehaviour
         {
             isHorizonMove = hAxis != 0;
         }
+
+        // Ray 방향
+        if (vDown && vAxis == 1)
+        {
+            dirVec = Vector3.up;
+        }
+        else if (vDown && vAxis == -1)
+        {
+            dirVec = Vector3.down;
+        }
+        else if (hDown && hAxis == -1)
+        {
+            dirVec = Vector3.left;
+        }
+        else if (hDown && hAxis == 1)
+        {
+            dirVec = Vector3.right;
+        }
     }
-void Skill()
+
+    void Ray()
+    {
+        // 시작점 및 방향 설정
+        if (moveVec.x == 0 && moveVec.y == 1)
+        {
+            PlusVec = new Vector2(0, 1.45f);
+            MakeVec = new Vector2(0, -0.45f);
+            dirVec = Vector2.up;
+        }
+        else if (moveVec.x == 0 && moveVec.y == -1)
+        {
+            PlusVec = new Vector2(0, -1.45f);
+            MakeVec = new Vector2(0, 0.45f);
+            dirVec = Vector2.down;
+        }
+        else if (moveVec.x == -1 && moveVec.y == 0)
+        {
+            PlusVec = new Vector2(-1.45f, 0);
+            MakeVec = new Vector2(0.45f, 0);
+            dirVec = Vector2.left;
+        }
+        else if (moveVec.x == 1 && moveVec.y == 0)
+        {
+            PlusVec = new Vector2(1.45f, 0);
+            MakeVec = new Vector2(-0.45f, 0);
+            dirVec = Vector2.right;
+        }
+
+        // Ray (물풍선 충돌 판정)
+        Debug.DrawRay(rigid.position + PlusVec, dirVec * 0.4f, new Color(0, 0, 1));
+        rayHit = Physics2D.Raycast(rigid.position + PlusVec, dirVec, 0.4f, LayerMask.GetMask("Balloon B"));
+
+        if (rayHit.collider != null)
+        {
+            scanObject = rayHit.collider.gameObject;
+            scanObject.gameObject.layer = 11;
+        }
+        else
+        {
+            scanObject = null;
+
+        }
+
+        // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray
+        Debug.DrawRay(rigid.position + MakeVec, dirVec * 0.9f, new Color(1, 0, 0));
+        RaycastHit2D rayHitForMake = Physics2D.Raycast(rigid.position + MakeVec, dirVec, 0.9f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Balloon Hard A") | LayerMask.GetMask("Balloon Hard B"));
+
+        if (rayHitForMake.collider != null)
+        {
+            playerBmakeBalloon = false;
+        }
+        else
+        {
+            playerBmakeBalloon = true;
+        }
+    }
+    void Skill()
     {  
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -156,7 +245,7 @@ void Skill()
         GameObject[] WaterBalloon;
         WaterBalloon = objectManager.GetPool(Power);
 
-        if (!playerBmakeBalloon && playerBcountIndex < bombPower)
+        if (playerBmakeBalloon && playerBcountIndex < bombPower)
         {
             Debug.Log("LeftShift");
             if (!WaterBalloon[playerBballonIndex].activeInHierarchy)
@@ -191,14 +280,10 @@ void Skill()
         // 플레이어가 물풍선 안에 있을 시, 물풍선 생성 불가능하게 변경
         if (collision.gameObject.tag == "Balloon")
         {
-                playerBmakeBalloon = true;
             /*if () { niddle 사용하지 않았을때의 조건문
                Invoke("DeatTime", 5);
            }*/
             Invoke("DeatTime", 5);
-        } else
-        {
-            playerBmakeBalloon = false;
         }
 
         if (collision.gameObject.CompareTag("powerItem"))
@@ -257,14 +342,6 @@ void Skill()
         
     }
 
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        // 플레이어가 물풍선 밖으로 나갈 시, 물풍선 생성 가능하게 변경
-        if (collision.gameObject.tag == "Balloon")
-        {
-            playerBmakeBalloon = false;
-        }
-    }
     void DeatTime()
     {
         string playername = "B";

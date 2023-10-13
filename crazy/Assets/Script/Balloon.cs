@@ -37,13 +37,13 @@ public class Balloon : MonoBehaviour
         downWater.SetActive(false);
         leftWater.SetActive(false);
         rightWater.SetActive(false);
-        MainCollider.SetActive(false);
     }
 
     void Update()
     {
         BalloonRay();
     }
+
 
 
     void BalloonRay()
@@ -103,8 +103,6 @@ public class Balloon : MonoBehaviour
         if(downScanObject == null) {  downWater.SetActive(true); }
         if(leftScanObject == null) { leftWater.SetActive(true); }
         if(rightScanObject == null) {  rightWater.SetActive(true); }
-        
-        MainCollider.SetActive(true);
     }
 
 
@@ -119,9 +117,11 @@ public class Balloon : MonoBehaviour
         downWater.SetActive(false);
         leftWater.SetActive(false);
         rightWater.SetActive(false);
-        MainCollider.SetActive(false);
 
         waterLineActive = true;
+
+        this.gameObject.layer = 8;
+        MainCollider.layer = 9;
     }
     void WaterLineActive()
     {
@@ -140,14 +140,6 @@ public class Balloon : MonoBehaviour
                  Invoke("Finish", 0.5f);
              }
          }
-    }
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        // 플레이어가 물풍선 설치 후 위에 있을 시, 트리거 활성화
-        if (collision.gameObject.tag == "PlayerA" || collision.gameObject.tag == "PlayerB")
-        {
-            collider.isTrigger = true;
-        }
     }
 
 }

@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
     public string basicBubble;
 
     int playerAballonIndex = 0; // 물풍선 오브젝트 풀 사용할 때 필요한 playerAballonIndex 변수
-    public int playerAcountIndex = 0; // 물풍선을 생성할 때, playerAmakeBalloon 을 false 값으로 바꿔 줄 때 필요한 조건문의 변수
-    public bool playerAmakeBalloon = false; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
+    public int playerAcountIndex = 0; // 물풍선을 생성할 때, 플레이어가 생성한 물풍선의 개수를 체크할 때 필요한 변수
+    public bool playerAmakeBalloon; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
     public ObjectManager objectManager;
     GameObject[] WaterBalloon; // 오브젝트 풀을 가져오기 위한 변수
 
@@ -35,11 +35,12 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rigid;
 
+    RaycastHit2D rayHit; // 물풍선 충돌 판정에 필요한 Ray
     Vector2 moveVec; // 플레이어가 움직이는 방향
     Vector2 dirVec; // Ray 방향
-    Vector2 PlusVec; // Ray 시작지점
-
-    GameObject scanObject;
+    Vector2 PlusVec; // 물풍선 충돌 판정Ray 시작지점
+    Vector2 MakeVec; // 물풍선 생성 판정 Ray 시작지점
+    GameObject scanObject; // Ray 로 스캔한 오브젝트
 
     void Awake() {
         rigid = GetComponent<Rigidbody2D>();
@@ -51,11 +52,17 @@ public class Player : MonoBehaviour
         playerSpeed = 4.0f;
         playerHealth = 0f;
 
+        playerAmakeBalloon = true;
+
+        PlusVec = new Vector2(0, 1.3f);
+        dirVec = Vector2.up;
+        rayHit = Physics2D.Raycast(rigid.position + PlusVec, dirVec, 0.4f, LayerMask.GetMask("Balloon A"));
     }
 
     void Update() {
         Move();
         Skill();
+        Ray();
     }
     void LateUpdate()
     {
@@ -63,6 +70,7 @@ public class Player : MonoBehaviour
         moveVec = isHorizonMove ? new Vector2(hAxis, 0) : new Vector2(0, vAxis);
         rigid.velocity = moveVec * playerSpeed;
     }
+
     void Move()
     {
         // 이동
@@ -106,47 +114,62 @@ public class Player : MonoBehaviour
             dirVec = Vector3.right;
         }
 
-        // Ray
-        Ray();
-
     }
 
     void Ray()
     {
         // 시작점 및 방향 설정
-        if(moveVec.x == 0 && moveVec.y == 1)
+        if (moveVec.x == 0 && moveVec.y == 1)
         {
-            PlusVec = new Vector2(0, 0.9f);
+            PlusVec = new Vector2(0, 1.45f);
+            MakeVec = new Vector2(0, -0.45f);
             dirVec = Vector2.up;
-        } else if(moveVec.x == 0 && moveVec.y == -1)
+        }
+        else if (moveVec.x == 0 && moveVec.y == -1)
         {
-            PlusVec = new Vector2(0, -0.9f);
+            PlusVec = new Vector2(0, -1.45f);
+            MakeVec = new Vector2(0, 0.45f);
             dirVec = Vector2.down;
-        } else if(moveVec.x == -1 && moveVec.y == 0)
+        }
+        else if (moveVec.x == -1 && moveVec.y == 0)
         {
-            PlusVec = new Vector2(-0.9f, 0);
+            PlusVec = new Vector2(-1.45f, 0);
+            MakeVec = new Vector2(0.45f, 0);
             dirVec = Vector2.left;
-        } else if (moveVec.x == 1 && moveVec.y == 0)
+        }
+        else if (moveVec.x == 1 && moveVec.y == 0)
         {
-            PlusVec = new Vector2(0.9f, 0);
+            PlusVec = new Vector2(1.45f, 0);
+            MakeVec = new Vector2(-0.45f, 0);
             dirVec = Vector2.right;
         }
 
-        // Ray
-        Debug.DrawRay(rigid.position + PlusVec, dirVec * 0.3f, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position + PlusVec, dirVec, 0.3f, LayerMask.GetMask("Balloon"));
+        // Ray (물풍선 충돌 판정)
+        Debug.DrawRay(rigid.position + PlusVec, dirVec * 0.4f, new Color(0, 0, 1));
+        rayHit = Physics2D.Raycast(rigid.position + PlusVec, dirVec, 0.4f, LayerMask.GetMask("Balloon A"));
 
             if (rayHit.collider != null)
             {
                 scanObject = rayHit.collider.gameObject;
-                moveVec = Vector2.zero;
-                Debug.Log(scanObject.name);
+                scanObject.gameObject.layer = 10;
             }
             else
             {
                 scanObject = null;
 
             }
+
+        // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray
+        Debug.DrawRay(rigid.position + MakeVec, dirVec * 0.9f, new Color(1, 0, 0));
+        RaycastHit2D rayHitForMake = Physics2D.Raycast(rigid.position + MakeVec, dirVec, 0.9f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Balloon Hard A") | LayerMask.GetMask("Balloon Hard B"));
+    
+        if(rayHitForMake.collider != null)
+        {
+            playerAmakeBalloon = false;
+        } else
+        {
+            playerAmakeBalloon = true;
+        }
     }
 
 
@@ -217,7 +240,7 @@ void MakeBalloon(string Power)
 
     WaterBalloon = objectManager.GetPool(Power);
 
-    if (Input.GetKeyDown(KeyCode.RightShift) && !playerAmakeBalloon && playerAcountIndex < bombPower)
+    if (Input.GetKeyDown(KeyCode.RightShift) && playerAmakeBalloon && playerAcountIndex < bombPower)
     {
             Debug.Log("RightShift");
         if (!WaterBalloon[playerAballonIndex].activeInHierarchy)
@@ -249,16 +272,14 @@ void MakeBalloon(string Power)
 
         UnityEngine.Debug.Log("플레이어가 오브젝트에 닿음");
 
-        // 플레이어가 물풍선 안에 있을 시, 물풍선 생성 불가능하게 변경
+        // 플레이어가 물풍선 위에 있을 시
         if (collision.gameObject.tag == "Balloon")
         {
-            playerAmakeBalloon = true;
+
             /*if () { niddle 사용하지 않았을때의 조건문
                 Invoke("DeatTime", 5);
             }*/
             Invoke("DeatTime", 5);
-        } else { 
-            playerAmakeBalloon = false; 
         }
 
         if (collision.gameObject.CompareTag("powerItem"))
@@ -311,15 +332,6 @@ void MakeBalloon(string Power)
             item.AddActiveItem(collision.gameObject, 0);
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        // 플레이어가 물풍선 밖으로 나갈 시, 물풍선 생성 가능하게 변경
-        if (collision.gameObject.tag == "Balloon")
-        {
-            playerAmakeBalloon = false;
         }
     }
 
