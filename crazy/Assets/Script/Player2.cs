@@ -284,6 +284,7 @@ public class Player2 : MonoBehaviour
                Invoke("DeatTime", 5);
            }*/
             Invoke("DeatTime", 5);
+            Debug.Log("Player2Trigger");
         }
 
         if (collision.gameObject.CompareTag("powerItem"))
