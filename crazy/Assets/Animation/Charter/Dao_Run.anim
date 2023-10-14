@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dao_Idle
+  m_Name: Dao_Run
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: a665312c831d0c7488efe61437f3e106, type: 3}
+      value: {fileID: 21300000, guid: 00ad65a8b3c231f41a6594e49e7ba5ce, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 3ee1033629f294546ab92f2e48e6331e, type: 3}
+      value: {fileID: 21300000, guid: bffdbb3d316cfd74e863eb78c59e66d6, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: e4d699af59fe4e84b85add5059441f33, type: 3}
+      value: {fileID: 21300000, guid: aa1633ce918ac8e41a968f1f73eac55d, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: 560b64924cbe80746ade62ddc64c3291, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,15 +50,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: a665312c831d0c7488efe61437f3e106, type: 3}
-    - {fileID: 21300000, guid: 3ee1033629f294546ab92f2e48e6331e, type: 3}
-    - {fileID: 21300000, guid: e4d699af59fe4e84b85add5059441f33, type: 3}
+    - {fileID: 21300000, guid: 00ad65a8b3c231f41a6594e49e7ba5ce, type: 3}
+    - {fileID: 21300000, guid: bffdbb3d316cfd74e863eb78c59e66d6, type: 3}
+    - {fileID: 21300000, guid: aa1633ce918ac8e41a968f1f73eac55d, type: 3}
+    - {fileID: 21300000, guid: 560b64924cbe80746ade62ddc64c3291, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
