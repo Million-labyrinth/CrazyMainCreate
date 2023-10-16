@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8083190474743778677}
   - component: {fileID: 7224308718406482112}
   - component: {fileID: 5062067626199591223}
+  - component: {fileID: 4529438564224298358}
   m_Layer: 0
   m_Name: niddle
   m_TagString: ActiveItem
@@ -120,3 +121,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.71428573
+--- !u!114 &4529438564224298358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112012888330814227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cedd3db4df8977341a09335cc0e0294b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.1

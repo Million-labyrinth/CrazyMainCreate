@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5757212328032227412}
   - component: {fileID: 6108380504279614177}
   - component: {fileID: 2077666068428879734}
+  - component: {fileID: 6035777366061766868}
   m_Layer: 0
   m_Name: ultraFluid
   m_TagString: rangeItem
@@ -120,3 +121,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.71428573
+--- !u!114 &6035777366061766868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791380455028354811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cedd3db4df8977341a09335cc0e0294b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.1
