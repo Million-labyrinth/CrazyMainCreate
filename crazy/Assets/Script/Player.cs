@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     bool isHorizonMove; // 대각선 이동 제한
 
     Rigidbody2D rigid;
+    Animator anim;
 
     RaycastHit2D rayHit; // 물풍선 충돌 판정에 필요한 Ray
     Vector2 moveVec; // 플레이어가 움직이는 방향
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
     void Awake() {
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
+        anim = GetComponent<Animator>();
 
         //플레이어 시작시 기본 스탯
         bombPower = 1;
@@ -86,6 +88,7 @@ public class Player : MonoBehaviour
         if (vDown)
         {
             isHorizonMove = false;
+            anim.SetFloat("vertical", vAxis);
         }
         else if (hDown)
         {
@@ -94,6 +97,11 @@ public class Player : MonoBehaviour
         else if (vUp || hUp)
         {
             isHorizonMove = hAxis != 0;
+
+            if(vUp)
+            {
+                anim.SetFloat("vertical", vAxis);
+            }
         }
 
         // Ray 방향
