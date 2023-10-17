@@ -6,43 +6,52 @@ public class GameManager : MonoBehaviour
 {
     public Player playerA;
     public Player2 playerB;
-    int pla = 0;
-    int plb = 0;
+    bool plA;
+    bool plB;
 
-    public void Death(string playername)
+    void Awake(){
+        Invoke("TimeEND",180);
+    }
+
+    public void Death(string playername)//Player A Death
     {
        if(playername == "A")
         {
            // Debug.Log("player B Win");
-            pla = 1;
+            plA = false;
             Judgment();
         }
         
     }
-    public void Death2(string playername2)
+    public void Death2(string playername2)//Player B Death
     {
         if (playername2 == "B")
         {
             
             //Debug.Log("player A Win");
-            plb = 1;
+            plB = false;
             Judgment();
         }
     }
     public void Judgment()
     {
-        if(pla == plb)
+        if(plA == plB)
         {
             Debug.Log("Draw");
         }
-        else if (pla == 1)
+        else if (plA == false)
         {
             Debug.Log("player B Win2");
         }
-        else if (plb == 1)
+        else if (plB == false)
         {
             Debug.Log("player A Win2");
         }
+
+    }
+    void TimeEND(){
+        //UI활성화 또는 SEEN교체
+        Debug.Log("Time Out Draw");
 
     }
 }
