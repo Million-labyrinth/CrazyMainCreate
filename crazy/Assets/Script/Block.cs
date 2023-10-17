@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    public GameObject player;
-    Player playerLogic;
     Animator anim;
-    
 
     public float nextPushTime; // 블럭 밀기 최대(설정) 쿨타임
     public float curPushTime; // 블럭 밀기 현재(충전) 쿨타임
 
     void Awake() {
-        playerLogic = player.GetComponent<Player>();
         anim = GetComponent<Animator>();
     }
 
@@ -24,6 +20,7 @@ public class Block : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D  obj) {
         if(obj.gameObject.tag == "upWater" || obj.gameObject.tag == "downWater" || obj.gameObject.tag == "leftWater" || obj.gameObject.tag == "rightWater") {
+            Debug.Log(obj.name);
             anim.SetBool("Hit", true);
             Invoke("Hit", 0.2f);
         }

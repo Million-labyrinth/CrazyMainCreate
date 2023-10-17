@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
     void Ray()
     {
         // Ray (물풍선 충돌 판정)  
-        for(float angle = 0.0f; angle < 360.0f; angle += 5.0f)
+        for (float angle = 0.0f; angle < 360.0f; angle += 5.0f)
         {
             float x = rigid.position.x + 1.6f * Mathf.Cos(Mathf.Deg2Rad * angle);
             float y = rigid.position.y + 1.6f * Mathf.Sin(Mathf.Deg2Rad * angle);
