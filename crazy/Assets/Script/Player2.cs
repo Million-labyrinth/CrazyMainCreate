@@ -122,25 +122,25 @@ public class Player2 : MonoBehaviour
         if (moveVec.x == 0 && moveVec.y == 1)
         {
             PlusVec = new Vector2(0, 1.45f);
-            MakeVec = new Vector2(0, -0.45f);
+            MakeVec = new Vector2(0, -0.6f);
             dirVec = Vector2.up;
         }
         else if (moveVec.x == 0 && moveVec.y == -1)
         {
             PlusVec = new Vector2(0, -1.45f);
-            MakeVec = new Vector2(0, 0.45f);
+            MakeVec = new Vector2(0, 0.6f);
             dirVec = Vector2.down;
         }
         else if (moveVec.x == -1 && moveVec.y == 0)
         {
             PlusVec = new Vector2(-1.45f, 0);
-            MakeVec = new Vector2(0.45f, 0);
+            MakeVec = new Vector2(0.6f, 0);
             dirVec = Vector2.left;
         }
         else if (moveVec.x == 1 && moveVec.y == 0)
         {
             PlusVec = new Vector2(1.45f, 0);
-            MakeVec = new Vector2(-0.45f, 0);
+            MakeVec = new Vector2(-0.6f, 0);
             dirVec = Vector2.right;
         }
 
@@ -160,8 +160,8 @@ public class Player2 : MonoBehaviour
         }
 
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray
-        Debug.DrawRay(rigid.position + MakeVec, dirVec * 0.9f, new Color(1, 0, 0));
-        RaycastHit2D rayHitForMake = Physics2D.Raycast(rigid.position + MakeVec, dirVec, 0.9f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Balloon Hard A") | LayerMask.GetMask("Balloon Hard B"));
+        Debug.DrawRay(rigid.position + MakeVec, dirVec * 1.2f, new Color(1, 0, 0));
+        RaycastHit2D rayHitForMake = Physics2D.Raycast(rigid.position + MakeVec, dirVec, 1.2f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Balloon Hard A") | LayerMask.GetMask("Balloon Hard B"));
 
         if (rayHitForMake.collider != null)
         {
