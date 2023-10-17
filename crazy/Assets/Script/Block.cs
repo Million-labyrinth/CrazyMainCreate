@@ -7,7 +7,7 @@ public class Block : MonoBehaviour
 {
     public Player playerA;
     public Player2 playerB;
-    Animator anim;
+    public Animator anim;
     public ObjectManager objectManager;
     public bool blockBreak = false;
 
