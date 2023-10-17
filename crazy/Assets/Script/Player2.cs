@@ -111,7 +111,6 @@ public class Player2 : MonoBehaviour
             if (obj != null)
             {
                 obj.gameObject.layer = 11;
-                Debug.Log(obj.name);
             }
         }
 

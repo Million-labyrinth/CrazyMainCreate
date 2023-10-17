@@ -5,7 +5,7 @@ using static UnityEditor.Progress;
 
 public class ObjectManager : MonoBehaviour
 {
-    // 프리펩
+    // 물풍선 프리팹
     public GameObject waterBalloon1Prefab;
     public GameObject waterBalloon2Prefab;
     public GameObject waterBalloon3Prefab;
@@ -14,10 +14,15 @@ public class ObjectManager : MonoBehaviour
     public GameObject waterBalloon6Prefab;
     public GameObject waterBalloon7Prefab;
 
+    // 아이템 프리팹
     public GameObject bubbleItemPrefab;
     public GameObject fluidItemPrefab;
     public GameObject rollerItemPrefab;
+    public GameObject niddleItemPrefab;
+    public GameObject shieldItemPrefab;
+    public GameObject ultraFluidItemPrefab;
 
+    // 물풍선 배열
     GameObject[] waterBalloon1;
     GameObject[] waterBalloon2;
     GameObject[] waterBalloon3;
@@ -27,13 +32,13 @@ public class ObjectManager : MonoBehaviour
     GameObject[] waterBalloon7;
 
 
-
+    // 아이템 배열
     GameObject[] bubbleItem;
     GameObject[] fluidItem;
     GameObject[] rollerItem;
-
-    SpriteRenderer spriteRenderer;
-    int order = 20; // Order in Layer 변수
+    GameObject[] niddleItem;
+    GameObject[] shieldItem;
+    GameObject[] ultraFluidItem;
 
     GameObject[] targetPool; // switch 문을 통해 생성될 오브젝트 배열을 용도
 
@@ -50,9 +55,12 @@ public class ObjectManager : MonoBehaviour
         waterBalloon6 = new GameObject[20];
         waterBalloon7 = new GameObject[20];
 
-        //bubbleItem = new GameObject[15];
-        //fluidItem = new GameObject[10];
-        //rollerItem = new GameObject[10];
+        bubbleItem = new GameObject[10];
+        fluidItem = new GameObject[8];
+        rollerItem = new GameObject[4];
+        niddleItem = new GameObject[3];
+        shieldItem = new GameObject[3];
+        ultraFluidItem = new GameObject[3];
 
         Generate();
 
@@ -88,7 +96,76 @@ public class ObjectManager : MonoBehaviour
         for(int index = 0; index < waterBalloon7.Length; index++) {
             waterBalloon7[index] = Instantiate(waterBalloon7Prefab);
             waterBalloon7[index].SetActive(false);
-        }      
+        }
+
+        // Item
+        for (int index = 0; index < bubbleItem.Length; index++)
+        {
+            bubbleItem[index] = Instantiate(bubbleItemPrefab);
+            bubbleItem[index].SetActive(false);
+        }
+        for (int index = 0; index < fluidItem.Length; index++)
+        {
+            fluidItem[index] = Instantiate(fluidItemPrefab);
+            fluidItem[index].SetActive(false);
+        }
+        for (int index = 0; index < rollerItem.Length; index++)
+        {
+            rollerItem[index] = Instantiate(rollerItemPrefab);
+            rollerItem[index].SetActive(false);
+        }
+        for (int index = 0; index < shieldItem.Length; index++)
+        {
+            shieldItem[index] = Instantiate(shieldItemPrefab);
+            shieldItem[index].SetActive(false);
+        }
+        for (int index = 0; index < niddleItem.Length; index++)
+        {
+            niddleItem[index] = Instantiate(niddleItemPrefab);
+            niddleItem[index].SetActive(false);
+        }
+        for (int index = 0; index < ultraFluidItem.Length; index++)
+        {
+            ultraFluidItem[index] = Instantiate(ultraFluidItemPrefab);
+            ultraFluidItem[index].SetActive(false);
+        }
+    }
+
+    public GameObject MakeItem(string type)
+    {
+        switch(type) {
+            case "BubbleItem":
+                targetPool = bubbleItem;
+                break;
+            case "FluidItem":
+                targetPool = fluidItem;
+                break;
+            case "RollerItem":
+                targetPool = rollerItem;
+                break;
+            case "ShieldItem":
+                targetPool = shieldItem;
+                break;
+            case "NiddleItem":
+                targetPool = niddleItem;
+                break;
+            case "UltraFluidItem":
+                targetPool = ultraFluidItem;
+                break;
+        }
+
+        for (int index = 0; index < targetPool.Length; index++)
+        {
+            // 비활성화 된 오브젝트에 접근하여 활성화 후, 반환
+            if (!targetPool[index].activeSelf)
+            { // activeSelf : 오브젝트 활성화 여부
+                targetPool[index].SetActive(true);
+                return targetPool[index];
+            }
+        }
+        // 풀(Pool)에 더 이상 활성화되지 않은 오브젝트가 남아있지 않을 때 null 값을 return 해줌
+        // 오브젝트가 모두 사용 중인 경우에는 targetPool[index].SetActive(true);에 도달하지 않게 됨
+        return null;
     }
 
     // 지정한 오브젝트 풀을 가져오는 함수 추가
@@ -114,6 +191,24 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "WaterBalloon7":
                 targetPool = waterBalloon7;
+                break;
+            case "BubbleItem":
+                targetPool = bubbleItem;
+                break;
+            case "FluidItem":
+                targetPool = fluidItem;
+                break;
+            case "RollerItem":
+                targetPool = rollerItem;
+                break;
+            case "ShieldItem":
+                targetPool = shieldItem;
+                break;
+            case "NiddleItem":
+                targetPool = niddleItem;
+                break;
+            case "UltraFluid":
+                targetPool = ultraFluidItem;
                 break;
         }
 
