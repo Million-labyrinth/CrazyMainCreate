@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Unity.VisualScripting;
+using Unity.Burst.CompilerServices;
 //김인섭 왔다감2
 public class Player : MonoBehaviour
 {
@@ -104,80 +105,44 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Ray 방향
-        if (vDown && vAxis == 1)
-        {
-            dirVec = Vector3.up;
-        }
-        else if (vDown && vAxis == -1)
-        {
-            dirVec = Vector3.down;
-        }
-        else if (hDown && hAxis == -1)
-        {
-            dirVec = Vector3.left;
-        }
-        else if (hDown && hAxis == 1)
-        {
-            dirVec = Vector3.right;
-        }
-
     }
 
     void Ray()
     {
-        // 시작점 및 방향 설정
-        if (moveVec.x == 0 && moveVec.y == 1)
+        // Ray (물풍선 충돌 판정)  
+        for(float angle = 0.0f; angle < 360.0f; angle += 5.0f)
         {
-            PlusVec = new Vector2(0, 1.45f);
-            MakeVec = new Vector2(0, -0.45f);
-            dirVec = Vector2.up;
-        }
-        else if (moveVec.x == 0 && moveVec.y == -1)
-        {
-            PlusVec = new Vector2(0, -1.45f);
-            MakeVec = new Vector2(0, 0.45f);
-            dirVec = Vector2.down;
-        }
-        else if (moveVec.x == -1 && moveVec.y == 0)
-        {
-            PlusVec = new Vector2(-1.45f, 0);
-            MakeVec = new Vector2(0.45f, 0);
-            dirVec = Vector2.left;
-        }
-        else if (moveVec.x == 1 && moveVec.y == 0)
-        {
-            PlusVec = new Vector2(1.45f, 0);
-            MakeVec = new Vector2(-0.45f, 0);
-            dirVec = Vector2.right;
-        }
+            float x = rigid.position.x + 1.6f * Mathf.Cos(Mathf.Deg2Rad * angle);
+            float y = rigid.position.y + 1.6f * Mathf.Sin(Mathf.Deg2Rad * angle);
+            
+            Collider2D obj = Physics2D.OverlapPoint(new Vector2(x, y), LayerMask.GetMask("Balloon A"));
 
-        // Ray (물풍선 충돌 판정)
-        Debug.DrawRay(rigid.position + PlusVec, dirVec * 0.4f, new Color(0, 0, 1));
-        rayHit = Physics2D.Raycast(rigid.position + PlusVec, dirVec, 0.4f, LayerMask.GetMask("Balloon A"));
-
-            if (rayHit.collider != null)
+            if (obj != null)
             {
-                scanObject = rayHit.collider.gameObject;
-                scanObject.gameObject.layer = 10;
+                obj.gameObject.layer = 10;
+                Debug.Log(obj.name);
             }
-            else
-            {
-                scanObject = null;
-
-            }
+        }
 
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray
-        Debug.DrawRay(rigid.position + MakeVec, dirVec * 0.9f, new Color(1, 0, 0));
-        RaycastHit2D rayHitForMake = Physics2D.Raycast(rigid.position + MakeVec, dirVec, 0.9f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Balloon Hard A") | LayerMask.GetMask("Balloon Hard B"));
-    
-        if(rayHitForMake.collider != null)
+        Collider2D forMake = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.1f), 0.5f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Balloon Hard A") | LayerMask.GetMask("Balloon Hard B"));
+
+        if (forMake != null)
         {
             playerAmakeBalloon = false;
         } else
         {
             playerAmakeBalloon = true;
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(0f, 1f, 0f);
+        // 물풍선 충돌 판정
+        Gizmos.DrawWireSphere(transform.position, 1.6f);
+        // 물풍선 생성 판정
+        Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.1f), 0.5f);
     }
 
 
