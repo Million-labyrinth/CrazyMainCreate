@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
         }
 
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray
-        Collider2D forMake = Physics2D.OverlapCircle(rigid.position, 0.5f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Balloon Hard A") | LayerMask.GetMask("Balloon Hard B"));
+        Collider2D forMake = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.1f), 0.5f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Balloon Hard A") | LayerMask.GetMask("Balloon Hard B"));
 
         if (forMake != null)
         {
@@ -139,8 +139,10 @@ public class Player : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0f, 1f, 0f);
+        // 물풍선 충돌 판정
         Gizmos.DrawWireSphere(transform.position, 1.6f);
-        Gizmos.DrawWireSphere(transform.position, 0.5f);
+        // 물풍선 생성 판정
+        Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.1f), 0.5f);
     }
 
 
