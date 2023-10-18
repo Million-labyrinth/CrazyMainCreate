@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class ObjectManager : MonoBehaviour
 {
@@ -42,7 +41,8 @@ public class ObjectManager : MonoBehaviour
 
     GameObject[] targetPool; // switch 문을 통해 생성될 오브젝트 배열을 용도
 
-    void Awake() {
+    void Awake()
+    {
 
         // 첫 로딩 시간 = 장면 배치 + 오브젝트 풀 생성
 
@@ -67,33 +67,41 @@ public class ObjectManager : MonoBehaviour
     }
 
     // Instantiate() 로 생성한 프레펩을 인스턴스를 배열에 저장
-    void Generate() {
+    void Generate()
+    {
         // WaterBalloon
-        for(int index = 0; index < waterBalloon1.Length; index++) {
+        for (int index = 0; index < waterBalloon1.Length; index++)
+        {
             waterBalloon1[index] = Instantiate(waterBalloon1Prefab);
             waterBalloon1[index].SetActive(false);
         }
-        for(int index = 0; index < waterBalloon2.Length; index++) {
+        for (int index = 0; index < waterBalloon2.Length; index++)
+        {
             waterBalloon2[index] = Instantiate(waterBalloon2Prefab);
             waterBalloon2[index].SetActive(false);
         }
-        for(int index = 0; index < waterBalloon3.Length; index++) {
+        for (int index = 0; index < waterBalloon3.Length; index++)
+        {
             waterBalloon3[index] = Instantiate(waterBalloon3Prefab);
             waterBalloon3[index].SetActive(false);
         }
-        for(int index = 0; index < waterBalloon4.Length; index++) {
+        for (int index = 0; index < waterBalloon4.Length; index++)
+        {
             waterBalloon4[index] = Instantiate(waterBalloon4Prefab);
             waterBalloon4[index].SetActive(false);
         }
-        for(int index = 0; index < waterBalloon5.Length; index++) {
+        for (int index = 0; index < waterBalloon5.Length; index++)
+        {
             waterBalloon5[index] = Instantiate(waterBalloon5Prefab);
             waterBalloon5[index].SetActive(false);
         }
-        for(int index = 0; index < waterBalloon6.Length; index++) {
+        for (int index = 0; index < waterBalloon6.Length; index++)
+        {
             waterBalloon6[index] = Instantiate(waterBalloon6Prefab);
             waterBalloon6[index].SetActive(false);
         }
-        for(int index = 0; index < waterBalloon7.Length; index++) {
+        for (int index = 0; index < waterBalloon7.Length; index++)
+        {
             waterBalloon7[index] = Instantiate(waterBalloon7Prefab);
             waterBalloon7[index].SetActive(false);
         }
@@ -133,7 +141,8 @@ public class ObjectManager : MonoBehaviour
 
     public GameObject MakeItem(string type)
     {
-        switch(type) {
+        switch (type)
+        {
             case "BubbleItem":
                 targetPool = bubbleItem;
                 break;
@@ -169,8 +178,10 @@ public class ObjectManager : MonoBehaviour
     }
 
     // 지정한 오브젝트 풀을 가져오는 함수 추가
-    public GameObject[] GetPool(string type) {
-        switch(type) {
+    public GameObject[] GetPool(string type)
+    {
+        switch (type)
+        {
             case "WaterBalloon1":
                 targetPool = waterBalloon1;
                 break;
