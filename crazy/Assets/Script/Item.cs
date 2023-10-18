@@ -140,8 +140,10 @@ public class Item : MonoBehaviour
         else if (Activeitem[0].name.Contains("shield"))
         {
             Debug.Log("shield item touch");
+
             
         }
+    
 
 
     
