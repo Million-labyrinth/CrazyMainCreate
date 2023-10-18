@@ -121,7 +121,6 @@ public class Player : MonoBehaviour
             {
                 obj.gameObject.layer = 10;
                 Debug.Log(obj.name);
-                Invoke("DeatTime", 5);
             }
         }
 
@@ -249,7 +248,7 @@ void MakeBalloon(string Power)
         // 플레이어가 물풍선 위에 있을 시
         if (collision.gameObject.tag == "Balloon")
         {
-            
+
             /*if () { niddle 사용하지 않았을때의 조건문
                 Invoke("DeatTime", 5);
             }*/
