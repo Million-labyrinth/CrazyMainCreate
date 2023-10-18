@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ObjectManager : MonoBehaviour
 {
-    // ¹°Ç³¼± ÇÁ¸®ÆÕ
+    // ë¬¼í’ì„  í”„ë¦¬íŒ¹
     public GameObject waterBalloon1Prefab;
     public GameObject waterBalloon2Prefab;
     public GameObject waterBalloon3Prefab;
@@ -13,7 +14,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject waterBalloon6Prefab;
     public GameObject waterBalloon7Prefab;
 
-    // ¾ÆÀÌÅÛ ÇÁ¸®ÆÕ
+    // ì•„ì´í…œ í”„ë¦¬íŒ¹
     public GameObject bubbleItemPrefab;
     public GameObject fluidItemPrefab;
     public GameObject rollerItemPrefab;
@@ -21,7 +22,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject shieldItemPrefab;
     public GameObject ultraFluidItemPrefab;
 
-    // ¹°Ç³¼± ¹è¿­
+    // ë¬¼í’ì„  ë°°ì—´
     GameObject[] waterBalloon1;
     GameObject[] waterBalloon2;
     GameObject[] waterBalloon3;
@@ -31,7 +32,7 @@ public class ObjectManager : MonoBehaviour
     GameObject[] waterBalloon7;
 
 
-    // ¾ÆÀÌÅÛ ¹è¿­
+    // ì•„ì´í…œ ë°°ì—´
     GameObject[] bubbleItem;
     GameObject[] fluidItem;
     GameObject[] rollerItem;
@@ -39,14 +40,13 @@ public class ObjectManager : MonoBehaviour
     GameObject[] shieldItem;
     GameObject[] ultraFluidItem;
 
-    GameObject[] targetPool; // switch ¹®À» ÅëÇØ »ı¼ºµÉ ¿ÀºêÁ§Æ® ¹è¿­À» ¿ëµµ
+    GameObject[] targetPool; // switch ë¬¸ì„ í†µí•´ ìƒì„±ë  ì˜¤ë¸Œì íŠ¸ ë°°ì—´ì„ ìš©ë„
 
-    void Awake()
-    {
+    void Awake() {
 
-        // Ã¹ ·Îµù ½Ã°£ = Àå¸é ¹èÄ¡ + ¿ÀºêÁ§Æ® Ç® »ı¼º
+        // ì²« ë¡œë”© ì‹œê°„ = ì¥ë©´ ë°°ì¹˜ + ì˜¤ë¸Œì íŠ¸ í’€ ìƒì„±
 
-        // ÇÑ¹ø¿¡ µîÀåÇÒ °³¼ö¸¦ °í·ÁÇÏ¿© ¹è¿­ ±æÀÌ ÇÒ´ç
+        // í•œë²ˆì— ë“±ì¥í•  ê°œìˆ˜ë¥¼ ê³ ë ¤í•˜ì—¬ ë°°ì—´ ê¸¸ì´ í• ë‹¹
         waterBalloon1 = new GameObject[20];
         waterBalloon2 = new GameObject[20];
         waterBalloon3 = new GameObject[20];
@@ -66,42 +66,34 @@ public class ObjectManager : MonoBehaviour
 
     }
 
-    // Instantiate() ·Î »ı¼ºÇÑ ÇÁ·¹ÆéÀ» ÀÎ½ºÅÏ½º¸¦ ¹è¿­¿¡ ÀúÀå
-    void Generate()
-    {
+    // Instantiate() ë¡œ ìƒì„±í•œ í”„ë ˆí©ì„ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë°°ì—´ì— ì €ì¥
+    void Generate() {
         // WaterBalloon
-        for (int index = 0; index < waterBalloon1.Length; index++)
-        {
+        for(int index = 0; index < waterBalloon1.Length; index++) {
             waterBalloon1[index] = Instantiate(waterBalloon1Prefab);
             waterBalloon1[index].SetActive(false);
         }
-        for (int index = 0; index < waterBalloon2.Length; index++)
-        {
+        for(int index = 0; index < waterBalloon2.Length; index++) {
             waterBalloon2[index] = Instantiate(waterBalloon2Prefab);
             waterBalloon2[index].SetActive(false);
         }
-        for (int index = 0; index < waterBalloon3.Length; index++)
-        {
+        for(int index = 0; index < waterBalloon3.Length; index++) {
             waterBalloon3[index] = Instantiate(waterBalloon3Prefab);
             waterBalloon3[index].SetActive(false);
         }
-        for (int index = 0; index < waterBalloon4.Length; index++)
-        {
+        for(int index = 0; index < waterBalloon4.Length; index++) {
             waterBalloon4[index] = Instantiate(waterBalloon4Prefab);
             waterBalloon4[index].SetActive(false);
         }
-        for (int index = 0; index < waterBalloon5.Length; index++)
-        {
+        for(int index = 0; index < waterBalloon5.Length; index++) {
             waterBalloon5[index] = Instantiate(waterBalloon5Prefab);
             waterBalloon5[index].SetActive(false);
         }
-        for (int index = 0; index < waterBalloon6.Length; index++)
-        {
+        for(int index = 0; index < waterBalloon6.Length; index++) {
             waterBalloon6[index] = Instantiate(waterBalloon6Prefab);
             waterBalloon6[index].SetActive(false);
         }
-        for (int index = 0; index < waterBalloon7.Length; index++)
-        {
+        for(int index = 0; index < waterBalloon7.Length; index++) {
             waterBalloon7[index] = Instantiate(waterBalloon7Prefab);
             waterBalloon7[index].SetActive(false);
         }
@@ -141,8 +133,7 @@ public class ObjectManager : MonoBehaviour
 
     public GameObject MakeItem(string type)
     {
-        switch (type)
-        {
+        switch(type) {
             case "BubbleItem":
                 targetPool = bubbleItem;
                 break;
@@ -165,23 +156,21 @@ public class ObjectManager : MonoBehaviour
 
         for (int index = 0; index < targetPool.Length; index++)
         {
-            // ºñÈ°¼ºÈ­ µÈ ¿ÀºêÁ§Æ®¿¡ Á¢±ÙÇÏ¿© È°¼ºÈ­ ÈÄ, ¹İÈ¯
+            // ë¹„í™œì„±í™” ëœ ì˜¤ë¸Œì íŠ¸ì— ì ‘ê·¼í•˜ì—¬ í™œì„±í™” í›„, ë°˜í™˜
             if (!targetPool[index].activeSelf)
-            { // activeSelf : ¿ÀºêÁ§Æ® È°¼ºÈ­ ¿©ºÎ
+            { // activeSelf : ì˜¤ë¸Œì íŠ¸ í™œì„±í™” ì—¬ë¶€
                 targetPool[index].SetActive(true);
                 return targetPool[index];
             }
         }
-        // Ç®(Pool)¿¡ ´õ ÀÌ»ó È°¼ºÈ­µÇÁö ¾ÊÀº ¿ÀºêÁ§Æ®°¡ ³²¾ÆÀÖÁö ¾ÊÀ» ¶§ null °ªÀ» return ÇØÁÜ
-        // ¿ÀºêÁ§Æ®°¡ ¸ğµÎ »ç¿ë ÁßÀÎ °æ¿ì¿¡´Â targetPool[index].SetActive(true);¿¡ µµ´ŞÇÏÁö ¾Ê°Ô µÊ
+        // í’€(Pool)ì— ë” ì´ìƒ í™œì„±í™”ë˜ì§€ ì•Šì€ ì˜¤ë¸Œì íŠ¸ê°€ ë‚¨ì•„ìˆì§€ ì•Šì„ ë•Œ null ê°’ì„ return í•´ì¤Œ
+        // ì˜¤ë¸Œì íŠ¸ê°€ ëª¨ë‘ ì‚¬ìš© ì¤‘ì¸ ê²½ìš°ì—ëŠ” targetPool[index].SetActive(true);ì— ë„ë‹¬í•˜ì§€ ì•Šê²Œ ë¨
         return null;
     }
 
-    // ÁöÁ¤ÇÑ ¿ÀºêÁ§Æ® Ç®À» °¡Á®¿À´Â ÇÔ¼ö Ãß°¡
-    public GameObject[] GetPool(string type)
-    {
-        switch (type)
-        {
+    // ì§€ì •í•œ ì˜¤ë¸Œì íŠ¸ í’€ì„ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜ ì¶”ê°€
+    public GameObject[] GetPool(string type) {
+        switch(type) {
             case "WaterBalloon1":
                 targetPool = waterBalloon1;
                 break;

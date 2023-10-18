@@ -18,7 +18,6 @@ TagManager:
   - PlayerA
   - PlayerB
   - MainCollider
-  - box
   layers:
   - Default
   - TransparentFX
