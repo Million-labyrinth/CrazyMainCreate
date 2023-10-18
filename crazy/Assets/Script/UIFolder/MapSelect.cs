@@ -8,16 +8,19 @@ using UnityEngine.UI;
 public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Button title_to_scene;
-    public GameObject largeImage; // 해당 작은 이미지에 대응하는 큰 이미지
+    public GameObject largeImage;
+    public GameObject border;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        largeImage.SetActive(true); // 큰 이미지 활성화
+        largeImage.SetActive(true);
+        border.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        largeImage.SetActive(false); // 큰 이미지 비활성화
+        largeImage.SetActive(false);
+        border.SetActive(false);
     }
 
     public void tts()
