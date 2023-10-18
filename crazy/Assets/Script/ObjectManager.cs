@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
-    // ë¬¼í’ì„  í”„ë¦¬íŒ¹
+    // ¹°Ç³¼± ÇÁ¸®ÆÕ
     public GameObject waterBalloon1Prefab;
     public GameObject waterBalloon2Prefab;
     public GameObject waterBalloon3Prefab;
@@ -13,7 +13,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject waterBalloon6Prefab;
     public GameObject waterBalloon7Prefab;
 
-    // ì•„ì´í…œ í”„ë¦¬íŒ¹
+    // ¾ÆÀÌÅÛ ÇÁ¸®ÆÕ
     public GameObject bubbleItemPrefab;
     public GameObject fluidItemPrefab;
     public GameObject rollerItemPrefab;
@@ -21,7 +21,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject shieldItemPrefab;
     public GameObject ultraFluidItemPrefab;
 
-    // ë¬¼í’ì„  ë°°ì—´
+    // ¹°Ç³¼± ¹è¿­
     GameObject[] waterBalloon1;
     GameObject[] waterBalloon2;
     GameObject[] waterBalloon3;
@@ -31,7 +31,7 @@ public class ObjectManager : MonoBehaviour
     GameObject[] waterBalloon7;
 
 
-    // ì•„ì´í…œ ë°°ì—´
+    // ¾ÆÀÌÅÛ ¹è¿­
     GameObject[] bubbleItem;
     GameObject[] fluidItem;
     GameObject[] rollerItem;
@@ -39,14 +39,14 @@ public class ObjectManager : MonoBehaviour
     GameObject[] shieldItem;
     GameObject[] ultraFluidItem;
 
-    GameObject[] targetPool; // switch ë¬¸ì„ í†µí•´ ìƒì„±ë  ì˜¤ë¸Œì íŠ¸ ë°°ì—´ì„ ìš©ë„
+    GameObject[] targetPool; // switch ¹®À» ÅëÇØ »ı¼ºµÉ ¿ÀºêÁ§Æ® ¹è¿­À» ¿ëµµ
 
     void Awake()
     {
 
-        // ì²« ë¡œë”© ì‹œê°„ = ì¥ë©´ ë°°ì¹˜ + ì˜¤ë¸Œì íŠ¸ í’€ ìƒì„±
+        // Ã¹ ·Îµù ½Ã°£ = Àå¸é ¹èÄ¡ + ¿ÀºêÁ§Æ® Ç® »ı¼º
 
-        // í•œë²ˆì— ë“±ì¥í•  ê°œìˆ˜ë¥¼ ê³ ë ¤í•˜ì—¬ ë°°ì—´ ê¸¸ì´ í• ë‹¹
+        // ÇÑ¹ø¿¡ µîÀåÇÒ °³¼ö¸¦ °í·ÁÇÏ¿© ¹è¿­ ±æÀÌ ÇÒ´ç
         waterBalloon1 = new GameObject[20];
         waterBalloon2 = new GameObject[20];
         waterBalloon3 = new GameObject[20];
@@ -66,7 +66,7 @@ public class ObjectManager : MonoBehaviour
 
     }
 
-    // Instantiate() ë¡œ ìƒì„±í•œ í”„ë ˆí©ì„ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë°°ì—´ì— ì €ì¥
+    // Instantiate() ·Î »ı¼ºÇÑ ÇÁ·¹ÆéÀ» ÀÎ½ºÅÏ½º¸¦ ¹è¿­¿¡ ÀúÀå
     void Generate()
     {
         // WaterBalloon
@@ -165,19 +165,19 @@ public class ObjectManager : MonoBehaviour
 
         for (int index = 0; index < targetPool.Length; index++)
         {
-            // ë¹„í™œì„±í™” ëœ ì˜¤ë¸Œì íŠ¸ì— ì ‘ê·¼í•˜ì—¬ í™œì„±í™” í›„, ë°˜í™˜
+            // ºñÈ°¼ºÈ­ µÈ ¿ÀºêÁ§Æ®¿¡ Á¢±ÙÇÏ¿© È°¼ºÈ­ ÈÄ, ¹İÈ¯
             if (!targetPool[index].activeSelf)
-            { // activeSelf : ì˜¤ë¸Œì íŠ¸ í™œì„±í™” ì—¬ë¶€
+            { // activeSelf : ¿ÀºêÁ§Æ® È°¼ºÈ­ ¿©ºÎ
                 targetPool[index].SetActive(true);
                 return targetPool[index];
             }
         }
-        // í’€(Pool)ì— ë” ì´ìƒ í™œì„±í™”ë˜ì§€ ì•Šì€ ì˜¤ë¸Œì íŠ¸ê°€ ë‚¨ì•„ìˆì§€ ì•Šì„ ë•Œ null ê°’ì„ return í•´ì¤Œ
-        // ì˜¤ë¸Œì íŠ¸ê°€ ëª¨ë‘ ì‚¬ìš© ì¤‘ì¸ ê²½ìš°ì—ëŠ” targetPool[index].SetActive(true);ì— ë„ë‹¬í•˜ì§€ ì•Šê²Œ ë¨
+        // Ç®(Pool)¿¡ ´õ ÀÌ»ó È°¼ºÈ­µÇÁö ¾ÊÀº ¿ÀºêÁ§Æ®°¡ ³²¾ÆÀÖÁö ¾ÊÀ» ¶§ null °ªÀ» return ÇØÁÜ
+        // ¿ÀºêÁ§Æ®°¡ ¸ğµÎ »ç¿ë ÁßÀÎ °æ¿ì¿¡´Â targetPool[index].SetActive(true);¿¡ µµ´ŞÇÏÁö ¾Ê°Ô µÊ
         return null;
     }
 
-    // ì§€ì •í•œ ì˜¤ë¸Œì íŠ¸ í’€ì„ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜ ì¶”ê°€
+    // ÁöÁ¤ÇÑ ¿ÀºêÁ§Æ® Ç®À» °¡Á®¿À´Â ÇÔ¼ö Ãß°¡
     public GameObject[] GetPool(string type)
     {
         switch (type)
