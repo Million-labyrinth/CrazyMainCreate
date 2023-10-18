@@ -10,20 +10,15 @@ public class GameManager : MonoBehaviour
     bool plA;
     bool plB;
 
-    public GameObject redBlock;
-    public GameObject orangeBlock;
+    public GameObject Block;
 
     void Awake(){
         Invoke("TimeEND",180);
 
-        Block redBlockLogic = redBlock.GetComponent<Block>();
-        Block orangeBlockLogic = orangeBlock.GetComponent<Block>();
-        redBlockLogic.objectManager = objectManager;
-        redBlockLogic.playerA = playerA;
-        redBlockLogic.playerB = playerB;
-        orangeBlockLogic.objectManager = objectManager;
-        orangeBlockLogic.playerA = playerA;
-        orangeBlockLogic.playerB = playerB;
+        Block blockLogic = Block.GetComponent<Block>();
+        blockLogic.objectManager = objectManager;
+        blockLogic.playerA = playerA;
+        blockLogic.playerB = playerB;
     }
 
     public void Death(string playername)//Player A Death
@@ -52,11 +47,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Draw");
         }
-        if (plA == false)
+        else if (plA == false)
         {
             Debug.Log("player B Win2");
         }
-        if (plB == false)
+        else if (plB == false)
         {
             Debug.Log("player A Win2");
         }
