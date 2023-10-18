@@ -6,11 +6,19 @@ public class GameManager : MonoBehaviour
 {
     public Player playerA;
     public Player2 playerB;
+    public ObjectManager objectManager;
     bool plA;
     bool plB;
 
+    public GameObject Block;
+
     void Awake(){
         Invoke("TimeEND",180);
+
+        Block blockLogic = Block.GetComponent<Block>();
+        blockLogic.objectManager = objectManager;
+        blockLogic.playerA = playerA;
+        blockLogic.playerB = playerB;
     }
 
     public void Death(string playername)//Player A Death

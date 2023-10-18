@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8420512990506941668}
   - component: {fileID: 8047089072246100792}
   - component: {fileID: 121654256082702988}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BoomUp_First
   m_TagString: upWater
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 6286725274454094901}
   - component: {fileID: 1874937729162742774}
   - component: {fileID: 3197176281506771926}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BoomDown_First
   m_TagString: downWater
   m_Icon: {fileID: 0}
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 5437862163263335593}
   - component: {fileID: 5514458135700668314}
   - component: {fileID: 7436346246278541981}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BoomRight_First
   m_TagString: rightWater
   m_Icon: {fileID: 0}
@@ -958,7 +958,7 @@ GameObject:
   - component: {fileID: 3385598749450661960}
   - component: {fileID: 2476717808639714979}
   - component: {fileID: 1030477141459051217}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BoomLeft_First
   m_TagString: leftWater
   m_Icon: {fileID: 0}
