@@ -10,15 +10,21 @@ public class GameManager : MonoBehaviour
     bool plA;
     bool plB;
 
-    public GameObject Block;
+    public GameObject redBlock;
+    public GameObject orangeBlock;
 
     void Awake(){
         Invoke("TimeEND",180);
 
-        Block blockLogic = Block.GetComponent<Block>();
-        blockLogic.objectManager = objectManager;
-        blockLogic.playerA = playerA;
-        blockLogic.playerB = playerB;
+        Block redBlockLogic = redBlock.GetComponent<Block>();
+        redBlockLogic.objectManager = objectManager;
+        redBlockLogic.playerA = playerA;
+        redBlockLogic.playerB = playerB;
+
+        Block orangeBlockLogic = orangeBlock.GetComponent<Block>();
+        orangeBlockLogic.objectManager = objectManager;
+        orangeBlockLogic.playerA = playerA;
+        orangeBlockLogic.playerB = playerB;
     }
 
     public void Death(string playername)//Player A Death
