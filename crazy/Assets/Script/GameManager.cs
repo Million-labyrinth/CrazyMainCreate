@@ -30,9 +30,10 @@ public class GameManager : MonoBehaviour
     {
        if(playername == "A")
         {
-           // Debug.Log("player B Win");
+           Debug.Log("player B Win");
             plA = false;
             Judgment();
+            //ui 승패 애니메이션 출력
         }
         
     }
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
         if (playername2 == "B")
         {
             
-            //Debug.Log("player A Win");
+            Debug.Log("player A Win");
             plB = false;
             Judgment();
         }
