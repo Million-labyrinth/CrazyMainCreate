@@ -99,8 +99,14 @@ public class Balloon : MonoBehaviour
 
         // 물줄기, Main Collider 활성화
         // Ray 에 블럭이 인식이 안될 경우에만 활성화
-        if(upScanObject == null) { upWater.SetActive(true); }
-        if(downScanObject == null) {  downWater.SetActive(true); }
+        if(upScanObject == null) { upWater.SetActive(true); } 
+        if(downScanObject == null) {  
+            downWater.SetActive(true); 
+        } else if(downScanObject != null) {
+            Block downBlock = downScanObject.GetComponent<Block>();
+            downBlock.anim.SetBool("Hit", true);
+            downBlock.Invoke("Hit", 0.2f);
+        }
         if(leftScanObject == null) { leftWater.SetActive(true); }
         if(rightScanObject == null) {  rightWater.SetActive(true); }
     }

@@ -60,7 +60,6 @@ public class Water : MonoBehaviour
                     for (int i = Array.IndexOf(downWater, gameObject); i < downWater.Length; i++)
                     {
                         downWater[i].SetActive(false);
-                        Debug.Log(downWater[i].name);
                     }
 
                     Invoke("BackCondition", 0.5f);
@@ -69,7 +68,6 @@ public class Water : MonoBehaviour
                     for (int i = Array.IndexOf(leftWater, gameObject); i < leftWater.Length; i++)
                     {
                         leftWater[i].SetActive(false);
-                        Debug.Log(leftWater[i].name);
                     }
 
                     Invoke("BackCondition", 0.5f);
@@ -78,7 +76,6 @@ public class Water : MonoBehaviour
                     for (int i = Array.IndexOf(rightWater, gameObject); i < rightWater.Length; i++)
                     {
                         rightWater[i].SetActive(false);
-                        Debug.Log(rightWater[i].name);
                     }
 
                     Invoke("BackCondition", 0.5f);
