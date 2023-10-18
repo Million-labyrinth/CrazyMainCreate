@@ -47,11 +47,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Draw");
         }
-        if (plA == false)
+        else if (plA == false)
         {
             Debug.Log("player B Win2");
         }
-        if (plB == false)
+        else if (plB == false)
         {
             Debug.Log("player A Win2");
         }
