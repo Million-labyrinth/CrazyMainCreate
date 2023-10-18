@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     Vector2 PlusVec; // 물풍선 충돌 판정Ray 시작지점
     Vector2 MakeVec; // 물풍선 생성 판정 Ray 시작지점
     GameObject scanObject; // Ray 로 스캔한 오브젝트
-
+   
     void Awake() {
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
