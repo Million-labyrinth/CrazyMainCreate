@@ -44,7 +44,7 @@ public class Water : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D obj)  {
-        if (obj.gameObject.tag == "Block")
+        if (obj.gameObject.tag == "Block" || obj.gameObject.tag == "Object")
         {
             switch (gameObject.tag)
             {
