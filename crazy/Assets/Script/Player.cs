@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     Vector2 PlusVec; // 물풍선 충돌 판정Ray 시작지점
     Vector2 MakeVec; // 물풍선 생성 판정 Ray 시작지점
     GameObject scanObject; // Ray 로 스캔한 오브젝트
-
+   
     void Awake() {
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
@@ -121,6 +121,7 @@ public class Player : MonoBehaviour
             {
                 obj.gameObject.layer = 10;
                 Debug.Log(obj.name);
+                Invoke("DeatTime", 5);
             }
         }
 
@@ -248,7 +249,7 @@ void MakeBalloon(string Power)
         // 플레이어가 물풍선 위에 있을 시
         if (collision.gameObject.tag == "Balloon")
         {
-
+            
             /*if () { niddle 사용하지 않았을때의 조건문
                 Invoke("DeatTime", 5);
             }*/

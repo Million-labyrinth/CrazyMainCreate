@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2873690638831650780}
   - component: {fileID: 8054699468005820777}
   m_Layer: 12
-  m_Name: Block
+  m_Name: Orange Block
   m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7383716445197891954}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.33, y: 1.95, z: 0}
   m_LocalScale: {x: 0.85, y: 0.75, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &17582641174212429
 SpriteRenderer:
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 55129786de78f0242aeda8145697eb5f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04d60b5d390100943a013bca7912bbe1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7383716445197891954}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -120,18 +119,18 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.1666666, y: 1.3666667}
+    oldSize: {x: 1.5142857, y: 1.5142857}
     newSize: {x: 1.1666666, y: 1.3666667}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
+  serializedVersion: 2
   m_Size: {x: 1.25, y: 1.35}
   m_EdgeRadius: 0
 --- !u!50 &4069518216257030532
@@ -175,12 +174,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerA: {fileID: 0}
   playerB: {fileID: 0}
+  anim: {fileID: 0}
   objectManager: {fileID: 0}
+  blockBreak: 0
   nextPushTime: 0.8
   curPushTime: 0
 --- !u!95 &8054699468005820777
 Animator:
-  serializedVersion: 7
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -188,13 +189,12 @@ Animator:
   m_GameObject: {fileID: 7383716445197891954}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 690c21d88e27cff46b1e977fe5f0b168, type: 2}
+  m_Controller: {fileID: 9100000, guid: 479df0513831cd04888c05f6b3e07442, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
