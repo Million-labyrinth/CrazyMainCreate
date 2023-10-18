@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Block
+  m_Name: Orange Hit
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,15 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 99179995b811fe447b52ea01d3cb2db1, type: 3}
+      value: {fileID: 21300000, guid: 6a20046720c6bb745b8a0833242ef553, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 97d08965457cd3d42a7a683a70776c7b, type: 3}
+      value: {fileID: 21300000, guid: a28884f60efe2804fbec5d569f8d93b1, type: 3}
     - time: 0.33333334
       value: {fileID: 21300000, guid: c2e5d3329a7fd9c43811dd83b8357b3c, type: 3}
     - time: 0.41666666
       value: {fileID: 21300000, guid: 71d5b8797f77c0c4f8cffb99da68dee6, type: 3}
     - time: 0.5833333
-      value: {fileID: 21300000, guid: 97d08965457cd3d42a7a683a70776c7b, type: 3}
+      value: {fileID: 21300000, guid: a28884f60efe2804fbec5d569f8d93b1, type: 3}
     - time: 0.75
       value: {fileID: 21300000, guid: c2e5d3329a7fd9c43811dd83b8357b3c, type: 3}
     - time: 0.8333333
@@ -56,11 +56,11 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 99179995b811fe447b52ea01d3cb2db1, type: 3}
-    - {fileID: 21300000, guid: 97d08965457cd3d42a7a683a70776c7b, type: 3}
+    - {fileID: 21300000, guid: 6a20046720c6bb745b8a0833242ef553, type: 3}
+    - {fileID: 21300000, guid: a28884f60efe2804fbec5d569f8d93b1, type: 3}
     - {fileID: 21300000, guid: c2e5d3329a7fd9c43811dd83b8357b3c, type: 3}
     - {fileID: 21300000, guid: 71d5b8797f77c0c4f8cffb99da68dee6, type: 3}
-    - {fileID: 21300000, guid: 97d08965457cd3d42a7a683a70776c7b, type: 3}
+    - {fileID: 21300000, guid: a28884f60efe2804fbec5d569f8d93b1, type: 3}
     - {fileID: 21300000, guid: c2e5d3329a7fd9c43811dd83b8357b3c, type: 3}
     - {fileID: 21300000, guid: 71d5b8797f77c0c4f8cffb99da68dee6, type: 3}
   m_AnimationClipSettings:

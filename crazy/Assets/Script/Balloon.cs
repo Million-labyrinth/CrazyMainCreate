@@ -102,7 +102,7 @@ public class Balloon : MonoBehaviour
         if(upScanObject == null)
         { 
             upWater.SetActive(true);
-        } else if(upScanObject != null) 
+        } else if(upScanObject != null && upScanObject.tag == "Block") 
         {
             // Ray 에 블럭이 인식될 경우 블럭 Hit 작동
             Block upBlock = upScanObject.GetComponent<Block>();
@@ -114,7 +114,7 @@ public class Balloon : MonoBehaviour
         {  
             downWater.SetActive(true); 
 
-        } else if(downScanObject != null) 
+        } else if(downScanObject != null && downScanObject.tag == "Block") 
         {
             Block downBlock = downScanObject.GetComponent<Block>();
             downBlock.anim.SetBool("Hit", true);
@@ -126,7 +126,7 @@ public class Balloon : MonoBehaviour
         { 
             leftWater.SetActive(true); 
 
-        } else if (leftScanObject != null)
+        } else if (leftScanObject != null && leftScanObject.tag == "Block")
         {
             Block leftBlock = leftScanObject.GetComponent<Block>();
             leftBlock.anim.SetBool("Hit", true);
@@ -138,7 +138,7 @@ public class Balloon : MonoBehaviour
         {  
             rightWater.SetActive(true); 
 
-        } else if (rightScanObject != null)
+        } else if (rightScanObject != null && rightScanObject.tag == "Block")
         {
             Block rightBlock = rightScanObject.GetComponent<Block>();
             rightBlock.anim.SetBool("Hit", true);
