@@ -121,6 +121,7 @@ public class Player : MonoBehaviour
             {
                 obj.gameObject.layer = 10;
                 Debug.Log(obj.name);
+
             }
         }
 
@@ -244,15 +245,21 @@ void MakeBalloon(string Power)
         string iname = collision.gameObject.name;
 
         UnityEngine.Debug.Log("플레이어가 오브젝트에 닿음");
+        //물줄기 접촉 상태
+        if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater")
+        {
+            //실드가 사용중인 상태의 if문 추가
+            Invoke("DeathTime", 5);
 
-        // 플레이어가 물풍선 위에 있을 시
+        }
+            // 플레이어가 물풍선 위에 있을 시
         if (collision.gameObject.tag == "Balloon")
         {
 
             /*if () { niddle 사용하지 않았을때의 조건문
                 Invoke("DeatTime", 5);
             }*/
-            Invoke("DeatTime", 5);
+            Invoke("DeathTime", 5);
         }
 
         if (collision.gameObject.CompareTag("powerItem"))
@@ -308,8 +315,9 @@ void MakeBalloon(string Power)
         }
     }
 
-    void DeatTime()
+    void DeathTime()
     {
+        //애니메이션 추가
         string playername = "A";
         gameManager.Death(playername);
     }

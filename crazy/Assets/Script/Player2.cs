@@ -240,6 +240,13 @@ public class Player2 : MonoBehaviour
 
         UnityEngine.Debug.Log("플레이어가 오브젝트에 닿음");
 
+        if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater")
+        {
+            //실드가 사용중인 상태의 if문 추가
+            DeatTime();
+
+        }
+
         // 플레이어가 물풍선 안에 있을 시, 물풍선 생성 불가능하게 변경
         if (collision.gameObject.tag == "Balloon")
         {
