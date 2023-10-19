@@ -35,17 +35,20 @@ public class Player : MonoBehaviour
     float vAxis;
     bool isHorizonMove; // 대각선 이동 제한
 
+    
+    bool hStay; // Horizontal 키 다운
+    bool vStay; // Vertical 키 다운
+    public GameObject pushBlock; // 인식된 밀 수 있는 블럭 저장용 변수
+    public float nextPushTime; // 블럭 밀기 최대(설정) 쿨타임
+    public float curPushTime; // 블럭 밀기 현재(충전) 쿨타임
+
     Rigidbody2D rigid;
     Animator anim;
 
     public GameObject Shieldeffect;
 
-    RaycastHit2D rayHit; // 물풍선 충돌 판정에 필요한 Ray
     Vector2 moveVec; // 플레이어가 움직이는 방향
-    Vector2 dirVec; // Ray 방향
-    Vector2 PlusVec; // 물풍선 충돌 판정Ray 시작지점
-    Vector2 MakeVec; // 물풍선 생성 판정 Ray 시작지점
-    GameObject scanObject; // Ray 로 스캔한 오브젝트
+    Vector2 rayDir; // Ray 방향
 
     void Awake()
     {
@@ -60,11 +63,6 @@ public class Player : MonoBehaviour
         playerHealth = 0f;
 
         playerAmakeBalloon = true;
-
-        PlusVec = new Vector2(0, 1.3f);
-        dirVec = Vector2.up;
-        rayHit = Physics2D.Raycast(rigid.position + PlusVec, dirVec, 0.4f, LayerMask.GetMask("Balloon A"));
-
     }
 
     void Update()
@@ -91,6 +89,8 @@ public class Player : MonoBehaviour
         bool hUp = Input.GetButtonUp("Horizontal");
         bool vUp = Input.GetButtonUp("Vertical");
 
+        hStay = Input.GetButton("Horizontal");
+        vStay = Input.GetButton("Vertical");
 
         if (vDown)
         {
@@ -111,6 +111,21 @@ public class Player : MonoBehaviour
             }
         }
 
+        // 상자 밀기용 Ray 방향 설정
+        if(moveVec.y > 0)
+        {
+            rayDir = Vector2.up;
+        } else if (moveVec.y < 0)
+        {
+            rayDir = Vector2.down;
+        } else if(moveVec.x > 0)
+        {
+            rayDir = Vector2.right;
+        } else if(moveVec.x < 0)
+        {
+            rayDir = Vector2.left;
+        }
+
     }
 
     void Ray()
@@ -121,7 +136,7 @@ public class Player : MonoBehaviour
             float x = rigid.position.x + 1.6f * Mathf.Cos(Mathf.Deg2Rad * angle);
             float y = rigid.position.y + 1.6f * Mathf.Sin(Mathf.Deg2Rad * angle);
 
-            Collider2D obj = Physics2D.OverlapPoint(new Vector2(x, y), LayerMask.GetMask("Balloon A"));
+            Collider2D obj = Physics2D.OverlapPoint(new Vector2(x, y) - new Vector2(0, 0.1f), LayerMask.GetMask("Balloon A"));
 
             if (obj != null)
             {
@@ -141,13 +156,58 @@ public class Player : MonoBehaviour
         {
             playerAmakeBalloon = true;
         }
+
+        // 밀 수 있는 상자 Ray
+        if(hStay || vStay)
+        {
+            Debug.DrawRay(rigid.position - new Vector2(0, 0.1f), rayDir * 0.7f, new Color(1, 0, 0));
+            RaycastHit2D pushRay = Physics2D.Raycast(rigid.position - new Vector2(0, 0.1f), rayDir, 0.7f, LayerMask.GetMask("MoveBlock"));
+        
+            if(pushRay.collider != null)
+            {
+                pushBlock = pushRay.collider.gameObject;
+                Debug.Log(pushBlock.name);
+
+                curPushTime += Time.deltaTime;
+
+                if (curPushTime > nextPushTime)
+                {
+                    if(rayDir == Vector2.up)
+                    {
+                        pushBlock.transform.position += new Vector3(0, 1, 0);
+
+                    } else if(rayDir == Vector2.down)
+                    {
+                        pushBlock.transform.position += new Vector3(0, -1, 0);
+
+                    } else if(rayDir == Vector2.left)
+                    {
+                        pushBlock.transform.position += new Vector3(-1, 0, 0);
+
+                    } else if (rayDir == Vector2.right)
+                    {
+                        pushBlock.transform.position += new Vector3(1, 0, 0);
+                    }
+
+                    // 시간 초기화
+                    curPushTime = 0;
+                }
+            } else
+            {
+                pushBlock = null;
+            }
+        } else
+        {
+            // 키 다운 해제 시 시간 초기화
+            curPushTime = 0;
+        }
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0f, 1f, 0f);
         // 물풍선 충돌 판정
-        Gizmos.DrawWireSphere(transform.position, 1.6f);
+        Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.1f), 1.6f);
         // 물풍선 생성 판정
         Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.1f), 0.5f);
     }

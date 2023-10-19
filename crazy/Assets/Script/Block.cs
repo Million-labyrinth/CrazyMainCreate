@@ -11,8 +11,6 @@ public class Block : MonoBehaviour
     public ObjectManager objectManager;
     public bool blockBreak = false;
 
-    public float nextPushTime; // 블럭 밀기 최대(설정) 쿨타임
-    public float curPushTime; // 블럭 밀기 현재(충전) 쿨타임
 
     void Awake() {
         anim = GetComponent<Animator>();
@@ -68,19 +66,5 @@ public class Block : MonoBehaviour
         }
     }
 
-    void OnCollisionStay2D(Collision2D obj) {
-        if(obj.gameObject.tag == "Player") {
-            curPushTime += Time.deltaTime;
-
-            if(curPushTime > nextPushTime) {
-
-                curPushTime = 0;
-            }
-        }
-    }
-
-    void OnCollisionExit2D(Collision2D other) {
-        curPushTime = 0;
-    }
 
 }
