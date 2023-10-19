@@ -55,10 +55,10 @@ public class Balloon : MonoBehaviour
         Debug.DrawRay(transform.position, Vector3.down * 0.7f, new Color(0, 1, 0));
         Debug.DrawRay(transform.position, Vector3.left * 0.7f, new Color(0, 1, 0));
         Debug.DrawRay(transform.position, Vector3.right * 0.7f, new Color(0, 1, 0));
-        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position, Vector3.up, 0.7f, LayerMask.GetMask("Block"));
-        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position, Vector3.down, 0.7f, LayerMask.GetMask("Block"));
-        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position, Vector3.left, 0.7f, LayerMask.GetMask("Block"));
-        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position, Vector3.right, 0.7f, LayerMask.GetMask("Block"));
+        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position, Vector3.up, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock"));
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position, Vector3.down, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock"));
+        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position, Vector3.left, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock"));
+        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position, Vector3.right, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock"));
 
         if (upRayHit.collider != null)
         {

@@ -1149,7 +1149,7 @@ Transform:
   - {fileID: 1689455492}
   - {fileID: 2036184919}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &397997352
 GameObject:
@@ -7669,6 +7669,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069518216257030532, guid: 458b21735b82f9344a9bbce3c6a92c83, type: 3}
+      propertyPath: m_Constraints
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7383716445197891954, guid: 458b21735b82f9344a9bbce3c6a92c83, type: 3}
       propertyPath: m_Name
       value: Block (2)
@@ -8552,6 +8556,9 @@ MonoBehaviour:
   objectManager: {fileID: 1191335683}
   item: {fileID: 868673168}
   gameManager: {fileID: 868673170}
+  pushBlock: {fileID: 0}
+  nextPushTime: 0
+  curPushTime: 0
   Shieldeffect: {fileID: 186842319}
 --- !u!58 &1814193089
 CircleCollider2D:
