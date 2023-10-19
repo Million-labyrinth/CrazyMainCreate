@@ -44,8 +44,17 @@ public class GameManager : MonoBehaviour
             // 바늘 사용 시, plB 값 true 로 초기화 필요
         }
 
-        Invoke("Judgment", 0.1f);
+        Invoke("DeathTimeFinish", 1f);
 
+    }
+
+    // 물풍선의 갇혀 있는 시간이 끝난 후 둘 중 하나라도 탈출을 못하면 승부 판정
+    void DeathTimeFinish()
+    {
+        if(plA == false || plB == false)
+        {
+            Judgment();
+        }
     }
 
     public void Judgment()
