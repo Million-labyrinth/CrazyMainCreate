@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
     public Player playerA;
     public Player2 playerB;
     public ObjectManager objectManager;
-    bool plA;
-    bool plB;
+    bool plA = true;
+    bool plB = true;
 
     public GameObject redBlock;
     public GameObject orangeBlock;
@@ -30,36 +30,38 @@ public class GameManager : MonoBehaviour
     {
        if(playername == "A")
         {
-           Debug.Log("player B Win");
-            plA = false;
-            Judgment();
-            //ui 승패 애니메이션 출력
+           Debug.Log("player A Hit");
+           plA = false;
+
+            // 바늘 사용 시, plA 값 true 로 초기화 필요
         }
-        
-    }
-    public void Death2(string playername2)//Player B Death
-    {
-        if (playername2 == "B")
+
+        if (playername == "B")
         {
-            
-            Debug.Log("player A Win");
+            Debug.Log("player B Hit");
             plB = false;
-            Judgment();
+
+            // 바늘 사용 시, plB 값 true 로 초기화 필요
         }
+
+        Invoke("Judgment", 0.1f);
+
     }
+
     public void Judgment()
     {
-        if(plA == plB)
+        //ui 승패 애니메이션 출력
+        if (plA == false && plB == false)
         {
             Debug.Log("Draw");
         }
-        if (plA == false)
+        else if (plA == false && plB == true)
         {
-            Debug.Log("player B Win2");
+            Debug.Log("player B Win");
         }
-        if (plB == false)
+        else if (plA == true && plB == false)
         {
-            Debug.Log("player A Win2");
+            Debug.Log("player A Win");
         }
 
     }

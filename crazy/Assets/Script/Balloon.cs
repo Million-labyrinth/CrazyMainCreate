@@ -11,6 +11,7 @@ public class Balloon : MonoBehaviour
     public GameObject downWater;
     public GameObject leftWater;
     public GameObject rightWater;
+    public GameObject balloonCollider;
 
     public GameObject mainBalloon; // 물풍선 본체
     public GameObject MainCollider; // 물풍선이 터지면 활성화 될, 물풍선 Collider
@@ -37,6 +38,7 @@ public class Balloon : MonoBehaviour
         downWater.SetActive(false);
         leftWater.SetActive(false);
         rightWater.SetActive(false);
+        balloonCollider.SetActive(false);
     }
 
     void Update()
@@ -145,6 +147,8 @@ public class Balloon : MonoBehaviour
             rightBlock.Invoke("Hit", 0.2f);
 
         }
+
+        balloonCollider.SetActive(true);
     }
 
 
@@ -159,6 +163,7 @@ public class Balloon : MonoBehaviour
         downWater.SetActive(false);
         leftWater.SetActive(false);
         rightWater.SetActive(false);
+        balloonCollider.SetActive(false);
 
         waterLineActive = true;
 
