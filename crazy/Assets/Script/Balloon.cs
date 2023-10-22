@@ -101,15 +101,18 @@ public class Balloon : MonoBehaviour
 
         // 물줄기, Main Collider 활성화
         // Ray 에 블럭이 인식이 안될 경우에만 활성화
-        if(upScanObject == null)
-        { 
-            upWater.SetActive(true);
-        } else if(upScanObject != null) 
+        if (upScanObject == null)
         {
-            // Ray 에 블럭이 인식될 경우 블럭 Hit 작동
-            Block upBlock = upScanObject.GetComponent<Block>();
-            upBlock.anim.SetBool("Hit", true);
-            upBlock.Invoke("Hit", 0.5f);
+            upWater.SetActive(true);
+        } else if (upScanObject != null)
+        {
+            if (upScanObject.tag == "Block")
+            {
+                // Ray 에 블럭이 인식될 경우 블럭 Hit 작동
+                Block upBlock = upScanObject.GetComponent<Block>();
+                upBlock.anim.SetBool("Hit", true);
+                upBlock.Invoke("Hit", 0.5f);
+            }
         }
 
         if(downScanObject == null) 
@@ -118,9 +121,12 @@ public class Balloon : MonoBehaviour
 
         } else if(downScanObject != null) 
         {
-            Block downBlock = downScanObject.GetComponent<Block>();
-            downBlock.anim.SetBool("Hit", true);
-            downBlock.Invoke("Hit", 0.2f);
+            if(downScanObject.tag == "Block")
+            {
+                Block downBlock = downScanObject.GetComponent<Block>();
+                downBlock.anim.SetBool("Hit", true);
+                downBlock.Invoke("Hit", 0.2f);
+            }
 
         }
 
@@ -130,9 +136,12 @@ public class Balloon : MonoBehaviour
 
         } else if (leftScanObject != null)
         {
-            Block leftBlock = leftScanObject.GetComponent<Block>();
-            leftBlock.anim.SetBool("Hit", true);
-            leftBlock.Invoke("Hit", 0.2f);
+            if(leftScanObject.tag == "Block")
+            {
+                Block leftBlock = leftScanObject.GetComponent<Block>();
+                leftBlock.anim.SetBool("Hit", true);
+                leftBlock.Invoke("Hit", 0.2f);
+            }
 
         }
 
@@ -142,9 +151,12 @@ public class Balloon : MonoBehaviour
 
         } else if (rightScanObject != null)
         {
-            Block rightBlock = rightScanObject.GetComponent<Block>();
-            rightBlock.anim.SetBool("Hit", true);
-            rightBlock.Invoke("Hit", 0.2f);
+           if(rightScanObject.tag == "Block")
+            {
+                Block rightBlock = rightScanObject.GetComponent<Block>();
+                rightBlock.anim.SetBool("Hit", true);
+                rightBlock.Invoke("Hit", 0.2f);
+            }
 
         }
 
