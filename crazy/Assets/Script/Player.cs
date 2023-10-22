@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     float vAxis;
     bool isHorizonMove; // 대각선 이동 제한
 
-    
+
     bool hStay; // Horizontal 키 다운
     bool vStay; // Vertical 키 다운
     public GameObject pushBlock; // 인식된 밀 수 있는 블럭 저장용 변수
@@ -49,13 +49,14 @@ public class Player : MonoBehaviour
 
     Vector2 moveVec; // 플레이어가 움직이는 방향
     Vector2 rayDir; // Ray 방향
+    public SpriteRenderer playerRenderer; //스프라이트 활성화 비활성화
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
-
+        playerRenderer = GetComponent<SpriteRenderer>();
         //플레이어 시작시 기본 스탯
         bombPower = 1;
         bombRange = 1;
@@ -112,16 +113,19 @@ public class Player : MonoBehaviour
         }
 
         // 상자 밀기용 Ray 방향 설정
-        if(moveVec.y > 0)
+        if (moveVec.y > 0)
         {
             rayDir = Vector2.up;
-        } else if (moveVec.y < 0)
+        }
+        else if (moveVec.y < 0)
         {
             rayDir = Vector2.down;
-        } else if(moveVec.x > 0)
+        }
+        else if (moveVec.x > 0)
         {
             rayDir = Vector2.right;
-        } else if(moveVec.x < 0)
+        }
+        else if (moveVec.x < 0)
         {
             rayDir = Vector2.left;
         }
@@ -158,12 +162,12 @@ public class Player : MonoBehaviour
         }
 
         // 밀 수 있는 상자 Ray
-        if(hStay || vStay)
+        if (hStay || vStay)
         {
             Debug.DrawRay(rigid.position - new Vector2(0, 0.1f), rayDir * 0.7f, new Color(1, 0, 0));
             RaycastHit2D pushRay = Physics2D.Raycast(rigid.position - new Vector2(0, 0.1f), rayDir, 0.7f, LayerMask.GetMask("MoveBlock"));
-        
-            if(pushRay.collider != null)
+
+            if (pushRay.collider != null)
             {
                 pushBlock = pushRay.collider.gameObject;
                 Debug.Log(pushBlock.name);
@@ -172,19 +176,22 @@ public class Player : MonoBehaviour
 
                 if (curPushTime > nextPushTime)
                 {
-                    if(rayDir == Vector2.up)
+                    if (rayDir == Vector2.up)
                     {
                         pushBlock.transform.position += new Vector3(0, 1, 0);
 
-                    } else if(rayDir == Vector2.down)
+                    }
+                    else if (rayDir == Vector2.down)
                     {
                         pushBlock.transform.position += new Vector3(0, -1, 0);
 
-                    } else if(rayDir == Vector2.left)
+                    }
+                    else if (rayDir == Vector2.left)
                     {
                         pushBlock.transform.position += new Vector3(-1, 0, 0);
 
-                    } else if (rayDir == Vector2.right)
+                    }
+                    else if (rayDir == Vector2.right)
                     {
                         pushBlock.transform.position += new Vector3(1, 0, 0);
                     }
@@ -192,11 +199,13 @@ public class Player : MonoBehaviour
                     // 시간 초기화
                     curPushTime = 0;
                 }
-            } else
+            }
+            else
             {
                 pushBlock = null;
             }
-        } else
+        }
+        else
         {
             // 키 다운 해제 시 시간 초기화
             curPushTime = 0;
@@ -325,8 +334,8 @@ public class Player : MonoBehaviour
             //실드가 사용중인 상태의 if문 추가
             DeathTime();
 
-         }
-       
+        }
+
 
         string iname = collision.gameObject.name;
 
@@ -339,6 +348,12 @@ public class Player : MonoBehaviour
             /*if () { niddle 사용하지 않았을때의 조건문
                 Invoke("DeatTime", 5);
             }*/
+        }
+
+        if (collision.gameObject.tag == "grass")
+        {
+
+            playerRenderer.enabled = false;
         }
 
         if (collision.gameObject.CompareTag("powerItem"))
@@ -392,6 +407,13 @@ public class Player : MonoBehaviour
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
         }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+
+        playerRenderer.enabled = true;
+
     }
 
     void DeathTime()

@@ -19,6 +19,7 @@ TagManager:
   - PlayerB
   - MainCollider
   - BallonCollider
+  - grass
   layers:
   - Default
   - TransparentFX
