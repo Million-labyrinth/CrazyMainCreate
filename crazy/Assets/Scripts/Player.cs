@@ -111,6 +111,19 @@ public class Player : MonoBehaviour
                 anim.SetFloat("vertical", vAxis);
             }
         }
+        if (anim.GetInteger("hAxisRaw") != hAxis)
+        {
+            anim.SetBool("isChange", true);
+            anim.SetInteger("hAxisRaw", (int)hAxis);
+        }
+        else if (anim.GetInteger("vAxisRaw") != vAxis)
+        {
+            anim.SetBool("isChange", true);
+            anim.SetInteger("vAxisRaw", (int)vAxis);
+        }
+        else
+            anim.SetBool("isChange", false);
+
 
         // 상자 밀기용 Ray 방향 설정
         if (moveVec.y > 0)
