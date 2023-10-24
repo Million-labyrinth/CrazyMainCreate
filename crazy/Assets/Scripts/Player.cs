@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
         if (vDown)
         {
             isHorizonMove = false;
-            anim.SetFloat("vertical", vAxis);
+            anim.SetFloat("vAxisRaw", vAxis);
         }
         else if (hDown)
         {
@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
 
             if (vUp)
             {
-                anim.SetFloat("vertical", vAxis);
+                anim.SetFloat("vAxisRaw", vAxis);
             }
         }
         if (anim.GetInteger("hAxisRaw") != hAxis)
@@ -263,40 +263,41 @@ public class Player : MonoBehaviour
                 break;
         }
         //바늘 아이템 사용
-        if (Input.GetKeyDown(KeyCode.LeftControl) && playerHealth == 0f)
+        if (Input.GetKeyDown(KeyCode.RightControl) && playerHealth == 0f)
         { //왼쪽컨트롤키를 누르고 플레이어의 피가 0인 경우에만 실행
           // 0번째 활성화된 아이템을 사용
             if (item.Activeitem.Length > 0 && item.Activeitem[0] != null)
             {
-                string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
-                UnityEngine.Debug.Log("플레이어A가" + itemName + "아이템을 사용함");
-                // 0번째 아이템을 사용하려면 아래와 같이 호출
-                item.ActiveUseItem(item.Activeitem[0].name);
-
-
                 if (item.Activeitem[0].name.Contains("shield"))
                 {
                     Debug.Log("쉴드 애니메이션 실행");
                     //shield.animator.SetBool("Shield", true);
                     Shieldeffect.SetActive(true);
+                    //인보크를 이용하여 쉴드를 3초뒤에 꺼지게 함
+                    Invoke("stopShield", 2f);
                 }
-
-                // 1번째 아이템을 0번째로 끌어올림
                 else if (item.Activeitem.Length > 1 && item.Activeitem[1] != null)
                 {
                     item.Activeitem[0] = item.Activeitem[1];
                     item.Activeitem[1] = null;
                 }
+
+                string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
+                UnityEngine.Debug.Log("플레이어A가" + itemName + "아이템을 사용함");
+                // 0번째 아이템을 사용하려면 아래와 같이 호출
+                item.ActiveUseItem(item.Activeitem[0].name);
+
+                // 1번째 아이템을 0번째로 끌어올림
             }
         }
-
-        else
-        {
-            UnityEngine.Debug.Log("활성화된 아이템 없음");
-        }
-
+    }
+    //쉴드 멈추는 코드
+    private void stopShield()
+    {
+        Shieldeffect.SetActive(false);
     }
     //플레이어가 먹은 아이템 저장배열
+
 
     //플레이어 상태 스크립트(행동가능, 물풍선 같힌상태, 죽음)
 
@@ -382,7 +383,6 @@ public class Player : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("speedItem"))
         {
-
             if (playerSpeed < playerSpeedMax)
             {
                 item.SpeedAdd(iname);
@@ -421,7 +421,6 @@ public class Player : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
     }
-
     void OnTriggerExit2D(Collider2D other)
     {
 
