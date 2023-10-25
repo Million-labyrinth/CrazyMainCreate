@@ -722,10 +722,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue_House (14)
       objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
 --- !u!4 &198552572 stripped
@@ -1657,10 +1653,6 @@ PrefabInstance:
     - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
       propertyPath: m_Name
       value: Blue_House (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
@@ -7433,10 +7425,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue_House (15)
       objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
 --- !u!4 &522602575 stripped
@@ -7585,10 +7573,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue_House (17)
       objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
 --- !u!4 &537985184 stripped
@@ -7646,10 +7630,6 @@ PrefabInstance:
     - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
       propertyPath: m_Name
       value: Blue_House (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
@@ -8183,10 +8163,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue_House (13)
       objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
 --- !u!4 &602425319 stripped
@@ -8445,10 +8421,6 @@ PrefabInstance:
     - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
       propertyPath: m_Name
       value: Blue_House (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
@@ -13045,10 +13017,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue_House (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
 --- !u!4 &1000413921 stripped
@@ -13380,10 +13348,6 @@ PrefabInstance:
     - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
       propertyPath: m_Name
       value: Blue_House (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
@@ -14264,10 +14228,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue_House (12)
       objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
 --- !u!4 &1241145035 stripped
@@ -14325,10 +14285,6 @@ PrefabInstance:
     - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
       propertyPath: m_Name
       value: Blue_House (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
@@ -14392,10 +14348,6 @@ PrefabInstance:
     - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
       propertyPath: m_Name
       value: Blue_House (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
@@ -14901,7 +14853,7 @@ GameObject:
   - component: {fileID: 1390665250}
   - component: {fileID: 1390665249}
   - component: {fileID: 1390665251}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14936,7 +14888,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.09, y: 0.03}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -14947,7 +14899,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &1390665250
 SpriteRenderer:
@@ -15021,7 +14973,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 6
 --- !u!1001 &1422547769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17273,10 +17225,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue_House (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
 --- !u!4 &1678525213 stripped
@@ -17339,10 +17287,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue_House (16)
       objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
 --- !u!4 &1683080501 stripped
@@ -17404,10 +17348,6 @@ PrefabInstance:
     - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
       propertyPath: m_Name
       value: Blue_House (11)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
@@ -18209,14 +18149,14 @@ MonoBehaviour:
   playerMaxHealth: 2
   basicBubble: 
   useShield: 0
-  useniddle: 0
+  useNiddle: 0
   playerAcountIndex: 0
   playerAmakeBalloon: 0
   objectManager: {fileID: 1191335683}
   item: {fileID: 868673168}
   gameManager: {fileID: 868673170}
   pushBlock: {fileID: 1390665247}
-  nextPushTime: 0.5
+  nextPushTime: 0
   curPushTime: 0
   Shieldeffect: {fileID: 186842319}
   playerRenderer: {fileID: 0}
@@ -19407,10 +19347,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue_House (18)
       objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
 --- !u!4 &2036184919 stripped
@@ -19833,10 +19769,6 @@ PrefabInstance:
     - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
       propertyPath: m_Name
       value: Blue_House (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
@@ -20391,10 +20323,6 @@ PrefabInstance:
     - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
       propertyPath: m_Name
       value: Blue_House (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8814216248265840695, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9174ab5efde2c20438c2b771d436d7bf, type: 3}

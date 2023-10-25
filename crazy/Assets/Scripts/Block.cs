@@ -58,7 +58,7 @@ public class Block : MonoBehaviour
         }
     }
 
-    // 이제 필요 없음
+
     void OnTriggerEnter2D(Collider2D  obj) {
         if(obj.gameObject.tag == "upWater" || obj.gameObject.tag == "downWater" || obj.gameObject.tag == "leftWater" || obj.gameObject.tag == "rightWater") {
             anim.SetBool("Hit", true);

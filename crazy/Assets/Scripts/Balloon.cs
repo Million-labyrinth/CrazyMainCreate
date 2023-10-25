@@ -23,12 +23,6 @@ public class Balloon : MonoBehaviour
 
     bool waterLineActive = true; // 물줄기 위에 물풍선 설치 시, 안 터지게 만들기 위한 변수
 
-    // 아이템이 여러 개 나오는 오류 방지
-    bool isHitUpBlock = false; // 물풍선 UpRay 가 Block 을 인식했을 때, Block 부수기
-    bool isHitDownBlock = false; // 물풍선 DownRay 가 Block 을 인식했을 때, Block 부수기
-    bool isHitLeftBlock = false; // 물풍선 LeftRay 가 Block 을 인식했을 때, Block 부수기
-    bool isHitRightBlock = false; // 물풍선 RightRay 가 Block 을 인식했을 때, Block 부수기
-
     void Awake()
     {
         anim = gameObject.GetComponent<Animator>();
@@ -61,10 +55,10 @@ public class Balloon : MonoBehaviour
         Debug.DrawRay(transform.position, Vector3.down * 0.7f, new Color(0, 1, 0));
         Debug.DrawRay(transform.position, Vector3.left * 0.7f, new Color(0, 1, 0));
         Debug.DrawRay(transform.position, Vector3.right * 0.7f, new Color(0, 1, 0));
-        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position, Vector3.up, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
-        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position, Vector3.down, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
-        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position, Vector3.left, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
-        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position, Vector3.right, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position, Vector3.up, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock"));
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position, Vector3.down, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock"));
+        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position, Vector3.left, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock"));
+        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position, Vector3.right, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock"));
 
         if (upRayHit.collider != null)
         {
@@ -110,69 +104,58 @@ public class Balloon : MonoBehaviour
         if (upScanObject == null)
         {
             upWater.SetActive(true);
-            isHitUpBlock = false;
-
         } else if (upScanObject != null)
         {
-            if (!isHitUpBlock && upScanObject.tag == "Block")
+            if (upScanObject.tag == "Block")
             {
                 // Ray 에 블럭이 인식될 경우 블럭 Hit 작동
                 Block upBlock = upScanObject.GetComponent<Block>();
                 upBlock.anim.SetBool("Hit", true);
                 upBlock.Invoke("Hit", 0.5f);
-                isHitUpBlock = true;
             }
         }
 
         if(downScanObject == null) 
         {  
-            downWater.SetActive(true);
-            isHitDownBlock = false;
+            downWater.SetActive(true); 
 
         } else if(downScanObject != null) 
         {
-            if(!isHitDownBlock && downScanObject.tag == "Block")
+            if(downScanObject.tag == "Block")
             {
                 Block downBlock = downScanObject.GetComponent<Block>();
                 downBlock.anim.SetBool("Hit", true);
                 downBlock.Invoke("Hit", 0.2f);
-                isHitDownBlock = true;
             }
 
         }
 
         if(leftScanObject == null) 
         { 
-            leftWater.SetActive(true);
-            isHitLeftBlock = false;
+            leftWater.SetActive(true); 
 
         } else if (leftScanObject != null)
         {
-            if(!isHitLeftBlock && leftScanObject.tag == "Block")
+            if(leftScanObject.tag == "Block")
             {
                 Block leftBlock = leftScanObject.GetComponent<Block>();
                 leftBlock.anim.SetBool("Hit", true);
                 leftBlock.Invoke("Hit", 0.2f);
-
-                isHitLeftBlock = true;
             }
 
         }
 
         if (rightScanObject == null) 
         {  
-            rightWater.SetActive(true);
-            isHitRightBlock = false;
+            rightWater.SetActive(true); 
 
         } else if (rightScanObject != null)
         {
-           if(!isHitRightBlock && rightScanObject.tag == "Block")
+           if(rightScanObject.tag == "Block")
             {
                 Block rightBlock = rightScanObject.GetComponent<Block>();
                 rightBlock.anim.SetBool("Hit", true);
                 rightBlock.Invoke("Hit", 0.2f);
-
-                isHitRightBlock = true;
             }
 
         }
