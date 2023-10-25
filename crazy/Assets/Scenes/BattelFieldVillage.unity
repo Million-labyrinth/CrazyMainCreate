@@ -18261,6 +18261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642eebc9340db564fbed61ec7700a759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orderInLayer: 0
   bombPower: 1
   bombPowerMax: 10
   bombRange: 0
