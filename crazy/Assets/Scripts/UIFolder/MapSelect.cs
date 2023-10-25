@@ -10,6 +10,7 @@ public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public Button title_to_scene;
     public GameObject largeImage;
     public GameObject border;
+    public GameObject pannel;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -24,8 +25,8 @@ public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public void tts()
-    {
-        SceneManager.LoadScene("BattelFieldVillage");
+    { 
+        pannel.SetActive(true);
     }
 }
 
