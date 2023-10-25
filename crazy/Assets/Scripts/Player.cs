@@ -8,7 +8,6 @@ using Unity.Burst.CompilerServices;
 //김인섭 왔다감2
 public class Player : MonoBehaviour
 {
-    public int orderInLayer;
     public int bombPower;
     public int bombPowerMax = 10;
     public int bombRange;
@@ -46,7 +45,7 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rigid;
     Animator anim;
-    RaycastHit2D orderlayer;
+
 
     public GameObject Shieldeffect;
 
@@ -60,6 +59,7 @@ public class Player : MonoBehaviour
         collider = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
         playerRenderer = GetComponent<SpriteRenderer>();
+        
         //플레이어 시작시 기본 스탯
         bombPower = 1;
         bombRange = 1;
@@ -463,13 +463,21 @@ public class Player : MonoBehaviour
 
     void colliderRay()
     {
-        orderInLayer = GetComponent<SpriteRenderer>().sortingOrder;
         // Ray
         Debug.DrawRay(transform.position - new Vector3(0, 0.55f, 0), Vector3.down * 0.05f, new Color(1, 1, 1));
         RaycastHit2D downRayHit = Physics2D.Raycast(transform.position, Vector3.down, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock"));
-        
-        if (downRayHit.collider != null) { 
-            orderInLayer = GetComponent<SpriteRenderer>().sortingOrder;
+
+        if (downRayHit.collider != null) {
+            GameObject downObj = downRayHit.collider.gameObject;
+            SpriteRenderer orderInLayer = downObj.GetComponent<SpriteRenderer>();
+            int objOrder = orderInLayer.sortingOrder;
+            playerRenderer.sortingOrder = orderInLayer.sortingOrder - 1;
+            // orderInLayer.sortingOrder += playerRenderer.sortingOrder;
+            objOrder = orderInLayer.sortingOrder;
+        }
+        else if(downRayHit.collider == null)
+        {
+            playerRenderer.sortingOrder = 13;
         }
     }
 }
