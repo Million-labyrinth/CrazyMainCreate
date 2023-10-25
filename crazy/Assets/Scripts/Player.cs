@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     public float playerHealth;
     public float playerMaxHealth = 2f;
     public string basicBubble;
+    public bool useShield = false;
+    public bool useniddle = false;
 
     int playerAballonIndex = 0; // 물풍선 오브젝트 풀 사용할 때 필요한 playerAballonIndex 변수
     public int playerAcountIndex = 0; // 물풍선을 생성할 때, 플레이어가 생성한 물풍선의 개수를 체크할 때 필요한 변수
@@ -72,6 +74,7 @@ public class Player : MonoBehaviour
         Move();
         Skill();
         Ray();
+        UseItem();
         colliderRay();
     }
     void LateUpdate()
@@ -264,38 +267,54 @@ public class Player : MonoBehaviour
                 MakeBalloon("WaterBalloon7");
                 break;
         }
+    }
+    void UseItem()
+    {
+        UseShield();
+        UseNiddle();
+    }
+
+    void UseShield()
+    {
+        //바늘 아이템 사용
+        if (Input.GetKeyDown(KeyCode.RightControl) && gameManager.plA == true)
+        { //왼쪽컨트롤키를 누르고 플레이어의 상태가 true인 경우에만 실행
+          // 0번째 활성화된 아이템을 사용
+            if (item.Activeitem[0].name.Contains("shield"))
+            {
+                Debug.Log("쉴드 사용");
+                Shieldeffect.SetActive(true);
+                useShield = true;
+                //인보크를 이용하여 쉴드를 3초뒤에 꺼지게 함
+                Invoke("stopShield", 2f);
+            }
+            string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
+            UnityEngine.Debug.Log("플레이어A가" + itemName + "아이템을 사용함");
+            // 0번째 아이템을 사용하려면 아래와 같이 호출
+            item.ActiveUseItem(item.Activeitem[0].name);
+        }
+    }
+    void UseNiddle()
+    {
         //바늘 아이템 사용
         if (Input.GetKeyDown(KeyCode.RightControl) && playerHealth == 0f)
         { //왼쪽컨트롤키를 누르고 플레이어의 피가 0인 경우에만 실행
-          // 0번째 활성화된 아이템을 사용
-            if (item.Activeitem.Length > 0 && item.Activeitem[0] != null)
+            if (item.Activeitem[0].name.Contains("niddle"))
             {
-                if (item.Activeitem[0].name.Contains("shield"))
-                {
-                    Debug.Log("쉴드 애니메이션 실행");
-                    //shield.animator.SetBool("Shield", true);
-                    Shieldeffect.SetActive(true);
-                    //인보크를 이용하여 쉴드를 3초뒤에 꺼지게 함
-                    Invoke("stopShield", 2f);
-                }
-                else if (item.Activeitem.Length > 1 && item.Activeitem[1] != null)
-                {
-                    item.Activeitem[0] = item.Activeitem[1];
-                    item.Activeitem[1] = null;
-                }
-
-                string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
-                UnityEngine.Debug.Log("플레이어A가" + itemName + "아이템을 사용함");
-                // 0번째 아이템을 사용하려면 아래와 같이 호출
-                item.ActiveUseItem(item.Activeitem[0].name);
-
-                // 1번째 아이템을 0번째로 끌어올림
+                Debug.Log("바늘 사용");
+                useniddle = true;
+                Debug.Log(useniddle);
             }
+            string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
+            UnityEngine.Debug.Log("플레이어A가" + itemName + "아이템을 사용함");
+            item.ActiveUseItem(item.Activeitem[0].name);
         }
-    }
+
+    } 
     //쉴드 멈추는 코드
     private void stopShield()
     {
+        useShield = false;
         Shieldeffect.SetActive(false);
     }
     //플레이어가 먹은 아이템 저장배열
@@ -347,8 +366,14 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "BallonCollider")
         {
-            //실드가 사용중인 상태의 if문 추가
-            DeathTime();
+            if (useShield == true)
+            {
+                //DeathTime(); 실행안됨
+            }
+            else
+            {
+                DeathTime();
+            }
 
         }
 

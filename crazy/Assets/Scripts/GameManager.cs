@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     {
         if(playerA.useniddle == true)
         {
+            playerA.useniddle = false;  
             plA = true;
         }
         else
