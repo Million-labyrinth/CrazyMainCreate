@@ -8,7 +8,7 @@ using Unity.Burst.CompilerServices;
 //김인섭 왔다감2
 public class Player : MonoBehaviour
 {
-
+    public int orderInLayer;
     public int bombPower;
     public int bombPowerMax = 10;
     public int bombRange;
@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rigid;
     Animator anim;
+    RaycastHit2D orderlayer;
 
     public GameObject Shieldeffect;
 
@@ -71,6 +72,7 @@ public class Player : MonoBehaviour
         Move();
         Skill();
         Ray();
+        colliderRay();
     }
     void LateUpdate()
     {
@@ -432,5 +434,17 @@ public class Player : MonoBehaviour
     {
         string playername = "A";
         gameManager.Death(playername);
+    }
+
+    void colliderRay()
+    {
+        orderInLayer = GetComponent<SpriteRenderer>().sortingOrder;
+        // Ray
+        Debug.DrawRay(transform.position - new Vector3(0, 0.55f, 0), Vector3.down * 0.05f, new Color(1, 1, 1));
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position, Vector3.down, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock"));
+        
+        if (downRayHit.collider != null) { 
+            orderInLayer = GetComponent<SpriteRenderer>().sortingOrder;
+        }
     }
 }
