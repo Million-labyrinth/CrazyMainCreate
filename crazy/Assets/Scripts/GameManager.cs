@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
     public Player playerA;
     public Player2 playerB;
     public ObjectManager objectManager;
-    bool plA = true;
-    bool plB = true;
+    public bool plA = true;
+    public bool plB = true;
 
     public GameObject redBlock;
     public GameObject orangeBlock;
@@ -30,8 +30,9 @@ public class GameManager : MonoBehaviour
     {
        if(playername == "A")
         {
-           Debug.Log("player A Hit");
-           plA = false;
+            Debug.Log("player A Hit");
+            plA = false;
+            Invoke("DeathTimeFinish", 3f);
 
             // 바늘 사용 시, plA 값 true 로 초기화 필요
         }
@@ -40,21 +41,28 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("player B Hit");
             plB = false;
+            Invoke("DeathTimeFinish", 3f);
 
             // 바늘 사용 시, plB 값 true 로 초기화 필요
         }
-
-        Invoke("DeathTimeFinish", 1f);
 
     }
 
     // 물풍선의 갇혀 있는 시간이 끝난 후 둘 중 하나라도 탈출을 못하면 승부 판정
     void DeathTimeFinish()
     {
-        if(plA == false || plB == false)
+        if(playerA.useniddle == true)
         {
-            Judgment();
+            plA = true;
         }
+        else
+        {
+            if (plA == false || plB == false)
+            {
+                Judgment();
+            }
+        }
+        
     }
 
     public void Judgment()
