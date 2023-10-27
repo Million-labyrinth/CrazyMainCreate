@@ -20,8 +20,9 @@ public class GameManager : MonoBehaviour
     public Animator anim;
 
 
-    void Awake()
+    public void Awake()
     {
+        anim = GetComponent<Animator>();
         Invoke("TimeEND", 180);
 
         Block redBlockLogic = redBlock.GetComponent<Block>();
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
         orangeBlockLogic.objectManager = objectManager;
         orangeBlockLogic.playerA = playerA;
         orangeBlockLogic.playerB = playerB;
-        anim = GetComponent<Animator>();
+
     }
 
     public void Death(string playername)//Player A Death
@@ -81,27 +82,30 @@ public class GameManager : MonoBehaviour
         if (plA == false && plB == false)
         {
             Debug.Log("Draw");
-            anim.SetBool("draw", true);
+            anim.SetBool("draw", true);//드로우 애니메이션 실행
             screen.SetActive(true);
         }
         else if (plA == false && plB == true)
         {
             Debug.Log("player B Win");
-            anim.SetBool("b", true);
+            anim.SetBool("b", true);//플레이어b 애니메이션 실행
             screen.SetActive(true);
         }
         else if (plA == true && plB == false)
         {
             Debug.Log("player A Win");
-            anim.SetBool("a", true);
+            anim.SetBool("a", true);//플레이어a 애니메이션 실행
             screen.SetActive(true);
         }
 
     }
-    void TimeEND()
+    public void TimeEND()
     {
         //UI활성화 또는 SEEN교체
         Debug.Log("Time Out Draw");
+        Debug.Log("Draw");
+        anim.SetBool("draw", true);
+        screen.SetActive(true);
 
     }
 }
