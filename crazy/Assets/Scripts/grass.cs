@@ -4,30 +4,34 @@ using UnityEngine;
 
 public class grass : MonoBehaviour
 {
-    public SpriteRenderer playerRenderer;
+    Animator anim;
 
-    private void Awake()
+    void Awake()
     {
-        // 여기서 playerRenderer를 초기화해야 합니다.
-        playerRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter(Collider other)
+
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
+        SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
+        otherSprite.enabled = false;
+
+        if (other.tag == "PlayerA" || other.tag == "PlayerB")
         {
-            // 스프라이트 렌더러를 끕니다.
-            playerRenderer.enabled = false;
+            
         }
+
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            // 스프라이트 렌더러를 켭니다.
-            playerRenderer.enabled = true;
-        }
+        // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
+        SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
+        otherSprite.enabled = true;
+
     }
 }
 

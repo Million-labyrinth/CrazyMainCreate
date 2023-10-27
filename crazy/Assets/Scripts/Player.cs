@@ -391,12 +391,6 @@ public class Player : MonoBehaviour
             }*/
         }
 
-        if (collision.gameObject.tag == "grass")
-        {
-
-            playerRenderer.enabled = false;
-        }
-
         if (collision.gameObject.CompareTag("powerItem"))
         {
             if (bombPower < bombPowerMax)
@@ -465,7 +459,7 @@ public class Player : MonoBehaviour
     {
         // Ray
         Debug.DrawRay(transform.position - new Vector3(0, 0.55f, 0), Vector3.down * 0.05f, new Color(1, 1, 1));
-        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position, Vector3.down, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock"));
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position, Vector3.down, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
 
         if (downRayHit.collider != null) {
             GameObject downObj = downRayHit.collider.gameObject;
