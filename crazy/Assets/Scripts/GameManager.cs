@@ -12,17 +12,20 @@ public class GameManager : MonoBehaviour
 
     public GameObject awin;
     public GameObject bwin;
+    public GameObject draw;
     public GameObject screen;
 
     public GameObject redBlock;
     public GameObject orangeBlock;
 
-    public Animator anim;
-
-
+    public Animator awin_Ani;
+    public Animator bwin_Ani;
+    public Animator draw_Ani;
     public void Awake()
     {
-        anim = GetComponent<Animator>();
+        awin_Ani = GetComponent<Animator>();
+        bwin_Ani = GetComponent<Animator>();
+        draw_Ani = GetComponent<Animator>();
         Invoke("TimeEND", 180);
 
         Block redBlockLogic = redBlock.GetComponent<Block>();
@@ -82,20 +85,23 @@ public class GameManager : MonoBehaviour
         if (plA == false && plB == false)
         {
             Debug.Log("Draw");
-            anim.SetBool("draw", true);//드로우 애니메이션 실행
+            // draw_Ani.SetBool("draw", true);//드로우 애니메이션 실행
             screen.SetActive(true);
+            draw.SetActive(true);
         }
         else if (plA == false && plB == true)
         {
             Debug.Log("player B Win");
-            anim.SetBool("b", true);//플레이어b 애니메이션 실행
+            //bwin_Ani.SetBool("b", true);//플레이어b 애니메이션 실행
             screen.SetActive(true);
+            bwin.SetActive(true);
         }
         else if (plA == true && plB == false)
         {
             Debug.Log("player A Win");
-            anim.SetBool("a", true);//플레이어a 애니메이션 실행
+            // awin_Ani.SetBool("a", true);//플레이어a 애니메이션 실행
             screen.SetActive(true);
+            awin.SetActive(true);
         }
 
     }
@@ -104,8 +110,9 @@ public class GameManager : MonoBehaviour
         //UI활성화 또는 SEEN교체
         Debug.Log("Time Out Draw");
         Debug.Log("Draw");
-        anim.SetBool("draw", true);
+        //draw_Ani.SetBool("draw", true);
         screen.SetActive(true);
+        draw.SetActive(true);
 
     }
 }
