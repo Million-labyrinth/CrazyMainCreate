@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         collider = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
         playerRenderer = GetComponent<SpriteRenderer>();
-        
+
         //플레이어 시작시 기본 스탯
         bombPower = 1;
         bombRange = 1;
@@ -180,54 +180,54 @@ public class Player : MonoBehaviour
         }
 
         // 밀 수 있는 상자 Ray
-        if (hStay || vStay)
-        {
-            Debug.DrawRay(rigid.position - new Vector2(0, 0.1f), rayDir * 0.7f, new Color(1, 0, 0));
-            RaycastHit2D pushRay = Physics2D.Raycast(rigid.position - new Vector2(0, 0.1f), rayDir, 0.7f, LayerMask.GetMask("MoveBlock"));
+        // if (hStay || vStay)
+        // {
+        //     Debug.DrawRay(rigid.position - new Vector2(0, 0.1f), rayDir * 0.7f, new Color(1, 0, 0));
+        //     RaycastHit2D pushRay = Physics2D.Raycast(rigid.position - new Vector2(0, 0.1f), rayDir, 0.7f, LayerMask.GetMask("MoveBlock"));
 
-            if (pushRay.collider != null)
-            {
-                pushBlock = pushRay.collider.gameObject;
-                Debug.Log(pushBlock.name);
+        //     if (pushRay.collider != null)
+        //     {
+        //         pushBlock = pushRay.collider.gameObject;
+        //         Debug.Log(pushBlock.name);
 
-                curPushTime += Time.deltaTime;
+        //         curPushTime += Time.deltaTime;
 
-                if (curPushTime > nextPushTime)
-                {
-                    if (rayDir == Vector2.up)
-                    {
-                        pushBlock.transform.position += new Vector3(0, 1, 0);
+        //         if (curPushTime > nextPushTime)
+        //         {
+        //             if (rayDir == Vector2.up)
+        //             {
+        //                 pushBlock.transform.position += new Vector3(0, 1, 0);
 
-                    }
-                    else if (rayDir == Vector2.down)
-                    {
-                        pushBlock.transform.position += new Vector3(0, -1, 0);
+        //             }
+        //             else if (rayDir == Vector2.down)
+        //             {
+        //                 pushBlock.transform.position += new Vector3(0, -1, 0);
 
-                    }
-                    else if (rayDir == Vector2.left)
-                    {
-                        pushBlock.transform.position += new Vector3(-1, 0, 0);
+        //             }
+        //             else if (rayDir == Vector2.left)
+        //             {
+        //                 pushBlock.transform.position += new Vector3(-1, 0, 0);
 
-                    }
-                    else if (rayDir == Vector2.right)
-                    {
-                        pushBlock.transform.position += new Vector3(1, 0, 0);
-                    }
+        //             }
+        //             else if (rayDir == Vector2.right)
+        //             {
+        //                 pushBlock.transform.position += new Vector3(1, 0, 0);
+        //             }
 
-                    // 시간 초기화
-                    curPushTime = 0;
-                }
-            }
-            else
-            {
-                pushBlock = null;
-            }
-        }
-        else
-        {
-            // 키 다운 해제 시 시간 초기화
-            curPushTime = 0;
-        }
+        //             // 시간 초기화
+        //             curPushTime = 0;
+        //         }
+        //     }
+        //     else
+        //     {
+        //         pushBlock = null;
+        //     }
+        // }
+        // else
+        // {
+        //     // 키 다운 해제 시 시간 초기화
+        //     curPushTime = 0;
+        // }
     }
 
     void OnDrawGizmosSelected()
@@ -310,7 +310,7 @@ public class Player : MonoBehaviour
             item.ActiveUseItem(item.Activeitem[0].name);
         }
 
-    } 
+    }
     //쉴드 멈추는 코드
     private void stopShield()
     {
@@ -461,7 +461,8 @@ public class Player : MonoBehaviour
         Debug.DrawRay(transform.position - new Vector3(0, 0.55f, 0), Vector3.down * 0.05f, new Color(1, 1, 1));
         RaycastHit2D downRayHit = Physics2D.Raycast(transform.position, Vector3.down, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
 
-        if (downRayHit.collider != null) {
+        if (downRayHit.collider != null)
+        {
             GameObject downObj = downRayHit.collider.gameObject;
             SpriteRenderer orderInLayer = downObj.GetComponent<SpriteRenderer>();
             int objOrder = orderInLayer.sortingOrder;
@@ -469,7 +470,7 @@ public class Player : MonoBehaviour
             // orderInLayer.sortingOrder += playerRenderer.sortingOrder;
             objOrder = orderInLayer.sortingOrder;
         }
-        else if(downRayHit.collider == null)
+        else if (downRayHit.collider == null)
         {
             playerRenderer.sortingOrder = 13;
         }

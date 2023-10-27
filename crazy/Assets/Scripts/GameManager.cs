@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Player playerA;
@@ -10,11 +10,19 @@ public class GameManager : MonoBehaviour
     public bool plA = true;
     public bool plB = true;
 
+    public GameObject awin;
+    public GameObject bwin;
+    public GameObject screen;
+
     public GameObject redBlock;
     public GameObject orangeBlock;
 
-    void Awake(){
-        Invoke("TimeEND",180);
+    public Animator anim;
+
+
+    void Awake()
+    {
+        Invoke("TimeEND", 180);
 
         Block redBlockLogic = redBlock.GetComponent<Block>();
         Block orangeBlockLogic = orangeBlock.GetComponent<Block>();
@@ -24,11 +32,12 @@ public class GameManager : MonoBehaviour
         orangeBlockLogic.objectManager = objectManager;
         orangeBlockLogic.playerA = playerA;
         orangeBlockLogic.playerB = playerB;
+        anim = GetComponent<Animator>();
     }
 
     public void Death(string playername)//Player A Death
     {
-       if(playername == "A")
+        if (playername == "A")
         {
             Debug.Log("player A Hit");
             plA = false;
@@ -51,9 +60,9 @@ public class GameManager : MonoBehaviour
     // 물풍선의 갇혀 있는 시간이 끝난 후 둘 중 하나라도 탈출을 못하면 승부 판정
     void DeathTimeFinish()
     {
-        if(playerA.useniddle == true)
+        if (playerA.useniddle == true)
         {
-            playerA.useniddle = false;  
+            playerA.useniddle = false;
             plA = true;
         }
         else
@@ -63,27 +72,34 @@ public class GameManager : MonoBehaviour
                 Judgment();
             }
         }
-        
+
     }
 
-    public void Judgment()
+    public async void Judgment()
     {
         //ui 승패 애니메이션 출력
         if (plA == false && plB == false)
         {
             Debug.Log("Draw");
+            anim.SetBool("draw", true);
+            screen.SetActive(true);
         }
         else if (plA == false && plB == true)
         {
             Debug.Log("player B Win");
+            anim.SetBool("b", true);
+            screen.SetActive(true);
         }
         else if (plA == true && plB == false)
         {
             Debug.Log("player A Win");
+            anim.SetBool("a", true);
+            screen.SetActive(true);
         }
 
     }
-    void TimeEND(){
+    void TimeEND()
+    {
         //UI활성화 또는 SEEN교체
         Debug.Log("Time Out Draw");
 
