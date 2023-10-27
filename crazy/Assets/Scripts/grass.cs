@@ -11,27 +11,37 @@ public class grass : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-
-
     void OnTriggerEnter2D(Collider2D other)
     {
         // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
         SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
         otherSprite.enabled = false;
 
-        if (other.tag == "PlayerA" || other.tag == "PlayerB")
+
+        if (other.tag == "PlayerA" || other.tag == "PlayerA")
         {
-            
+
         }
 
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
+        SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
+        otherSprite.enabled = false;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
         SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
-        otherSprite.enabled = true;
+        otherSprite.enabled = false;
 
+        if (other.tag == "PlayerA" || other.tag == "PlayerA")
+        {
+
+        }
     }
 }
 
