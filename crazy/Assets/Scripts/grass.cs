@@ -18,13 +18,14 @@ public class grass : MonoBehaviour
 
         if (other.gameObject.tag == "upWater" || other.gameObject.tag == "downWater" || other.gameObject.tag == "leftWater" || other.gameObject.tag == "rightWater" || other.gameObject.tag == "BalloonCollider")
         {
-            if(!haveObj)
+            if (!haveObj)
             {
                 gameObject.SetActive(false);
             }
             Debug.Log(other.name);
 
-        } else if(other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
+        }
+        else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
         {
             haveObj = true;
 

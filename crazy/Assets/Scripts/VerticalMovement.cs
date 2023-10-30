@@ -39,4 +39,15 @@ public class VerticalMovement : MonoBehaviour
 
         transform.position = currentPosition;
     }
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "upWater" || other.gameObject.tag == "downWater" || other.gameObject.tag == "leftWater" || other.gameObject.tag == "rightWater" || other.gameObject.tag == "BalloonCollider")
+        {
+
+            gameObject.SetActive(false);
+
+            Debug.Log(other.name);
+
+        }
+    }
 }

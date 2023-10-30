@@ -35,10 +35,11 @@ public class Balloon : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         collider = gameObject.GetComponent<BoxCollider2D>();
 
-        mainCol = MainCollider.GetComponent<BoxCollider2D>(); 
+        mainCol = MainCollider.GetComponent<BoxCollider2D>();
     }
 
-    void OnEnable() {
+    void OnEnable()
+    {
         Invoke("WaterLineActive", 0.1f);
         Invoke("Boom", 2.5f);
         Invoke("Finish", 3f);
@@ -104,7 +105,8 @@ public class Balloon : MonoBehaviour
     }
 
 
-    void Boom() {
+    void Boom()
+    {
         // 애니메이션
         anim.SetBool("Boom", true);
 
@@ -115,7 +117,8 @@ public class Balloon : MonoBehaviour
             upWater.SetActive(true);
             isHitUpBlock = false;
 
-        } else if (upScanObject != null)
+        }
+        else if (upScanObject != null)
         {
             if (!isHitUpBlock && upScanObject.tag == "Block")
             {
@@ -127,14 +130,15 @@ public class Balloon : MonoBehaviour
             }
         }
 
-        if(downScanObject == null || downScanObject.tag == "grass") 
-        {  
+        if (downScanObject == null || downScanObject.tag == "grass")
+        {
             downWater.SetActive(true);
             isHitDownBlock = false;
 
-        } else if(downScanObject != null) 
+        }
+        else if (downScanObject != null)
         {
-            if(!isHitDownBlock && downScanObject.tag == "Block")
+            if (!isHitDownBlock && downScanObject.tag == "Block")
             {
                 Block downBlock = downScanObject.GetComponent<Block>();
                 downBlock.anim.SetBool("Hit", true);
@@ -144,14 +148,15 @@ public class Balloon : MonoBehaviour
 
         }
 
-        if(leftScanObject == null || leftScanObject.tag == "grass") 
-        { 
+        if (leftScanObject == null || leftScanObject.tag == "grass")
+        {
             leftWater.SetActive(true);
             isHitLeftBlock = false;
 
-        } else if (leftScanObject != null)
+        }
+        else if (leftScanObject != null)
         {
-            if(!isHitLeftBlock && leftScanObject.tag == "Block")
+            if (!isHitLeftBlock && leftScanObject.tag == "Block")
             {
                 Block leftBlock = leftScanObject.GetComponent<Block>();
                 leftBlock.anim.SetBool("Hit", true);
@@ -162,14 +167,15 @@ public class Balloon : MonoBehaviour
 
         }
 
-        if (rightScanObject == null || rightScanObject.tag == "grass") 
-        {  
+        if (rightScanObject == null || rightScanObject.tag == "grass")
+        {
             rightWater.SetActive(true);
             isHitRightBlock = false;
 
-        } else if (rightScanObject != null)
+        }
+        else if (rightScanObject != null)
         {
-           if(!isHitRightBlock && rightScanObject.tag == "Block")
+            if (!isHitRightBlock && rightScanObject.tag == "Block")
             {
                 Block rightBlock = rightScanObject.GetComponent<Block>();
                 rightBlock.anim.SetBool("Hit", true);
@@ -184,7 +190,8 @@ public class Balloon : MonoBehaviour
     }
 
 
-    void Finish() {
+    void Finish()
+    {
         // 애니메이션
         anim.SetBool("Boom", false);
 
@@ -208,18 +215,19 @@ public class Balloon : MonoBehaviour
         waterLineActive = false;
     }
 
-    void OnTriggerEnter2D(Collider2D obj) {
+    void OnTriggerEnter2D(Collider2D obj)
+    {
 
-         // 다른 물풍선의 물줄기에 맞으면 바로 터지게 만듦
-         if (obj.gameObject.tag == "upWater" || obj.gameObject.tag == "downWater" || obj.gameObject.tag == "leftWater" || obj.gameObject.tag == "rightWater")
-         {
-             // 물줄기 위에서는 작동을 안하게 만듦
-             if (!waterLineActive)
-             {
-                 Boom();
-                 Invoke("Finish", 0.5f);
-             }
-         }
+        // 다른 물풍선의 물줄기에 맞으면 바로 터지게 만듦
+        if (obj.gameObject.tag == "upWater" || obj.gameObject.tag == "downWater" || obj.gameObject.tag == "leftWater" || obj.gameObject.tag == "rightWater")
+        {
+            // 물줄기 위에서는 작동을 안하게 만듦
+            if (!waterLineActive)
+            {
+                Boom();
+                Invoke("Finish", 0.5f);
+            }
+        }
     }
 
 }
