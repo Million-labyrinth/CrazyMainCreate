@@ -224,7 +224,7 @@ public class Player2 : MonoBehaviour
 
         UnityEngine.Debug.Log("플레이어가 오브젝트에 닿음");
 
-        if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "BallonCollider")
+        if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "BalloonCollider")
         {
             //실드가 사용중인 상태의 if문 추가
             DeatTime();

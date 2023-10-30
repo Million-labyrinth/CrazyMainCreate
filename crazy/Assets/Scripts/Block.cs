@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    public Player playerA;
-    public Player2 playerB;
     public Animator anim;
     public ObjectManager objectManager;
     public bool blockBreak = false;

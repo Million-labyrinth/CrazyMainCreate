@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject redBlock;
     public GameObject orangeBlock;
+    public GameObject villageBox;
 
     public Animator awin_Ani;
     public Animator bwin_Ani;
@@ -30,12 +31,10 @@ public class GameManager : MonoBehaviour
 
         Block redBlockLogic = redBlock.GetComponent<Block>();
         Block orangeBlockLogic = orangeBlock.GetComponent<Block>();
+        Block villageBoxLogic = villageBox.GetComponent<Block>();
         redBlockLogic.objectManager = objectManager;
-        redBlockLogic.playerA = playerA;
-        redBlockLogic.playerB = playerB;
         orangeBlockLogic.objectManager = objectManager;
-        orangeBlockLogic.playerA = playerA;
-        orangeBlockLogic.playerB = playerB;
+        villageBoxLogic.objectManager = objectManager;
 
     }
 

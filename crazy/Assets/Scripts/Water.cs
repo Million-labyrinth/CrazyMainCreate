@@ -79,6 +79,15 @@ public class Water : MonoBehaviour
 
                 isHitBlock = true;
             }
+            else if (scanObject.tag == "grass")
+            {
+                grass grassLogic = scanObject.GetComponent<grass>();
+                Debug.Log(scanObject.name);
+                if (grassLogic.haveObj == false)
+                {
+                    scanObject.SetActive(false);
+                }
+            }
         }
         else
         {

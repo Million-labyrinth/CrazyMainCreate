@@ -6,6 +6,8 @@ public class grass : MonoBehaviour
 {
     Animator anim;
 
+    public bool haveObj = false; // 안에 오브젝트가 있으면 Grass 는 파괴가 안됨.
+
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -13,35 +15,54 @@ public class grass : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
-        SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
-        otherSprite.enabled = false;
 
-
-        if (other.tag == "PlayerA" || other.tag == "PlayerA")
+        if (other.gameObject.tag == "upWater" || other.gameObject.tag == "downWater" || other.gameObject.tag == "leftWater" || other.gameObject.tag == "rightWater" || other.gameObject.tag == "BalloonCollider")
         {
+            if(!haveObj)
+            {
+                gameObject.SetActive(false);
+                Debug.Log("aa");
+            }
 
+        } else if(other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
+        {
+            haveObj = true;
+
+            // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
+            SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
+            otherSprite.enabled = false;
         }
 
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
-        SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
-        otherSprite.enabled = false;
+        if (other.gameObject.tag == "upWater" || other.gameObject.tag == "downWater" || other.gameObject.tag == "leftWater" || other.gameObject.tag == "rightWater" || other.gameObject.tag == "BalloonCollider")
+        {
+            if (!haveObj)
+            {
+                gameObject.SetActive(false);
+            }
+
+        }
+        else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
+        {
+            haveObj = true;
+
+            // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
+            SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
+            otherSprite.enabled = false;
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
+        // Grass 안에 있었던 오브젝트의 스프라이트 렌더러를 켜줌.
         SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
-        otherSprite.enabled = false;
+        otherSprite.enabled = true;
 
-        if (other.tag == "PlayerA" || other.tag == "PlayerA")
-        {
-
-        }
+        haveObj = false;
     }
 }
 

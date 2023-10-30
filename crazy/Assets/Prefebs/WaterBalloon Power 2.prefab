@@ -2031,7 +2031,7 @@ GameObject:
   - component: {fileID: 233564115426962321}
   m_Layer: 0
   m_Name: Ballon Collider 2
-  m_TagString: BallonCollider
+  m_TagString: BalloonCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
