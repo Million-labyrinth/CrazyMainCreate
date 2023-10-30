@@ -357,7 +357,10 @@ public class Player : MonoBehaviour
             else
             {
                 DeathTime();
+                
             }
+
+            Debug.Log(collision.name);
 
         }
 

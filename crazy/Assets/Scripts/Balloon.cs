@@ -199,9 +199,6 @@ public class Balloon : MonoBehaviour
 
         waterLineActive = true;
 
-        this.gameObject.layer = 8;
-        MainCollider.layer = 9;
-
         // 트리거 활성화 (collider = Player A 물풍선, mainCol = Player B 물풍선)
         collider.isTrigger = true;
         mainCol.isTrigger = true;

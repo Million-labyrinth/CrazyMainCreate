@@ -21,8 +21,8 @@ public class grass : MonoBehaviour
             if(!haveObj)
             {
                 gameObject.SetActive(false);
-                Debug.Log("aa");
             }
+            Debug.Log(other.name);
 
         } else if(other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
         {
