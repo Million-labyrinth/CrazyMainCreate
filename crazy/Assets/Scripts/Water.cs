@@ -13,12 +13,19 @@ public class Water : MonoBehaviour
     public GameObject[] rightWater;
 
     GameObject scanObject; // upRay 에 인식되는 오브젝트 변수
+    SpriteRenderer sprite;
 
     bool isHitBlock = false; // 물줄기 Ray 가 Block 을 인식했을 때, Block 부수기
+
+    void Awake()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+    }
 
     void OnEnable()
     {
         Active();
+        sprite.enabled = true; // Sprite Renderer 가 꺼지는 오류 발생해서 추가한 코드
     }
 
     void Update()

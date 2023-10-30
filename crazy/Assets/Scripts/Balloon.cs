@@ -15,6 +15,7 @@ public class Balloon : MonoBehaviour
 
     public GameObject mainBalloon; // 물풍선 본체
     public GameObject MainCollider; // 물풍선이 터지면 활성화 될, 물풍선 Collider
+    BoxCollider2D mainCol;
 
     GameObject upScanObject; // upRay 에 인식되는 오브젝트 변수
     GameObject downScanObject; // downRay 에 인식되는 오브젝트 변수
@@ -33,6 +34,8 @@ public class Balloon : MonoBehaviour
     {
         anim = gameObject.GetComponent<Animator>();
         collider = gameObject.GetComponent<BoxCollider2D>();
+
+        mainCol = MainCollider.GetComponent<BoxCollider2D>();
     }
 
     void OnEnable() {
@@ -198,6 +201,10 @@ public class Balloon : MonoBehaviour
 
         this.gameObject.layer = 8;
         MainCollider.layer = 9;
+
+        // 트리거 활성화 (collider = Player A 물풍선, mainCol = Player B 물풍선)
+        collider.isTrigger = true;
+        mainCol.isTrigger = true;
     }
     void WaterLineActive()
     {

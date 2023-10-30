@@ -152,25 +152,9 @@ public class Player : MonoBehaviour
 
     void Ray()
     {
-        // Ray (물풍선 충돌 판정)  
-        for (float angle = 0.0f; angle < 360.0f; angle += 5.0f)
-        {
-            float x = rigid.position.x + 1.6f * Mathf.Cos(Mathf.Deg2Rad * angle);
-            float y = rigid.position.y + 1.6f * Mathf.Sin(Mathf.Deg2Rad * angle);
-
-            Collider2D obj = Physics2D.OverlapPoint(new Vector2(x, y) - new Vector2(0, 0.1f), LayerMask.GetMask("Balloon A"));
-
-            if (obj != null)
-            {
-                obj.gameObject.layer = 10;
-                Debug.Log(obj.name);
-            }
-        }
-
-
 
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray
-        Collider2D forMake = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.1f), 0.5f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Balloon Hard A") | LayerMask.GetMask("Balloon Hard B"));
+        Collider2D forMake = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.1f), 0.45f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Balloon Hard A") | LayerMask.GetMask("Balloon Hard B"));
 
         if (forMake != null)
         {
@@ -235,10 +219,8 @@ public class Player : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0f, 1f, 0f);
-        // 물풍선 충돌 판정
-        Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.1f), 1.6f);
         // 물풍선 생성 판정
-        Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.1f), 0.5f);
+        Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.1f), 0.45f);
     }
 
 
@@ -444,10 +426,18 @@ public class Player : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
     }
+
     void OnTriggerExit2D(Collider2D other)
     {
 
         playerRenderer.enabled = true;
+
+        // 물풍선 밖으로 나가면 트리거 비활성화
+        if(other.gameObject.layer  == 8)
+        {
+            Collider2D col = other.gameObject.GetComponent<Collider2D>();
+            col.isTrigger = false;
+        }
 
     }
 
