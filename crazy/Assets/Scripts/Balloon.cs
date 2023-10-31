@@ -229,6 +229,7 @@ public class Balloon : MonoBehaviour
                 Invoke("Finish", 0.5f);
             }
         }
+       
     }
 
 }
