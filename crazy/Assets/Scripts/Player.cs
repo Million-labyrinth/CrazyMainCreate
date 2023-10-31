@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
 
     public ObjectManager objectManager;
     GameObject[] WaterBalloon; // 오브젝트 풀을 가져오기 위한 변수
+    public GameObject p1shield;
+    public GameObject p1niddle;
 
     CircleCollider2D collider;
 
@@ -252,13 +254,8 @@ public class Player : MonoBehaviour
                 break;
         }
     }
-    void UseItem()
-    {
-        UseShield();
-        UseNiddle();
-    }
 
-    void UseShield()
+    void UseItem()
     {
         //바늘 아이템 사용
         if (Input.GetKeyDown(KeyCode.RightControl) && gameManager.plA == true)
@@ -269,31 +266,26 @@ public class Player : MonoBehaviour
                 Debug.Log("쉴드 사용");
                 Shieldeffect.SetActive(true);
                 useShield = true;
+                if(p1niddle == true)
+                {
+                    p1niddle.SetActive(false);
+                }
+                p1shield.SetActive(false);
                 //인보크를 이용하여 쉴드를 3초뒤에 꺼지게 함
                 Invoke("stopShield", 2f);
+            }
+            else if (item.Activeitem[0].name.Contains("niddle"))
+            {
+                Debug.Log("바늘 사용");
+                useniddle = true;
+                p1niddle.SetActive(false);
+                Debug.Log(useniddle);
             }
             string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
             UnityEngine.Debug.Log("플레이어A가" + itemName + "아이템을 사용함");
             // 0번째 아이템을 사용하려면 아래와 같이 호출
             item.ActiveUseItem(item.Activeitem[0].name);
         }
-    }
-    void UseNiddle()
-    {
-        //바늘 아이템 사용
-        if (Input.GetKeyDown(KeyCode.RightControl) && playerHealth == 0f)
-        { //왼쪽컨트롤키를 누르고 플레이어의 피가 0인 경우에만 실행
-            if (item.Activeitem[0].name.Contains("niddle"))
-            {
-                Debug.Log("바늘 사용");
-                useniddle = true;
-                Debug.Log(useniddle);
-            }
-            string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
-            UnityEngine.Debug.Log("플레이어A가" + itemName + "아이템을 사용함");
-            item.ActiveUseItem(item.Activeitem[0].name);
-        }
-
     }
     //쉴드 멈추는 코드
     private void stopShield()
@@ -423,7 +415,25 @@ public class Player : MonoBehaviour
         // 먹은 아이템을 Activeitem 배열에 추가 (ActiveItem 태그를 가진 아이템만 추가)
         if (collision.gameObject.CompareTag("ActiveItem"))
         {
-            UnityEngine.Debug.Log("ActiveItem ADD");
+            if(collision.gameObject.name == "shield")
+            {
+                if (p1niddle == true)
+                {
+                    p1niddle.SetActive(false);
+                }
+                p1shield.SetActive(true);
+            }
+            else if (collision.gameObject.name == "niddle")
+            {
+                
+                if (p1shield == true)
+                {
+                    p1shield.SetActive(false);
+                }
+                p1niddle.SetActive(true);
+
+            }
+                UnityEngine.Debug.Log("ActiveItem ADD");
             item.AddActiveItem(collision.gameObject, 0);
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
