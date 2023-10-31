@@ -36,35 +36,39 @@ public class Water : MonoBehaviour
             case "upWater":
                 if (Array.IndexOf(upWater, gameObject) != upWater.Length - 1)
                 {
-                    Ray(Vector3.up);
+                    Vector3 plus = new Vector3(0, 0.3f, 0);
+                    Ray(plus, Vector3.up);
                 }
                 break;
             case "downWater":
                 if (Array.IndexOf(downWater, gameObject) != downWater.Length - 1)
                 {
-                    Ray(Vector3.down);
+                    Vector3 plus = new Vector3(0, -0.3f, 0);
+                    Ray(plus, Vector3.down);
                 }
                 break;
             case "leftWater":
                 if (Array.IndexOf(leftWater, gameObject) != leftWater.Length - 1)
                 {
-                    Ray(Vector3.left);
+                    Vector3 plus = new Vector3(-0.3f, 0, 0);
+                    Ray(plus, Vector3.left);
                 }
                 break;
             case "rightWater":
                 if (Array.IndexOf(rightWater, gameObject) != rightWater.Length - 1)
                 {
-                    Ray(Vector3.right);
+                    Vector3 plus = new Vector3(0.3f,0 , 0);
+                    Ray(plus, Vector3.right);
                 }
                 break;
         }
     }
 
-    void Ray(Vector3 waterVec)
+    void Ray(Vector3 plusVec, Vector3 waterVec)
     {
         // Ray
-        Debug.DrawRay(transform.position, waterVec * 0.7f, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, waterVec, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+        Debug.DrawRay(transform.position + plusVec, waterVec * 0.7f, new Color(0, 1, 0));
+        RaycastHit2D rayHit = Physics2D.Raycast(transform.position + plusVec, waterVec, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
 
         if (rayHit.collider != null)
         {
