@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Balloon : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class Balloon : MonoBehaviour
         collider = gameObject.GetComponent<BoxCollider2D>();
 
         mainCol = MainCollider.GetComponent<BoxCollider2D>();
+
         
     }
 
@@ -108,6 +110,7 @@ public class Balloon : MonoBehaviour
 
     void Boom()
     {
+
         // 애니메이션
         anim.SetBool("Boom", true);
 

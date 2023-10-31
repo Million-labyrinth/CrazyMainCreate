@@ -21,15 +21,20 @@ public class grass : MonoBehaviour
             if (!haveObj)
             {
                 gameObject.SetActive(false);
+                Debug.Log("false");
             }
             Debug.Log(other.name);
 
         }
-        else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB" || other.tag == "Balloon")
+        else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
         {
             haveObj = true;
 
             // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
+            SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
+            otherSprite.enabled = false;
+        } else if(other.tag == "Balloon")
+        {
             SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
             otherSprite.enabled = false;
         }
@@ -47,11 +52,16 @@ public class grass : MonoBehaviour
             }
 
         }
-        else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB" || other.tag == "Balloon")
+        else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
         {
             haveObj = true;
 
             // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
+            SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
+            otherSprite.enabled = false;
+
+        } else if(other.tag == "Balloon")
+        {
             SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
             otherSprite.enabled = false;
         }
