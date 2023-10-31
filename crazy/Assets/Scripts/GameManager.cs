@@ -22,12 +22,47 @@ public class GameManager : MonoBehaviour
     public Animator awin_Ani;
     public Animator bwin_Ani;
     public Animator draw_Ani;
+
+    //timer
+    [SerializeField] private Text text;
+    [SerializeField] private float time;
+    [SerializeField] private float curTime;
+    int minute;
+    int second;
+
+
     public void Awake()
     {
         awin_Ani = GetComponent<Animator>();
         bwin_Ani = GetComponent<Animator>();
         draw_Ani = GetComponent<Animator>();
-        Invoke("TimeEND", 180);
+
+        time = 180;
+        StartCoroutine(StartTimer());
+
+    }
+
+    IEnumerator StartTimer()
+    {
+        curTime = time;
+        while (curTime > 0)
+        {
+            curTime -= Time.deltaTime;
+            minute = (int)curTime / 60;
+            second = (int)curTime % 60;
+            text.text = minute.ToString("00") + ":" + second.ToString("00");
+            yield return null;
+
+            if (curTime <= 0.9)
+            {
+                Debug.Log("Time out Draw");
+                //draw_Ani.SetBool("draw", true);
+                screen.SetActive(true);
+                draw.SetActive(true);
+                curTime = 0;
+                yield break;
+            }
+        }
     }
 
     public void Death(string playername)//Player A Death
@@ -36,7 +71,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("player A Hit");
             plA = false;
-            Invoke("DeathTimeFinish", 3f);
+            Invoke("DeathTimeFinish", 6f);
 
             // 바늘 사용 시, plA 값 true 로 초기화 필요
         }
@@ -45,7 +80,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("player B Hit");
             plB = false;
-            Invoke("DeathTimeFinish", 3f);
+            Invoke("DeathTimeFinish", 6f);
 
             // 바늘 사용 시, plB 값 true 로 초기화 필요
         }
@@ -73,7 +108,7 @@ public class GameManager : MonoBehaviour
     public async void Judgment()
     {
         //ui 승패 애니메이션 출력
-        if (plA == false && plB == false)
+        if (plA == false && plB == false && curTime <= 0.9)
         {
             Debug.Log("Draw");
             // draw_Ani.SetBool("draw", true);//드로우 애니메이션 실행
@@ -96,14 +131,5 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public void TimeEND()
-    {
-        //UI활성화 또는 SEEN교체
-        Debug.Log("Time Out Draw");
-        Debug.Log("Draw");
-        //draw_Ani.SetBool("draw", true);
-        screen.SetActive(true);
-        draw.SetActive(true);
 
-    }
 }

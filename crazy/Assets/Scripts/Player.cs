@@ -350,6 +350,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "BalloonCollider")
         {
+
             if (useShield == true)
             {
                 //DeathTime(); 실행안됨
@@ -372,10 +373,9 @@ public class Player : MonoBehaviour
         // 플레이어가 물풍선 위에 있을 시
         if (collision.gameObject.tag == "Balloon")
         {
+           
 
-            /*if () { niddle 사용하지 않았을때의 조건문
-                Invoke("DeatTime", 5);
-            }*/
+
         }
 
         if (collision.gameObject.CompareTag("powerItem"))
@@ -446,9 +446,23 @@ public class Player : MonoBehaviour
 
     void DeathTime()
     {
+        Debug.Log("플레이어가 데미지를 입음");
+        anim.SetBool("isDamage", true);
+        anim.SetBool("isDying", false);
+        playerSpeed = 0.8f;
         string playername = "A";
         gameManager.Death(playername);
+        Invoke("DeadTime", 4f);
     }
+
+    void DeadTime()
+    {
+        anim.SetBool("isDead", true);
+        anim.SetBool("isDamage", false);
+        playerSpeed = 0f;
+
+    }
+
 
     void colliderRay()
     {
