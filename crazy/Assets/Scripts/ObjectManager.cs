@@ -74,6 +74,7 @@ public class ObjectManager : MonoBehaviour
         {
             waterBalloon1[index] = Instantiate(waterBalloon1Prefab);
             waterBalloon1[index].SetActive(false);
+        
         }
         for (int index = 0; index < waterBalloon2.Length; index++)
         {

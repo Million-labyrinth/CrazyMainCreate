@@ -28,14 +28,6 @@ public class GameManager : MonoBehaviour
         bwin_Ani = GetComponent<Animator>();
         draw_Ani = GetComponent<Animator>();
         Invoke("TimeEND", 180);
-
-        Block redBlockLogic = redBlock.GetComponent<Block>();
-        Block orangeBlockLogic = orangeBlock.GetComponent<Block>();
-        Block villageBoxLogic = villageBox.GetComponent<Block>();
-        redBlockLogic.objectManager = objectManager;
-        orangeBlockLogic.objectManager = objectManager;
-        villageBoxLogic.objectManager = objectManager;
-
     }
 
     public void Death(string playername)//Player A Death

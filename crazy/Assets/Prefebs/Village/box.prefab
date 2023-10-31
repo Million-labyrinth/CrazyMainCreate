@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3515323178622150507}
   - component: {fileID: 99249484126836733}
   - component: {fileID: 3622149865721564160}
+  - component: {fileID: 2137615888040225841}
   m_Layer: 13
   m_Name: box
   m_TagString: Block
@@ -211,3 +212,17 @@ MonoBehaviour:
   anim: {fileID: 0}
   objectManager: {fileID: 0}
   blockBreak: 0
+--- !u!114 &2137615888040225841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2367758887087915606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6924c7fc55b4a94bb666be96bf78ac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPushForce: 2
+  maxPushForce: 5
