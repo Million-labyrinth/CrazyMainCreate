@@ -19,6 +19,15 @@ public class Player : MonoBehaviour
     public bool useShield = false;
     public bool useniddle = false;
 
+    //효과음
+    public AudioClip itemAddSound;//아이템 획득 소리
+    public AudioClip balloonSetSound;//물풍선 놓는 소리
+    public AudioClip balloonEscapeSound;//물풍선 탈출 소리
+    public AudioClip balloonLockSound;//물풍선 갇힐때 소리
+    AudioSource audioSource;
+
+
+
     int playerAballonIndex = 0; // 물풍선 오브젝트 풀 사용할 때 필요한 playerAballonIndex 변수
     public int playerAcountIndex = 0; // 물풍선을 생성할 때, 플레이어가 생성한 물풍선의 개수를 체크할 때 필요한 변수
     public bool playerAmakeBalloon; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
@@ -60,7 +69,7 @@ public class Player : MonoBehaviour
         collider = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
         playerRenderer = GetComponent<SpriteRenderer>();
-
+        audioSource = GetComponent<AudioSource>();
         //플레이어 시작시 기본 스탯
         bombPower = 1;
         bombRange = 1;
@@ -279,6 +288,8 @@ public class Player : MonoBehaviour
                 useniddle = true;
                 p2niddle.SetActive(false);
                 Debug.Log(useniddle);
+                audioSource.clip = balloonEscapeSound;
+                audioSource.Play();
             }
             string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
             UnityEngine.Debug.Log("플레이어A가" + itemName + "아이템을 사용함");
@@ -311,12 +322,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightShift) && playerAmakeBalloon && playerAcountIndex < bombPower)
         {
+
             Debug.Log("RightShift");
             if (!WaterBalloon[playerAballonIndex].activeInHierarchy)
             {
                 WaterBalloon[playerAballonIndex].SetActive(true);
                 WaterBalloon[playerAballonIndex].transform.position = MoveVec;
-
+                audioSource.clip = balloonSetSound;
+                audioSource.Play();
             }
 
             // playerAballonIndex 가 10 을 넘어가지 않게 0으로 초기화
@@ -337,7 +350,8 @@ public class Player : MonoBehaviour
     //아이템 먹었을때 스탯 값 증감
     void OnTriggerEnter2D(Collider2D collision)
     {
-
+        audioSource.clip = itemAddSound;
+        audioSource.Play();
 
         if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "BalloonCollider")
         {
@@ -349,7 +363,7 @@ public class Player : MonoBehaviour
             else
             {
                 DeathTime();
-                
+
             }
         }
 
@@ -363,6 +377,7 @@ public class Player : MonoBehaviour
             if (bombPower < bombPowerMax)
             {
                 item.PowerAdd(iname);
+
             }
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
@@ -403,7 +418,7 @@ public class Player : MonoBehaviour
         // 먹은 아이템을 Activeitem 배열에 추가 (ActiveItem 태그를 가진 아이템만 추가)
         if (collision.gameObject.CompareTag("ActiveItem"))
         {
-            if(collision.gameObject.name.Contains("shield"))
+            if (collision.gameObject.name.Contains("shield"))
             {
                 if (p2niddle == true)
                 {
@@ -413,14 +428,14 @@ public class Player : MonoBehaviour
             }
             else if (collision.gameObject.name.Contains("niddle"))
             {
-                
+
                 if (p2shield == true)
                 {
                     p2shield.SetActive(false);
                 }
                 p2niddle.SetActive(true);
             }
-                UnityEngine.Debug.Log("ActiveItem ADD");
+            UnityEngine.Debug.Log("ActiveItem ADD");
             item.AddActiveItem(collision.gameObject, 0);
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
@@ -433,7 +448,7 @@ public class Player : MonoBehaviour
         playerRenderer.enabled = true;
 
         // 물풍선 밖으로 나가면 트리거 비활성화
-        if(other.gameObject.layer  == 8)
+        if (other.gameObject.layer == 8)
         {
             Collider2D col = other.gameObject.GetComponent<Collider2D>();
             col.isTrigger = false;
@@ -450,6 +465,8 @@ public class Player : MonoBehaviour
         string playername = "A";
         gameManager.Death(playername);
         Invoke("DeadTime", 4f);
+        audioSource.clip = balloonLockSound;
+        audioSource.Play();
     }
 
     void DeadTime()
@@ -465,7 +482,7 @@ public class Player : MonoBehaviour
     {
         // Ray
         Debug.DrawRay(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right * 0.7f, new Color(1, 1, 1));
-        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right , 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
 
         if (downRayHit.collider != null)
         {
