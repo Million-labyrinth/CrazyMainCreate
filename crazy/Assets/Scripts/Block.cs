@@ -8,11 +8,11 @@ public class Block : MonoBehaviour
     public Animator anim;
     public ObjectManager objectManager;
     public bool blockBreak = false;
-
+   
 
     void Awake() {
+        
         anim = GetComponent<Animator>();
-
         // 현재 활성화된 Scene에서 ObjectManager 클래스의 인스턴스를 찾아서 가져와서 초기화
         objectManager = FindObjectOfType<ObjectManager>();
     }

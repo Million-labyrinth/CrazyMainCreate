@@ -32,10 +32,11 @@ public class Balloon : MonoBehaviour
 
     void Awake()
     {
-        anim = gameObject.GetComponent<Animator>();
+        anim = GetComponent < Animator>();
         collider = gameObject.GetComponent<BoxCollider2D>();
 
         mainCol = MainCollider.GetComponent<BoxCollider2D>();
+        
     }
 
     void OnEnable()

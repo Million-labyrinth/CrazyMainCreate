@@ -5,7 +5,6 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 using Unity.Burst.CompilerServices;
-//김인섭 왔다감2
 public class Player : MonoBehaviour
 {
     public int bombPower;
@@ -26,8 +25,8 @@ public class Player : MonoBehaviour
 
     public ObjectManager objectManager;
     GameObject[] WaterBalloon; // 오브젝트 풀을 가져오기 위한 변수
-    public GameObject p1shield;
-    public GameObject p1niddle;
+    public GameObject p2shield;
+    public GameObject p2niddle;
 
     CircleCollider2D collider;
 
@@ -266,11 +265,7 @@ public class Player : MonoBehaviour
                 Debug.Log("쉴드 사용");
                 Shieldeffect.SetActive(true);
                 useShield = true;
-                if(p1niddle == true)
-                {
-                    p1niddle.SetActive(false);
-                }
-                p1shield.SetActive(false);
+                p2shield.SetActive(false);
                 //인보크를 이용하여 쉴드를 3초뒤에 꺼지게 함
                 Invoke("stopShield", 2f);
             }
@@ -278,7 +273,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("바늘 사용");
                 useniddle = true;
-                p1niddle.SetActive(false);
+                p2niddle.SetActive(false);
                 Debug.Log(useniddle);
             }
             string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
@@ -415,23 +410,22 @@ public class Player : MonoBehaviour
         // 먹은 아이템을 Activeitem 배열에 추가 (ActiveItem 태그를 가진 아이템만 추가)
         if (collision.gameObject.CompareTag("ActiveItem"))
         {
-            if(collision.gameObject.name == "shield")
+            if(collision.gameObject.name.Contains("shield"))
             {
-                if (p1niddle == true)
+                if (p2niddle == true)
                 {
-                    p1niddle.SetActive(false);
+                    p2niddle.SetActive(false);
                 }
-                p1shield.SetActive(true);
+                p2shield.SetActive(true);
             }
-            else if (collision.gameObject.name == "niddle")
+            else if (collision.gameObject.name.Contains("niddle"))
             {
                 
-                if (p1shield == true)
+                if (p2shield == true)
                 {
-                    p1shield.SetActive(false);
+                    p2shield.SetActive(false);
                 }
-                p1niddle.SetActive(true);
-
+                p2niddle.SetActive(true);
             }
                 UnityEngine.Debug.Log("ActiveItem ADD");
             item.AddActiveItem(collision.gameObject, 0);
