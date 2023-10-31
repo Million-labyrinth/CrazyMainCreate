@@ -25,7 +25,7 @@ public class grass : MonoBehaviour
             Debug.Log(other.name);
 
         }
-        else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
+        else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB" || other.tag == "Balloon")
         {
             haveObj = true;
 
@@ -40,13 +40,14 @@ public class grass : MonoBehaviour
     {
         if (other.gameObject.tag == "upWater" || other.gameObject.tag == "downWater" || other.gameObject.tag == "leftWater" || other.gameObject.tag == "rightWater" || other.gameObject.tag == "BalloonCollider")
         {
+            
             if (!haveObj)
             {
                 gameObject.SetActive(false);
             }
 
         }
-        else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
+        else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB" || other.tag == "Balloon")
         {
             haveObj = true;
 
