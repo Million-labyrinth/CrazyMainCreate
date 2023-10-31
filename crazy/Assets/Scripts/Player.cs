@@ -453,8 +453,8 @@ public class Player : MonoBehaviour
     void colliderRay()
     {
         // Ray
-        Debug.DrawRay(transform.position - new Vector3(0, 0.55f, 0), Vector3.down * 0.05f, new Color(1, 1, 1));
-        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position, Vector3.down, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+        Debug.DrawRay(transform.position - new Vector3(0.35f, 0.55f, 0), Vector3.right * 0.7f, new Color(1, 1, 1));
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position - new Vector3(0.35f, 0.55f, 0), Vector3.right * 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
 
         if (downRayHit.collider != null)
         {
