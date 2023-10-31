@@ -1,43 +1,110 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Box : MonoBehaviour
 {
-    public float minPushForce = 2.0f; // 최소 밀리는 힘
-    public float maxPushForce = 5.0f; // 최대 밀리는 힘
-    Rigidbody2D boxRigidbody;
+    public float lerpTime = 1.0f;
 
-    void Start()
+    Vector2 boxPos;
+    Vector2 nextPos;
+
+    public GameObject upScanObject; // upRay 에 인식되는 오브젝트 변수
+    public GameObject downScanObject; // downRay 에 인식되는 오브젝트 변수
+    public GameObject leftScanObject; // leftRay 에 인식되는 오브젝트 변수
+    public GameObject rightScanObject; // rightRay 에 인식되는 오브젝트 변수
+
+    void Update()
     {
-        // 박스 오브젝트의 Rigidbody 컴포넌트를 가져옵니다.
-        boxRigidbody = GetComponent<Rigidbody2D>();
+        BoxRay();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    IEnumerator lerpCoroutine(Vector3 current, Vector3 target, float time)
     {
-        // 플레이어와 부딪힌 경우:
-        if (collision.gameObject.CompareTag("Player"))
+        float elapsedTime = 0.0f;
+
+        this.transform.position = current;
+        while (elapsedTime < time)
         {
-            // 충돌 시 무작위로 힘을 설정합니다.
-            float pushForce = Random.Range(minPushForce, maxPushForce);
+            elapsedTime += (Time.deltaTime);
 
-            // 플레이어와의 충돌 방향을 가져옵니다.
-            Vector2 pushDirection = -collision.contacts[0].normal;
+            this.transform.position
+                = Vector3.Lerp(current, target, elapsedTime / time);
 
-            // 힘을 가합니다.
-            boxRigidbody.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+            yield return null;
         }
+
+        transform.position = target;
+
+        yield return null;
     }
-    void OnTriggerStay2D(Collider2D other)
+
+    public void MoveBox(string direction)
     {
-        if (other.gameObject.tag == "upWater" || other.gameObject.tag == "downWater" || other.gameObject.tag == "leftWater" || other.gameObject.tag == "rightWater" || other.gameObject.tag == "BalloonCollider")
+        boxPos = new Vector2((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y));
+
+        switch(direction) {
+            case "Up":
+                nextPos = boxPos + new Vector2 (0, 1); 
+                break;
+            case "Down":
+                nextPos = boxPos + new Vector2(0, -1);
+                break;
+            case "Left":
+                nextPos = boxPos + new Vector2(-1, 0);
+                break;
+            case "Right":
+                nextPos = boxPos + new Vector2(1, 0);
+                break;
+        }
+
+        StartCoroutine(
+            lerpCoroutine(boxPos, nextPos, lerpTime * 0.2f));
+    }
+
+    void BoxRay()
+    {
+        Debug.DrawRay(transform.position + new Vector3(0, 0.45f, 0), Vector3.up * 0.6f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(0, -0.45f, 0), Vector3.down * 0.6f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left * 0.6f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(0.45f, 0, 0), Vector3.right * 0.6f, new Color(0, 1, 0));
+        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0.45f, 0), Vector3.up, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Player A") | LayerMask.GetMask("Player B"));
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position + new Vector3(0, -0.45f, 0), Vector3.down, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Player A") | LayerMask.GetMask("Player B"));
+        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Player A") | LayerMask.GetMask("Player B"));
+        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0.45f, 0, 0), Vector3.right, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Player A") | LayerMask.GetMask("Player B"));
+
+        if (upRayHit.collider != null)
         {
-
-            gameObject.SetActive(false);
-
-            Debug.Log(other.name);
-
+            upScanObject = upRayHit.collider.gameObject;
+        }
+        else
+        {
+            upScanObject = null;
+        }
+        if (downRayHit.collider != null)
+        {
+            downScanObject = downRayHit.collider.gameObject;
+        }
+        else
+        {
+            downScanObject = null;
+        }
+        if (leftRayHit.collider != null)
+        {
+            leftScanObject = leftRayHit.collider.gameObject;
+        }
+        else
+        {
+            leftScanObject = null;
+        }
+        if (rightRayHit.collider != null)
+        {
+            rightScanObject = rightRayHit.collider.gameObject;
+        }
+        else
+        {
+            rightScanObject = null;
         }
     }
 }

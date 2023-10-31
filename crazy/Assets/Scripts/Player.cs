@@ -67,6 +67,8 @@ public class Player : MonoBehaviour
         playerSpeed = 4.0f;
         playerHealth = 0f;
 
+        nextPushTime = 0.5f;
+
         playerAmakeBalloon = true;
     }
 
@@ -167,54 +169,56 @@ public class Player : MonoBehaviour
         }
 
         // 밀 수 있는 상자 Ray
-        // if (hStay || vStay)
-        // {
-        //     Debug.DrawRay(rigid.position - new Vector2(0, 0.1f), rayDir * 0.7f, new Color(1, 0, 0));
-        //     RaycastHit2D pushRay = Physics2D.Raycast(rigid.position - new Vector2(0, 0.1f), rayDir, 0.7f, LayerMask.GetMask("MoveBlock"));
+        if (hStay || vStay)
+        {
+            Debug.DrawRay(rigid.position - new Vector2(0, 0.1f), rayDir * 0.7f, new Color(1, 0, 0));
+            RaycastHit2D pushRay = Physics2D.Raycast(rigid.position - new Vector2(0, 0.1f), rayDir, 0.7f, LayerMask.GetMask("MoveBlock"));
 
-        //     if (pushRay.collider != null)
-        //     {
-        //         pushBlock = pushRay.collider.gameObject;
-        //         Debug.Log(pushBlock.name);
+            if (pushRay.collider != null)
+            {
+                pushBlock = pushRay.collider.gameObject;
+                Box pushBlockLogic = pushBlock.GetComponent<Box>();
 
-        //         curPushTime += Time.deltaTime;
 
-        //         if (curPushTime > nextPushTime)
-        //         {
-        //             if (rayDir == Vector2.up)
-        //             {
-        //                 pushBlock.transform.position += new Vector3(0, 1, 0);
 
-        //             }
-        //             else if (rayDir == Vector2.down)
-        //             {
-        //                 pushBlock.transform.position += new Vector3(0, -1, 0);
+                curPushTime += Time.deltaTime;
 
-        //             }
-        //             else if (rayDir == Vector2.left)
-        //             {
-        //                 pushBlock.transform.position += new Vector3(-1, 0, 0);
+                if (curPushTime > nextPushTime)
+                {
+                    if (rayDir == Vector2.up && pushBlockLogic.upScanObject == null)
+                    {
+                        pushBlockLogic.MoveBox("Up");
 
-        //             }
-        //             else if (rayDir == Vector2.right)
-        //             {
-        //                 pushBlock.transform.position += new Vector3(1, 0, 0);
-        //             }
+                    }
+                    else if (rayDir == Vector2.down && pushBlockLogic.downScanObject == null)
+                    {
+                        pushBlockLogic.MoveBox("Down");
 
-        //             // 시간 초기화
-        //             curPushTime = 0;
-        //         }
-        //     }
-        //     else
-        //     {
-        //         pushBlock = null;
-        //     }
-        // }
-        // else
-        // {
-        //     // 키 다운 해제 시 시간 초기화
-        //     curPushTime = 0;
-        // }
+                    }
+                    else if (rayDir == Vector2.left && pushBlockLogic.leftScanObject == null)
+                    {
+                        pushBlockLogic.MoveBox("Left");
+
+                    }
+                    else if (rayDir == Vector2.right && pushBlockLogic.rightScanObject == null)
+                    {
+                        pushBlockLogic.MoveBox("Right");
+                    }
+
+                    // 시간 초기화
+                    curPushTime = 0;
+                }
+            }
+            else
+            {
+                pushBlock = null;
+            }
+        }
+        else
+        {
+            // 키 다운 해제 시 시간 초기화
+            curPushTime = 0;
+        }
     }
 
     void OnDrawGizmosSelected()
@@ -347,23 +351,12 @@ public class Player : MonoBehaviour
                 DeathTime();
                 
             }
-
-            Debug.Log(collision.name);
-
         }
 
 
         string iname = collision.gameObject.name;
 
         UnityEngine.Debug.Log("플레이어가 오브젝트에 닿음");
-
-        // 플레이어가 물풍선 위에 있을 시
-        if (collision.gameObject.tag == "Balloon")
-        {
-           
-
-
-        }
 
         if (collision.gameObject.CompareTag("powerItem"))
         {
