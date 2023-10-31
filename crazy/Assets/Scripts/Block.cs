@@ -21,39 +21,44 @@ public class Block : MonoBehaviour
         gameObject.SetActive(false);
         anim.SetBool("Hit", false);
 
+        Invoke("SpawnItem", 0.3f);
+    }
+
+    void SpawnItem()
+    {
         // Item 드랍률
         int ran = Random.Range(0, 100);
-        if (ran < 20)
-        { // Not Item 20%
+        if (ran < 50)
+        { // Not Item 40%
             Debug.Log("Not Item");
         }
-        else if (ran < 40)
-        {   // bubbleItem 20%
+        else if (ran < 65)
+        {   // bubbleItem 15%
             GameObject bubbleItem = objectManager.MakeItem("BubbleItem");
             bubbleItem.transform.position = transform.position;
         }
-        else if (ran < 60)
-        {   // flulidItem 20%
+        else if (ran < 75)
+        {   // flulidItem 10%
             GameObject flulidItem = objectManager.MakeItem("FluidItem");
             flulidItem.transform.position = transform.position;
         }
-        else if (ran < 70)
-        {   // rollerItem 10%
+        else if (ran < 85)
+        {   // rollerItem 5%
             GameObject rollerItem = objectManager.MakeItem("RollerItem");
             rollerItem.transform.position = transform.position;
         }
-        else if (ran < 80)
-        {   // shieldItem 10%
+        else if (ran < 90)
+        {   // shieldItem 5%
             GameObject shieldItem = objectManager.MakeItem("ShieldItem");
             shieldItem.transform.position = transform.position;
         }
-        else if (ran < 90)
-        {   // niddleItem 100%
+        else if (ran < 95)
+        {   // niddleItem 5%
             GameObject niddleItem = objectManager.MakeItem("NiddleItem");
             niddleItem.transform.position = transform.position;
         }
         else if (ran < 100)
-        {   // ultraFluidItem 10%
+        {   // ultraFluidItem 5%
             GameObject ultraFluidItem = objectManager.MakeItem("UltraFluidItem");
             ultraFluidItem.transform.position = transform.position;
         }
