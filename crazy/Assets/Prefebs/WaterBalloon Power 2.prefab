@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1579311506930468172}
   - component: {fileID: 7101116995428918378}
   - component: {fileID: 2784501345770962165}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BoomLeft_First
   m_TagString: leftWater
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 8097913122984512745}
   - component: {fileID: 2802665109669295557}
   - component: {fileID: 3521813573386669577}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BoomUp_First
   m_TagString: upWater
   m_Icon: {fileID: 0}
@@ -813,7 +813,7 @@ GameObject:
   - component: {fileID: 1451093271883304421}
   - component: {fileID: 4795983634224556522}
   - component: {fileID: 74991489385378183}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BoomRight_First
   m_TagString: rightWater
   m_Icon: {fileID: 0}
@@ -988,7 +988,7 @@ GameObject:
   - component: {fileID: 7073076640749424716}
   - component: {fileID: 6670584296821608137}
   - component: {fileID: 7425163461929225501}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BoomDown_First
   m_TagString: downWater
   m_Icon: {fileID: 0}
@@ -1196,7 +1196,7 @@ GameObject:
   - component: {fileID: 4450395455863193200}
   - component: {fileID: 5568796211522646123}
   - component: {fileID: 3334789649606842549}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BoomRight_Line
   m_TagString: rightWater
   m_Icon: {fileID: 0}
@@ -1404,7 +1404,7 @@ GameObject:
   - component: {fileID: 8595901948525954976}
   - component: {fileID: 3057805596223434534}
   - component: {fileID: 3681012318248727097}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BoomLeft_Line
   m_TagString: leftWater
   m_Icon: {fileID: 0}
@@ -1579,7 +1579,7 @@ GameObject:
   - component: {fileID: 3016293826790842496}
   - component: {fileID: 3082123399674135718}
   - component: {fileID: 8718273006816378650}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BoomDown_Line
   m_TagString: downWater
   m_Icon: {fileID: 0}
@@ -1754,7 +1754,7 @@ GameObject:
   - component: {fileID: 2848825067525602106}
   - component: {fileID: 7944226294214797824}
   - component: {fileID: 7330881826005854838}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BoomUp_Line
   m_TagString: upWater
   m_Icon: {fileID: 0}

@@ -8,14 +8,18 @@ public class Block : MonoBehaviour
 {
     public Animator anim;
     public ObjectManager objectManager;
-    public bool blockBreak = false;
+    bool blockBreak = false;
    
-
     void Awake() {
         
         anim = GetComponent<Animator>();
         // 현재 활성화된 Scene에서 ObjectManager 클래스의 인스턴스를 찾아서 가져와서 초기화
         objectManager = FindObjectOfType<ObjectManager>();
+    }
+
+    void OnEnable()
+    {
+        blockBreak = false;
     }
 
     void Hit() {
@@ -33,7 +37,7 @@ public class Block : MonoBehaviour
     {
         // Item 드랍률
         int ran = UnityEngine.Random.Range(0, 100);
-        if (ran < 2)
+        if (ran < 65)
         { // Not Item 65%
             Debug.Log("Not Item");
         }

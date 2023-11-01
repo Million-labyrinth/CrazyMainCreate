@@ -109,9 +109,6 @@ public class Water : MonoBehaviour
                 {
                     Block.anim.SetBool("Hit", true);
                     Block.Invoke("Hit", 0.5f);
-
-                    Block.blockBreak = false;
-
                 }
             }
             else if (scanObject.tag == "grass")
