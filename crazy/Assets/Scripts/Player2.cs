@@ -18,7 +18,7 @@ public class Player2 : MonoBehaviour
     public bool useShield = false;
     public bool useniddle = false;
 
-    int playerBballonIndex = 0; // 물풍선 오브젝트 풀 사용할 때 필요한 playerBballonIndex 변수
+    int playerBballonIndex = 10; // 물풍선 오브젝트 풀 사용할 때 필요한 playerBballonIndex 변수
     public int playerBcountIndex = 0; // 물풍선을 생성할 때, 플레이어가 생성한 물풍선의 개수를 체크할 때 필요한 변수
     public bool playerBmakeBalloon; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
 
@@ -318,9 +318,9 @@ public class Player2 : MonoBehaviour
             }
 
             // playerBballonIndex 가 10 을 넘어가지 않게 0으로 초기화
-            if (playerBballonIndex == 9)
+            if (playerBballonIndex == 19)
             {
-                playerBballonIndex = 0;
+                playerBballonIndex = 10;
             }
             else
             {

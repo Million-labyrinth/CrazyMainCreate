@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
+using System;
 
 public class Block : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class Block : MonoBehaviour
     void SpawnItem()
     {
         // Item 드랍률
-        int ran = Random.Range(0, 100);
+        int ran = UnityEngine.Random.Range(0, 100);
         if (ran < 50)
         { // Not Item 40%
             Debug.Log("Not Item");
@@ -35,7 +36,7 @@ public class Block : MonoBehaviour
         else if (ran < 65)
         {   // bubbleItem 15%
             GameObject bubbleItem = objectManager.MakeItem("BubbleItem");
-            bubbleItem.transform.position = transform.position;
+            bubbleItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
         }
         else if (ran < 75)
         {   // flulidItem 10%
