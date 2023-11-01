@@ -27,6 +27,14 @@ public class Player2 : MonoBehaviour
     public GameObject p1shield;
     public GameObject p1niddle;
 
+    //효과음
+    public AudioClip itemAddSound;//아이템 획득 소리
+    public AudioClip balloonSetSound;//물풍선 놓는 소리
+    public AudioClip balloonEscapeSound;//물풍선 탈출 소리
+    public AudioClip balloonLockSound;//물풍선 갇힐때 소리
+    public AudioClip deathSound; //캐릭터 갇힌 물풍선 터질때
+    AudioSource audioSource;
+
     CircleCollider2D collider;
 
     public Item2 item2;
@@ -59,7 +67,7 @@ public class Player2 : MonoBehaviour
         collider = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
         playerRenderer = GetComponent<SpriteRenderer>();
-
+        audioSource = GetComponent<AudioSource>();
         //플레이어 시작시 기본 스탯
         bombPower = 1;
         bombRange = 1;
@@ -277,6 +285,8 @@ public class Player2 : MonoBehaviour
                 useniddle = true;
                 p1niddle.SetActive(false);
                 Debug.Log(useniddle);
+                audioSource.clip = balloonEscapeSound;
+                audioSource.Play();
             }
             string itemName = item2.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
             UnityEngine.Debug.Log("플레이어B가" + itemName + "아이템을 사용함");
@@ -310,6 +320,8 @@ public class Player2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && playerBmakeBalloon && playerBcountIndex < bombPower)
         {
             Debug.Log("LeftShift");
+            audioSource.clip = balloonSetSound;
+            audioSource.Play();
             if (!WaterBalloon[playerBballonIndex].activeInHierarchy)
             {
                 WaterBalloon[playerBballonIndex].SetActive(true);
@@ -372,6 +384,8 @@ public class Player2 : MonoBehaviour
             if (bombPower < bombPowerMax)
             {
                 item2.PowerAdd(iname);
+                audioSource.clip = itemAddSound;
+                audioSource.Play();
             }
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
@@ -383,6 +397,8 @@ public class Player2 : MonoBehaviour
             if (playerSpeed < playerSpeedMax)
             {
                 item2.SpeedAdd(iname);
+                audioSource.clip = itemAddSound;
+                audioSource.Play();
             }
             UnityEngine.Debug.Log("스피드 아이템에 닿았음");
             // 먹은 아이템 비활성화
@@ -395,6 +411,8 @@ public class Player2 : MonoBehaviour
             if (bombRange < bombRangeMax)
             {
                 item2.RangeAdd(iname);
+                audioSource.clip = itemAddSound;
+                audioSource.Play();
             }
             UnityEngine.Debug.Log("사거리 증가 아이템에 닿음");
             // 먹은 아이템 비활성화
@@ -405,6 +423,8 @@ public class Player2 : MonoBehaviour
         {
             item2.SuperMan(iname);
             UnityEngine.Debug.Log("슈퍼맨!!");
+            audioSource.clip = itemAddSound;
+            audioSource.Play();
             // 먹은 아이템 비활성화
             collision.gameObject.SetActive(false);
         }
@@ -414,6 +434,8 @@ public class Player2 : MonoBehaviour
         {
             if (collision.gameObject.name.Contains("shield"))
             {
+                audioSource.clip = itemAddSound;
+                audioSource.Play();
                 if (p1niddle == true)
                 {
                     p1niddle.SetActive(false);
@@ -422,7 +444,8 @@ public class Player2 : MonoBehaviour
             }
             else if (collision.gameObject.name.Contains("niddle"))
             {
-
+                audioSource.clip = itemAddSound;
+                audioSource.Play();
                 if (p1shield == true)
                 {
                     p1shield.SetActive(false);
@@ -459,10 +482,14 @@ public class Player2 : MonoBehaviour
         string playername = "B";
         gameManager.Death(playername);
         Invoke("DeadTime", 4f);
+        audioSource.clip = balloonLockSound;
+        audioSource.Play();
     }
 
     void DeadTime()
     {
+        audioSource.clip = deathSound;
+        audioSource.Play();
         anim.SetBool("isDead", true);
         anim.SetBool("isDamage", false);
         playerSpeed = 0f;
