@@ -15,9 +15,17 @@ public class Box : MonoBehaviour
     public GameObject leftScanObject; // leftRay 에 인식되는 오브젝트 변수
     public GameObject rightScanObject; // rightRay 에 인식되는 오브젝트 변수
 
+    public SpriteRenderer BoxRenderer;
+
+    void Awake()
+    {
+        BoxRenderer = GetComponent<SpriteRenderer>();
+    }
+
     void Update()
     {
         BoxRay();
+        colliderRay();
     }
 
     IEnumerator lerpCoroutine(Vector3 current, Vector3 target, float time)
@@ -105,6 +113,27 @@ public class Box : MonoBehaviour
         else
         {
             rightScanObject = null;
+        }
+    }
+    void colliderRay()
+    {
+        // Ray
+        Debug.DrawRay(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right * 0.7f, new Color(1, 1, 1));
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+
+        if (downRayHit.collider != null)
+        {
+            GameObject downObj = downRayHit.collider.gameObject;
+            SpriteRenderer orderInLayer = downObj.GetComponent<SpriteRenderer>();
+            int objOrder = orderInLayer.sortingOrder;
+            BoxRenderer.sortingOrder = orderInLayer.sortingOrder - 1;
+            // orderInLayer.sortingOrder += playerRenderer.sortingOrder;
+            objOrder = orderInLayer.sortingOrder;
+            Debug.Log(downObj.name);
+        }
+        else if (downRayHit.collider == null)
+        {
+            BoxRenderer.sortingOrder = 13;
         }
     }
 }
