@@ -129,7 +129,7 @@ public class Box : MonoBehaviour
             BoxRenderer.sortingOrder = orderInLayer.sortingOrder - 1;
             // orderInLayer.sortingOrder += playerRenderer.sortingOrder;
             objOrder = orderInLayer.sortingOrder;
-            Debug.Log(downObj.name);
+            // Debug.Log(downObj.name);
         }
         else if (downRayHit.collider == null)
         {

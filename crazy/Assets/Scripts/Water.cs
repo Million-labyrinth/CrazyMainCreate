@@ -24,12 +24,12 @@ public class Water : MonoBehaviour
 
     void OnEnable()
     {
-        Active();
         sprite.enabled = true; // Sprite Renderer 가 꺼지는 오류 발생해서 추가한 코드
     }
 
     void Update()
     {
+
         // 마지막 물줄기를 제외하고 Ray 적용
         switch (gameObject.tag)
         {
@@ -38,6 +38,12 @@ public class Water : MonoBehaviour
                 {
                     Vector3 plus = new Vector3(0, 0.3f, 0);
                     Ray(plus, Vector3.up);
+
+                    if (scanObject == null)
+                    {
+                        upWater[Array.IndexOf(upWater, gameObject) + 1].SetActive(true);
+                        Invoke("BackCondition", 0.5f);
+                    }
                 }
                 break;
             case "downWater":
@@ -45,6 +51,12 @@ public class Water : MonoBehaviour
                 {
                     Vector3 plus = new Vector3(0, -0.3f, 0);
                     Ray(plus, Vector3.down);
+
+                    if (scanObject == null)
+                    {
+                        downWater[Array.IndexOf(downWater, gameObject) + 1].SetActive(true);
+                        Invoke("BackCondition", 0.5f);
+                    }
                 }
                 break;
             case "leftWater":
@@ -52,6 +64,12 @@ public class Water : MonoBehaviour
                 {
                     Vector3 plus = new Vector3(-0.3f, 0, 0);
                     Ray(plus, Vector3.left);
+
+                    if (scanObject == null)
+                    {
+                        leftWater[Array.IndexOf(leftWater, gameObject) + 1].SetActive(true);
+                        Invoke("BackCondition", 0.5f);
+                    }
                 }
                 break;
             case "rightWater":
@@ -59,6 +77,12 @@ public class Water : MonoBehaviour
                 {
                     Vector3 plus = new Vector3(0.3f,0 , 0);
                     Ray(plus, Vector3.right);
+
+                    if(scanObject == null)
+                    {
+                        rightWater[Array.IndexOf(rightWater, gameObject) + 1].SetActive(true);
+                        Invoke("BackCondition", 0.5f);
+                    }
                 }
                 break;
         }
@@ -68,12 +92,12 @@ public class Water : MonoBehaviour
     {
         // Ray
         Debug.DrawRay(transform.position + plusVec, waterVec * 0.7f, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(transform.position + plusVec, waterVec, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+        RaycastHit2D rayHit = Physics2D.Raycast(transform.position + plusVec, waterVec, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
 
         if (rayHit.collider != null)
         {
             scanObject = rayHit.collider.gameObject;
-            FindObject();
+            //FindObject();
 
             if (!isHitBlock && scanObject.tag == "Block")
             {
@@ -99,75 +123,6 @@ public class Water : MonoBehaviour
         {
             scanObject = null;
             isHitBlock = false;
-        }
-    }
-
-    // 물줄기 순서대로 활성화
-    void Active()
-    {
-        switch (gameObject.tag)
-        {
-            case "upWater":
-                for (int i = 0; i < upWater.Length; i++)
-                {
-                    upWater[i].SetActive(true);
-                }
-
-                Invoke("BackCondition", 0.5f);
-                break;
-            case "downWater":
-                for (int i = 0; i < downWater.Length; i++)
-                {
-                    downWater[i].SetActive(true);
-                }
-                Invoke("BackCondition", 0.5f);
-                break;
-            case "leftWater":
-                for (int i = 0; i < leftWater.Length; i++)
-                {
-                    leftWater[i].SetActive(true);
-                }
-                Invoke("BackCondition", 0.5f);
-                break;
-            case "rightWater":
-                for (int i = 0; i < rightWater.Length; i++)
-                {
-                    rightWater[i].SetActive(true);
-                }
-                Invoke("BackCondition", 0.5f);
-                break;
-        }
-
-    }
-
-    void FindObject()
-    {
-        switch (gameObject.tag)
-        {
-            case "upWater":
-                for (int i = Array.IndexOf(upWater, gameObject) + 1; i < upWater.Length; i++)
-                {
-                    upWater[i].SetActive(false);
-                }
-                break;
-            case "downWater":
-                for (int i = Array.IndexOf(downWater, gameObject) + 1; i < downWater.Length; i++)
-                {
-                    downWater[i].SetActive(false);
-                }
-                break;
-            case "leftWater":
-                for (int i = Array.IndexOf(leftWater, gameObject) + 1; i < leftWater.Length; i++)
-                {
-                    leftWater[i].SetActive(false);
-                }
-                break;
-            case "rightWater":
-                for (int i = Array.IndexOf(rightWater, gameObject) + 1; i < rightWater.Length; i++)
-                {
-                    rightWater[i].SetActive(false);
-                }
-                break;
         }
     }
 
