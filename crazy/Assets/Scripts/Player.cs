@@ -496,7 +496,7 @@ public class Player : MonoBehaviour
         }
         else if (downRayHit.collider == null)
         {
-            playerRenderer.sortingOrder = 13;
+            playerRenderer.sortingOrder = 14;
         }
     }
 }
