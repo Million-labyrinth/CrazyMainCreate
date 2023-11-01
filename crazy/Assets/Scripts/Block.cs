@@ -41,27 +41,27 @@ public class Block : MonoBehaviour
         else if (ran < 75)
         {   // flulidItem 10%
             GameObject flulidItem = objectManager.MakeItem("FluidItem");
-            flulidItem.transform.position = transform.position;
+            flulidItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
         }
         else if (ran < 85)
         {   // rollerItem 5%
             GameObject rollerItem = objectManager.MakeItem("RollerItem");
-            rollerItem.transform.position = transform.position;
+            rollerItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
         }
         else if (ran < 90)
         {   // shieldItem 5%
             GameObject shieldItem = objectManager.MakeItem("ShieldItem");
-            shieldItem.transform.position = transform.position;
+            shieldItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z); 
         }
         else if (ran < 95)
         {   // niddleItem 5%
             GameObject niddleItem = objectManager.MakeItem("NiddleItem");
-            niddleItem.transform.position = transform.position;
+            niddleItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
         }
         else if (ran < 100)
         {   // ultraFluidItem 5%
             GameObject ultraFluidItem = objectManager.MakeItem("UltraFluidItem");
-            ultraFluidItem.transform.position = transform.position;
+            ultraFluidItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
         }
     }
 
