@@ -137,6 +137,8 @@ public class Balloon : MonoBehaviour
                 upBlock.anim.SetBool("Hit", true);
                 upBlock.Invoke("Hit", 0.5f);
                 isHitUpBlock = true;
+
+                upBlock.blockBreak = false;
             }
         }
 
@@ -152,8 +154,10 @@ public class Balloon : MonoBehaviour
             {
                 Block downBlock = downScanObject.GetComponent<Block>();
                 downBlock.anim.SetBool("Hit", true);
-                downBlock.Invoke("Hit", 0.2f);
+                downBlock.Invoke("Hit", 0.5f);
                 isHitDownBlock = true;
+
+                downBlock.blockBreak = false;
             }
 
         }
@@ -173,6 +177,8 @@ public class Balloon : MonoBehaviour
                 leftBlock.Invoke("Hit", 0.2f);
 
                 isHitLeftBlock = true;
+
+                leftBlock.blockBreak = false;
             }
 
         }
@@ -192,6 +198,8 @@ public class Balloon : MonoBehaviour
                 rightBlock.Invoke("Hit", 0.2f);
 
                 isHitRightBlock = true;
+
+                rightBlock.blockBreak = false;
             }
 
         }

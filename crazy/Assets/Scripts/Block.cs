@@ -22,46 +22,74 @@ public class Block : MonoBehaviour
         gameObject.SetActive(false);
         anim.SetBool("Hit", false);
 
-        Invoke("SpawnItem", 0.3f);
+        if(!blockBreak)
+        {
+            Invoke("SpawnItem", 0.3f);
+            blockBreak = true;
+        }
     }
 
     void SpawnItem()
     {
         // Item 드랍률
         int ran = UnityEngine.Random.Range(0, 100);
-        if (ran < 65)
+        if (ran < 2)
         { // Not Item 65%
             Debug.Log("Not Item");
         }
         else if (ran < 80)
         {   // bubbleItem 15%
             GameObject bubbleItem = objectManager.MakeItem("BubbleItem");
-            bubbleItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
+            bubbleItem.transform.position = transform.position;
+
+            VerticalMovement movement = bubbleItem.GetComponent<VerticalMovement>();
+            movement.minY = transform.position.y;
+            movement.maxY = transform.position.y + 0.1f;
         }
         else if (ran < 93)
         {   // flulidItem 13%
             GameObject flulidItem = objectManager.MakeItem("FluidItem");
-            flulidItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
+            flulidItem.transform.position = transform.position;
+
+            VerticalMovement movement = flulidItem.GetComponent<VerticalMovement>();
+            movement.minY = transform.position.y;
+            movement.maxY = transform.position.y + 0.1f;
         }
         else if (ran < 98)
         {   // rollerItem 5%
             GameObject rollerItem = objectManager.MakeItem("RollerItem");
-            rollerItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
+            rollerItem.transform.position = transform.position;
+
+            VerticalMovement movement = rollerItem.GetComponent<VerticalMovement>();
+            movement.minY = transform.position.y;
+            movement.maxY = transform.position.y + 0.1f;
         }
         else if (ran < 99)
         {   // shieldItem 5%
             GameObject shieldItem = objectManager.MakeItem("ShieldItem");
-            shieldItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
+            shieldItem.transform.position = transform.position;
+
+            VerticalMovement movement = shieldItem.GetComponent<VerticalMovement>();
+            movement.minY = transform.position.y;
+            movement.maxY = transform.position.y + 0.1f;
         }
         else if (ran < 100)
         {   // ultraFluidItem 5%
             GameObject ultraFluidItem = objectManager.MakeItem("UltraFluidItem");
-            ultraFluidItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
+            ultraFluidItem.transform.position = transform.position;
+
+            VerticalMovement movement = ultraFluidItem.GetComponent<VerticalMovement>();
+            movement.minY = transform.position.y;
+            movement.maxY = transform.position.y + 0.1f;
         }
         //else if (ran < 95)
         //{   // niddleItem 5%
         //    GameObject niddleItem = objectManager.MakeItem("NiddleItem");
-        //    niddleItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
+        //    niddleItem.transform.position = transform.position;
+
+        //VerticalMovement movement = niddleItem.GetComponent<VerticalMovement>();
+        //movement.minY = transform.position.y;
+        //movement.maxY = transform.position.y + 0.1f;
         //}
 
     }

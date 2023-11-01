@@ -101,12 +101,17 @@ public class Water : MonoBehaviour
 
             if (!isHitBlock && scanObject.tag == "Block")
             {
+                isHitBlock = true;
+
                 Block Block = scanObject.GetComponent<Block>();
+
                 if (Block != null)
                 {
                     Block.anim.SetBool("Hit", true);
                     Block.Invoke("Hit", 0.5f);
-                    isHitBlock = true;
+
+                    Block.blockBreak = false;
+
                 }
             }
             else if (scanObject.tag == "grass")
