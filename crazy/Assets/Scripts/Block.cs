@@ -29,35 +29,35 @@ public class Block : MonoBehaviour
     {
         // Item 드랍률
         int ran = UnityEngine.Random.Range(0, 100);
-        if (ran < 50)
+        if (ran < 58)
         { // Not Item 40%
             Debug.Log("Not Item");
         }
-        else if (ran < 65)
+        else if (ran < 73)
         {   // bubbleItem 15%
             GameObject bubbleItem = objectManager.MakeItem("BubbleItem");
             bubbleItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
         }
-        else if (ran < 75)
+        else if (ran < 83)
         {   // flulidItem 10%
             GameObject flulidItem = objectManager.MakeItem("FluidItem");
             flulidItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
         }
-        else if (ran < 85)
+        else if (ran < 88)
         {   // rollerItem 5%
             GameObject rollerItem = objectManager.MakeItem("RollerItem");
             rollerItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
         }
-        else if (ran < 90)
+        else if (ran < 97)
         {   // shieldItem 5%
             GameObject shieldItem = objectManager.MakeItem("ShieldItem");
             shieldItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z); 
         }
-        else if (ran < 95)
+        /*else if (ran < 99)
         {   // niddleItem 5%
             GameObject niddleItem = objectManager.MakeItem("NiddleItem");
             niddleItem.transform.position = new Vector3((float)Math.Round(this.transform.position.x), (float)Math.Round(this.transform.position.y), this.transform.position.z);
-        }
+        }*/
         else if (ran < 100)
         {   // ultraFluidItem 5%
             GameObject ultraFluidItem = objectManager.MakeItem("UltraFluidItem");

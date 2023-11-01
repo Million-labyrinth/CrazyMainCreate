@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     public Animator bwin_Ani;
     public Animator draw_Ani;
 
+    AudioSource audiosource;
+    public AudioClip winSound;
+    
+
     //timer
     [SerializeField] private Text text;
     [SerializeField] private float time;
@@ -36,6 +40,7 @@ public class GameManager : MonoBehaviour
         awin_Ani = GetComponent<Animator>();
         bwin_Ani = GetComponent<Animator>();
         draw_Ani = GetComponent<Animator>();
+        audiosource = GetComponent<AudioSource>();
 
         time = 180;
         StartCoroutine(StartTimer());
@@ -110,17 +115,25 @@ public class GameManager : MonoBehaviour
         //ui 승패 애니메이션 출력
         if (plA == false && plB == false && curTime <= 0.9)
         {
+            
+            audiosource.clip = winSound;
+            audiosource.Play();
             Debug.Log("Draw");
             // draw_Ani.SetBool("draw", true);//드로우 애니메이션 실행
             screen.SetActive(true);
             draw.SetActive(true);
+            
         }
         else if (plA == false && plB == true)
         {
+            
+            audiosource.clip = winSound;
+            audiosource.Play();
             Debug.Log("player B Win");
             //bwin_Ani.SetBool("b", true);//플레이어b 애니메이션 실행
             screen.SetActive(true);
             bwin.SetActive(true);
+            
         }
         else if (plA == true && plB == false)
         {

@@ -8,6 +8,10 @@ public class Balloon : MonoBehaviour
     Animator anim;
     BoxCollider2D collider;
 
+    public AudioClip boomSound; //캐릭터 갇힌 물풍선 터질때
+    AudioSource audioSource;
+
+
     public GameObject upWater;
     public GameObject downWater;
     public GameObject leftWater;
@@ -37,8 +41,8 @@ public class Balloon : MonoBehaviour
         collider = gameObject.GetComponent<BoxCollider2D>();
 
         mainCol = MainCollider.GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
 
-        
     }
 
     void OnEnable()
@@ -110,12 +114,14 @@ public class Balloon : MonoBehaviour
 
     void Boom()
     {
-
+        
         // 애니메이션
         anim.SetBool("Boom", true);
 
         // 물줄기, Main Collider 활성화
         // Ray 에 블럭이 인식이 안될 경우에만 활성화
+        audioSource.clip = boomSound;
+        audioSource.Play();
         if (upScanObject == null || upScanObject.tag == "grass")
         {
             upWater.SetActive(true);

@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public AudioClip balloonSetSound;//물풍선 놓는 소리
     public AudioClip balloonEscapeSound;//물풍선 탈출 소리
     public AudioClip balloonLockSound;//물풍선 갇힐때 소리
+    public AudioClip deathSound; //캐릭터 갇힌 물풍선 터질때
     AudioSource audioSource;
 
 
@@ -350,8 +351,7 @@ public class Player : MonoBehaviour
     //아이템 먹었을때 스탯 값 증감
     void OnTriggerEnter2D(Collider2D collision)
     {
-        audioSource.clip = itemAddSound;
-        audioSource.Play();
+        
 
         if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "BalloonCollider")
         {
@@ -374,6 +374,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("powerItem"))
         {
+            audioSource.clip = itemAddSound;
+            audioSource.Play();
             if (bombPower < bombPowerMax)
             {
                 item.PowerAdd(iname);
@@ -386,6 +388,8 @@ public class Player : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("speedItem"))
         {
+            audioSource.clip = itemAddSound;
+            audioSource.Play();
             if (playerSpeed < playerSpeedMax)
             {
                 item.SpeedAdd(iname);
@@ -398,6 +402,8 @@ public class Player : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("rangeItem"))
         {
+            audioSource.clip = itemAddSound;
+            audioSource.Play();
             if (bombRange < bombRangeMax)
             {
                 item.RangeAdd(iname);
@@ -409,6 +415,8 @@ public class Player : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("superMan"))
         {
+            audioSource.clip = itemAddSound;
+            audioSource.Play();
             item.SuperMan(iname);
             UnityEngine.Debug.Log("슈퍼맨!!");
             // 먹은 아이템 비활성화
@@ -420,6 +428,8 @@ public class Player : MonoBehaviour
         {
             if (collision.gameObject.name.Contains("shield"))
             {
+                audioSource.clip = itemAddSound;
+                audioSource.Play();
                 if (p2niddle == true)
                 {
                     p2niddle.SetActive(false);
@@ -428,7 +438,8 @@ public class Player : MonoBehaviour
             }
             else if (collision.gameObject.name.Contains("niddle"))
             {
-
+                audioSource.clip = itemAddSound;
+                audioSource.Play();
                 if (p2shield == true)
                 {
                     p2shield.SetActive(false);
@@ -471,6 +482,8 @@ public class Player : MonoBehaviour
 
     void DeadTime()
     {
+        audioSource.clip = deathSound;
+        audioSource.Play();
         anim.SetBool("isDead", true);
         anim.SetBool("isDamage", false);
         playerSpeed = 0f;
