@@ -85,7 +85,7 @@ public class Player2 : MonoBehaviour
         Skill();
         Ray();
         UseItem();
-        colliderRay();
+        /*colliderRay();*/
     }
     void LateUpdate()
     {
@@ -497,6 +497,7 @@ public class Player2 : MonoBehaviour
     }
 
 
+/*  이것은 구판 오더레이어
     void colliderRay()
     {
         // Ray
@@ -517,5 +518,5 @@ public class Player2 : MonoBehaviour
         {
             playerRenderer.sortingOrder = 13;
         }
-    }
+    }*/
 }

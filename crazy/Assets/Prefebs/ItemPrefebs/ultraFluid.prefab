@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6108380504279614177}
   - component: {fileID: 2077666068428879734}
   - component: {fileID: 6035777366061766868}
+  - component: {fileID: 5491633181643929276}
   m_Layer: 0
   m_Name: ultraFluid
   m_TagString: rangeItem
@@ -27,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5791380455028354811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -115,3 +116,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+  initialY: 0
+  minY: 0
+  maxY: 0
+--- !u!114 &5491633181643929276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791380455028354811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c15134c6b29a0a45b3c01d9cfeadc29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meRenderer: {fileID: 6108380504279614177}

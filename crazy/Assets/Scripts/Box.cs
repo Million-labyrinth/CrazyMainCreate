@@ -25,7 +25,7 @@ public class Box : MonoBehaviour
     void Update()
     {
         BoxRay();
-        colliderRay();
+        /*colliderRay();*/
     }
 
     IEnumerator lerpCoroutine(Vector3 current, Vector3 target, float time)
@@ -115,7 +115,7 @@ public class Box : MonoBehaviour
             rightScanObject = null;
         }
     }
-    void colliderRay()
+/*    void colliderRay()
     {
         // Ray
         Debug.DrawRay(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right * 0.7f, new Color(1, 1, 1));
@@ -135,5 +135,5 @@ public class Box : MonoBehaviour
         {
             BoxRenderer.sortingOrder = 13;
         }
-    }
+    }*/
 }

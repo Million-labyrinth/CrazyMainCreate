@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2854973437547012180}
   - component: {fileID: 535841418749468805}
   - component: {fileID: 7466482176607191909}
+  - component: {fileID: -6769454140269477848}
   m_Layer: 0
   m_Name: basicBubble
   m_TagString: powerItem
@@ -27,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7418298021586379924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -115,3 +116,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.15
+  initialY: 0
+  minY: 0
+  maxY: 0
+--- !u!114 &-6769454140269477848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7418298021586379924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c15134c6b29a0a45b3c01d9cfeadc29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meRenderer: {fileID: 2854973437547012180}
