@@ -322,14 +322,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightShift) && playerAmakeBalloon && playerAcountIndex < bombPower)
         {
-
+            audioSource.clip = balloonSetSound;
+            audioSource.Play();
             Debug.Log("RightShift");
             if (!WaterBalloon[playerAballonIndex].activeInHierarchy)
             {
                 WaterBalloon[playerAballonIndex].SetActive(true);
                 WaterBalloon[playerAballonIndex].transform.position = MoveVec;
-                audioSource.clip = balloonSetSound;
-                audioSource.Play();
+                
             }
 
             // playerAballonIndex 가 10 을 넘어가지 않게 0으로 초기화
