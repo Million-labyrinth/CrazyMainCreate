@@ -112,10 +112,16 @@ public class Player2 : MonoBehaviour
         {
             isHorizonMove = false;
             anim.SetFloat("vAxisRaw", vAxis);
+
+            anim.SetTrigger("vDown");
+            anim.ResetTrigger("hDown");
         }
         else if (hDown)
         {
             isHorizonMove = true;
+
+            anim.SetTrigger("hDown");
+            anim.ResetTrigger("vDown");
         }
         else if (vUp || hUp)
         {
@@ -124,6 +130,13 @@ public class Player2 : MonoBehaviour
             if (vUp)
             {
                 anim.SetFloat("vAxisRaw", vAxis);
+
+                anim.SetTrigger("vDown");
+                anim.ResetTrigger("hDown");
+            } else if(hUp)
+            {
+                anim.SetTrigger("hDown");
+                anim.ResetTrigger("vDown");
             }
         }
         if (anim.GetInteger("hAxisRaw") != hAxis)
@@ -139,6 +152,13 @@ public class Player2 : MonoBehaviour
         else
             anim.SetBool("isChange", false);
 
+
+        // 멈췄을 때 애니메이션 트리거 초기화
+        if (hAxis == 0 && vAxis == 0)
+        {
+            anim.ResetTrigger("vDown");
+            anim.ResetTrigger("hDown");
+        }
 
         // 상자 밀기용 Ray 방향 설정
         if (moveVec.y > 0)
@@ -351,15 +371,13 @@ public class Player2 : MonoBehaviour
 
         if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "BalloonCollider")
         {
-
             if (useShield == true)
             {
                 //DeathTime(); 실행안됨
             }
             else
             {
-                DeathTime();
-
+                    DeathTime();  
             }
 
             Debug.Log(collision.name);
@@ -465,7 +483,7 @@ public class Player2 : MonoBehaviour
         playerRenderer.enabled = true;
 
         // 물풍선 밖으로 나가면 트리거 비활성화
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.layer == 9)
         {
             Collider2D col = other.gameObject.GetComponent<Collider2D>();
             col.isTrigger = false;
@@ -476,8 +494,7 @@ public class Player2 : MonoBehaviour
     void DeathTime()
     {
         Debug.Log("플레이어가 데미지를 입음");
-        anim.SetBool("isDamage", true);
-        anim.SetBool("isDying", false);
+        anim.SetBool("isDamaged", true);
         playerSpeed = 0.8f;
         string playername = "B";
         gameManager.Death(playername);
@@ -490,8 +507,7 @@ public class Player2 : MonoBehaviour
     {
         audioSource.clip = deathSound;
         audioSource.Play();
-        anim.SetBool("isDead", true);
-        anim.SetBool("isDamage", false);
+        anim.SetTrigger("isDead");
         playerSpeed = 0f;
 
     }

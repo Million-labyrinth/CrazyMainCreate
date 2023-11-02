@@ -82,6 +82,11 @@ public class Player : MonoBehaviour
         playerAmakeBalloon = true;
     }
 
+    void Start()
+    {
+        DeathTime();
+    }
+
     void Update()
     {
         Move();
@@ -486,8 +491,7 @@ public class Player : MonoBehaviour
     void DeathTime()
     {
         Debug.Log("플레이어가 데미지를 입음");
-        anim.SetBool("isDamage", true);
-        anim.SetBool("isDying", false);
+        anim.SetBool("isDamaged", true); // 바늘 사용 시, false 주는 코드 추가 필요
         playerSpeed = 0.8f;
         string playername = "A";
         gameManager.Death(playername);
@@ -500,8 +504,7 @@ public class Player : MonoBehaviour
     {
         audioSource.clip = deathSound;
         audioSource.Play();
-        anim.SetBool("isDead", true);
-        anim.SetBool("isDamage", false);
+        anim.SetTrigger("isDead");
         playerSpeed = 0f;
 
     }
