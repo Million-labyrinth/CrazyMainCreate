@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Balloon : MonoBehaviour
 {
     Animator anim;
     BoxCollider2D collider;
+
+    public AudioClip boomSound; //캐릭터 갇힌 물풍선 터질때
+    AudioSource audioSource;
+
 
     public GameObject upWater;
     public GameObject downWater;
@@ -15,6 +20,7 @@ public class Balloon : MonoBehaviour
 
     public GameObject mainBalloon; // 물풍선 본체
     public GameObject MainCollider; // 물풍선이 터지면 활성화 될, 물풍선 Collider
+    BoxCollider2D mainCol;
 
     GameObject upScanObject; // upRay 에 인식되는 오브젝트 변수
     GameObject downScanObject; // downRay 에 인식되는 오브젝트 변수
@@ -31,11 +37,16 @@ public class Balloon : MonoBehaviour
 
     void Awake()
     {
-        anim = gameObject.GetComponent<Animator>();
+        anim = GetComponent < Animator>();
         collider = gameObject.GetComponent<BoxCollider2D>();
+
+        mainCol = MainCollider.GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
-    void OnEnable() {
+    void OnEnable()
+    {
         Invoke("WaterLineActive", 0.1f);
         Invoke("Boom", 2.5f);
         Invoke("Finish", 3f);
@@ -57,14 +68,14 @@ public class Balloon : MonoBehaviour
     void BalloonRay()
     {
         // Ray
-        Debug.DrawRay(transform.position, Vector3.up * 0.7f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position, Vector3.down * 0.7f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position, Vector3.left * 0.7f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position, Vector3.right * 0.7f, new Color(0, 1, 0));
-        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position, Vector3.up, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
-        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position, Vector3.down, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
-        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position, Vector3.left, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
-        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position, Vector3.right, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+        Debug.DrawRay(transform.position + new Vector3(0, 0.45f, 0), Vector3.up * 0.6f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(0, -0.45f, 0), Vector3.down * 0.6f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left * 0.6f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(0.45f, 0, 0), Vector3.right * 0.6f, new Color(0, 1, 0));
+        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0.45f, 0), Vector3.up, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position + new Vector3(0, -0.45f, 0), Vector3.down, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
+        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
+        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0.45f, 0, 0), Vector3.right, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
 
         if (upRayHit.collider != null)
         {
@@ -101,18 +112,23 @@ public class Balloon : MonoBehaviour
     }
 
 
-    void Boom() {
+    void Boom()
+    {
+        
         // 애니메이션
         anim.SetBool("Boom", true);
 
         // 물줄기, Main Collider 활성화
         // Ray 에 블럭이 인식이 안될 경우에만 활성화
-        if (upScanObject == null)
+        audioSource.clip = boomSound;
+        audioSource.Play();
+        if (upScanObject == null || upScanObject.tag == "grass")
         {
             upWater.SetActive(true);
             isHitUpBlock = false;
 
-        } else if (upScanObject != null)
+        }
+        else if (upScanObject != null)
         {
             if (!isHitUpBlock && upScanObject.tag == "Block")
             {
@@ -124,31 +140,33 @@ public class Balloon : MonoBehaviour
             }
         }
 
-        if(downScanObject == null) 
-        {  
+        if (downScanObject == null || downScanObject.tag == "grass")
+        {
             downWater.SetActive(true);
             isHitDownBlock = false;
 
-        } else if(downScanObject != null) 
+        }
+        else if (downScanObject != null)
         {
-            if(!isHitDownBlock && downScanObject.tag == "Block")
+            if (!isHitDownBlock && downScanObject.tag == "Block")
             {
                 Block downBlock = downScanObject.GetComponent<Block>();
                 downBlock.anim.SetBool("Hit", true);
-                downBlock.Invoke("Hit", 0.2f);
+                downBlock.Invoke("Hit", 0.5f);
                 isHitDownBlock = true;
             }
 
         }
 
-        if(leftScanObject == null) 
-        { 
+        if (leftScanObject == null || leftScanObject.tag == "grass")
+        {
             leftWater.SetActive(true);
             isHitLeftBlock = false;
 
-        } else if (leftScanObject != null)
+        }
+        else if (leftScanObject != null)
         {
-            if(!isHitLeftBlock && leftScanObject.tag == "Block")
+            if (!isHitLeftBlock && leftScanObject.tag == "Block")
             {
                 Block leftBlock = leftScanObject.GetComponent<Block>();
                 leftBlock.anim.SetBool("Hit", true);
@@ -159,18 +177,19 @@ public class Balloon : MonoBehaviour
 
         }
 
-        if (rightScanObject == null) 
-        {  
+        if (rightScanObject == null || rightScanObject.tag == "grass")
+        {
             rightWater.SetActive(true);
             isHitRightBlock = false;
 
-        } else if (rightScanObject != null)
+        }
+        else if (rightScanObject != null)
         {
-           if(!isHitRightBlock && rightScanObject.tag == "Block")
+            if (!isHitRightBlock && rightScanObject.tag == "Block")
             {
                 Block rightBlock = rightScanObject.GetComponent<Block>();
                 rightBlock.anim.SetBool("Hit", true);
-                rightBlock.Invoke("Hit", 0.2f);
+                rightBlock.Invoke("Hit", 0.5f);
 
                 isHitRightBlock = true;
             }
@@ -181,7 +200,8 @@ public class Balloon : MonoBehaviour
     }
 
 
-    void Finish() {
+    void Finish()
+    {
         // 애니메이션
         anim.SetBool("Boom", false);
 
@@ -196,26 +216,29 @@ public class Balloon : MonoBehaviour
 
         waterLineActive = true;
 
-        this.gameObject.layer = 8;
-        MainCollider.layer = 9;
+        // 트리거 활성화 (collider = Player A 물풍선, mainCol = Player B 물풍선)
+        collider.isTrigger = true;
+        mainCol.isTrigger = true;
     }
     void WaterLineActive()
     {
         waterLineActive = false;
     }
 
-    void OnTriggerEnter2D(Collider2D obj) {
+    void OnTriggerEnter2D(Collider2D obj)
+    {
 
-         // 다른 물풍선의 물줄기에 맞으면 바로 터지게 만듦
-         if (obj.gameObject.tag == "upWater" || obj.gameObject.tag == "downWater" || obj.gameObject.tag == "leftWater" || obj.gameObject.tag == "rightWater")
-         {
-             // 물줄기 위에서는 작동을 안하게 만듦
-             if (!waterLineActive)
-             {
-                 Boom();
-                 Invoke("Finish", 0.5f);
-             }
-         }
+        // 다른 물풍선의 물줄기에 맞으면 바로 터지게 만듦
+        if (obj.gameObject.tag == "upWater" || obj.gameObject.tag == "downWater" || obj.gameObject.tag == "leftWater" || obj.gameObject.tag == "rightWater")
+        {
+            // 물줄기 위에서는 작동을 안하게 만듦
+            if (!waterLineActive)
+            {
+                Boom();
+                Invoke("Finish", 0.5f);
+            }
+        }
+       
     }
 
 }
