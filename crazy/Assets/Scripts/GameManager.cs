@@ -86,11 +86,25 @@ public class GameManager : MonoBehaviour
             Debug.Log("player B Hit");
             plB = false;
             Invoke("DeathTimeFinish", 6f);
-
             // 바늘 사용 시, plB 값 true 로 초기화 필요
         }
-
     }
+
+    public void touchDeath()
+    {
+        if (playerA.playerDead == true)
+        {
+            CancelInvoke("DeathTimeFinish");
+            Invoke("DeathTimeFinish", 1f);
+        }
+
+        if (playerB.playerDead == true)
+        {
+            CancelInvoke("DeathTimeFinish");
+            Invoke("DeathTimeFinish", 1f);
+        }
+    }
+
 
     // 물풍선의 갇혀 있는 시간이 끝난 후 둘 중 하나라도 탈출을 못하면 승부 판정
     void DeathTimeFinish()

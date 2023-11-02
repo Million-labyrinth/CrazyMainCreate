@@ -19,6 +19,7 @@ public class Player2 : MonoBehaviour
     public string basicBubble;
     public bool useShield = false;
     public bool useniddle = false;
+    public bool playerDead = false;
 
     int playerBballonIndex = 10; // 물풍선 오브젝트 풀 사용할 때 필요한 playerBballonIndex 변수
     public int playerBcountIndex = 0; // 물풍선을 생성할 때, 플레이어가 생성한 물풍선의 개수를 체크할 때 필요한 변수
@@ -219,6 +220,7 @@ public class Player2 : MonoBehaviour
                 if (playerALogic.isDying == true)
                 {
                     playerALogic.DeadTime();
+                    gameManager.touchDeath();
                     playerALogic.dyingTime = 0;
                 }
             }
@@ -545,7 +547,7 @@ public class Player2 : MonoBehaviour
         audioSource.Play();
         anim.SetTrigger("isDead");
         playerSpeed = 0f;
-
+        playerDead = true;
         isDying = false;
 
     }

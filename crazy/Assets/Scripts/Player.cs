@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public string basicBubble;
     public bool useShield = false;
     public bool useniddle = false;
+    public bool playerDead = false;
 
     //효과음
     public AudioClip itemAddSound;//아이템 획득 소리
@@ -217,6 +218,7 @@ public class Player : MonoBehaviour
                 if(playerBLogic.isDying == true)
                 {
                     playerBLogic.DeadTime();
+                    gameManager.touchDeath();
                     playerBLogic.dyingTime = 0;
                 }
             }
@@ -520,7 +522,8 @@ public class Player : MonoBehaviour
     void DeathTime()
     {
         Debug.Log("플레이어가 데미지를 입음");
-        anim.SetBool("isDamaged", true); // 바늘 사용 시, false 주는 코드 추가 필요
+        anim.SetBool("isDamaged", true); 
+        // 바늘 사용 시, false 주는 코드 추가 필요
         playerSpeed = 0.8f;
         string playername = "A";
         gameManager.Death(playername);
@@ -536,7 +539,7 @@ public class Player : MonoBehaviour
         audioSource.Play();
         anim.SetTrigger("isDead");
         playerSpeed = 0f;
-
+        playerDead = true;
         isDying = false;
 
     }
