@@ -92,6 +92,7 @@ public class Player : MonoBehaviour
         UseItem();
         /*colliderRay();*/
 
+        Debug.Log(playerAmakeBalloon);
 
         if(isDying)
         {
@@ -207,9 +208,6 @@ public class Player : MonoBehaviour
             if(scanObject.layer == 8 || scanObject.layer == 9)
             {
                     playerAmakeBalloon = false;
-            } else
-            {
-                playerAmakeBalloon = true;
             }
 
             // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
@@ -227,6 +225,7 @@ public class Player : MonoBehaviour
         else
         {
             scanObject = null;
+            playerAmakeBalloon = true;
         }
 
 

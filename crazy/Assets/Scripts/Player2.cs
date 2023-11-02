@@ -209,10 +209,7 @@ public class Player2 : MonoBehaviour
             {
                 playerBmakeBalloon = false;
             }
-            else
-            {
-                playerBmakeBalloon = true;
-            }
+            
 
             // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
             if (scanObject.tag == "PlayerA")
@@ -229,6 +226,7 @@ public class Player2 : MonoBehaviour
         else
         {
             scanObject = null;
+            playerBmakeBalloon = true;
         }
 
         // 밀 수 있는 상자 Ray
