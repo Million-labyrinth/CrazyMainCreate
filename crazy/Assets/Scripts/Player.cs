@@ -115,10 +115,14 @@ public class Player : MonoBehaviour
         {
             isHorizonMove = false;
             anim.SetFloat("vAxisRaw", vAxis);
+            anim.SetTrigger("vDown");
+            anim.ResetTrigger("hDown");
         }
         else if (hDown)
         {
             isHorizonMove = true;
+            anim.SetTrigger("hDown");
+            anim.ResetTrigger("vDown");
         }
         else if (vUp || hUp)
         {
@@ -127,6 +131,12 @@ public class Player : MonoBehaviour
             if (vUp)
             {
                 anim.SetFloat("vAxisRaw", vAxis);
+                anim.SetTrigger("vDown");
+                anim.ResetTrigger("hDown");
+            } else if (hUp)
+            {
+                anim.SetTrigger("hDown");
+                anim.ResetTrigger("vDown");
             }
         }
         if (anim.GetInteger("hAxisRaw") != hAxis)
@@ -142,6 +152,12 @@ public class Player : MonoBehaviour
         else
             anim.SetBool("isChange", false);
 
+        // 멈췄을 때 애니메이션 트리거 초기화
+        if(hAxis == 0 && vAxis == 0)
+        {
+            anim.ResetTrigger("vDown");
+            anim.ResetTrigger("hDown");
+        }
 
         // 상자 밀기용 Ray 방향 설정
         if (moveVec.y > 0)
