@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 using Unity.Burst.CompilerServices;
+using System.Linq.Expressions;
+
 public class Player2 : MonoBehaviour
 {
     public int bombPower;
@@ -17,6 +19,7 @@ public class Player2 : MonoBehaviour
     public string basicBubble;
     public bool useShield = false;
     public bool useniddle = false;
+    public bool playerDead = false;
 
     int playerBballonIndex = 10; // 물풍선 오브젝트 풀 사용할 때 필요한 playerBballonIndex 변수
     public int playerBcountIndex = 0; // 물풍선을 생성할 때, 플레이어가 생성한 물풍선의 개수를 체크할 때 필요한 변수
@@ -52,10 +55,12 @@ public class Player2 : MonoBehaviour
     public float curPushTime; // 블럭 밀기 현재(충전) 쿨타임
 
     Rigidbody2D rigid;
-    Animator anim;
+    public Animator anim;
 
 
     public GameObject Shieldeffect;
+    public bool isDying = false; // 물풍선에 갇혀 있는 지 여부를 판단하는 bool 값
+    public float dyingTime; // 물풍선에 갇혀 있는 시간
 
     Vector2 moveVec; // 플레이어가 움직이는 방향
     Vector2 rayDir; // Ray 방향
@@ -86,6 +91,16 @@ public class Player2 : MonoBehaviour
         Ray();
         UseItem();
         /*colliderRay();*/
+
+        if (isDying)
+        {
+            dyingTime += Time.deltaTime;
+
+            if (dyingTime > 4)
+            {
+                DeadTime();
+            }
+        }
     }
     void LateUpdate()
     {
@@ -112,10 +127,16 @@ public class Player2 : MonoBehaviour
         {
             isHorizonMove = false;
             anim.SetFloat("vAxisRaw", vAxis);
+
+            anim.SetTrigger("vDown");
+            anim.ResetTrigger("hDown");
         }
         else if (hDown)
         {
             isHorizonMove = true;
+
+            anim.SetTrigger("hDown");
+            anim.ResetTrigger("vDown");
         }
         else if (vUp || hUp)
         {
@@ -124,6 +145,13 @@ public class Player2 : MonoBehaviour
             if (vUp)
             {
                 anim.SetFloat("vAxisRaw", vAxis);
+
+                anim.SetTrigger("vDown");
+                anim.ResetTrigger("hDown");
+            } else if(hUp)
+            {
+                anim.SetTrigger("hDown");
+                anim.ResetTrigger("vDown");
             }
         }
         if (anim.GetInteger("hAxisRaw") != hAxis)
@@ -139,6 +167,13 @@ public class Player2 : MonoBehaviour
         else
             anim.SetBool("isChange", false);
 
+
+        // 멈췄을 때 애니메이션 트리거 초기화
+        if (hAxis == 0 && vAxis == 0)
+        {
+            anim.ResetTrigger("vDown");
+            anim.ResetTrigger("hDown");
+        }
 
         // 상자 밀기용 Ray 방향 설정
         if (moveVec.y > 0)
@@ -162,15 +197,37 @@ public class Player2 : MonoBehaviour
 
     void Ray()
     {
-        // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray
-        Collider2D forMake = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.1f), 0.45f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B"));
+        // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
+        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.1f), 0.45f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Player A"));
+        GameObject scanObject;
 
-        if (forMake != null)
+        if (playerBRay != null)
         {
-            playerBmakeBalloon = false;
+            scanObject = playerBRay.gameObject;
+
+            // 물풍선 생성 가능 여부
+            if (scanObject.layer == 8 || scanObject.layer == 9)
+            {
+                playerBmakeBalloon = false;
+            }
+            
+
+            // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
+            if (scanObject.tag == "PlayerA")
+            {
+                Player playerALogic = scanObject.GetComponent<Player>();
+
+                if (playerALogic.isDying == true)
+                {
+                    playerALogic.DeadTime();
+                    gameManager.touchDeath();
+                    playerALogic.dyingTime = 0;
+                }
+            }
         }
         else
         {
+            scanObject = null;
             playerBmakeBalloon = true;
         }
 
@@ -351,15 +408,13 @@ public class Player2 : MonoBehaviour
 
         if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "BalloonCollider")
         {
-
             if (useShield == true)
             {
                 //DeathTime(); 실행안됨
             }
             else
             {
-                DeathTime();
-
+                    DeathTime();  
             }
 
             Debug.Log(collision.name);
@@ -465,7 +520,7 @@ public class Player2 : MonoBehaviour
         playerRenderer.enabled = true;
 
         // 물풍선 밖으로 나가면 트리거 비활성화
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.layer == 9)
         {
             Collider2D col = other.gameObject.GetComponent<Collider2D>();
             col.isTrigger = false;
@@ -476,23 +531,24 @@ public class Player2 : MonoBehaviour
     void DeathTime()
     {
         Debug.Log("플레이어가 데미지를 입음");
-        anim.SetBool("isDamage", true);
-        anim.SetBool("isDying", false);
+        anim.SetBool("isDamaged", true);
         playerSpeed = 0.8f;
         string playername = "B";
         gameManager.Death(playername);
-        Invoke("DeadTime", 4f);
         audioSource.clip = balloonLockSound;
         audioSource.Play();
-    }
 
-    void DeadTime()
+        isDying = true;
+}
+
+    public void DeadTime()
     {
         audioSource.clip = deathSound;
         audioSource.Play();
-        anim.SetBool("isDead", true);
-        anim.SetBool("isDamage", false);
+        anim.SetTrigger("isDead");
         playerSpeed = 0f;
+        playerDead = true;
+        isDying = false;
 
     }
 
