@@ -55,10 +55,12 @@ public class Player : MonoBehaviour
     public float curPushTime; // 블럭 밀기 현재(충전) 쿨타임
 
     Rigidbody2D rigid;
-    Animator anim;
+    public Animator anim;
 
 
     public GameObject Shieldeffect;
+    public bool isDying = false; // 물풍선에 갇혀 있는 지 여부를 판단하는 bool 값
+    public float dyingTime; // 물풍선에 갇혀 있는 시간
 
     Vector2 moveVec; // 플레이어가 움직이는 방향
     Vector2 rayDir; // Ray 방향
@@ -82,11 +84,6 @@ public class Player : MonoBehaviour
         playerAmakeBalloon = true;
     }
 
-    void Start()
-    {
-        DeathTime();
-    }
-
     void Update()
     {
         Move();
@@ -94,6 +91,17 @@ public class Player : MonoBehaviour
         Ray();
         UseItem();
         /*colliderRay();*/
+
+
+        if(isDying)
+        {
+            dyingTime += Time.deltaTime;
+
+            if(dyingTime > 4)
+            {
+                DeadTime();
+            }
+        }
     }
     void LateUpdate()
     {
@@ -187,17 +195,40 @@ public class Player : MonoBehaviour
     void Ray()
     {
 
-        // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray
-        Collider2D forMake = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.1f), 0.45f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B"));
+        // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
+        Collider2D playerARay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.1f), 0.45f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Player B"));
+        GameObject scanObject;
 
-        if (forMake != null)
+        if (playerARay != null)
         {
-            playerAmakeBalloon = false;
-        }
+            scanObject = playerARay.gameObject;
+
+            // 물풍선 생성 가능 여부
+            if(scanObject.layer == 8 || scanObject.layer == 9)
+            {
+                    playerAmakeBalloon = false;
+            } else
+            {
+                playerAmakeBalloon = true;
+            }
+
+            // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
+            if (scanObject.tag == "PlayerB")
+            {
+                Player2 playerBLogic = scanObject.GetComponent<Player2>();
+
+                if(playerBLogic.isDying == true)
+                {
+                    playerBLogic.DeadTime();
+                    playerBLogic.dyingTime = 0;
+                }
+            }
+        } 
         else
         {
-            playerAmakeBalloon = true;
+            scanObject = null;
         }
+
 
         // 밀 수 있는 상자 Ray
         if (hStay || vStay)
@@ -255,7 +286,7 @@ public class Player : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0f, 1f, 0f);
-        // 물풍선 생성 판정
+        // playerARay 모습
         Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.1f), 0.45f);
     }
 
@@ -495,17 +526,20 @@ public class Player : MonoBehaviour
         playerSpeed = 0.8f;
         string playername = "A";
         gameManager.Death(playername);
-        Invoke("DeadTime", 4f);
         audioSource.clip = balloonLockSound;
         audioSource.Play();
+
+        isDying = true; // 바늘 사용 시 다시 false 값으로 바꿔주는 코드 추가 필요
     }
 
-    void DeadTime()
+    public void DeadTime()
     {
         audioSource.clip = deathSound;
         audioSource.Play();
         anim.SetTrigger("isDead");
         playerSpeed = 0f;
+
+        isDying = false;
 
     }
 
