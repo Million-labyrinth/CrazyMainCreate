@@ -93,6 +93,7 @@ public class Player : MonoBehaviour
         UseItem();
         /*colliderRay();*/
 
+        Debug.Log(playerAmakeBalloon);
 
         if(isDying)
         {
