@@ -217,7 +217,7 @@ public class Player2 : MonoBehaviour
             {
                 Player playerALogic = scanObject.GetComponent<Player>();
 
-                if (playerALogic.isDying == true)
+                if (playerALogic.isDying == true && isDying == false)
                 {
                     playerALogic.DeadTime();
                     gameManager.touchDeath();

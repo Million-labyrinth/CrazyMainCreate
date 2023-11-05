@@ -95,11 +95,11 @@ public class Player : MonoBehaviour
 
         Debug.Log(playerAmakeBalloon);
 
-        if(isDying)
+        if (isDying)
         {
             dyingTime += Time.deltaTime;
 
-            if(dyingTime > 4)
+            if (dyingTime > 4)
             {
                 DeadTime();
             }
@@ -148,7 +148,8 @@ public class Player : MonoBehaviour
                 anim.SetFloat("vAxisRaw", vAxis);
                 anim.SetTrigger("vDown");
                 anim.ResetTrigger("hDown");
-            } else if (hUp)
+            }
+            else if (hUp)
             {
                 anim.SetTrigger("hDown");
                 anim.ResetTrigger("vDown");
@@ -168,7 +169,7 @@ public class Player : MonoBehaviour
             anim.SetBool("isChange", false);
 
         // 멈췄을 때 애니메이션 트리거 초기화
-        if(hAxis == 0 && vAxis == 0)
+        if (hAxis == 0 && vAxis == 0)
         {
             anim.ResetTrigger("vDown");
             anim.ResetTrigger("hDown");
@@ -206,9 +207,9 @@ public class Player : MonoBehaviour
             scanObject = playerARay.gameObject;
 
             // 물풍선 생성 가능 여부
-            if(scanObject.layer == 8 || scanObject.layer == 9)
+            if (scanObject.layer == 8 || scanObject.layer == 9)
             {
-                    playerAmakeBalloon = false;
+                playerAmakeBalloon = false;
             }
 
             // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
@@ -216,14 +217,14 @@ public class Player : MonoBehaviour
             {
                 Player2 playerBLogic = scanObject.GetComponent<Player2>();
 
-                if(playerBLogic.isDying == true)
+                if (playerBLogic.isDying == true && isDying == false)
                 {
                     playerBLogic.DeadTime();
                     gameManager.touchDeath();
                     playerBLogic.dyingTime = 0;
                 }
             }
-        } 
+        }
         else
         {
             scanObject = null;
@@ -383,7 +384,7 @@ public class Player : MonoBehaviour
             {
                 WaterBalloon[playerAballonIndex].SetActive(true);
                 WaterBalloon[playerAballonIndex].transform.position = MoveVec;
-                
+
             }
 
             // playerAballonIndex 가 10 을 넘어가지 않게 0으로 초기화
@@ -404,7 +405,7 @@ public class Player : MonoBehaviour
     //아이템 먹었을때 스탯 값 증감
     void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
 
         if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "BalloonCollider")
         {
@@ -523,7 +524,7 @@ public class Player : MonoBehaviour
     void DeathTime()
     {
         Debug.Log("플레이어가 데미지를 입음");
-        anim.SetBool("isDamaged", true); 
+        anim.SetBool("isDamaged", true);
         // 바늘 사용 시, false 주는 코드 추가 필요
         playerSpeed = 0.8f;
         string playername = "A";
@@ -545,26 +546,26 @@ public class Player : MonoBehaviour
 
     }
 
-/* 이것은 구판 오더레이어
-    void colliderRay()
-    {
-        // Ray
-        Debug.DrawRay(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right * 0.7f, new Color(1, 1, 1));
-        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+    /* 이것은 구판 오더레이어
+        void colliderRay()
+        {
+            // Ray
+            Debug.DrawRay(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right * 0.7f, new Color(1, 1, 1));
+            RaycastHit2D downRayHit = Physics2D.Raycast(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
 
-        if (downRayHit.collider != null)
-        {
-            GameObject downObj = downRayHit.collider.gameObject;
-            SpriteRenderer orderInLayer = downObj.GetComponent<SpriteRenderer>();
-            int objOrder = orderInLayer.sortingOrder;
-            playerRenderer.sortingOrder = orderInLayer.sortingOrder - 1;
-            // orderInLayer.sortingOrder += playerRenderer.sortingOrder;
-            objOrder = orderInLayer.sortingOrder;
-            Debug.Log(downObj.name);
-        }
-        else if (downRayHit.collider == null)
-        {
-            playerRenderer.sortingOrder = 14;
-        }
-    }*/
+            if (downRayHit.collider != null)
+            {
+                GameObject downObj = downRayHit.collider.gameObject;
+                SpriteRenderer orderInLayer = downObj.GetComponent<SpriteRenderer>();
+                int objOrder = orderInLayer.sortingOrder;
+                playerRenderer.sortingOrder = orderInLayer.sortingOrder - 1;
+                // orderInLayer.sortingOrder += playerRenderer.sortingOrder;
+                objOrder = orderInLayer.sortingOrder;
+                Debug.Log(downObj.name);
+            }
+            else if (downRayHit.collider == null)
+            {
+                playerRenderer.sortingOrder = 14;
+            }
+        }*/
 }
