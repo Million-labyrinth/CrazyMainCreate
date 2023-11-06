@@ -428,95 +428,97 @@ public class Player2 : MonoBehaviour
 
         string iname = collision.gameObject.name;
 
-        UnityEngine.Debug.Log("플레이어가 오브젝트에 닿음");
-
-        // 플레이어가 물풍선 위에 있을 시
-        if (collision.gameObject.tag == "Balloon")
+        // 물풍선에 갇혀있을 땐 아이템 못 먹게 하는 조건 "isDying == false"
+        if (isDying == false)
         {
-
-
-
-        }
-
-        if (collision.gameObject.CompareTag("powerItem"))
-        {
-            if (bombPower < bombPowerMax)
+            // 플레이어가 물풍선 위에 있을 시
+            if (collision.gameObject.tag == "Balloon")
             {
-                item2.PowerAdd(iname);
-                audioSource.clip = itemAddSound;
-                audioSource.Play();
+
+
+
             }
-            // 먹은 아이템 비활성화
-            collision.gameObject.SetActive(false);
-            UnityEngine.Debug.Log("물풍선 아이템에 닿음");
-        }
 
-        else if (collision.gameObject.CompareTag("speedItem"))
-        {
-            if (playerSpeed < playerSpeedMax)
+            if (collision.gameObject.CompareTag("powerItem"))
             {
-                item2.SpeedAdd(iname);
-                audioSource.clip = itemAddSound;
-                audioSource.Play();
-            }
-            UnityEngine.Debug.Log("스피드 아이템에 닿았음");
-            // 먹은 아이템 비활성화
-            collision.gameObject.SetActive(false);
-        }
-
-
-        else if (collision.gameObject.CompareTag("rangeItem"))
-        {
-            if (bombRange < bombRangeMax)
-            {
-                item2.RangeAdd(iname);
-                audioSource.clip = itemAddSound;
-                audioSource.Play();
-            }
-            UnityEngine.Debug.Log("사거리 증가 아이템에 닿음");
-            // 먹은 아이템 비활성화
-            collision.gameObject.SetActive(false);
-        }
-
-        else if (collision.gameObject.CompareTag("superMan"))
-        {
-            item2.SuperMan(iname);
-            UnityEngine.Debug.Log("슈퍼맨!!");
-            audioSource.clip = itemAddSound;
-            audioSource.Play();
-            // 먹은 아이템 비활성화
-            collision.gameObject.SetActive(false);
-        }
-
-        // 먹은 아이템을 Activeitem 배열에 추가 (ActiveItem 태그를 가진 아이템만 추가)
-        if (collision.gameObject.CompareTag("ActiveItem"))
-        {
-            if (collision.gameObject.name.Contains("shield"))
-            {
-                audioSource.clip = itemAddSound;
-                audioSource.Play();
-                if (p1niddle == true)
+                if (bombPower < bombPowerMax)
                 {
-                    p1niddle.SetActive(false);
+                    item2.PowerAdd(iname);
+                    audioSource.clip = itemAddSound;
+                    audioSource.Play();
                 }
-                p1shield.SetActive(true);
+                // 먹은 아이템 비활성화
+                collision.gameObject.SetActive(false);
+                UnityEngine.Debug.Log("물풍선 아이템에 닿음");
             }
-            else if (collision.gameObject.name.Contains("niddle"))
+
+            else if (collision.gameObject.CompareTag("speedItem"))
             {
+                if (playerSpeed < playerSpeedMax)
+                {
+                    item2.SpeedAdd(iname);
+                    audioSource.clip = itemAddSound;
+                    audioSource.Play();
+                }
+                UnityEngine.Debug.Log("스피드 아이템에 닿았음");
+                // 먹은 아이템 비활성화
+                collision.gameObject.SetActive(false);
+            }
+
+
+            else if (collision.gameObject.CompareTag("rangeItem"))
+            {
+                if (bombRange < bombRangeMax)
+                {
+                    item2.RangeAdd(iname);
+                    audioSource.clip = itemAddSound;
+                    audioSource.Play();
+                }
+                UnityEngine.Debug.Log("사거리 증가 아이템에 닿음");
+                // 먹은 아이템 비활성화
+                collision.gameObject.SetActive(false);
+            }
+
+            else if (collision.gameObject.CompareTag("superMan"))
+            {
+                item2.SuperMan(iname);
+                UnityEngine.Debug.Log("슈퍼맨!!");
                 audioSource.clip = itemAddSound;
                 audioSource.Play();
-                if (p1shield == true)
-                {
-                    p1shield.SetActive(false);
-                }
-                p1niddle.SetActive(true);
-
-                useniddle = false; // 다시 바늘 사용가능하게 초기화
+                // 먹은 아이템 비활성화
+                collision.gameObject.SetActive(false);
             }
-            UnityEngine.Debug.Log("ActiveItem ADD");
-            item2.AddActiveItem(collision.gameObject, 0);
-            // 먹은 아이템 비활성화
-            collision.gameObject.SetActive(false);
+
+            // 먹은 아이템을 Activeitem 배열에 추가 (ActiveItem 태그를 가진 아이템만 추가)
+            if (collision.gameObject.CompareTag("ActiveItem"))
+            {
+                if (collision.gameObject.name.Contains("shield"))
+                {
+                    audioSource.clip = itemAddSound;
+                    audioSource.Play();
+                    if (p1niddle == true)
+                    {
+                        p1niddle.SetActive(false);
+                    }
+                    p1shield.SetActive(true);
+                }
+                else if (collision.gameObject.name.Contains("niddle"))
+                {
+                    audioSource.clip = itemAddSound;
+                    audioSource.Play();
+                    if (p1shield == true)
+                    {
+                        p1shield.SetActive(false);
+                    }
+                    p1niddle.SetActive(true);
+
+                    useniddle = false; // 다시 바늘 사용가능하게 초기화
+                }
+                UnityEngine.Debug.Log("ActiveItem ADD");
+                item2.AddActiveItem(collision.gameObject, 0);
+                // 먹은 아이템 비활성화
+                collision.gameObject.SetActive(false);
+            }
         }
     }
 

@@ -37,12 +37,12 @@ public class Block : MonoBehaviour
     {
         // Item 드랍률
         int ran = UnityEngine.Random.Range(0, 100);
-        if (ran < 65)
-        { // Not Item 65%
+        if (ran < 60)
+        { // Not Item 60%
             Debug.Log("Not Item");
         }
-        else if (ran < 80)
-        {   // bubbleItem 15%
+        else if (ran < 78)
+        {   // bubbleItem 18%
             GameObject bubbleItem = objectManager.MakeItem("BubbleItem");
             bubbleItem.transform.position = transform.position;
 
@@ -51,7 +51,7 @@ public class Block : MonoBehaviour
             movement.maxY = transform.position.y + 0.1f;
         }
         else if (ran < 93)
-        {   // flulidItem 13%
+        {   // flulidItem 15%
             GameObject flulidItem = objectManager.MakeItem("FluidItem");
             flulidItem.transform.position = transform.position;
 
