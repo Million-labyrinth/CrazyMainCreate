@@ -79,6 +79,8 @@ public class GameManager : MonoBehaviour
     public async void Judgment()
     {
         //ui 승패 애니메이션 출력
+
+        // Draw
         if (playerA.playerDead == true && playerB.playerDead == true || curTime <= 0.9)
         {
             
@@ -89,7 +91,8 @@ public class GameManager : MonoBehaviour
             screen.SetActive(true);
             draw.SetActive(true);
         }
-        if (playerA.playerDead == true && playerB.playerDead == false)
+        // B Win
+        else if (playerA.playerDead == true && playerB.playerDead == false)
         {
             
             audiosource.clip = winSound;
@@ -100,7 +103,14 @@ public class GameManager : MonoBehaviour
             bwin.SetActive(true);
 
             playerB.dyingTime = 0;
+
+            if (playerB.isDying)
+            {
+                playerB.anim.SetTrigger("finishGame"); // 애니메이션 추가 필요
+                playerB.isDying = false;
+            }
         }
+        // A Win
         else if (playerA.playerDead == false && playerB.playerDead == true)
         {
             Debug.Log("player A Win");
@@ -109,9 +119,19 @@ public class GameManager : MonoBehaviour
             awin.SetActive(true);
 
             playerA.dyingTime = 0;
+
+            if(playerA.isDying)
+            {
+                playerA.anim.SetTrigger("finishGame"); // 애니메이션 추가 필요
+                playerA.isDying = false;
+            }
         }
 
         isFinishGame = true;
+        playerA.anim.SetBool("isDamaged", false);
+        playerB.anim.SetBool("isDamaged", false);
+        playerA.playerSpeed = 4.0f;
+        playerB.playerSpeed = 4.0f;
     }
 
 }
