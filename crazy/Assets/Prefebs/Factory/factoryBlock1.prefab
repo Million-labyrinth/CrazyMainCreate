@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8365593612717843698}
   - component: {fileID: 8617950020236775842}
   - component: {fileID: 8075316826113225247}
+  - component: {fileID: 4725392860597734616}
   m_Layer: 12
   m_Name: factoryBlock1
   m_TagString: Block
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 907c852fbf4df104b9974935bd2e490c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,11 +95,32 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3216975339853831886}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -109,7 +131,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &8075316826113225247
@@ -124,8 +145,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b645708d3b425f4f8d3f15148e614cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerA: {fileID: 0}
-  playerB: {fileID: 0}
   anim: {fileID: 0}
   objectManager: {fileID: 0}
-  blockBreak: 0
+--- !u!114 &4725392860597734616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3216975339853831886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c15134c6b29a0a45b3c01d9cfeadc29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meRenderer: {fileID: 0}

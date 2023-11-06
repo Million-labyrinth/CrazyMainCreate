@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // 맵 제작 후 switch 문으로 변경 필요 (랜덤 변수 범위 설정)
         int randomA = Random.Range(0, spawnPoints.Length);
         int randomB = Random.Range(0, spawnPoints.Length);
 
@@ -151,6 +150,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        // 끝나면 바뀐 값들 초기화
         isFinishGame = true;
         playerA.anim.SetBool("isDamaged", false);
         playerB.anim.SetBool("isDamaged", false);

@@ -6,6 +6,11 @@ public class OrderLayer : MonoBehaviour
 {
     public SpriteRenderer meRenderer;
 
+    void Start()
+    {
+        meRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
+
     void Update()
     {
         float x = transform.position.y;
