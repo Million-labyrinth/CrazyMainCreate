@@ -219,7 +219,7 @@ public class Player : MonoBehaviour
                 if (playerBLogic.isDying == true && isDying == false)
                 {
                     playerBLogic.DeadTime();
-                    gameManager.touchDeath();
+                    //gameManager.touchDeath();
                     playerBLogic.dyingTime = 0;
                 }
             }
@@ -344,6 +344,9 @@ public class Player : MonoBehaviour
                 Debug.Log(useniddle);
                 audioSource.clip = balloonEscapeSound;
                 audioSource.Play();
+
+                dyingTime = 0; // 죽는 시간 초기화
+                isDying = true; // 물풍선 탈출
             }
             string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
             UnityEngine.Debug.Log("플레이어A가" + itemName + "아이템을 사용함");
@@ -498,6 +501,9 @@ public class Player : MonoBehaviour
                     p2shield.SetActive(false);
                 }
                 p2niddle.SetActive(true);
+
+                useniddle = false; // 다시 바늘 사용가능하게 초기화
+
             }
             UnityEngine.Debug.Log("ActiveItem ADD");
             item.AddActiveItem(collision.gameObject, 0);
@@ -526,12 +532,12 @@ public class Player : MonoBehaviour
         anim.SetBool("isDamaged", true);
         // 바늘 사용 시, false 주는 코드 추가 필요
         playerSpeed = 0.8f;
-        string playername = "A";
-        gameManager.Death(playername);
         audioSource.clip = balloonLockSound;
         audioSource.Play();
 
-        isDying = true; // 바늘 사용 시 다시 false 값으로 바꿔주는 코드 추가 필요
+        isDying = true;
+
+        Debug.Log("player A Hit");
     }
 
     public void DeadTime()
@@ -543,6 +549,7 @@ public class Player : MonoBehaviour
         playerDead = true;
         isDying = false;
 
+        gameManager.Death();
     }
 
     /* 이것은 구판 오더레이어

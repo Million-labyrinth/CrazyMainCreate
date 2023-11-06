@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     int minute;
     int second;
 
+    bool isFinishGame = false;
 
     public void Awake()
     {
@@ -70,64 +71,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Death(string playername)//Player A Death
+    public void Death()
     {
-        if (playername == "A")
-        {
-            Debug.Log("player A Hit");
-            plA = false;
-            Invoke("DeathTimeFinish", 6f);
-
-            // 바늘 사용 시, plA 값 true 로 초기화 필요
-        }
-
-        if (playername == "B")
-        {
-            Debug.Log("player B Hit");
-            plB = false;
-            Invoke("DeathTimeFinish", 6f);
-            // 바늘 사용 시, plB 값 true 로 초기화 필요
-        }
-    }
-
-    public void touchDeath()
-    {
-        if (playerA.playerDead == true)
-        {
-            CancelInvoke("DeathTimeFinish");
-            Invoke("DeathTimeFinish", 1f);
-        }
-
-        if (playerB.playerDead == true)
-        {
-            CancelInvoke("DeathTimeFinish");
-            Invoke("DeathTimeFinish", 1f);
-        }
-    }
-
-
-    // 물풍선의 갇혀 있는 시간이 끝난 후 둘 중 하나라도 탈출을 못하면 승부 판정
-    void DeathTimeFinish()
-    {
-        if (playerA.useniddle == true)
-        {
-            playerA.useniddle = false;
-            plA = true;
-        }
-        else
-        {
-            if (plA == false || plB == false)
-            {
-                Judgment();
-            }
-        }
-
+        Invoke("Judgment", 0.3f);
     }
 
     public async void Judgment()
     {
         //ui 승패 애니메이션 출력
-        if (plA == false && plB == false && curTime <= 0.9)
+        if (playerA.playerDead == true && playerB.playerDead == true || curTime <= 0.9)
         {
             
             audiosource.clip = winSound;
@@ -136,9 +88,8 @@ public class GameManager : MonoBehaviour
             // draw_Ani.SetBool("draw", true);//드로우 애니메이션 실행
             screen.SetActive(true);
             draw.SetActive(true);
-            
         }
-        else if (plA == false && plB == true)
+        if (playerA.playerDead == true && playerB.playerDead == false)
         {
             
             audiosource.clip = winSound;
@@ -147,16 +98,20 @@ public class GameManager : MonoBehaviour
             //bwin_Ani.SetBool("b", true);//플레이어b 애니메이션 실행
             screen.SetActive(true);
             bwin.SetActive(true);
-            
+
+            playerB.dyingTime = 0;
         }
-        else if (plA == true && plB == false)
+        else if (playerA.playerDead == false && playerB.playerDead == true)
         {
             Debug.Log("player A Win");
             // awin_Ani.SetBool("a", true);//플레이어a 애니메이션 실행
             screen.SetActive(true);
             awin.SetActive(true);
+
+            playerA.dyingTime = 0;
         }
 
+        isFinishGame = true;
     }
 
 }
