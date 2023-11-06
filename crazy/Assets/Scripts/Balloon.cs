@@ -120,8 +120,6 @@ public class Balloon : MonoBehaviour
 
         // 물줄기, Main Collider 활성화
         // Ray 에 블럭이 인식이 안될 경우에만 활성화
-        audioSource.clip = boomSound;
-        audioSource.Play();
         if (upScanObject == null || upScanObject.tag == "grass")
         {
             upWater.SetActive(true);
@@ -197,6 +195,10 @@ public class Balloon : MonoBehaviour
         }
 
         balloonCollider.SetActive(true);
+
+        // 사운드
+        audioSource.clip = boomSound;
+        audioSource.Play();
     }
 
 
@@ -219,6 +221,9 @@ public class Balloon : MonoBehaviour
         // 트리거 활성화 (collider = Player A 물풍선, mainCol = Player B 물풍선)
         collider.isTrigger = true;
         mainCol.isTrigger = true;
+
+        // 사운드 초기화
+        audioSource.clip = null;
     }
     void WaterLineActive()
     {
