@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     int minute;
     int second;
 
+    public Transform[] spawnPoints; // 플레이어 스폰 포인트
+
     bool isFinishGame = false;
 
     public void Awake()
@@ -46,6 +48,27 @@ public class GameManager : MonoBehaviour
         time = 180;
         StartCoroutine(StartTimer());
 
+    }
+
+    void Start()
+    {
+        int randomA = Random.Range(0, spawnPoints.Length);
+        int randomB = Random.Range(0, spawnPoints.Length);
+
+        // 중복 제거
+        if(randomA == randomB)
+        {
+            if(randomB == 0)
+            {
+                randomB = spawnPoints.Length - 1;
+            } else
+            {
+                randomB--;
+            }
+        }
+
+        playerA.transform.position = spawnPoints[randomA].position;
+        playerB.transform.position = spawnPoints[randomB].position;
     }
 
     IEnumerator StartTimer()
