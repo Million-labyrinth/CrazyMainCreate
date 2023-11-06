@@ -26,8 +26,6 @@ public class TitletoManual : MonoBehaviour
         title.SetActive(true);
         manual.SetActive(false);
         map.SetActive(false);
-        ttg_2.SetActive(false);
-        ttm_2.SetActive(false);
     }
     public void title_to_manual()
     {

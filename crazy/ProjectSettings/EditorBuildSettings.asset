@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattelFieldVillage.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/BattelFieldFactory.unity
+    guid: d56c33f4b11f9914083fa700f40856e3
   m_configObjects: {}
