@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // 맵 제작 후 switch 문으로 변경 필요 (랜덤 변수 범위 설정)
         int randomA = Random.Range(0, spawnPoints.Length);
         int randomB = Random.Range(0, spawnPoints.Length);
 
