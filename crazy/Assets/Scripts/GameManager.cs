@@ -155,12 +155,12 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // 끝나면 바뀐 값들 초기화
+        // 끝나면 바뀐 값들 초기화(나중에 함수로 만들어서 재시작시 초기화)
         isFinishGame = true;
         playerA.anim.SetBool("isDamaged", false);
         playerB.anim.SetBool("isDamaged", false);
-        playerA.playerSpeed = 4.0f;
-        playerB.playerSpeed = 4.0f;
+        //playerA.playerSpeed = 4.0f;
+       // playerB.playerSpeed = 4.0f;
     }
 
 
