@@ -41,8 +41,8 @@ public class Block : MonoBehaviour
         { // Not Item 60%
             Debug.Log("Not Item");
         }
-        else if (ran < 78)
-        {   // bubbleItem 18%
+        else if (ran < 77)
+        {   // bubbleItem 17%
             GameObject bubbleItem = objectManager.MakeItem("BubbleItem");
             bubbleItem.transform.position = transform.position;
 
@@ -50,7 +50,7 @@ public class Block : MonoBehaviour
             movement.minY = transform.position.y;
             movement.maxY = transform.position.y + 0.1f;
         }
-        else if (ran < 93)
+        else if (ran < 92)
         {   // flulidItem 15%
             GameObject flulidItem = objectManager.MakeItem("FluidItem");
             flulidItem.transform.position = transform.position;
@@ -59,7 +59,7 @@ public class Block : MonoBehaviour
             movement.minY = transform.position.y;
             movement.maxY = transform.position.y + 0.1f;
         }
-        else if (ran < 98)
+        else if (ran < 97)
         {   // rollerItem 5%
             GameObject rollerItem = objectManager.MakeItem("RollerItem");
             rollerItem.transform.position = transform.position;
@@ -68,8 +68,8 @@ public class Block : MonoBehaviour
             movement.minY = transform.position.y;
             movement.maxY = transform.position.y + 0.1f;
         }
-        else if (ran < 99)
-        {   // shieldItem 5%
+        else if (ran < 98)
+        {   // shieldItem 1%
             GameObject shieldItem = objectManager.MakeItem("ShieldItem");
             shieldItem.transform.position = transform.position;
 
@@ -77,8 +77,8 @@ public class Block : MonoBehaviour
             movement.minY = transform.position.y;
             movement.maxY = transform.position.y + 0.1f;
         }
-        else if (ran < 100)
-        {   // ultraFluidItem 5%
+        else if (ran < 99)
+        {   // ultraFluidItem 1%
             GameObject ultraFluidItem = objectManager.MakeItem("UltraFluidItem");
             ultraFluidItem.transform.position = transform.position;
 
@@ -86,15 +86,15 @@ public class Block : MonoBehaviour
             movement.minY = transform.position.y;
             movement.maxY = transform.position.y + 0.1f;
         }
-        //else if (ran < 95)
-        //{   // niddleItem 5%
-        //    GameObject niddleItem = objectManager.MakeItem("NiddleItem");
-        //    niddleItem.transform.position = transform.position;
+        else if (ran < 100)
+        {   // niddleItem 1%
+            GameObject niddleItem = objectManager.MakeItem("NiddleItem");
+            niddleItem.transform.position = transform.position;
 
-        //VerticalMovement movement = niddleItem.GetComponent<VerticalMovement>();
-        //movement.minY = transform.position.y;
-        //movement.maxY = transform.position.y + 0.1f;
-        //}
+            VerticalMovement movement = niddleItem.GetComponent<VerticalMovement>();
+            movement.minY = transform.position.y;
+            movement.maxY = transform.position.y + 0.1f;
+        }
 
     }
 

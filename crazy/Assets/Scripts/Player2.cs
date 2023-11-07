@@ -346,7 +346,7 @@ public class Player2 : MonoBehaviour
                 audioSource.Play();
 
                 dyingTime = 0; // 죽는 시간 초기화
-                isDying = true; // 물풍선 탈출
+                isDying = false; // 물풍선 탈출
 
             }
             string itemName = item2.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
