@@ -17,7 +17,7 @@ public class Wander : MonoBehaviour
     Coroutine moveCoroutine;
     CircleCollider2D CircleCollider2D;
     Rigidbody2D rb2d;
-    Animator animator;
+    Animator anim;
 
     Transform targetTransform = null;
     Vector3 endPosition;
@@ -25,7 +25,7 @@ public class Wander : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         CircleCollider2D = GetComponent<CircleCollider2D>();
         currentSpeed = wanderSpeed;
@@ -73,19 +73,67 @@ public class Wander : MonoBehaviour
             if (targetTransform != null)
             {
                 endPosition = targetTransform.position;
-
             }
 
             if (rigidBodyToMove != null)
             {
-                animator.SetBool("isWalking", true);
-                Vector3 newPosition = Vector3.MoveTowards(rigidBodyToMove.position, endPosition, speed * Time.deltaTime);
+                Vector2 currentPosition = rigidBodyToMove.position;
+                Vector2 newPosition;
 
+                if (Mathf.Abs(endPosition.x - currentPosition.x) > Mathf.Abs(endPosition.y - currentPosition.y))
+                {
+                    // 더 가까운 축을 기준으로 수평 이동
+                    newPosition = new Vector2(endPosition.x, currentPosition.y);
+                }
+                else
+                {
+                    // 더 가까운 축을 기준으로 수직 이동
+                    newPosition = new Vector2(currentPosition.x, endPosition.y);
+                }
+
+                newPosition = Vector2.MoveTowards(currentPosition, newPosition, speed * Time.deltaTime);
                 rb2d.MovePosition(newPosition);
                 remainingDistance = (transform.position - endPosition).sqrMagnitude;
             }
             yield return new WaitForFixedUpdate();
         }
-        animator.SetBool("isWalking", false);
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerA") && followPlayer)
+        {
+            currentSpeed = pursuitSpeed;
+            targetTransform = collision.gameObject.transform;
+            if (moveCoroutine != null)
+            {
+                StopCoroutine(moveCoroutine);
+            }
+
+            moveCoroutine = StartCoroutine(Move(rb2d, currentSpeed));
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerA"))
+        {
+            currentSpeed = wanderSpeed;
+
+            if (moveCoroutine != null)
+            {
+                StopCoroutine(moveCoroutine);
+            }
+            targetTransform = null;
+        }
+    }
+    void OnDrawGizmos()
+    {
+        if (CircleCollider2D != null)
+        {
+            Gizmos.DrawWireSphere(transform.position, CircleCollider2D.radius);
+        }
+    }
+
+
+
 }
