@@ -25,7 +25,11 @@ public class GameManager : MonoBehaviour
 
     AudioSource audiosource;
     public AudioClip winSound;
-    
+
+    public bool isBlinking = false; // 애니메이션 깜빡임 상태
+    public float blinkInterval = 0.2f; // 깜빡이는 간격
+
+
 
     //timer
     [SerializeField] private Text text;
@@ -87,7 +91,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("Time out Draw");
                 //draw_Ani.SetBool("draw", true);
-                screen.SetActive(true);
+                StartWinAnimation(draw);
                 draw.SetActive(true);
                 curTime = 0;
                 yield break;
@@ -112,7 +116,7 @@ public class GameManager : MonoBehaviour
             audiosource.Play();
             Debug.Log("Draw");
             // draw_Ani.SetBool("draw", true);//드로우 애니메이션 실행
-            screen.SetActive(true);
+            StartWinAnimation(draw);
             draw.SetActive(true);
         }
         // B Win
@@ -123,7 +127,7 @@ public class GameManager : MonoBehaviour
             audiosource.Play();
             Debug.Log("player B Win");
             //bwin_Ani.SetBool("b", true);//플레이어b 애니메이션 실행
-            screen.SetActive(true);
+            StartWinAnimation(bwin);
             bwin.SetActive(true);
 
             playerB.dyingTime = 0;
@@ -139,7 +143,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("player A Win");
             // awin_Ani.SetBool("a", true);//플레이어a 애니메이션 실행
-            screen.SetActive(true);
+            StartWinAnimation(awin);
             awin.SetActive(true);
 
             playerA.dyingTime = 0;
@@ -157,6 +161,41 @@ public class GameManager : MonoBehaviour
         playerB.anim.SetBool("isDamaged", false);
         playerA.playerSpeed = 4.0f;
         playerB.playerSpeed = 4.0f;
+    }
+
+
+    Coroutine coroutineWin = null;
+    private void StartWinAnimation(GameObject go, float stopTime = 2)
+    {
+        if (coroutineWin != null)
+            StopCoroutine(coroutineWin);
+
+        coroutineWin = StartCoroutine(BlinkAnimation(go));
+    }
+
+    //깜빡이는 기능
+    private IEnumerator BlinkAnimation(GameObject objToBlink, float stopTime = 2)
+    {
+        screen.SetActive(true);
+        objToBlink.SetActive(true);
+        float time = 0;
+        while (time < stopTime)
+        {
+            time += Time.unscaledDeltaTime;
+
+            objToBlink.SetActive(!objToBlink.activeSelf); // 활성/비활성 교대로 변경
+            yield return new WaitForSeconds(blinkInterval);
+        }
+
+        objToBlink.SetActive(true);
+        coroutineWin = null;
+    }
+
+
+    public void StopBlinkingAnimation()// 깜빡임 애니메이션을 중지
+    {
+        isBlinking = false;  // 깜빡임 애니메이션을 중지
+
     }
 
 }
