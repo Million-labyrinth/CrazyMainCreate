@@ -372,7 +372,7 @@ public class Player : MonoBehaviour
     void MakeBalloon(string Power)
     {
         // 포지션
-        Vector3 MoveVec = transform.position;
+        Vector3 MoveVec = transform.position - new Vector3(0f, 0.35f, 0f);
         MoveVec = new Vector3((float)Math.Round(MoveVec.x), (float)Math.Round(MoveVec.y), MoveVec.z); //소수점 버림
 
         WaterBalloon = objectManager.GetPool(Power);
