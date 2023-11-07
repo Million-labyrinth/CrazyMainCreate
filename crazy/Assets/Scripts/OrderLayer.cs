@@ -13,8 +13,10 @@ public class OrderLayer : MonoBehaviour
 
     void Update()
     {
-        float x = transform.position.y;
-        if (5.5f <= x && x < 6.5f)
+        int x = 7 - (int)Mathf.Round(transform.position.y);
+        meRenderer.sortingOrder = x;
+
+        /*if (5.5f <= x && x < 6.5f)
         {
             meRenderer.sortingOrder = 1;
         }
@@ -65,6 +67,6 @@ public class OrderLayer : MonoBehaviour
         else if (-6.5f <= x && x < -5.5f)
         {
             meRenderer.sortingOrder = 13;
-        }
+        }*/
     }
 }

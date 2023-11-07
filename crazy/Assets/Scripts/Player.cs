@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
         playerSpeed = 4.0f;
         playerHealth = 0f;
 
-        nextPushTime = 0.5f;
+        nextPushTime = 0.3f;
 
         playerAmakeBalloon = true;
     }
