@@ -5,6 +5,7 @@ using System;
 using Unity.VisualScripting;
 using Unity.Burst.CompilerServices;
 using System.Linq.Expressions;
+using static UnityEditor.Progress;
 
 public class Player2 : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public class Player2 : MonoBehaviour
     bool hStay; // Horizontal 키 다운
     bool vStay; // Vertical 키 다운
     public GameObject pushBlock; // 인식된 밀 수 있는 블럭 저장용 변수
+    public GameObject pushBalloon; // 인식된 밀 수 있는 물풍선 저장용 변수
     public float nextPushTime; // 블럭 밀기 최대(설정) 쿨타임
     public float curPushTime; // 블럭 밀기 현재(충전) 쿨타임
 
@@ -79,7 +81,6 @@ public class Player2 : MonoBehaviour
         playerSpeed = 4.0f;
         playerHealth = 0f;
 
-        nextPushTime = 0.5f;
 
         playerBmakeBalloon = true;
     }
@@ -90,7 +91,6 @@ public class Player2 : MonoBehaviour
         Skill();
         Ray();
         UseItem();
-        /*colliderRay();*/
 
         if (isDying)
         {
@@ -148,7 +148,8 @@ public class Player2 : MonoBehaviour
 
                 anim.SetTrigger("vDown");
                 anim.ResetTrigger("hDown");
-            } else if(hUp)
+            }
+            else if (hUp)
             {
                 anim.SetTrigger("hDown");
                 anim.ResetTrigger("vDown");
@@ -175,7 +176,7 @@ public class Player2 : MonoBehaviour
             anim.ResetTrigger("hDown");
         }
 
-        // 상자 밀기용 Ray 방향 설정
+        // 상자/물풍선 밀기용 Ray 방향 설정
         if (moveVec.y > 0)
         {
             rayDir = Vector2.up;
@@ -198,7 +199,7 @@ public class Player2 : MonoBehaviour
     void Ray()
     {
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
-        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.1f), 0.45f, LayerMask.GetMask("Balloon A") | LayerMask.GetMask("Balloon B") | LayerMask.GetMask("Player A"));
+        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player A"));
         GameObject scanObject;
 
         if (playerBRay != null)
@@ -206,11 +207,11 @@ public class Player2 : MonoBehaviour
             scanObject = playerBRay.gameObject;
 
             // 물풍선 생성 가능 여부
-            if (scanObject.layer == 8 || scanObject.layer == 9)
+            if (scanObject.layer == 3)
             {
                 playerBmakeBalloon = false;
             }
-            
+
 
             // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
             if (scanObject.tag == "PlayerA")
@@ -234,47 +235,82 @@ public class Player2 : MonoBehaviour
         // 밀 수 있는 상자 Ray
         if (hStay || vStay)
         {
-            Debug.DrawRay(rigid.position - new Vector2(0, 0.1f), rayDir * 0.7f, new Color(1, 0, 0));
-            RaycastHit2D pushRay = Physics2D.Raycast(rigid.position - new Vector2(0, 0.1f), rayDir, 0.7f, LayerMask.GetMask("MoveBlock"));
+            Debug.DrawRay(rigid.position - new Vector2(0, 0.35f), rayDir * 0.7f, new Color(1, 0, 0));
+            RaycastHit2D pushRay = Physics2D.Raycast(rigid.position - new Vector2(0, 0.35f), rayDir, 0.7f, LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("BalloonGroup"));
 
             if (pushRay.collider != null)
             {
-                pushBlock = pushRay.collider.gameObject;
-                Box pushBlockLogic = pushBlock.GetComponent<Box>();
+                curPushTime += Time.deltaTime; // 물체 인식 시 시간 증가
 
-
-
-                curPushTime += Time.deltaTime;
-
-                if (curPushTime > nextPushTime)
+                // 밀 수 있는 상자
+                if (pushRay.collider.gameObject.layer == 13)
                 {
-                    if (rayDir == Vector2.up && pushBlockLogic.upScanObject == null)
-                    {
-                        pushBlockLogic.MoveBox("Up");
+                    nextPushTime = 0.5f;
+                    pushBlock = pushRay.collider.gameObject;
+                    Box pushBlockLogic = pushBlock.GetComponent<Box>();
 
-                    }
-                    else if (rayDir == Vector2.down && pushBlockLogic.downScanObject == null)
+                    if (curPushTime > nextPushTime)
                     {
-                        pushBlockLogic.MoveBox("Down");
+                        if (rayDir == Vector2.up && pushBlockLogic.upScanObject == null)
+                        {
+                            pushBlockLogic.MoveBox("Up");
 
+                        }
+                        else if (rayDir == Vector2.down && pushBlockLogic.downScanObject == null)
+                        {
+                            pushBlockLogic.MoveBox("Down");
+
+                        }
+                        else if (rayDir == Vector2.left && pushBlockLogic.leftScanObject == null)
+                        {
+                            pushBlockLogic.MoveBox("Left");
+
+                        }
+                        else if (rayDir == Vector2.right && pushBlockLogic.rightScanObject == null)
+                        {
+                            pushBlockLogic.MoveBox("Right");
+                        }
+
+                        // 시간 초기화
+                        curPushTime = 0;
                     }
-                    else if (rayDir == Vector2.left && pushBlockLogic.leftScanObject == null)
+                }
+                // 물풍선
+                else if (pushRay.collider.gameObject.layer == 11)
+                {
+                    nextPushTime = 0.3f;
+                    pushBalloon = pushRay.collider.gameObject;
+                    PushBalloon pushBalloonLogic = pushBalloon.GetComponent<PushBalloon>();
+
+                    if (curPushTime > nextPushTime)
                     {
-                        pushBlockLogic.MoveBox("Left");
+                        if (rayDir == Vector2.up)
+                        {
+                            pushBalloonLogic.MoveBalloon("Up");
+                        }
+                        else if (rayDir == Vector2.down)
+                        {
+                            pushBalloonLogic.MoveBalloon("Down");
+                        }
+                        else if (rayDir == Vector2.left)
+                        {
+                            pushBalloonLogic.MoveBalloon("Left");
 
-                    }
-                    else if (rayDir == Vector2.right && pushBlockLogic.rightScanObject == null)
-                    {
-                        pushBlockLogic.MoveBox("Right");
-                    }
+                        }
+                        else if (rayDir == Vector2.right)
+                        {
+                            pushBalloonLogic.MoveBalloon("Right");
+                        }
 
-                    // 시간 초기화
-                    curPushTime = 0;
+                        // 시간 초기화
+                        curPushTime = 0;
+                    }
                 }
             }
             else
             {
                 pushBlock = null;
+                pushBalloon = null;
             }
         }
         else
@@ -410,7 +446,7 @@ public class Player2 : MonoBehaviour
     {
 
 
-        if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "BalloonCollider")
+        if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "hitCollider")
         {
             if (useShield == true)
             {
@@ -418,7 +454,7 @@ public class Player2 : MonoBehaviour
             }
             else
             {
-                    DeathTime();  
+                DeathTime();
             }
 
             Debug.Log(collision.name);
@@ -426,99 +462,62 @@ public class Player2 : MonoBehaviour
         }
 
 
-        string iname = collision.gameObject.name;
-
+        // 아이템
         // 물풍선에 갇혀있을 땐 아이템 못 먹게 하는 조건 "isDying == false"
-        if (isDying == false)
+        if (isDying == false && collision.gameObject.layer == 17)
         {
-            // 플레이어가 물풍선 위에 있을 시
-            if (collision.gameObject.tag == "Balloon")
+            string itemName = collision.gameObject.name;
+
+            switch (collision.gameObject.tag)
             {
-
-
-
-            }
-
-            if (collision.gameObject.CompareTag("powerItem"))
-            {
-                if (bombPower < bombPowerMax)
-                {
-                    item2.PowerAdd(iname);
-                    audioSource.clip = itemAddSound;
-                    audioSource.Play();
-                }
-                // 먹은 아이템 비활성화
-                collision.gameObject.SetActive(false);
-                UnityEngine.Debug.Log("물풍선 아이템에 닿음");
-            }
-
-            else if (collision.gameObject.CompareTag("speedItem"))
-            {
-                if (playerSpeed < playerSpeedMax)
-                {
-                    item2.SpeedAdd(iname);
-                    audioSource.clip = itemAddSound;
-                    audioSource.Play();
-                }
-                UnityEngine.Debug.Log("스피드 아이템에 닿았음");
-                // 먹은 아이템 비활성화
-                collision.gameObject.SetActive(false);
-            }
-
-
-            else if (collision.gameObject.CompareTag("rangeItem"))
-            {
-                if (bombRange < bombRangeMax)
-                {
-                    item2.RangeAdd(iname);
-                    audioSource.clip = itemAddSound;
-                    audioSource.Play();
-                }
-                UnityEngine.Debug.Log("사거리 증가 아이템에 닿음");
-                // 먹은 아이템 비활성화
-                collision.gameObject.SetActive(false);
-            }
-
-            else if (collision.gameObject.CompareTag("superMan"))
-            {
-                item2.SuperMan(iname);
-                UnityEngine.Debug.Log("슈퍼맨!!");
-                audioSource.clip = itemAddSound;
-                audioSource.Play();
-                // 먹은 아이템 비활성화
-                collision.gameObject.SetActive(false);
-            }
-
-            // 먹은 아이템을 Activeitem 배열에 추가 (ActiveItem 태그를 가진 아이템만 추가)
-            if (collision.gameObject.CompareTag("ActiveItem"))
-            {
-                if (collision.gameObject.name.Contains("shield"))
-                {
-                    audioSource.clip = itemAddSound;
-                    audioSource.Play();
-                    if (p1niddle == true)
+                case "powerItem":
+                    item2.PowerAdd();
+                    break;
+                case "speedItem":
+                    item2.SpeedAdd();
+                    break;
+                case "rangeItem":
+                    item2.RangeAdd(itemName);
+                    break;
+                case "shoesItem":
+                    // 신발 아이템 (물풍선 차기)
+                    break;
+                case "redDevil":
+                    item2.RedDeVil();
+                    break;
+                case "ActiveItem":
+                    // 먹은 아이템을 Activeitem 배열에 추가 (ActiveItem 태그를 가진 아이템만 추가)
+                    if (itemName.Contains("shield"))
                     {
-                        p1niddle.SetActive(false);
+                        if (p1niddle == true)
+                        {
+                            p1niddle.SetActive(false);
+                        }
+                        p1shield.SetActive(true);
                     }
-                    p1shield.SetActive(true);
-                }
-                else if (collision.gameObject.name.Contains("niddle"))
-                {
-                    audioSource.clip = itemAddSound;
-                    audioSource.Play();
-                    if (p1shield == true)
+                    else if (itemName.Contains("niddle"))
                     {
-                        p1shield.SetActive(false);
-                    }
-                    p1niddle.SetActive(true);
+                        if (p1shield == true)
+                        {
+                            p1shield.SetActive(false);
+                        }
+                        p1niddle.SetActive(true);
 
-                    useniddle = false; // 다시 바늘 사용가능하게 초기화
-                }
-                UnityEngine.Debug.Log("ActiveItem ADD");
-                item2.AddActiveItem(collision.gameObject, 0);
-                // 먹은 아이템 비활성화
-                collision.gameObject.SetActive(false);
+                        useniddle = false; // 다시 바늘 사용가능하게 초기화
+
+                    }
+                    item2.AddActiveItem(collision.gameObject, 0);
+                    break;
+                case "purpleDevil":
+                    break;
             }
+
+            // 먹은 아이템 비활성화
+            collision.gameObject.SetActive(false);
+
+            // 사운드
+            audioSource.clip = itemAddSound;
+            audioSource.Play();
         }
     }
 
@@ -562,26 +561,26 @@ public class Player2 : MonoBehaviour
     }
 
 
-/*  이것은 구판 오더레이어
-    void colliderRay()
-    {
-        // Ray
-        Debug.DrawRay(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right * 0.7f, new Color(1, 1, 1));
-        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+    /*  이것은 구판 오더레이어
+        void colliderRay()
+        {
+            // Ray
+            Debug.DrawRay(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right * 0.7f, new Color(1, 1, 1));
+            RaycastHit2D downRayHit = Physics2D.Raycast(transform.position - new Vector3(0.35f, 0.65f, 0), Vector3.right, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
 
-        if (downRayHit.collider != null)
-        {
-            GameObject downObj = downRayHit.collider.gameObject;
-            SpriteRenderer orderInLayer = downObj.GetComponent<SpriteRenderer>();
-            int objOrder = orderInLayer.sortingOrder;
-            playerRenderer.sortingOrder = orderInLayer.sortingOrder - 1;
-            // orderInLayer.sortingOrder += playerRenderer.sortingOrder;
-            objOrder = orderInLayer.sortingOrder;
-            Debug.Log(downObj.name);
-        }
-        else if (downRayHit.collider == null)
-        {
-            playerRenderer.sortingOrder = 13;
-        }
-    }*/
+            if (downRayHit.collider != null)
+            {
+                GameObject downObj = downRayHit.collider.gameObject;
+                SpriteRenderer orderInLayer = downObj.GetComponent<SpriteRenderer>();
+                int objOrder = orderInLayer.sortingOrder;
+                playerRenderer.sortingOrder = orderInLayer.sortingOrder - 1;
+                // orderInLayer.sortingOrder += playerRenderer.sortingOrder;
+                objOrder = orderInLayer.sortingOrder;
+                Debug.Log(downObj.name);
+            }
+            else if (downRayHit.collider == null)
+            {
+                playerRenderer.sortingOrder = 13;
+            }
+        }*/
 }

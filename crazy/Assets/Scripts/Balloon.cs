@@ -7,6 +7,7 @@ public class Balloon : MonoBehaviour
 {
     Animator anim;
     BoxCollider2D collider;
+    Rigidbody2D rigid;
 
     public AudioClip boomSound; //캐릭터 갇힌 물풍선 터질때
     AudioSource audioSource;
@@ -16,16 +17,16 @@ public class Balloon : MonoBehaviour
     public GameObject downWater;
     public GameObject leftWater;
     public GameObject rightWater;
-    public GameObject balloonCollider;
 
     public GameObject mainBalloon; // 물풍선 본체
-    public GameObject MainCollider; // 물풍선이 터지면 활성화 될, 물풍선 Collider
-    BoxCollider2D mainCol;
+    public BoxCollider2D colliderA; // 플레이어 A 전용 피격 판정 collider
+    public BoxCollider2D colliderB; // 플레이어 B 전용 피격 판정 collider
+    public BoxCollider2D hitCollider; // 물풍선 피격 판정 collider
 
-    GameObject upScanObject; // upRay 에 인식되는 오브젝트 변수
-    GameObject downScanObject; // downRay 에 인식되는 오브젝트 변수
-    GameObject leftScanObject; // leftRay 에 인식되는 오브젝트 변수
-    GameObject rightScanObject; // rightRay 에 인식되는 오브젝트 변수
+    public GameObject upScanObject; // upRay 에 인식되는 오브젝트 변수
+    public GameObject downScanObject; // downRay 에 인식되는 오브젝트 변수
+    public GameObject leftScanObject; // leftRay 에 인식되는 오브젝트 변수
+    public GameObject rightScanObject; // rightRay 에 인식되는 오브젝트 변수
 
     bool waterLineActive = true; // 물줄기 위에 물풍선 설치 시, 안 터지게 만들기 위한 변수
 
@@ -39,8 +40,8 @@ public class Balloon : MonoBehaviour
     {
         anim = GetComponent < Animator>();
         collider = gameObject.GetComponent<BoxCollider2D>();
+        rigid = gameObject.GetComponent<Rigidbody2D>();
 
-        mainCol = MainCollider.GetComponent<BoxCollider2D>();
         audioSource = GetComponent<AudioSource>();
 
     }
@@ -55,7 +56,7 @@ public class Balloon : MonoBehaviour
         downWater.SetActive(false);
         leftWater.SetActive(false);
         rightWater.SetActive(false);
-        balloonCollider.SetActive(false);
+        hitCollider.enabled = false;
     }
 
     void Update()
@@ -194,7 +195,7 @@ public class Balloon : MonoBehaviour
 
         }
 
-        balloonCollider.SetActive(true);
+        hitCollider.enabled = true;
 
         // 사운드
         audioSource.clip = boomSound;
@@ -209,18 +210,18 @@ public class Balloon : MonoBehaviour
 
         mainBalloon.SetActive(false);
 
-        // 물줄기, Main Collider 비활성화
+        // 물줄기, hit Collider 비활성화
         upWater.SetActive(false);
         downWater.SetActive(false);
         leftWater.SetActive(false);
         rightWater.SetActive(false);
-        balloonCollider.SetActive(false);
+        hitCollider.enabled = false;
 
         waterLineActive = true;
 
         // 트리거 활성화 (collider = Player A 물풍선, mainCol = Player B 물풍선)
-        collider.isTrigger = true;
-        mainCol.isTrigger = true;
+        colliderA.isTrigger = true;
+        colliderB.isTrigger = true;
 
         // 사운드 초기화
         audioSource.clip = null;

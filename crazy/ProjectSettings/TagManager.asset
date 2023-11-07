@@ -19,12 +19,15 @@ TagManager:
   - PlayerB
   - MainCollider
   - grass
-  - BalloonCollider
+  - shoesItem
+  - purpleDevil
+  - redDevil
+  - hitCollider
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Balloon
   - Water
   - UI
   - Player A
@@ -32,13 +35,13 @@ TagManager:
   - Balloon A
   - Balloon B
   - Water
-  - 
+  - BalloonGroup
   - Block
   - MoveBlock
   - Object
   - Grass
   - Judgment
-  - 
+  - Item
   - 
   - 
   - 

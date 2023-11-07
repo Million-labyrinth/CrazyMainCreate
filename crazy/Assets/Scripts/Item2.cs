@@ -28,55 +28,43 @@ public class Item2 : MonoBehaviour
 
 
 
-
-
-    //
-    public void PowerAdd(string name)
+    public void PowerAdd()
     {
-        if (name.Contains("basicBubble"))
+        if (player.bombPower < player.bombPowerMax)
         {
-
             player.bombPower++;
-            Debug.Log("PlayerB PowerUp");
-
-            Debug.Log("basicBubble touch");
         }
 
     }
 
-    public void SpeedAdd(string name)
+    public void SpeedAdd()
     {
-        if (name.Contains("roller"))
+        if (player.playerSpeed < player.playerSpeedMax)
         {
-            Debug.Log("roller touch");
             player.playerSpeed++;
-
         }
-        else if (name.Contains("redDevil"))
-        {
-            Debug.Log("redDevil touch");
-            player.playerSpeed = player.playerSpeedMax;
-
-        }
-
-
-
     }
 
     public void RangeAdd(string name)
     {
-        if (name.Contains("basicFluid"))
+        if (player.bombRange < player.bombRangeMax)
         {
-            player.bombRange++;
-
-            Debug.Log("BasicFluid touch");
+            // 일반 물줄기 아이템
+            if (name.Contains("basicFluid"))
+            {
+                player.bombRange++;
+            }
+            // 울트라 물줄기 아이템
+            else if (name.Contains("ultraFluid"))
+            {
+                player.bombRange = player.bombRangeMax;
+            }
         }
-        else if (name.Contains("ultraFluid"))
-        {
-            player.bombRange = player.bombRangeMax;
+    }
 
-            Debug.Log("ultraFluid touch");
-        }
+    public void RedDeVil()
+    {
+        player.playerSpeed = player.playerSpeedMax;
     }
 
 

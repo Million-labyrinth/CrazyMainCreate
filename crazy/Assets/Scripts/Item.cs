@@ -11,8 +11,8 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public Player player;
-    
-    
+
+
     private int previousBombPower;
     private int previousBombRange;
     private float previousPlayerSpeed;
@@ -31,90 +31,75 @@ public class Item : MonoBehaviour
     }
 
 
-
-
-    
-    //
-    public void PowerAdd(string name)
+    public void PowerAdd()
     {
-        if(name.Contains("basicBubble"))
+        if (player.bombPower < player.bombPowerMax)
         {
-           
-                player.bombPower++;
-                Debug.Log("PlayerA PowerUp");
-       
-            Debug.Log("basicBubble touch");
+            player.bombPower++;
         }
-        
+
     }
- 
-    public void SpeedAdd(string name)
+
+    public void SpeedAdd()
     {
-            if (name.Contains("roller"))
-            {
-                Debug.Log("roller touch");
-                player.playerSpeed++ ;
-              
-        } 
-            else if(name.Contains("redDevil"))
-            {
-                Debug.Log("redDevil touch");
-                player.playerSpeed = player.playerSpeedMax;
-               
+        if (player.playerSpeed < player.playerSpeedMax)
+        {
+            player.playerSpeed++;
         }
-        
-
-
     }
 
     public void RangeAdd(string name)
     {
-        if(name.Contains("basicFluid"))
+        if (player.bombRange < player.bombRangeMax)
         {
-            player.bombRange++;
-            
-            Debug.Log("BasicFluid touch");
-        }
-        else if(name.Contains("ultraFluid"))
-        {
-            player.bombRange = player.bombRangeMax;
-            
-            Debug.Log("ultraFluid touch");
+            // 일반 물줄기 아이템
+            if (name.Contains("basicFluid"))
+            {
+                player.bombRange++;
+            }
+            // 울트라 물줄기 아이템
+            else if (name.Contains("ultraFluid"))
+            {
+                player.bombRange = player.bombRangeMax;
+            }
         }
     }
 
-   
+    public void RedDeVil()
+    {
+        player.playerSpeed = player.playerSpeedMax;
+    }
+
+
     public void LoadState()
     {
         player.bombPower = previousBombPower;
         player.bombRange = previousBombRange;
         player.playerSpeed = previousPlayerSpeed;
-
-       
     }
 
 
- 
+
     public void SuperMan(string name)
     {
         if (name.Contains("superMan") && !isSupermanActive)
         {
-            
+
             isSupermanActive = true;
 
-            
+
             previousBombPower = player.bombPower;
             previousBombRange = player.bombRange;
             previousPlayerSpeed = player.playerSpeed;
 
-            
 
-           
+
+
             player.bombPower = player.bombPowerMax;
             player.bombRange = player.bombRangeMax;
             player.playerSpeed = player.playerSpeedMax;
 
-      
+
             StartCoroutine(RestoreAbilitiesAfterDelay(5f));
         }
     }
@@ -141,12 +126,12 @@ public class Item : MonoBehaviour
         {
             Debug.Log("shield item touch");
 
-            
+
         }
-    
 
 
-    
+
+
         for (int i = 0; i < Activeitem.Length; i++)
         {
             if (Activeitem[i] != null && Activeitem[i].name == name)
@@ -162,12 +147,12 @@ public class Item : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-     
+
         player.bombPower = previousBombPower;
         player.bombRange = previousBombRange;
         player.playerSpeed = previousPlayerSpeed;
 
-       
+
         isSupermanActive = false;
     }
 }

@@ -165,7 +165,7 @@ public class PlayerItem : MonoBehaviour
         {
             if(bombPower < bombPowerMax)
             {
-                item.PowerAdd(iname);
+                item.PowerAdd();
             }
             Debug.Log("물풍선 아이템에 닿음");
         }
@@ -175,7 +175,7 @@ public class PlayerItem : MonoBehaviour
             
             if (playerSpeed < playerSpeedMax)
             {
-                item.SpeedAdd(iname);
+                item.SpeedAdd();
             }
             Debug.Log("스피드 아이템에 닿았음");
         }
