@@ -15,11 +15,9 @@ public class OrderLayer : MonoBehaviour
     void Update()
     {
 
-        float x = 7 - (float)Mathf.RoundToInt(transform.position.y);
+        float x = 7 - Mathf.Round(transform.position.y);
 
-        int newOrderInLayer = Mathf.RoundToInt(x * layerMultiplier);
-
-        meRenderer.sortingOrder = newOrderInLayer;
+        meRenderer.sortingOrder =(int)x;
 
         /*if (5.5f <= x && x < 6.5f)
         {

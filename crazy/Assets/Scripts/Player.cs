@@ -274,7 +274,7 @@ public class Player : MonoBehaviour
                     }
                 } 
                 // 물풍선
-                else if(pushRay.collider.gameObject.layer == 11)
+/*                else if(pushRay.collider.gameObject.layer == 11)
                 {
                     nextPushTime = 0.3f;
                     pushBalloon = pushRay.collider.gameObject;
@@ -303,7 +303,7 @@ public class Player : MonoBehaviour
                         // 시간 초기화
                         curPushTime = 0;
                     }
-                }
+                }*/
             }
             else
             {
