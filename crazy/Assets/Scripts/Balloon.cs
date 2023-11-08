@@ -7,7 +7,7 @@ public class Balloon : MonoBehaviour
 {
     Animator anim;
     BoxCollider2D collider;
-    Rigidbody2D rigid;
+    public Rigidbody2D rigid;
 
     public AudioClip boomSound; //캐릭터 갇힌 물풍선 터질때
     AudioSource audioSource;

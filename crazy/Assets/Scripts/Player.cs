@@ -68,6 +68,8 @@ public class Player : MonoBehaviour
     Vector2 rayDir; // Ray 방향
     public SpriteRenderer playerRenderer; //스프라이트 활성화 비활성화
 
+    bool canKickBalloon = false;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -82,6 +84,7 @@ public class Player : MonoBehaviour
         playerHealth = 0f;
 
         playerAmakeBalloon = true;
+        canKickBalloon = false;
     }
 
     void Update()
@@ -229,8 +232,7 @@ public class Player : MonoBehaviour
             playerAmakeBalloon = true;
         }
 
-
-        // 밀 수 있는 상자 Ray
+        // 밀 수 있는 상자 / 물풍선 Ray
         if (hStay || vStay)
         {
             Debug.DrawRay(rigid.position - new Vector2(0, 0.35f), rayDir * 0.7f, new Color(1, 0, 0));
@@ -241,7 +243,7 @@ public class Player : MonoBehaviour
                 curPushTime += Time.deltaTime; // 물체 인식 시 시간 증가
 
                 // 밀 수 있는 상자
-                if(pushRay.collider.gameObject.layer == 13)
+                if (pushRay.collider.gameObject.layer == 13)
                 {
                     nextPushTime = 0.5f;
                     pushBlock = pushRay.collider.gameObject;
@@ -252,7 +254,6 @@ public class Player : MonoBehaviour
                         if (rayDir == Vector2.up && pushBlockLogic.upScanObject == null)
                         {
                             pushBlockLogic.MoveBox("Up");
-
                         }
                         else if (rayDir == Vector2.down && pushBlockLogic.downScanObject == null)
                         {
@@ -272,30 +273,29 @@ public class Player : MonoBehaviour
                         // 시간 초기화
                         curPushTime = 0;
                     }
-                } 
+                }
                 // 물풍선
-                else if(pushRay.collider.gameObject.layer == 11)
+                else if (pushRay.collider.gameObject.layer == 11)
                 {
                     nextPushTime = 0.3f;
                     pushBalloon = pushRay.collider.gameObject;
                     PushBalloon pushBalloonLogic = pushBalloon.GetComponent<PushBalloon>();
 
-                    if (curPushTime > nextPushTime)
+                    if (curPushTime > nextPushTime && canKickBalloon)
                     {
-                        if (rayDir == Vector2.up)
+                        if (rayDir == Vector2.up && pushBalloonLogic.balloonLogic.upScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Up");
                         }
-                        else if (rayDir == Vector2.down)
+                        else if (rayDir == Vector2.down && pushBalloonLogic.balloonLogic.downScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Down");
                         }
-                        else if (rayDir == Vector2.left)
+                        else if (rayDir == Vector2.left && pushBalloonLogic.balloonLogic.leftScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Left");
-
                         }
-                        else if (rayDir == Vector2.right)
+                        else if (rayDir == Vector2.right && pushBalloonLogic.balloonLogic.rightScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Right");
                         }
@@ -315,6 +315,7 @@ public class Player : MonoBehaviour
         {
             // 키 다운 해제 시 시간 초기화
             curPushTime = 0;
+            nextPushTime = 0;
         }
     }
 
@@ -475,7 +476,7 @@ public class Player : MonoBehaviour
                     item.RangeAdd(itemName);
                     break;
                 case "shoesItem":
-                    // 신발 아이템 (물풍선 차기)
+                    canKickBalloon = true;
                     break;
                 case "redDevil":
                     item.RedDeVil();
