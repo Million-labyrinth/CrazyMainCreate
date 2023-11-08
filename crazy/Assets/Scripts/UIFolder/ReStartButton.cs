@@ -11,20 +11,21 @@ public class ReStartButton : MonoBehaviour
     public GameObject alert;
     public TitletoManual ttM;
 
-    public void Awake()
+    int seenCtn; // 보낼 변수 
+
+    public void ttv()
     {
-       ttM = GetComponent<TitletoManual>();
-      
-        
+        seenCtn = PlayerPrefs.GetInt("MyVariable", 0); //
+        seenCtn += 2;//보낼 변수 저장 1 = 타이틀/ 2= 맵선택
+        PlayerPrefs.SetInt("MyVariable", seenCtn); // 씬 변수 발송
+        PlayerPrefs.Save(); // 변수 저장
+        SceneManager.LoadScene("Titles"); //씬 불러오기 
     }
-
-    public void ttv() // 버튼 누를 때 다음 씬 연결
+ 
+    public void GoTitle()
     {
+        SceneManager.LoadScene("Titles"); //씬 불러오기 
 
-        SceneManager.LoadScene("Titles");
-        GameObject objToActivate = GameObject.Find("MapSelect");
-        objToActivate.SetActive(true);
-        Debug.Log("버튼눌림");
     }
 
     public void openRestartAlert()

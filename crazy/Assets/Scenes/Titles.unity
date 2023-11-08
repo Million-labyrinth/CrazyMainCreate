@@ -3210,7 +3210,9 @@ GameObject:
   - component: {fileID: 1798437095}
   - component: {fileID: 1798437094}
   - component: {fileID: 1798437093}
+  - component: {fileID: 1798437098}
   - component: {fileID: 1798437096}
+  - component: {fileID: 1798437097}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3291,6 +3293,35 @@ MonoBehaviour:
   ttg_2: {fileID: 0}
   ttm_1: {fileID: 1697780919}
   ttm_2: {fileID: 0}
+--- !u!114 &1798437097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798437092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f793aeb9e84598c4e86bc84ff6aeb381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title_to_scene: {fileID: 0}
+  alert: {fileID: 0}
+  ttM: {fileID: 0}
+--- !u!114 &1798437098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798437092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e26b5ae73664b4dbc5d544226f21c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: {fileID: 342584361}
+  receivedVariable: 0
 --- !u!1 &2081518486
 GameObject:
   m_ObjectHideFlags: 0
