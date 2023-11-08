@@ -5,6 +5,7 @@ using UnityEngine;
 public class OrderLayer : MonoBehaviour
 {
     public SpriteRenderer meRenderer;
+    public float layerMultiplier = 10.0f;
 
     void Start()
     {
@@ -13,8 +14,12 @@ public class OrderLayer : MonoBehaviour
 
     void Update()
     {
-        int x = 7 - (int)Mathf.Round(transform.position.y);
-        meRenderer.sortingOrder = x;
+
+        float x = 7 - (float)Mathf.RoundToInt(transform.position.y);
+
+        int newOrderInLayer = Mathf.RoundToInt(x * layerMultiplier);
+
+        meRenderer.sortingOrder = newOrderInLayer;
 
         /*if (5.5f <= x && x < 6.5f)
         {
