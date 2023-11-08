@@ -539,6 +539,8 @@ public class Player2 : MonoBehaviour
     {
         Debug.Log("플레이어가 데미지를 입음");
         anim.SetBool("isDamaged", true);
+        anim.SetBool("isDying", false);
+
         playerSpeed = 0.8f;
         audioSource.clip = balloonLockSound;
         audioSource.Play();
