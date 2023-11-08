@@ -9,12 +9,21 @@ public class ReStartButton : MonoBehaviour
 {
     public Button title_to_scene;
     public GameObject alert;
+    public TitletoManual ttM;
 
-
+    public void Awake()
+    {
+       ttM = GetComponent<TitletoManual>();
+      
+        
+    }
 
     public void ttv() // 버튼 누를 때 다음 씬 연결
     {
+
         SceneManager.LoadScene("Titles");
+        GameObject objToActivate = GameObject.Find("MapSelect");
+        objToActivate.SetActive(true);
         Debug.Log("버튼눌림");
     }
 

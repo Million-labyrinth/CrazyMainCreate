@@ -19,14 +19,10 @@ public class TitletoManual : MonoBehaviour
     public GameObject ttm_1;
     public GameObject ttm_2;
 
+
     // Start is called before the first frame update
 
-    private void Start()
-    {
-        title.SetActive(true);
-        manual.SetActive(false);
-        map.SetActive(false);
-    }
+  
     public void title_to_manual()
     {
         title.SetActive(false);
