@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 7466482176607191909}
   - component: {fileID: -6769454140269477848}
   m_Layer: 17
-  m_Name: basicBubble
-  m_TagString: powerItem
+  m_Name: Shoes
+  m_TagString: shoesItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: daacd5667453d0d4394e7dc2c5bb97c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb9ad12bba4b03d4caeb246b91a7b736, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,7 +119,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.12}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6
 --- !u!114 &7466482176607191909

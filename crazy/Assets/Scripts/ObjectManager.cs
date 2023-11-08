@@ -20,6 +20,9 @@ public class ObjectManager : MonoBehaviour
     public GameObject niddleItemPrefab;
     public GameObject shieldItemPrefab;
     public GameObject ultraFluidItemPrefab;
+    public GameObject shoesItemPrefab;
+    public GameObject redDevilPrefab;
+    public GameObject purpleDevilPrefab;
 
     // 물풍선 배열
     GameObject[] waterBalloon1;
@@ -38,6 +41,9 @@ public class ObjectManager : MonoBehaviour
     GameObject[] niddleItem;
     GameObject[] shieldItem;
     GameObject[] ultraFluidItem;
+    GameObject[] shoesItem;
+    GameObject[] redDevil;
+    GameObject[] purpleDevil;
 
     GameObject[] targetPool; // switch 문을 통해 생성될 오브젝트 배열을 용도
 
@@ -55,12 +61,15 @@ public class ObjectManager : MonoBehaviour
         waterBalloon6 = new GameObject[20];
         waterBalloon7 = new GameObject[20];
 
-        bubbleItem = new GameObject[10];
-        fluidItem = new GameObject[8];
-        rollerItem = new GameObject[4];
-        niddleItem = new GameObject[3];
-        shieldItem = new GameObject[3];
-        ultraFluidItem = new GameObject[3];
+        bubbleItem = new GameObject[15];
+        fluidItem = new GameObject[10];
+        rollerItem = new GameObject[10];
+        niddleItem = new GameObject[5];
+        shieldItem = new GameObject[5];
+        ultraFluidItem = new GameObject[5];
+        shoesItem = new GameObject[5];
+        redDevil = new GameObject[5];
+        purpleDevil = new GameObject[5];
 
         Generate();
 
@@ -138,6 +147,21 @@ public class ObjectManager : MonoBehaviour
             ultraFluidItem[index] = Instantiate(ultraFluidItemPrefab);
             ultraFluidItem[index].SetActive(false);
         }
+        for (int index = 0; index < shoesItem.Length; index++)
+        {
+            shoesItem[index] = Instantiate(shoesItemPrefab);
+            shoesItem[index].SetActive(false);
+        }
+        for (int index = 0; index < redDevil.Length; index++)
+        {
+            redDevil[index] = Instantiate(redDevilPrefab);
+            redDevil[index].SetActive(false);
+        }
+        for (int index = 0; index < purpleDevil.Length; index++)
+        {
+            purpleDevil[index] = Instantiate(purpleDevilPrefab);
+            purpleDevil[index].SetActive(false);
+        }
     }
 
     public GameObject MakeItem(string type)
@@ -160,6 +184,15 @@ public class ObjectManager : MonoBehaviour
                 targetPool = niddleItem;
                 break;
             case "UltraFluidItem":
+                targetPool = ultraFluidItem;
+                break;
+            case "ShoesItem":
+                targetPool = ultraFluidItem;
+                break;
+            case "RedDevil":
+                targetPool = ultraFluidItem;
+                break;
+            case "PurpleDevil":
                 targetPool = ultraFluidItem;
                 break;
         }
@@ -220,6 +253,15 @@ public class ObjectManager : MonoBehaviour
                 targetPool = niddleItem;
                 break;
             case "UltraFluid":
+                targetPool = ultraFluidItem;
+                break;
+            case "ShoesItem":
+                targetPool = ultraFluidItem;
+                break;
+            case "RedDevil":
+                targetPool = ultraFluidItem;
+                break;
+            case "PurpleDevil":
                 targetPool = ultraFluidItem;
                 break;
         }

@@ -37,12 +37,12 @@ public class Block : MonoBehaviour
     {
         // Item 드랍률
         int ran = UnityEngine.Random.Range(0, 100);
-        if (ran < 60)
+        if (ran < 50)
         { // Not Item 60%
             Debug.Log("Not Item");
         }
-        else if (ran < 77)
-        {   // bubbleItem 17%
+        else if (ran < 70)
+        {   // bubbleItem 20%
             GameObject bubbleItem = objectManager.MakeItem("BubbleItem");
             bubbleItem.transform.position = transform.position;
 
@@ -50,7 +50,7 @@ public class Block : MonoBehaviour
             movement.minY = transform.position.y;
             movement.maxY = transform.position.y + 0.1f;
         }
-        else if (ran < 92)
+        else if (ran < 85)
         {   // flulidItem 15%
             GameObject flulidItem = objectManager.MakeItem("FluidItem");
             flulidItem.transform.position = transform.position;
@@ -59,7 +59,7 @@ public class Block : MonoBehaviour
             movement.minY = transform.position.y;
             movement.maxY = transform.position.y + 0.1f;
         }
-        else if (ran < 97)
+        else if (ran < 90)
         {   // rollerItem 5%
             GameObject rollerItem = objectManager.MakeItem("RollerItem");
             rollerItem.transform.position = transform.position;
@@ -68,7 +68,7 @@ public class Block : MonoBehaviour
             movement.minY = transform.position.y;
             movement.maxY = transform.position.y + 0.1f;
         }
-        else if (ran < 98)
+        else if (ran < 91)
         {   // shieldItem 1%
             GameObject shieldItem = objectManager.MakeItem("ShieldItem");
             shieldItem.transform.position = transform.position;
@@ -77,8 +77,8 @@ public class Block : MonoBehaviour
             movement.minY = transform.position.y;
             movement.maxY = transform.position.y + 0.1f;
         }
-        else if (ran < 99)
-        {   // ultraFluidItem 1%
+        else if (ran < 94)
+        {   // ultraFluidItem 3%
             GameObject ultraFluidItem = objectManager.MakeItem("UltraFluidItem");
             ultraFluidItem.transform.position = transform.position;
 
@@ -86,7 +86,7 @@ public class Block : MonoBehaviour
             movement.minY = transform.position.y;
             movement.maxY = transform.position.y + 0.1f;
         }
-        else if (ran < 100)
+        else if (ran < 95)
         {   // niddleItem 1%
             GameObject niddleItem = objectManager.MakeItem("NiddleItem");
             niddleItem.transform.position = transform.position;
@@ -95,6 +95,34 @@ public class Block : MonoBehaviour
             movement.minY = transform.position.y;
             movement.maxY = transform.position.y + 0.1f;
         }
+        else if (ran < 98)
+        {   // shoesItem 3%
+            GameObject shoesItem = objectManager.MakeItem("ShoesItem");
+            shoesItem.transform.position = transform.position;
+
+            VerticalMovement movement = shoesItem.GetComponent<VerticalMovement>();
+            movement.minY = transform.position.y;
+            movement.maxY = transform.position.y + 0.1f;
+        }
+        else if (ran < 100)
+        {   // redDevil 2%
+            GameObject redDevil = objectManager.MakeItem("RedDevil");
+            redDevil.transform.position = transform.position;
+
+            VerticalMovement movement = redDevil.GetComponent<VerticalMovement>();
+            movement.minY = transform.position.y;
+            movement.maxY = transform.position.y + 0.1f;
+        }
+        //else if (ran < 100)
+        //{   
+        //    GameObject purpleDevil = objectManager.MakeItem("PurpleDevil");
+        //    purpleDevil.transform.position = transform.position;
+
+        //    VerticalMovement movement = purpleDevil.GetComponent<VerticalMovement>();
+        //    movement.minY = transform.position.y;
+        //    movement.maxY = transform.position.y + 0.1f;
+        //}
+
 
     }
 

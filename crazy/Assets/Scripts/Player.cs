@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
     public SpriteRenderer playerRenderer; //스프라이트 활성화 비활성화
 
     bool getShoesItem = false; // 신발 아이템 획득 여부
-    bool canKickBalloon = false; // 물풍선 위에 있을 때 물풍선을 차는 오류 방지
+    bool canKickBalloon = true; // 물풍선 위에 있을 때 물풍선을 차는 오류 방지
 
     void Awake()
     {
@@ -520,7 +520,10 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        canKickBalloon = false;
+        if(collision.gameObject.tag == "balloon")
+        {
+            canKickBalloon = false;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)

@@ -68,6 +68,9 @@ public class Player2 : MonoBehaviour
     Vector2 rayDir; // Ray 방향
     public SpriteRenderer playerRenderer; //스프라이트 활성화 비활성화
 
+    bool getShoesItem = false; // 신발 아이템 획득 여부
+    bool canKickBalloon = true; // 물풍선 위에 있을 때 물풍선을 차는 오류 방지
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -199,7 +202,7 @@ public class Player2 : MonoBehaviour
     void Ray()
     {
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
-        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player A"));
+        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.32f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player A"));
         GameObject scanObject;
 
         if (playerBRay != null)
@@ -235,8 +238,8 @@ public class Player2 : MonoBehaviour
         // 밀 수 있는 상자 Ray
         if (hStay || vStay)
         {
-            Debug.DrawRay(rigid.position - new Vector2(0, 0.35f), rayDir * 0.7f, new Color(1, 0, 0));
-            RaycastHit2D pushRay = Physics2D.Raycast(rigid.position - new Vector2(0, 0.35f), rayDir, 0.7f, LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("BalloonGroup"));
+            Debug.DrawRay(rigid.position - new Vector2(0, 0.32f), rayDir * 0.7f, new Color(1, 0, 0));
+            RaycastHit2D pushRay = Physics2D.Raycast(rigid.position - new Vector2(0, 0.32f), rayDir, 0.7f, LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("BalloonGroup"));
 
             if (pushRay.collider != null)
             {
@@ -249,7 +252,7 @@ public class Player2 : MonoBehaviour
                     pushBlock = pushRay.collider.gameObject;
                     Box pushBlockLogic = pushBlock.GetComponent<Box>();
 
-                    if (curPushTime > nextPushTime)
+                    if (curPushTime > nextPushTime && getShoesItem && canKickBalloon)
                     {
                         if (rayDir == Vector2.up && pushBlockLogic.upScanObject == null)
                         {
@@ -284,20 +287,20 @@ public class Player2 : MonoBehaviour
 
                     if (curPushTime > nextPushTime)
                     {
-                        if (rayDir == Vector2.up)
+                        if (rayDir == Vector2.up && pushBalloonLogic.balloonLogic.upScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Up");
                         }
-                        else if (rayDir == Vector2.down)
+                        else if (rayDir == Vector2.down && pushBalloonLogic.balloonLogic.downScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Down");
                         }
-                        else if (rayDir == Vector2.left)
+                        else if (rayDir == Vector2.left && pushBalloonLogic.balloonLogic.leftScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Left");
 
                         }
-                        else if (rayDir == Vector2.right)
+                        else if (rayDir == Vector2.right && pushBalloonLogic.balloonLogic.rightScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Right");
                         }
@@ -317,6 +320,7 @@ public class Player2 : MonoBehaviour
         {
             // 키 다운 해제 시 시간 초기화
             curPushTime = 0;
+            nextPushTime = 0;
         }
     }
 
@@ -324,7 +328,7 @@ public class Player2 : MonoBehaviour
     {
         Gizmos.color = new Color(0f, 1f, 0f);
         // 물풍선 생성 판정
-        Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.1f), 0.45f);
+        Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.32f), 0.45f);
     }
 
 
@@ -480,7 +484,7 @@ public class Player2 : MonoBehaviour
                     item2.RangeAdd(itemName);
                     break;
                 case "shoesItem":
-                    // 신발 아이템 (물풍선 차기)
+                    getShoesItem = true;
                     break;
                 case "redDevil":
                     item2.RedDeVil();
@@ -521,6 +525,14 @@ public class Player2 : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "balloon")
+        {
+            canKickBalloon = false;
+        }
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
 
@@ -531,6 +543,7 @@ public class Player2 : MonoBehaviour
         {
             Collider2D col = other.gameObject.GetComponent<Collider2D>();
             col.isTrigger = false;
+            canKickBalloon = true;
         }
 
     }

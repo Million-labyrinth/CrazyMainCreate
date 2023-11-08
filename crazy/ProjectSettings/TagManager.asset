@@ -23,6 +23,8 @@ TagManager:
   - purpleDevil
   - redDevil
   - hitCollider
+  - springItem
+  - tankItem
   layers:
   - Default
   - TransparentFX
