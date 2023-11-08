@@ -197,6 +197,7 @@ public class Balloon : MonoBehaviour
 
         hitCollider.enabled = true;
 
+
         // 사운드
         audioSource.clip = boomSound;
         audioSource.Play();

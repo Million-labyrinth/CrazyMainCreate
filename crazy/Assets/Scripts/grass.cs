@@ -16,10 +16,12 @@ public class grass : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.tag == "upWater" || other.gameObject.tag == "downWater" || other.gameObject.tag == "leftWater" || other.gameObject.tag == "rightWater" || other.gameObject.tag == "BalloonCollider")
+        if (other.gameObject.tag == "upWater" || other.gameObject.tag == "downWater" || other.gameObject.tag == "leftWater" || other.gameObject.tag == "rightWater" || other.gameObject.tag == "hitCollider")
         {
+            Debug.Log("aaa");
             if (!haveObj)
             {
+                Debug.Log("bbb");
                 gameObject.SetActive(false);
                 Debug.Log("false");
             }
@@ -41,38 +43,13 @@ public class grass : MonoBehaviour
 
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "upWater" || other.gameObject.tag == "downWater" || other.gameObject.tag == "leftWater" || other.gameObject.tag == "rightWater" || other.gameObject.tag == "BalloonCollider")
-        {
-            
-            if (!haveObj)
-            {
-                gameObject.SetActive(false);
-            }
-
-        }
-        else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
-        {
-            haveObj = true;
-
-            // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
-            SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
-            otherSprite.enabled = false;
-
-        } else if(other.tag == "Balloon")
-        {
-            SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
-            otherSprite.enabled = false;
-        }
-
-    }
-
     private void OnTriggerExit2D(Collider2D other)
     {
-        // Grass 안에 있었던 오브젝트의 스프라이트 렌더러를 켜줌.
-        SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
-        otherSprite.enabled = true;
+        if (other.tag == "Balloon" || other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
+        {
+            SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
+            otherSprite.enabled = true;
+        }
 
         haveObj = false;
     }

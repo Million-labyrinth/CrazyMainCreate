@@ -3245,6 +3245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5a9b6306195704dba2ab6139a155a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigid: {fileID: 0}
   boomSound: {fileID: 8300000, guid: 672df0aa197e30644baaef9262a293a7, type: 3}
   upWater: {fileID: 1209569979727162502}
   downWater: {fileID: 5294840672266233824}
@@ -3439,6 +3440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meRenderer: {fileID: 7187446946992677987}
+  layerMultiplier: 10
 --- !u!1 &5910008170977984352
 GameObject:
   m_ObjectHideFlags: 0
@@ -3971,7 +3973,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpTime: 1
+  rigid: {fileID: 0}
   balloon: {fileID: 5851421280672035941}
+  balloonLogic: {fileID: 0}
+  upScanObject: {fileID: 0}
+  downScanObject: {fileID: 0}
+  leftScanObject: {fileID: 0}
+  rightScanObject: {fileID: 0}
 --- !u!61 &8572535507887079562
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4266,6 +4274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150442376855225881}
   - component: {fileID: 4297086092418855849}
+  - component: {fileID: 7131855761933777309}
   m_Layer: 0
   m_Name: hit Collider 5
   m_TagString: hitCollider
@@ -4333,6 +4342,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0.3
+--- !u!50 &7131855761933777309
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7820519073717193319}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8110236360825421219
 GameObject:
   m_ObjectHideFlags: 0

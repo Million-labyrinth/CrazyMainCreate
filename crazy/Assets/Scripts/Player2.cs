@@ -106,8 +106,6 @@ public class Player2 : MonoBehaviour
                 DeadTime();
             }
         }
-
-        Debug.Log(canKickBalloon);
     }
     void LateUpdate()
     {
