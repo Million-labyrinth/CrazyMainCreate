@@ -104,24 +104,29 @@ public class PushBalloon : MonoBehaviour
     void BalloonGroupRay()
     {
         // Ray 실행 조건
+        // 물풍선 바로 앞에 오브젝트가 있으면 Ray를 안쏨 (오류 방지)
+        if(balloonLogic.upScanObject == null)
+        {
+            Debug.DrawRay(transform.position + new Vector3(0, 0.45f, 0), Vector3.up * upRayDistance, new Color(1, 1, 0));
+            upRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0.45f, 0), Vector3.up, upRayDistance, layerMask);
+        }
+        if(balloonLogic.downScanObject == null)
+        {
+            Debug.DrawRay(transform.position + new Vector3(0, -0.45f, 0), Vector3.down * downRayDistance, new Color(1, 1, 0));
+            downRayHit = Physics2D.Raycast(transform.position + new Vector3(0, -0.45f, 0), Vector3.down, downRayDistance, layerMask);
+        }
+        if(balloonLogic.leftScanObject == null)
+        {
+            Debug.DrawRay(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left * leftRayDistance, new Color(1, 1, 0));
+            leftRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left, leftRayDistance, layerMask);
 
-        Debug.DrawRay(transform.position + new Vector3(0, 0.45f, 0), Vector3.up * upRayDistance, new Color(1, 1, 0));
-        upRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0.45f, 0), Vector3.up, upRayDistance, layerMask);
+        }
+        if(balloonLogic.rightScanObject == null)
+        {
+            Debug.DrawRay(transform.position + new Vector3(0.45f, 0, 0), Vector3.right * rightRayDistance, new Color(1, 1, 0));
+            rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0.45f, 0, 0), Vector3.right, rightRayDistance, layerMask);
+        }
 
-
-
-        Debug.DrawRay(transform.position + new Vector3(0, -0.45f, 0), Vector3.down * downRayDistance, new Color(1, 1, 0));
-        downRayHit = Physics2D.Raycast(transform.position + new Vector3(0, -0.45f, 0), Vector3.down, downRayDistance, layerMask);
-
-
-
-        Debug.DrawRay(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left * leftRayDistance, new Color(1, 1, 0));
-        leftRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left, leftRayDistance, layerMask);
-
-
-
-        Debug.DrawRay(transform.position + new Vector3(0.45f, 0, 0), Vector3.right * rightRayDistance, new Color(1, 1, 0));
-        rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0.45f, 0, 0), Vector3.right, rightRayDistance, layerMask);
 
 
         // 인식 오브젝트 거리 구하기

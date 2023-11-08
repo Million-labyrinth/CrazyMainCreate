@@ -187,13 +187,13 @@ public class ObjectManager : MonoBehaviour
                 targetPool = ultraFluidItem;
                 break;
             case "ShoesItem":
-                targetPool = ultraFluidItem;
+                targetPool = shoesItem;
                 break;
             case "RedDevil":
-                targetPool = ultraFluidItem;
+                targetPool = redDevil;
                 break;
             case "PurpleDevil":
-                targetPool = ultraFluidItem;
+                targetPool = purpleDevil;
                 break;
         }
 

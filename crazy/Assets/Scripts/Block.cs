@@ -50,51 +50,51 @@ public class Block : MonoBehaviour
             movement.minY = transform.position.y;
             movement.maxY = transform.position.y + 0.1f;
         }
-        else if (ran < 85)
-        {   // flulidItem 15%
-            GameObject flulidItem = objectManager.MakeItem("FluidItem");
-            flulidItem.transform.position = transform.position;
+        //else if (ran < 85)
+        //{   // flulidItem 15%
+        //    GameObject flulidItem = objectManager.MakeItem("FluidItem");
+        //    flulidItem.transform.position = transform.position;
 
-            VerticalMovement movement = flulidItem.GetComponent<VerticalMovement>();
-            movement.minY = transform.position.y;
-            movement.maxY = transform.position.y + 0.1f;
-        }
-        else if (ran < 90)
-        {   // rollerItem 5%
-            GameObject rollerItem = objectManager.MakeItem("RollerItem");
-            rollerItem.transform.position = transform.position;
+        //    VerticalMovement movement = flulidItem.GetComponent<VerticalMovement>();
+        //    movement.minY = transform.position.y;
+        //    movement.maxY = transform.position.y + 0.1f;
+        //}
+        //else if (ran < 90)
+        //{   // rollerItem 5%
+        //    GameObject rollerItem = objectManager.MakeItem("RollerItem");
+        //    rollerItem.transform.position = transform.position;
 
-            VerticalMovement movement = rollerItem.GetComponent<VerticalMovement>();
-            movement.minY = transform.position.y;
-            movement.maxY = transform.position.y + 0.1f;
-        }
-        else if (ran < 91)
-        {   // shieldItem 1%
-            GameObject shieldItem = objectManager.MakeItem("ShieldItem");
-            shieldItem.transform.position = transform.position;
+        //    VerticalMovement movement = rollerItem.GetComponent<VerticalMovement>();
+        //    movement.minY = transform.position.y;
+        //    movement.maxY = transform.position.y + 0.1f;
+        //}
+        //else if (ran < 90)
+        //{   // shieldItem 1%
+        //    GameObject shieldItem = objectManager.MakeItem("ShieldItem");
+        //    shieldItem.transform.position = transform.position;
 
-            VerticalMovement movement = shieldItem.GetComponent<VerticalMovement>();
-            movement.minY = transform.position.y;
-            movement.maxY = transform.position.y + 0.1f;
-        }
-        else if (ran < 94)
-        {   // ultraFluidItem 3%
-            GameObject ultraFluidItem = objectManager.MakeItem("UltraFluidItem");
-            ultraFluidItem.transform.position = transform.position;
+        //    VerticalMovement movement = shieldItem.GetComponent<VerticalMovement>();
+        //    movement.minY = transform.position.y;
+        //    movement.maxY = transform.position.y + 0.1f;
+        //}
+        //else if (ran < 90)
+        //{   // ultraFluidItem 3%
+        //    GameObject ultraFluidItem = objectManager.MakeItem("UltraFluidItem");
+        //    ultraFluidItem.transform.position = transform.position;
 
-            VerticalMovement movement = ultraFluidItem.GetComponent<VerticalMovement>();
-            movement.minY = transform.position.y;
-            movement.maxY = transform.position.y + 0.1f;
-        }
-        else if (ran < 95)
-        {   // niddleItem 1%
-            GameObject niddleItem = objectManager.MakeItem("NiddleItem");
-            niddleItem.transform.position = transform.position;
+        //    VerticalMovement movement = ultraFluidItem.GetComponent<VerticalMovement>();
+        //    movement.minY = transform.position.y;
+        //    movement.maxY = transform.position.y + 0.1f;
+        //}
+        //else if (ran < 90)
+        //{   // niddleItem 1%
+        //    GameObject niddleItem = objectManager.MakeItem("NiddleItem");
+        //    niddleItem.transform.position = transform.position;
 
-            VerticalMovement movement = niddleItem.GetComponent<VerticalMovement>();
-            movement.minY = transform.position.y;
-            movement.maxY = transform.position.y + 0.1f;
-        }
+        //    VerticalMovement movement = niddleItem.GetComponent<VerticalMovement>();
+        //    movement.minY = transform.position.y;
+        //    movement.maxY = transform.position.y + 0.1f;
+        //}
         else if (ran < 98)
         {   // shoesItem 3%
             GameObject shoesItem = objectManager.MakeItem("ShoesItem");

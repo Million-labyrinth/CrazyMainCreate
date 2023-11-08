@@ -106,6 +106,7 @@ public class Player : MonoBehaviour
                 DeadTime();
             }
         }
+
     }
     void LateUpdate()
     {
