@@ -20,8 +20,6 @@ public class TitletoManual : MonoBehaviour
     public GameObject ttm_2;
 
 
-
-
     public void title_to_manual()
     {
         title.SetActive(false);
