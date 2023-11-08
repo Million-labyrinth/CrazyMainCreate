@@ -986,7 +986,7 @@ MonoBehaviour:
   lerpTime: 1
   rigid: {fileID: 0}
   balloon: {fileID: 4318505525197323721}
-  balloonLogic: {fileID: 0}
+  balloonLogic: {fileID: 5780967720722795032}
   upScanObject: {fileID: 0}
   downScanObject: {fileID: 0}
   leftScanObject: {fileID: 0}
@@ -1063,7 +1063,7 @@ Transform:
   m_GameObject: {fileID: 2226957520841952279}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.4875, y: 3.835411, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1076,7 +1076,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2226957520841952279}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: b0cf834af59001d4081d122149fc29b0, type: 2}
   m_IncludeLayers:
@@ -1112,8 +1112,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3}
-  m_EdgeRadius: 0.3
+  m_Size: {x: 0.1, y: 0.1}
+  m_EdgeRadius: 0.35
 --- !u!50 &5621499900544593927
 Rigidbody2D:
   serializedVersion: 4
@@ -1661,8 +1661,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3}
-  m_EdgeRadius: 0.3
+  m_Size: {x: 0.1, y: 0.1}
+  m_EdgeRadius: 0.35
 --- !u!1 &4318505525197323721
 GameObject:
   m_ObjectHideFlags: 0

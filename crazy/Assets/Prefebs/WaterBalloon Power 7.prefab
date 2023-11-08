@@ -3361,7 +3361,7 @@ MonoBehaviour:
   lerpTime: 1
   rigid: {fileID: 0}
   balloon: {fileID: 5472242056158130587}
-  balloonLogic: {fileID: 0}
+  balloonLogic: {fileID: 5541954850480999540}
   upScanObject: {fileID: 0}
   downScanObject: {fileID: 0}
   leftScanObject: {fileID: 0}
@@ -4372,7 +4372,7 @@ Transform:
   m_GameObject: {fileID: 6005665428551936002}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.0125, y: -3.3374999, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4421,8 +4421,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3}
-  m_EdgeRadius: 0.3
+  m_Size: {x: 0.1, y: 0.1}
+  m_EdgeRadius: 0.35
 --- !u!50 &3790634904745651326
 Rigidbody2D:
   serializedVersion: 4
