@@ -68,6 +68,9 @@ public class Player2 : MonoBehaviour
     Vector2 rayDir; // Ray 방향
     public SpriteRenderer playerRenderer; //스프라이트 활성화 비활성화
 
+    bool getShoesItem = false; // 신발 아이템 획득 여부
+    bool canKickBalloon = false; // 물풍선 위에 있을 때 물풍선을 차는 오류 방지
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -83,6 +86,8 @@ public class Player2 : MonoBehaviour
 
 
         playerBmakeBalloon = true;
+
+        getShoesItem = false;
     }
 
     void Update()
@@ -101,6 +106,8 @@ public class Player2 : MonoBehaviour
                 DeadTime();
             }
         }
+
+        Debug.Log(canKickBalloon);
     }
     void LateUpdate()
     {
@@ -282,22 +289,21 @@ public class Player2 : MonoBehaviour
                     pushBalloon = pushRay.collider.gameObject;
                     PushBalloon pushBalloonLogic = pushBalloon.GetComponent<PushBalloon>();
 
-                    if (curPushTime > nextPushTime)
+                    if (curPushTime > nextPushTime && getShoesItem && canKickBalloon)
                     {
-                        if (rayDir == Vector2.up)
+                        if (rayDir == Vector2.up && pushBalloonLogic.balloonLogic.upScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Up");
                         }
-                        else if (rayDir == Vector2.down)
+                        else if (rayDir == Vector2.down && pushBalloonLogic.balloonLogic.downScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Down");
                         }
-                        else if (rayDir == Vector2.left)
+                        else if (rayDir == Vector2.left && pushBalloonLogic.balloonLogic.leftScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Left");
-
                         }
-                        else if (rayDir == Vector2.right)
+                        else if (rayDir == Vector2.right && pushBalloonLogic.balloonLogic.rightScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Right");
                         }
@@ -317,6 +323,7 @@ public class Player2 : MonoBehaviour
         {
             // 키 다운 해제 시 시간 초기화
             curPushTime = 0;
+            nextPushTime = 0;
         }
     }
 
@@ -480,7 +487,7 @@ public class Player2 : MonoBehaviour
                     item2.RangeAdd(itemName);
                     break;
                 case "shoesItem":
-                    // 신발 아이템 (물풍선 차기)
+                    getShoesItem = true;
                     break;
                 case "redDevil":
                     item2.RedDeVil();
@@ -521,6 +528,11 @@ public class Player2 : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        canKickBalloon = false;
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
 
@@ -531,6 +543,7 @@ public class Player2 : MonoBehaviour
         {
             Collider2D col = other.gameObject.GetComponent<Collider2D>();
             col.isTrigger = false;
+            canKickBalloon = true;
         }
 
     }
@@ -539,6 +552,7 @@ public class Player2 : MonoBehaviour
     {
         Debug.Log("플레이어가 데미지를 입음");
         anim.SetBool("isDamaged", true);
+        anim.SetBool("isDying", false);
         playerSpeed = 0.8f;
         audioSource.clip = balloonLockSound;
         audioSource.Play();

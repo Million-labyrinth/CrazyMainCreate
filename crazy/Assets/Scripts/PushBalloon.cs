@@ -55,8 +55,6 @@ public class PushBalloon : MonoBehaviour
     void Update()
     {
         BalloonGroupRay();
-
-        Debug.Log(leftRayDistance);
     }
 
     IEnumerator lerpCoroutine(Vector3 current, Vector3 target, float time)
