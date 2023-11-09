@@ -4430,18 +4430,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7710657212975085177, guid: b36c3c1fc3829984eb8b35f08201867c, type: 3}
   m_PrefabInstance: {fileID: 7710657213404121314}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &435125920 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7710657212975085122, guid: b36c3c1fc3829984eb8b35f08201867c, type: 3}
-  m_PrefabInstance: {fileID: 7710657213404121314}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 435125915}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d80758d13ce48e46b68f921c8aa7e62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &435125924
+--- !u!114 &435125926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4450,10 +4439,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 435125915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61336a30e54d79047809f65bebf06bdd, type: 3}
+  m_Script: {fileID: 11500000, guid: efaab6f1ac4ffb04da727c46ba6de361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
 --- !u!1001 &440491883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4530,7 +4518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &446212531
 Transform:
   m_ObjectHideFlags: 0
@@ -11680,7 +11668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &693066775
 Transform:
   m_ObjectHideFlags: 0
@@ -15411,7 +15399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerA: {fileID: 1814193088}
-  playerB: {fileID: 435125920}
+  playerB: {fileID: 0}
   objectManager: {fileID: 1191335683}
   plA: 1
   plB: 1
@@ -15441,7 +15429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b2b820c2926984bbb51aae8a93a422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 435125920}
+  player: {fileID: 0}
   speedItem: []
   bombItem: []
   rangeItem: []
@@ -25967,7 +25955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1871904217
 Transform:
   m_ObjectHideFlags: 0
@@ -28829,7 +28817,7 @@ PrefabInstance:
     - target: {fileID: 8075316826113225247, guid: 005d2befacdc1e543951bc6cfe1c4e45, type: 3}
       propertyPath: playerB
       value: 
-      objectReference: {fileID: 435125920}
+      objectReference: {fileID: 0}
     - target: {fileID: 8075316826113225247, guid: 005d2befacdc1e543951bc6cfe1c4e45, type: 3}
       propertyPath: objectManager
       value: 
@@ -29216,11 +29204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710657212975085183, guid: b36c3c1fc3829984eb8b35f08201867c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.03
+      value: -0.99
       objectReference: {fileID: 0}
     - target: {fileID: 7710657212975085183, guid: b36c3c1fc3829984eb8b35f08201867c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.31
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7710657212975085183, guid: b36c3c1fc3829984eb8b35f08201867c, type: 3}
       propertyPath: m_LocalPosition.z
