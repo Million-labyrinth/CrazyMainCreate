@@ -31,10 +31,10 @@ public class Balloon : MonoBehaviour
     bool waterLineActive = true; // 물줄기 위에 물풍선 설치 시, 안 터지게 만들기 위한 변수
 
     // 아이템이 여러 개 나오는 오류 방지
-    bool isHitUpBlock = false; // 물풍선 UpRay 가 Block 을 인식했을 때, Block 부수기
-    bool isHitDownBlock = false; // 물풍선 DownRay 가 Block 을 인식했을 때, Block 부수기
-    bool isHitLeftBlock = false; // 물풍선 LeftRay 가 Block 을 인식했을 때, Block 부수기
-    bool isHitRightBlock = false; // 물풍선 RightRay 가 Block 을 인식했을 때, Block 부수기
+    bool isHitUpBlock; // 물풍선 UpRay 가 Block 을 인식했을 때, Block 부수기
+    bool isHitDownBlock; // 물풍선 DownRay 가 Block 을 인식했을 때, Block 부수기
+    bool isHitLeftBlock; // 물풍선 LeftRay 가 Block 을 인식했을 때, Block 부수기
+    bool isHitRightBlock; // 물풍선 RightRay 가 Block 을 인식했을 때, Block 부수기
 
     void Awake()
     {
@@ -57,11 +57,19 @@ public class Balloon : MonoBehaviour
         leftWater.SetActive(false);
         rightWater.SetActive(false);
         hitCollider.enabled = false;
+
+        // 블럭 부수기 조건 초기화
+        isHitUpBlock = false;
+        isHitDownBlock = false;
+        isHitLeftBlock = false;
+        isHitRightBlock = false;
     }
 
     void Update()
     {
         BalloonRay();
+
+        Debug.Log(isHitDownBlock);
     }
 
 
@@ -153,6 +161,8 @@ public class Balloon : MonoBehaviour
                 downBlock.anim.SetBool("Hit", true);
                 downBlock.Invoke("Hit", 0.5f);
                 isHitDownBlock = true;
+
+                Debug.Log(downBlock.name);
             }
 
         }
@@ -226,6 +236,12 @@ public class Balloon : MonoBehaviour
 
         // 사운드 초기화
         audioSource.clip = null;
+
+        // 블럭 부수기 조건 초기화
+        isHitUpBlock = false;
+        isHitDownBlock = false;
+        isHitLeftBlock = false;
+        isHitRightBlock = false;
     }
     void WaterLineActive()
     {
