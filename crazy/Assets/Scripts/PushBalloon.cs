@@ -54,11 +54,6 @@ public class PushBalloon : MonoBehaviour
     void Update()
     {
         BalloonGroupRay();
-
-        if(balloonLogic.isBoom)
-        {
-            StopCoroutine("lerpCoroutine");
-        }
     }
 
     IEnumerator lerpCoroutine(Vector3 current, Vector3 target, float time)
@@ -100,6 +95,8 @@ public class PushBalloon : MonoBehaviour
                 nextPos = balloonPos + new Vector2(distanceRight - 1, 0);
                 break;
         }
+
+        balloonLogic.enableTime = 0;
 
         StartCoroutine(lerpCoroutine(balloonPos, nextPos, lerpTime * 0.2f));
     }

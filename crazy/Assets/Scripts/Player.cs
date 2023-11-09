@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
 
     Vector2 moveVec; // 플레이어가 움직이는 방향
     Vector2 rayDir; // Ray 방향
+    Vector2 rayStartPos; // Ray 시작점
     public SpriteRenderer playerRenderer; //스프라이트 활성화 비활성화
 
     bool getShoesItem = false; // 신발 아이템 획득 여부
@@ -182,18 +183,22 @@ public class Player : MonoBehaviour
         if (moveVec.y > 0)
         {
             rayDir = Vector2.up;
+            rayStartPos = rigid.position + new Vector2(0, 0.25f);
         }
         else if (moveVec.y < 0)
         {
             rayDir = Vector2.down;
+            rayStartPos = rigid.position - new Vector2(0, 0.95f);
         }
         else if (moveVec.x > 0)
         {
             rayDir = Vector2.right;
+            rayStartPos = rigid.position + new Vector2(0.6f, -0.35f);
         }
         else if (moveVec.x < 0)
         {
             rayDir = Vector2.left;
+            rayStartPos = rigid.position - new Vector2(0.6f, 0.35f);
         }
 
     }
@@ -237,8 +242,8 @@ public class Player : MonoBehaviour
         // 밀 수 있는 상자 / 물풍선 Ray
         if (hStay || vStay)
         {
-            Debug.DrawRay(rigid.position - new Vector2(0, 0.35f), rayDir * 0.7f, new Color(1, 0, 0));
-            RaycastHit2D pushRay = Physics2D.Raycast(rigid.position - new Vector2(0, 0.35f), rayDir, 0.7f, LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("BalloonGroup"));
+            Debug.DrawRay(rayStartPos, rayDir * 0.5f, new Color(1, 0, 0));
+            RaycastHit2D pushRay = Physics2D.Raycast(rayStartPos, rayDir, 0.5f, LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("BalloonGroup"));
 
             if (pushRay.collider != null)
             {
