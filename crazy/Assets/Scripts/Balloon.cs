@@ -29,6 +29,7 @@ public class Balloon : MonoBehaviour
     public GameObject rightScanObject; // rightRay 에 인식되는 오브젝트 변수
 
     bool waterLineActive = true; // 물줄기 위에 물풍선 설치 시, 안 터지게 만들기 위한 변수
+    public bool isBoom;
 
     // 아이템이 여러 개 나오는 오류 방지
     bool isHitUpBlock; // 물풍선 UpRay 가 Block 을 인식했을 때, Block 부수기
@@ -63,13 +64,13 @@ public class Balloon : MonoBehaviour
         isHitDownBlock = false;
         isHitLeftBlock = false;
         isHitRightBlock = false;
+
+        isBoom = false;
     }
 
     void Update()
     {
         BalloonRay();
-
-        Debug.Log(isHitDownBlock);
     }
 
 
@@ -206,6 +207,7 @@ public class Balloon : MonoBehaviour
         }
 
         hitCollider.enabled = true;
+        isBoom = true;
 
 
         // 사운드
@@ -229,6 +231,7 @@ public class Balloon : MonoBehaviour
         hitCollider.enabled = false;
 
         waterLineActive = true;
+        isBoom = false;
 
         // 트리거 활성화 (collider = Player A 물풍선, mainCol = Player B 물풍선)
         colliderA.isTrigger = true;

@@ -34,7 +34,6 @@ public class PushBalloon : MonoBehaviour
     float leftRayDistance;
     float rightRayDistance;
 
-
     void Awake()
     {
         balloonLogic = balloon.GetComponent<Balloon>();
@@ -55,6 +54,11 @@ public class PushBalloon : MonoBehaviour
     void Update()
     {
         BalloonGroupRay();
+
+        if(balloonLogic.isBoom)
+        {
+            StopCoroutine("lerpCoroutine");
+        }
     }
 
     IEnumerator lerpCoroutine(Vector3 current, Vector3 target, float time)
@@ -97,8 +101,7 @@ public class PushBalloon : MonoBehaviour
                 break;
         }
 
-        StartCoroutine(
-            lerpCoroutine(balloonPos, nextPos, lerpTime * 0.2f));
+        StartCoroutine(lerpCoroutine(balloonPos, nextPos, lerpTime * 0.2f));
     }
 
     void BalloonGroupRay()
