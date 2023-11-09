@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testAi : MonoBehaviour
+public class monsterAi : MonoBehaviour
 {
     private float xMin = -8.0f;
     private float xMax = 8.0f;
@@ -43,14 +43,14 @@ public class testAi : MonoBehaviour
     void AIRay()
     {
         // 충돌 체크
-        Debug.DrawRay(transform.position + new Vector3(0, 0.45f, 0), Vector3.up * 0.6f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + new Vector3(0, -0.45f, 0), Vector3.down * 0.6f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left * 0.6f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + new Vector3(0.45f, 0, 0), Vector3.right * 0.6f, new Color(0, 1, 0));
-        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0.45f, 0), Vector3.up, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
-        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position + new Vector3(0, -0.45f, 0), Vector3.down, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
-        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
-        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0.45f, 0, 0), Vector3.right, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+        Debug.DrawRay(transform.position + new Vector3(-0.3f, 0.45f, 0), Vector3.right * 0.5f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(0.3f, -0.45f, 0), Vector3.left * 0.5f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(-0.45f, 0.3f, 0), Vector3.down * 0.5f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(0.45f, -0.3f, 0), Vector3.up * 0.5f, new Color(0, 1, 0));
+        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.3f, 0.45f, 0), Vector3.right, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position + new Vector3(0.3f, -0.45f, 0), Vector3.left, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.45f, 0.3f, 0), Vector3.down, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
+        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0.45f, -0.3f, 0), Vector3.up, 0.6f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object"));
 
         // 충돌이 감지되면 새로운 위치 설정
         if (upRayHit.collider != null)
