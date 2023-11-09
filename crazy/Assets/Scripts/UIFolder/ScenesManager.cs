@@ -2,30 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class ScenesManager : MonoBehaviour
 {
 
-    public GameObject map; //È°¼ºÈ­ÇÒ ¿ÀºêÁ§Æ®
-    public int receivedVariable = 0; // ¹Þ¾ÆµéÀÌ±â À§ÇÑ º¯¼ö 
+    public GameObject map; //È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+    public int receivedVariable = 0; // ï¿½Þ¾Æµï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
     public InputField inputID1;
     public InputField inputID2;
 
-    void Awake()
+    void Start()
     {
-        receivedVariable = PlayerPrefs.GetInt("MyVariable", 0); //¹öÆ° ½ºÅ©¸³Æ®¿¡¼­ ¼¼ÆÃÇÑ º¯¼ö ÀúÀå
-        inputID1.text = PlayerPrefs.GetString("");
-        inputID2.text = PlayerPrefs.GetString("");
+        receivedVariable = PlayerPrefs.GetInt("MyVariable", 0); //ï¿½ï¿½Æ° ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //inputID1.text = PlayerPrefs.GetString("MyID1", "");
+        //inputID2.text = PlayerPrefs.GetString("MyID2", "");
 
         if (receivedVariable == 2)
         {
-            map.SetActive(true); // ¸Ê È°¼ºÈ­
-            receivedVariable = 0; // º¯¼ö ÃÊ±âÈ­
-            PlayerPrefs.SetInt("MyVariable", receivedVariable);// ÃÊ±âÈ­µÈ °ª ¹ß¼Û
-            PlayerPrefs.SetString("MyId1", inputID1.text);// ÃÊ±âÈ­µÈ °ª ¹ß
-            PlayerPrefs.SetString("MyId2", inputID2.text);// ÃÊ±âÈ­µÈ °ª ¹ß
+            map.SetActive(true); // ï¿½ï¿½ È°ï¿½ï¿½È­
+            receivedVariable = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+            PlayerPrefs.SetInt("MyVariable", receivedVariable);// ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ ï¿½ß¼ï¿½
+            //PlayerPrefs.SetString("MyId1", inputID1.text);// ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
+            //PlayerPrefs.SetString("MyId2", inputID2.text);// ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
 
-            PlayerPrefs.Save(); //¹Ù²îÁö ¾Ê°Ô ÀúÀå
+            PlayerPrefs.Save(); //ï¿½Ù²ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½
+        }
+        else if (receivedVariable == 1)
+        {
+
+            receivedVariable = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+            PlayerPrefs.SetInt("MyVariable", receivedVariable);// ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ ï¿½ß¼ï¿½
+
+            PlayerPrefs.Save(); //ï¿½Ù²ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
     }
 

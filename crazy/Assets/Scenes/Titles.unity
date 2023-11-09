@@ -4104,8 +4104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map: {fileID: 342584361}
   receivedVariable: 0
-  inputID1: {fileID: 0}
-  inputID2: {fileID: 0}
+  inputID1: {fileID: 388917336}
+  inputID2: {fileID: 159947755}
 --- !u!114 &1798437099
 MonoBehaviour:
   m_ObjectHideFlags: 0

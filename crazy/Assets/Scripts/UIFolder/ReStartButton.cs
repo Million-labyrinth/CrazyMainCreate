@@ -11,7 +11,7 @@ public class ReStartButton : MonoBehaviour
     public GameObject alert;
     public TitletoManual ttM;
 
-    int seenCtn; // º¸³¾ º¯¼ö
+    int seenCtn; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     string id1;
     string id2;
 
@@ -21,18 +21,24 @@ public class ReStartButton : MonoBehaviour
         id1 = PlayerPrefs.GetString("MyId2");
 
         seenCtn = PlayerPrefs.GetInt("MyVariable", 0); //
-        seenCtn += 2;//º¸³¾ º¯¼ö ÀúÀå 1 = Å¸ÀÌÆ²/ 2= ¸Ê¼±ÅÃ
-        PlayerPrefs.SetInt("MyVariable", seenCtn); // ¾À º¯¼ö ¹ß¼Û
-        PlayerPrefs.SetString("MyId1", id1); // ¾À º¯¼ö ¹ß¼Û
-        PlayerPrefs.SetString("MyId1", id2); // ¾À º¯¼ö ¹ß¼Û
+        seenCtn = 2;//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1 = Å¸ï¿½ï¿½Æ²/ 2= ï¿½Ê¼ï¿½ï¿½ï¿½
+        PlayerPrefs.SetInt("MyVariable", seenCtn); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß¼ï¿½
+        PlayerPrefs.SetString("MyId1", id1); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß¼ï¿½
+        PlayerPrefs.SetString("MyId1", id2); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß¼ï¿½
 
-        PlayerPrefs.Save(); // º¯¼ö ÀúÀå
-        SceneManager.LoadScene("Titles"); //¾À ºÒ·¯¿À±â 
+        PlayerPrefs.Save(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        SceneManager.LoadScene("Titles"); //ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ 
     }
- 
+
     public void GoTitle()
     {
-        SceneManager.LoadScene("Titles"); //¾À ºÒ·¯¿À±â 
+        seenCtn = PlayerPrefs.GetInt("MyVariable", 0); //
+        seenCtn = 1;//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1 = Å¸ï¿½ï¿½Æ²/ 2= ï¿½Ê¼ï¿½ï¿½ï¿½
+        PlayerPrefs.SetInt("MyVariable", seenCtn); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß¼ï¿½
+
+
+        PlayerPrefs.Save(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        SceneManager.LoadScene("Titles"); //ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ 
 
     }
 
@@ -41,7 +47,7 @@ public class ReStartButton : MonoBehaviour
         alert.SetActive(true);
     }
 
-    public void closeReStartAlert() //ÇØ´ç Ã¢ ´ÝÈû ¹öÆ°
+    public void closeReStartAlert() //ï¿½Ø´ï¿½ Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
     {
         alert.SetActive(false);
     }
