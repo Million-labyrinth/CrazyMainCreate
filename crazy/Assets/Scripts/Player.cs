@@ -317,7 +317,7 @@ public class Player : MonoBehaviour
                 // 물풍선
                 else if (pushRay.collider.gameObject.layer == 11)
                 {
-                    nextPushTime = 0.3f;
+                    nextPushTime = 0.2f;
                     pushBalloon = pushRay.collider.gameObject;
                     PushBalloon pushBalloonLogic = pushBalloon.GetComponent<PushBalloon>();
 
