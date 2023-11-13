@@ -69,8 +69,12 @@ public class Player2 : MonoBehaviour
     Vector2 rayStartPos; // Ray 시작점
     public SpriteRenderer playerRenderer; //스프라이트 활성화 비활성화
 
-    bool getShoesItem = false; // 신발 아이템 획득 여부
-    bool canKickBalloon = true; // 물풍선 위에 있을 때 물풍선을 차는 오류 방지
+    float playerSpeedRemeber; // 물풍선에 맞을 때 원래 속도 저장용
+    bool getShoesItem; // 신발 아이템 획득 여부
+    bool canKickBalloon; // 물풍선 위에 있을 때 물풍선을 차는 오류 방지
+    bool getPurpleDevil; // 보라악마 획득 여부
+    float purpleDevilTime; // 보라악마 지속 시간
+    int changeColorCount = 0; // 보라악마 획득 후 색 변환 횟수 체크
 
     void Awake()
     {
@@ -92,9 +96,13 @@ public class Player2 : MonoBehaviour
     void Update()
     {
         Move();
-        Skill();
         Ray();
         UseItem();
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Skill();
+        }
 
         if (isDying)
         {
@@ -103,6 +111,22 @@ public class Player2 : MonoBehaviour
             if (dyingTime > 4)
             {
                 DeadTime();
+            }
+        }
+
+        if (getPurpleDevil)
+        {
+            Skill();
+            changeColorCount = 0;
+            purpleDevilTime += Time.deltaTime;
+
+            if (purpleDevilTime >= 10)
+            {
+                getPurpleDevil = false;
+                purpleDevilTime = 0;
+                StopCoroutine("AfterGetPurpleDevil");
+                changeColorCount = 0;
+                playerRenderer.color = new Color(1, 1, 1);
             }
         }
     }
@@ -116,8 +140,16 @@ public class Player2 : MonoBehaviour
     void Move()
     {
         // 이동
-        hAxis = Input.GetAxisRaw("2PH");
-        vAxis = Input.GetAxisRaw("2PV");
+        if(getPurpleDevil)
+        {
+            hAxis = Input.GetAxisRaw("2PH") * -1;
+            vAxis = Input.GetAxisRaw("2PV") * -1;
+        }
+        else
+        {
+            hAxis = Input.GetAxisRaw("2PH");
+            vAxis = Input.GetAxisRaw("2PV");
+        }
 
         bool hDown = Input.GetButtonDown("2PH");
         bool vDown = Input.GetButtonDown("2PV");
@@ -423,7 +455,7 @@ public class Player2 : MonoBehaviour
 
         WaterBalloon = objectManager.GetPool(Power);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && playerBmakeBalloon && playerBcountIndex < bombPower)
+        if (playerBmakeBalloon && playerBcountIndex < bombPower)
         {
             Debug.Log("LeftShift");
             audioSource.clip = balloonSetSound;
@@ -450,6 +482,19 @@ public class Player2 : MonoBehaviour
         }
     }
 
+    IEnumerator AfterGetPurpleDevil()
+    {
+        while (changeColorCount <= 20)
+        {
+            playerRenderer.color = Color.magenta;
+            yield return new WaitForSeconds(0.25f);
+            playerRenderer.color = new Color(1, 1, 1);
+            yield return new WaitForSeconds(0.25f);
+
+            changeColorCount++;
+        }
+    }
+
     //아이템 먹었을때 스탯 값 증감
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -463,7 +508,11 @@ public class Player2 : MonoBehaviour
             }
             else
             {
+                playerSpeedRemeber = playerSpeed;
                 DeathTime();
+                getPurpleDevil = false;
+                StopCoroutine("AfterGetPurpleDevil");
+                playerRenderer.color = new Color(1, 1, 1);
             }
 
             Debug.Log(collision.name);
@@ -518,6 +567,9 @@ public class Player2 : MonoBehaviour
                     item2.AddActiveItem(collision.gameObject, 0);
                     break;
                 case "purpleDevil":
+                    getPurpleDevil = true;
+                    purpleDevilTime = 0;
+                    StartCoroutine("AfterGetPurpleDevil");
                     break;
             }
 
