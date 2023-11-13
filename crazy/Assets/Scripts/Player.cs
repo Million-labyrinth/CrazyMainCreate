@@ -69,8 +69,10 @@ public class Player : MonoBehaviour
     Vector2 rayStartPos; // Ray 시작점
     public SpriteRenderer playerRenderer; //스프라이트 활성화 비활성화
 
-    bool getShoesItem = false; // 신발 아이템 획득 여부
-    bool canKickBalloon = true; // 물풍선 위에 있을 때 물풍선을 차는 오류 방지
+    bool getShoesItem; // 신발 아이템 획득 여부
+    bool canKickBalloon; // 물풍선 위에 있을 때 물풍선을 차는 오류 방지
+    bool getPurpleDevil;
+    float purpleDevilTime;
 
     void Awake()
     {
@@ -87,6 +89,8 @@ public class Player : MonoBehaviour
 
         playerAmakeBalloon = true;
         getShoesItem = false;
+        canKickBalloon = true;
+        getPurpleDevil = false;
     }
 
     void Update()
@@ -107,6 +111,16 @@ public class Player : MonoBehaviour
                 DeadTime();
             }
         }
+        
+        if(getPurpleDevil)
+        {
+            purpleDevilTime += Time.deltaTime;
+
+            if(purpleDevilTime > 10)
+            {
+                getPurpleDevil = false;
+            }
+        }
 
     }
     void LateUpdate()
@@ -119,8 +133,16 @@ public class Player : MonoBehaviour
     void Move()
     {
         // 이동
-        hAxis = Input.GetAxisRaw("Horizontal");
-        vAxis = Input.GetAxisRaw("Vertical");
+        if (getPurpleDevil)
+        {
+            hAxis = Input.GetAxisRaw("Horizontal") * -1;
+            vAxis = Input.GetAxisRaw("Vertical") * -1;
+        }
+        else
+        {
+            hAxis = Input.GetAxisRaw("Horizontal");
+            vAxis = Input.GetAxisRaw("Vertical");
+        }
 
         bool hDown = Input.GetButtonDown("Horizontal");
         bool vDown = Input.GetButtonDown("Vertical");
@@ -512,6 +534,7 @@ public class Player : MonoBehaviour
                     item.AddActiveItem(collision.gameObject, 0);
                     break;
                 case "purpleDevil":
+                    getPurpleDevil = true;
                     break;
             }
 
