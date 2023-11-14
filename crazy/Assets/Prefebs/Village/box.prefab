@@ -191,7 +191,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   objectManager: {fileID: 0}
-  blockBreak: 0
 --- !u!114 &2137615888040225841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,3 +222,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meRenderer: {fileID: 8240456412427427581}
+  layerMultiplier: 10

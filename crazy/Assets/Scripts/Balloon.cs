@@ -22,7 +22,7 @@ public class Balloon : MonoBehaviour
     public GameObject mainBalloon; // 물풍선 본체
     public BoxCollider2D colliderA; // 플레이어 A 전용 피격 판정 collider
     public BoxCollider2D colliderB; // 플레이어 B 전용 피격 판정 collider
-    public BoxCollider2D hitCollider; // 물풍선 피격 판정 collider
+    public GameObject hitCollider; // 물풍선 피격 판정 collider
 
     public GameObject upScanObject; // upRay 에 인식되는 오브젝트 변수
     public GameObject downScanObject; // downRay 에 인식되는 오브젝트 변수
@@ -40,7 +40,7 @@ public class Balloon : MonoBehaviour
     // 물풍선 활성화 시간
     public float enableTime;
     bool isEnable;
-    bool isBoom;
+    public bool isBoom;
     bool isFinish;
 
     void Awake()
@@ -55,18 +55,15 @@ public class Balloon : MonoBehaviour
 
     void OnEnable()
     {
-        //Invoke("WaterLineActive", 0.1f);
-        //Invoke("Boom", 2.5f);
-        //Invoke("Finish", 3f);
+
         isEnable = true;
         isBoom = false;
-        //isFinish = false;
 
         upWater.SetActive(false);
         downWater.SetActive(false);
         leftWater.SetActive(false);
         rightWater.SetActive(false);
-        hitCollider.enabled = false;
+        hitCollider.SetActive(false);
 
         // 블럭 부수기 조건 초기화
         isHitUpBlock = false;
@@ -92,8 +89,10 @@ public class Balloon : MonoBehaviour
                 Boom();
                 isBoom = true;
                 Invoke("Finish", 0.5f);
+                isEnable = false;
             }
         }
+
     }
 
 
@@ -101,14 +100,14 @@ public class Balloon : MonoBehaviour
     void BalloonRay()
     {
         // Ray
-        Debug.DrawRay(transform.position + new Vector3(0, 0.45f, 0), Vector3.up * 0.9f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + new Vector3(0, -0.45f, 0), Vector3.down * 0.9f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left * 0.9f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + new Vector3(0.45f, 0, 0), Vector3.right * 0.9f, new Color(0, 1, 0));
-        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0.45f, 0), Vector3.up, 0.9f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
-        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position + new Vector3(0, -0.45f, 0), Vector3.down, 0.9f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
-        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left, 0.9f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
-        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0.45f, 0, 0), Vector3.right, 0.9f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
+        Debug.DrawRay(transform.position + new Vector3(0, 0.45f, 0), Vector3.up * 0.7f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(0, -0.45f, 0), Vector3.down * 0.7f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left * 0.7f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(0.45f, 0, 0), Vector3.right * 0.7f, new Color(0, 1, 0));
+        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0.45f, 0), Vector3.up, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position + new Vector3(0, -0.45f, 0), Vector3.down, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
+        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
+        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0.45f, 0, 0), Vector3.right, 0.7f, LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Grass"));
 
         if (upRayHit.collider != null)
         {
@@ -229,7 +228,7 @@ public class Balloon : MonoBehaviour
 
         }
 
-        hitCollider.enabled = true;
+        hitCollider.SetActive(true);
 
 
         // 사운드
@@ -250,7 +249,7 @@ public class Balloon : MonoBehaviour
         downWater.SetActive(false);
         leftWater.SetActive(false);
         rightWater.SetActive(false);
-        hitCollider.enabled = false;
+        hitCollider.SetActive(false);
 
         waterLineActive = true;
         isEnable = false;
