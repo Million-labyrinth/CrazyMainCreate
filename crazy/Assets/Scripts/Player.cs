@@ -93,6 +93,7 @@ public class Player : MonoBehaviour
         getShoesItem = false;
         canKickBalloon = true;
         getPurpleDevil = false;
+        playerSpeedRemeber = playerSpeed;
     }
 
     void Update()
@@ -132,7 +133,6 @@ public class Player : MonoBehaviour
                 playerRenderer.color = new Color(1, 1, 1);
             }
         }
-
     }
     void LateUpdate()
     {
@@ -418,12 +418,20 @@ public class Player : MonoBehaviour
                 playerSpeed = playerSpeedRemeber;
 
                 p2niddle.SetActive(false);
-                Debug.Log(useniddle);
-                audioSource.clip = balloonEscapeSound;
-                audioSource.Play();
 
-                dyingTime = 0; // 죽는 시간 초기화
-                isDying = false; // 물풍선 탈출
+                if(isDying)
+                {
+                    audioSource.clip = balloonEscapeSound;
+                    audioSource.Play();
+
+                    dyingTime = 0; // 죽는 시간 초기화
+                    isDying = false; // 물풍선 탈출
+
+                    anim.SetBool("isDamaged", false);
+                    anim.SetBool("isDying", false);
+                    anim.SetTrigger("useNiddle");
+                }
+
             }
             string itemName = item.Activeitem[0].name; // 현재 사용한 아이템의 이름 가져오기
             UnityEngine.Debug.Log("플레이어A가" + itemName + "아이템을 사용함");
@@ -498,7 +506,6 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
 
-
         if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "hitCollider")
         {
             Debug.Log(collision.gameObject.name);
@@ -508,7 +515,6 @@ public class Player : MonoBehaviour
             }
             else
             {
-                playerSpeedRemeber = playerSpeed;
                 DeathTime();
                 getPurpleDevil = false;
                 StopCoroutine("AfterGetPurpleDevil");
@@ -530,6 +536,7 @@ public class Player : MonoBehaviour
                     break;
                 case "speedItem":
                     item.SpeedAdd();
+                    playerSpeedRemeber = playerSpeed;
                     break;
                 case "rangeItem":
                     item.RangeAdd(itemName);
@@ -539,6 +546,7 @@ public class Player : MonoBehaviour
                     break;
                 case "redDevil":
                     item.RedDeVil();
+                    playerSpeedRemeber = playerSpeed;
                     break;
                 case "ActiveItem":
                     // 먹은 아이템을 Activeitem 배열에 추가 (ActiveItem 태그를 가진 아이템만 추가)
@@ -606,9 +614,9 @@ public class Player : MonoBehaviour
     {
         Debug.Log("플레이어가 데미지를 입음");
         anim.SetBool("isDamaged", true);
-        anim.SetBool("isDying", false);
+        anim.SetBool("isDying", true);
 
-        // 바늘 사용 시, false 주는 코드 추가 필요
+        
         playerSpeed = 0.8f;
         audioSource.clip = balloonLockSound;
         audioSource.Play();
