@@ -500,7 +500,7 @@ public class Player : MonoBehaviour
     {
 
 
-        if (collision.gameObject.tag == "hitCollider")
+        if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "hitCollider")
         {
             Debug.Log(collision.gameObject.name);
             if (useShield == true)
