@@ -415,7 +415,6 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("바늘 사용");
                 useniddle = true;
-                playerSpeed = playerSpeedRemeber;
 
                 p2niddle.SetActive(false);
 
@@ -427,9 +426,11 @@ public class Player : MonoBehaviour
                     dyingTime = 0; // 죽는 시간 초기화
                     isDying = false; // 물풍선 탈출
 
+                    playerSpeed = 0;
                     anim.SetBool("isDamaged", false);
                     anim.SetBool("isDying", false);
                     anim.SetTrigger("useNiddle");
+                    StartCoroutine(BackSpeed());
                 }
 
             }
@@ -447,6 +448,12 @@ public class Player : MonoBehaviour
     }
     //플레이어가 먹은 아이템 저장배열
 
+    IEnumerator BackSpeed()
+    {
+        yield return new WaitForSeconds(0.4f);
+        playerSpeed = playerSpeedRemeber;
+        StopCoroutine(BackSpeed());
+    }
 
     //플레이어 상태 스크립트(행동가능, 물풍선 같힌상태, 죽음)
 
