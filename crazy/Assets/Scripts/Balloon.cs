@@ -185,7 +185,6 @@ public class Balloon : MonoBehaviour
                 downBlock.Invoke("Hit", 0.5f);
                 isHitDownBlock = true;
 
-                Debug.Log(downBlock.name);
             }
 
         }
@@ -202,7 +201,7 @@ public class Balloon : MonoBehaviour
             {
                 Block leftBlock = leftScanObject.GetComponent<Block>();
                 leftBlock.anim.SetBool("Hit", true);
-                leftBlock.Invoke("Hit", 0.2f);
+                leftBlock.Invoke("Hit", 0.5f);
 
                 isHitLeftBlock = true;
             }
