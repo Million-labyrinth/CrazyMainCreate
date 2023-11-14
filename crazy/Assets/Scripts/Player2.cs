@@ -238,13 +238,14 @@ public class Player2 : MonoBehaviour
 
     void Ray()
     {
+
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
-        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.32f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player A"));
+        Collider2D playerARay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player B"));
         GameObject scanObject;
 
-        if (playerBRay != null)
+        if (playerARay != null)
         {
-            scanObject = playerBRay.gameObject;
+            scanObject = playerARay.gameObject;
 
             // 물풍선 생성 가능 여부
             if (scanObject.layer == 3)
@@ -252,17 +253,16 @@ public class Player2 : MonoBehaviour
                 playerBmakeBalloon = false;
             }
 
-
             // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
-            if (scanObject.tag == "PlayerA")
+            if (scanObject.tag == "PlayerB")
             {
-                Player playerALogic = scanObject.GetComponent<Player>();
+                Player2 playerBLogic = scanObject.GetComponent<Player2>();
 
-                if (playerALogic.isDying == true && isDying == false)
+                if (playerBLogic.isDying == true && isDying == false)
                 {
-                    playerALogic.DeadTime();
+                    playerBLogic.DeadTime();
                     //gameManager.touchDeath();
-                    playerALogic.dyingTime = 0;
+                    playerBLogic.dyingTime = 0;
                 }
             }
         }
@@ -289,12 +289,11 @@ public class Player2 : MonoBehaviour
                     pushBlock = pushRay.collider.gameObject;
                     Box pushBlockLogic = pushBlock.GetComponent<Box>();
 
-                    if (curPushTime > nextPushTime && getShoesItem && canKickBalloon)
+                    if (curPushTime > nextPushTime)
                     {
                         if (rayDir == Vector2.up && pushBlockLogic.upScanObject == null)
                         {
                             pushBlockLogic.MoveBox("Up");
-
                         }
                         else if (rayDir == Vector2.down && pushBlockLogic.downScanObject == null)
                         {
@@ -322,7 +321,7 @@ public class Player2 : MonoBehaviour
                     pushBalloon = pushRay.collider.gameObject;
                     PushBalloon pushBalloonLogic = pushBalloon.GetComponent<PushBalloon>();
 
-                    if (curPushTime > nextPushTime)
+                    if (curPushTime > nextPushTime && getShoesItem && canKickBalloon)
                     {
                         if (rayDir == Vector2.up && pushBalloonLogic.balloonLogic.upScanObject == null)
                         {
@@ -335,7 +334,6 @@ public class Player2 : MonoBehaviour
                         else if (rayDir == Vector2.left && pushBalloonLogic.balloonLogic.leftScanObject == null)
                         {
                             pushBalloonLogic.MoveBalloon("Left");
-
                         }
                         else if (rayDir == Vector2.right && pushBalloonLogic.balloonLogic.rightScanObject == null)
                         {
@@ -364,8 +362,8 @@ public class Player2 : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0f, 1f, 0f);
-        // 물풍선 생성 판정
-        Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.32f), 0.45f);
+        // playerARay 모습
+        Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.35f), 0.45f);
     }
 
 
