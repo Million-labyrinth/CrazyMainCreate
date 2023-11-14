@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
         Ray();
         UseItem();
 
-        if (Input.GetKeyDown(KeyCode.RightShift))
+        if (Input.GetKeyDown(KeyCode.RightShift) && !isDying)
         {
             Skill();
         }
@@ -320,22 +320,23 @@ public class Player : MonoBehaviour
                     nextPushTime = 0.2f;
                     pushBalloon = pushRay.collider.gameObject;
                     PushBalloon pushBalloonLogic = pushBalloon.GetComponent<PushBalloon>();
+                    Balloon BalloonLogic = pushBalloonLogic.GetComponent<Balloon>();
 
                     if (curPushTime > nextPushTime && getShoesItem && canKickBalloon)
                     {
-                        if (rayDir == Vector2.up && pushBalloonLogic.balloonLogic.upScanObject == null)
+                        if (rayDir == Vector2.up && pushBalloonLogic.balloonLogic.upScanObject == null && !BalloonLogic.isBoom)
                         {
                             pushBalloonLogic.MoveBalloon("Up");
                         }
-                        else if (rayDir == Vector2.down && pushBalloonLogic.balloonLogic.downScanObject == null)
+                        else if (rayDir == Vector2.down && pushBalloonLogic.balloonLogic.downScanObject == null && !BalloonLogic.isBoom)
                         {
                             pushBalloonLogic.MoveBalloon("Down");
                         }
-                        else if (rayDir == Vector2.left && pushBalloonLogic.balloonLogic.leftScanObject == null)
+                        else if (rayDir == Vector2.left && pushBalloonLogic.balloonLogic.leftScanObject == null && !BalloonLogic.isBoom)
                         {
                             pushBalloonLogic.MoveBalloon("Left");
                         }
-                        else if (rayDir == Vector2.right && pushBalloonLogic.balloonLogic.rightScanObject == null)
+                        else if (rayDir == Vector2.right && pushBalloonLogic.balloonLogic.rightScanObject == null && !BalloonLogic.isBoom)
                         {
                             pushBalloonLogic.MoveBalloon("Right");
                         }
@@ -499,9 +500,9 @@ public class Player : MonoBehaviour
     {
 
 
-        if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "hitCollider")
+        if (collision.gameObject.tag == "hitCollider")
         {
-
+            Debug.Log(collision.gameObject.name);
             if (useShield == true)
             {
                 //DeathTime(); 실행안됨
