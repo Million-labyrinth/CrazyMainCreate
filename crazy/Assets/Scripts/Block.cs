@@ -129,7 +129,7 @@ public class Block : MonoBehaviour
     void OnTriggerEnter2D(Collider2D  obj) {
         if(obj.gameObject.tag == "upWater" || obj.gameObject.tag == "downWater" || obj.gameObject.tag == "leftWater" || obj.gameObject.tag == "rightWater") {
             anim.SetBool("Hit", true);
-            Invoke("Hit", 0.5f);
+            Invoke("Hit", 0.6f);
         }
     }
 

@@ -155,6 +155,7 @@ public class PushBalloon : MonoBehaviour
         {
             upScanObject = null;
             upRayDistance = 15f;
+            distanceUp = 15;
         }
 
         if (downRayHit.collider != null)
@@ -182,6 +183,7 @@ public class PushBalloon : MonoBehaviour
         {
             downScanObject = null;
             downRayDistance = 15f;
+            distanceDown = 15;
         }
 
         if (leftRayHit.collider != null)
@@ -209,6 +211,7 @@ public class PushBalloon : MonoBehaviour
         {
             leftScanObject = null;
             leftRayDistance = 15f;
+            distanceLeft = 15f;
         }
 
         if (rightRayHit.collider != null)
@@ -236,6 +239,7 @@ public class PushBalloon : MonoBehaviour
         {
             rightScanObject = null;
             rightRayDistance = 15f;
+            distanceRight = 15;
         }
     }
 }
