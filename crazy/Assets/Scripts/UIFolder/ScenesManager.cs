@@ -14,16 +14,12 @@ public class ScenesManager : MonoBehaviour
     void Start()
     {
         receivedVariable = PlayerPrefs.GetInt("MyVariable", 0); //��ư ��ũ��Ʈ���� ������ ���� ����
-        //inputID1.text = PlayerPrefs.GetString("MyID1", "");
-        //inputID2.text = PlayerPrefs.GetString("MyID2", "");
 
         if (receivedVariable == 2)
         {
             map.SetActive(true); // �� Ȱ��ȭ
             receivedVariable = 0; // ���� �ʱ�ȭ
             PlayerPrefs.SetInt("MyVariable", receivedVariable);// �ʱ�ȭ�� �� �߼�
-            //PlayerPrefs.SetString("MyId1", inputID1.text);// �ʱ�ȭ�� �� ��
-            //PlayerPrefs.SetString("MyId2", inputID2.text);// �ʱ�ȭ�� �� ��
 
             PlayerPrefs.Save(); //�ٲ��� �ʰ� ����
         }
