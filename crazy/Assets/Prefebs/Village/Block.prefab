@@ -149,7 +149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   objectManager: {fileID: 0}
-  blockBreak: 0
 --- !u!95 &8054699468005820777
 Animator:
   serializedVersion: 5
