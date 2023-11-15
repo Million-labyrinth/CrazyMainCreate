@@ -9,8 +9,9 @@ public class ScenesManager : MonoBehaviour
     public GameObject map; //Ȱ��ȭ�� ������Ʈ
     public int receivedVariable = 0; // �޾Ƶ��̱� ���� ���� 
     public InputField inputID1;
-    public InputField inputID2;
-
+    public InputField ExtendID1;
+    public InputField ExtendID2;
+   
     void Start()
     {
         receivedVariable = PlayerPrefs.GetInt("MyVariable", 0); //��ư ��ũ��Ʈ���� ������ ���� ����
