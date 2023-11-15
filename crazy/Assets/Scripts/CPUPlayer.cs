@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CpuPlayer : MonoBehaviour
+public class CPUPlayer : MonoBehaviour
 {
     Rigidbody2D rigid;
     Vector2[] waypoints; // 목적지 좌표 배열
