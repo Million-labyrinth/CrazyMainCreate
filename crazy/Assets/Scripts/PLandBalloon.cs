@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public class PLandBalloon : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class PLandBalloon : MonoBehaviour
     public Rigidbody2D rigid;
 
     Vector3 balloonPos;
-    public Vector3 nextPos;
+    public Vector3 firstPos;
+    public Vector3 secondPos;
+    public float firstMoveSpeed;
+    public float SecondMoveSpeed;
 
     public GameObject balloon;
     public Balloon balloonLogic;
@@ -27,35 +31,26 @@ public class PLandBalloon : MonoBehaviour
     }
 
 
-    IEnumerator lerpCoroutine(Vector3 current, Vector3 target, float time)
+    IEnumerator DoTween()
     {
-        yield return new WaitForSeconds(0.5f);
-        float elapsedTime = 0.0f;
+        // InQuad : 시작할 때 빠르게 가속, 끝날 때 감속
+        // OutQuad : 시작할 때 감속, 끝날 때 가속
+        transform.DOMoveX(firstPos.x, firstMoveSpeed).SetEase(Ease.InQuad);
+        transform.DOMoveY(firstPos.y, firstMoveSpeed).SetEase(Ease.OutQuad);
 
-        this.transform.position = current;
-        while (elapsedTime < time)
-        {
-            elapsedTime += (Time.deltaTime);
+        yield return new WaitForSeconds(0.2f);
 
-            this.transform.position
-                = Vector3.Lerp(current, target, elapsedTime / time);
+        transform.DOMoveX(secondPos.x, SecondMoveSpeed).SetEase(Ease.OutQuad);
+        transform.DOMoveY(secondPos.y, SecondMoveSpeed).SetEase(Ease.InQuad);
 
-            yield return null;
-        }
-
-        transform.position = target;
-
-        yield return null;
     }
 
     public void MoveBalloon()
     {
-        balloonPos = new Vector2((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y));
-
         // 물풍선 이동 시 터지는 시간 초기화
         balloonLogic.enableTime = 0;
 
-        StartCoroutine(lerpCoroutine(balloonPos, nextPos, lerpTime * 0.3f));
+        StartCoroutine(DoTween());
     }
 
 }
