@@ -13,6 +13,15 @@ public class grass : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    IEnumerator Movement()
+    {
+        transform.position += new Vector3(0, 0.1f, 0);
+        yield return new WaitForSeconds(0.2f);
+        transform.position -= new Vector3(0, 0.1f, 0);
+
+        StopCoroutine(Movement());
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
 
@@ -23,12 +32,12 @@ public class grass : MonoBehaviour
                 gameObject.SetActive(false);
                 Debug.Log("false");
             }
-            Debug.Log(other.name);
 
         }
         else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
         {
             haveObj = true;
+            StartCoroutine(Movement());
 
             // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
             SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화

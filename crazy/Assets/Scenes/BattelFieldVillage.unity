@@ -23189,22 +23189,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: grass (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 560429065872203993, guid: eee1eb9060754ae4fbf878d28c813acd, type: 3}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 560429065872203993, guid: eee1eb9060754ae4fbf878d28c813acd, type: 3}
-      propertyPath: m_TagString
-      value: grass
-      objectReference: {fileID: 0}
-    - target: {fileID: 560429065872204006, guid: eee1eb9060754ae4fbf878d28c813acd, type: 3}
-      propertyPath: m_SortingOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 560429065872204007, guid: eee1eb9060754ae4fbf878d28c813acd, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 560429065872204007, guid: eee1eb9060754ae4fbf878d28c813acd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
