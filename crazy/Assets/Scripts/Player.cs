@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
 
 
 
+
     int playerAballonIndex = 0; // 물풍선 오브젝트 풀 사용할 때 필요한 playerAballonIndex 변수
     public int playerAcountIndex = 0; // 물풍선을 생성할 때, 플레이어가 생성한 물풍선의 개수를 체크할 때 필요한 변수
     public bool playerAmakeBalloon; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
@@ -117,8 +118,8 @@ public class Player : MonoBehaviour
                 DeadTime();
             }
         }
-        
-        if(getPurpleDevil)
+
+        if (getPurpleDevil)
         {
             Skill();
             changeColorCount = 0;
@@ -418,8 +419,9 @@ public class Player : MonoBehaviour
 
                 p2niddle.SetActive(false);
 
-                if(isDying)
+                if (isDying)
                 {
+
                     audioSource.clip = balloonEscapeSound;
                     audioSource.Play();
 
@@ -498,7 +500,7 @@ public class Player : MonoBehaviour
 
     IEnumerator AfterGetPurpleDevil()
     {
-        while(changeColorCount <= 20)
+        while (changeColorCount <= 20)
         {
             playerRenderer.color = Color.magenta;
             yield return new WaitForSeconds(0.25f);
@@ -596,7 +598,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "balloon")
+        if (collision.gameObject.tag == "balloon")
         {
             canKickBalloon = false;
         }
@@ -623,7 +625,7 @@ public class Player : MonoBehaviour
         anim.SetBool("isDamaged", true);
         anim.SetBool("isDying", true);
 
-        
+
         playerSpeed = 0.8f;
         audioSource.clip = balloonLockSound;
         audioSource.Play();

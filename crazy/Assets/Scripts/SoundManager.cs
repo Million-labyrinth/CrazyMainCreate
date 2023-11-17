@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class SoundManager : MonoBehaviour
 {
 
     public AudioClip bgPangSound;
     public AudioClip bgStartSound;
     AudioSource audioSource;
+
 
     void Awake()
     {

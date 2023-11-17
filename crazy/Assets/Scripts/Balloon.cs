@@ -10,8 +10,9 @@ public class Balloon : MonoBehaviour
     BoxCollider2D collider;
     public Rigidbody2D rigid;
 
-    public AudioClip boomSound; //캐릭터 갇힌 물풍선 터질때
+    public AudioClip boomSound; //물풍선 터질때
     AudioSource audioSource;
+    bool isPlaying = false;
 
 
     public GameObject upWater;
@@ -45,7 +46,7 @@ public class Balloon : MonoBehaviour
 
     void Awake()
     {
-        anim = GetComponent < Animator>();
+        anim = GetComponent<Animator>();
         collider = gameObject.GetComponent<BoxCollider2D>();
         rigid = gameObject.GetComponent<Rigidbody2D>();
 
@@ -76,15 +77,15 @@ public class Balloon : MonoBehaviour
     {
         BalloonRay();
 
-        if(isEnable)
+        if (isEnable)
         {
             enableTime += Time.deltaTime;
 
-            if(enableTime > 0.2f )
+            if (enableTime > 0.2f)
             {
                 WaterLineActive();
             }
-            if(enableTime > 2.5f && !isBoom)
+            if (enableTime > 2.5f && !isBoom)
             {
                 Boom();
                 isBoom = true;
@@ -146,7 +147,7 @@ public class Balloon : MonoBehaviour
 
     void Boom()
     {
-        
+
         // 애니메이션
         anim.SetBool("Boom", true);
 
@@ -231,8 +232,19 @@ public class Balloon : MonoBehaviour
 
 
         // 사운드
-        audioSource.clip = boomSound;
-        audioSource.Play();
+        if (!isPlaying)
+        {
+            audioSource.clip = boomSound;
+            audioSource.Play();
+            isPlaying = true;
+            Invoke("SoundReset", audioSource.clip.length);
+
+        }
+
+    }
+    void SoundReset()
+    {
+        isPlaying = false;
     }
 
 
@@ -287,7 +299,7 @@ public class Balloon : MonoBehaviour
                 Invoke("Finish", 0.5f);
             }
         }
-       
+
     }
 
 }
