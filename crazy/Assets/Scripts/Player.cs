@@ -543,6 +543,9 @@ public class Player : MonoBehaviour
                 case "powerItem":
                     item.PowerAdd();
                     break;
+                case "powerItem2":
+                    item.PowerAdd();
+                    break;
                 case "speedItem":
                     item.SpeedAdd();
                     playerSpeedRemeber = playerSpeed;

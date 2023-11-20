@@ -548,6 +548,9 @@ public class Player2 : MonoBehaviour
                 case "powerItem":
                     item2.PowerAdd();
                     break;
+                case "powerItem2":
+                    item2.PowerAdd();
+                    break;
                 case "speedItem":
                     item2.SpeedAdd();
                     playerSpeedRemeber = playerSpeed;
