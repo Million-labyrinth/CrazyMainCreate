@@ -13,12 +13,17 @@ public class VerticalMovement : MonoBehaviour
 
     void Update()
     {
-
-        Invoke("MoveItem", 0.3f);
+        if(gameObject.tag == "powerItem")
+        {
+            Invoke("MoveItem", 0.3f);
+        }
+       
     }
 
     void MoveItem()
     {
+        
+
         Vector3 currentPosition = transform.position;
 
         currentPosition.y += moveSpeed * direction * Time.deltaTime;

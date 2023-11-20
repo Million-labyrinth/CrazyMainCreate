@@ -161,7 +161,7 @@ public class PlayerItem : MonoBehaviour
 
         Debug.Log("플레이어가 오브젝트에 닿음");
 
-        if (collision.gameObject.CompareTag("powerItem"))
+        if (collision.gameObject.CompareTag("powerItem") || collision.gameObject.CompareTag("powerItem2"))
         {
             if(bombPower < bombPowerMax)
             {

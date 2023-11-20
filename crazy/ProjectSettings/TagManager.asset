@@ -25,6 +25,8 @@ TagManager:
   - hitCollider
   - springItem
   - tankItem
+  - Bullet
+  - powerItem2
   layers:
   - Default
   - TransparentFX

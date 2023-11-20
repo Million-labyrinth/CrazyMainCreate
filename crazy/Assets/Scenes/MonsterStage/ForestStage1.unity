@@ -2792,6 +2792,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 711147576}
     m_Modifications:
+    - target: {fileID: 2398414847435726115, guid: 8737e5b60bad4c94e9ea038c1278340e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8240150318682310915, guid: 8737e5b60bad4c94e9ea038c1278340e, type: 3}
       propertyPath: m_Name
       value: pond (2)
@@ -2844,7 +2848,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 705245792060524562, guid: 8737e5b60bad4c94e9ea038c1278340e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8737e5b60bad4c94e9ea038c1278340e, type: 3}
 --- !u!4 &702276188 stripped
 Transform:
@@ -5506,7 +5511,7 @@ MonoBehaviour:
   bombItem: []
   rangeItem: []
   Activeitem:
-  - {fileID: 186842319}
+  - {fileID: 0}
 --- !u!4 &868673169
 Transform:
   m_ObjectHideFlags: 0
@@ -5778,6 +5783,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 711147576}
     m_Modifications:
+    - target: {fileID: 2398414847435726115, guid: 8737e5b60bad4c94e9ea038c1278340e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8240150318682310915, guid: 8737e5b60bad4c94e9ea038c1278340e, type: 3}
       propertyPath: m_Name
       value: pond (1)
@@ -5830,7 +5839,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 705245792060524562, guid: 8737e5b60bad4c94e9ea038c1278340e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8737e5b60bad4c94e9ea038c1278340e, type: 3}
 --- !u!4 &907685809 stripped
 Transform:
@@ -10796,6 +10806,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 711147576}
     m_Modifications:
+    - target: {fileID: 2398414847435726115, guid: 8737e5b60bad4c94e9ea038c1278340e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8240150318682310915, guid: 8737e5b60bad4c94e9ea038c1278340e, type: 3}
       propertyPath: m_Name
       value: pond
@@ -10848,7 +10862,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 705245792060524562, guid: 8737e5b60bad4c94e9ea038c1278340e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8737e5b60bad4c94e9ea038c1278340e, type: 3}
 --- !u!4 &7403876099473127482 stripped
 Transform:
@@ -11065,4 +11080,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4422e5fa41187f48958ec53e67393a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
