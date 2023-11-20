@@ -144,7 +144,7 @@ public class Player2 : MonoBehaviour
     void Move()
     {
         // 이동
-        if(getPurpleDevil)
+        if (getPurpleDevil)
         {
             hAxis = Input.GetAxisRaw("2PH") * -1;
             vAxis = Input.GetAxisRaw("2PV") * -1;
@@ -328,19 +328,19 @@ public class Player2 : MonoBehaviour
 
                     if (curPushTime > nextPushTime && getShoesItem && canKickBalloon)
                     {
-                        if (rayDir == Vector2.up && pushBalloonLogic.balloonLogic.upScanObject == null && !BalloonLogic.isBoom)
+                        if (rayDir == Vector2.up && pushBalloonLogic.balloonLogic.upScanObject == null && pushBalloonLogic.balloonLogic.isBoom == false)
                         {
                             pushBalloonLogic.MoveBalloon("Up");
                         }
-                        else if (rayDir == Vector2.down && pushBalloonLogic.balloonLogic.downScanObject == null && !BalloonLogic.isBoom)
+                        else if (rayDir == Vector2.down && pushBalloonLogic.balloonLogic.downScanObject == null && pushBalloonLogic.balloonLogic.isBoom == false)
                         {
                             pushBalloonLogic.MoveBalloon("Down");
                         }
-                        else if (rayDir == Vector2.left && pushBalloonLogic.balloonLogic.leftScanObject == null && !BalloonLogic.isBoom)
+                        else if (rayDir == Vector2.left && pushBalloonLogic.balloonLogic.leftScanObject == null && pushBalloonLogic.balloonLogic.isBoom == false)
                         {
                             pushBalloonLogic.MoveBalloon("Left");
                         }
-                        else if (rayDir == Vector2.right && pushBalloonLogic.balloonLogic.rightScanObject == null && !BalloonLogic.isBoom)
+                        else if (rayDir == Vector2.right && pushBalloonLogic.balloonLogic.rightScanObject == null && pushBalloonLogic.balloonLogic.isBoom == false)
                         {
                             pushBalloonLogic.MoveBalloon("Right");
                         }
@@ -421,7 +421,7 @@ public class Player2 : MonoBehaviour
                 Debug.Log("바늘 사용");
                 useniddle = true;
 
-                if(isDying)
+                if (isDying)
                 {
                     p1niddle.SetActive(false);
                     audioSource.clip = balloonEscapeSound;
