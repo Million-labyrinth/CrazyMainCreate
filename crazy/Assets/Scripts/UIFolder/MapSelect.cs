@@ -14,26 +14,26 @@ public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
 
 
-    public void OnPointerEnter(PointerEventData eventData) // Å« ÀÌ¹ÌÁö ¸¶¿ì½º ¿Ã·ÈÀ» ¶§ ¶ç¿ì´Â ÄÚµå
+    public void OnPointerEnter(PointerEventData eventData) // Å« ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
     {
         largeImage.SetActive(true);
         border.SetActive(true);
     }
 
-    public void OnPointerExit(PointerEventData eventData) // ¸¶¿ì½º°¡ ³ª°¬À»¶§ ²ô´Â ÄÚµå
+    public void OnPointerExit(PointerEventData eventData) // ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
     {
         largeImage.SetActive(false);
         border.SetActive(false);
     }
 
-    public void ttv() // ¹öÆ° ´©¸¦ ¶§ ´ÙÀ½ ¾À ¿¬°á
+    public void ttv() // ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
 
         SceneManager.LoadScene("BattelFieldVillage");
     }
     public void ttf()
     {
-        SceneManager.LoadScene("BattelFieldFactory");
+        SceneManager.LoadScene("BattelFieldFactory 1");
     }
 
 }
