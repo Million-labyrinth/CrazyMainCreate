@@ -15,16 +15,20 @@ public class Water : MonoBehaviour
     GameObject scanObject; // upRay 에 인식되는 오브젝트 변수
     SpriteRenderer sprite;
 
-    bool isHitBlock = false; // 물줄기 Ray 가 Block 을 인식했을 때, Block 부수기
+    bool isHitBlock; // 물줄기 Ray 가 Block 을 인식했을 때, Block 부수기
 
     void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+
+        isHitBlock = false;
     }
 
     void OnEnable()
     {
         sprite.enabled = true; // Sprite Renderer 가 꺼지는 오류 발생해서 추가한 코드
+
+        isHitBlock = false;
     }
 
     void Update()
@@ -97,24 +101,22 @@ public class Water : MonoBehaviour
         if (rayHit.collider != null)
         {
             scanObject = rayHit.collider.gameObject;
-            //FindObject();
 
             if (!isHitBlock && scanObject.tag == "Block")
             {
                 isHitBlock = true;
 
                 Block Block = scanObject.GetComponent<Block>();
+                    
+                Block.anim.SetBool("Hit", true);
+                Block.Invoke("Hit", 0.5f);
 
-                if (Block != null)
-                {
-                    Block.anim.SetBool("Hit", true);
-                    Block.Invoke("Hit", 0.5f);
-                }
+                StartCoroutine("hitBlock");
             }
             else if (scanObject.tag == "grass")
             {
                 grass grassLogic = scanObject.GetComponent<grass>();
-                Debug.Log(scanObject.name);
+
                 if (grassLogic != null && !grassLogic.haveObj)
                 {
                     scanObject.SetActive(false);
@@ -158,5 +160,13 @@ public class Water : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    IEnumerator hitBlock()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isHitBlock = false;
+
+        StopCoroutine("hitBlock");
     }
 }
