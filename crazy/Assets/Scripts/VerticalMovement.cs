@@ -13,7 +13,7 @@ public class VerticalMovement : MonoBehaviour
 
     void Update()
     {
-        if(gameObject.tag == "powerItem")
+        if(gameObject.tag != "powerItem2")
         {
             Invoke("MoveItem", 0.3f);
         }
