@@ -16,12 +16,15 @@ public class Water : MonoBehaviour
     SpriteRenderer sprite;
 
     bool isHitBlock; // 물줄기 Ray 가 Block 을 인식했을 때, Block 부수기
+    bool isActivation; // Ray 에 아무것도 인식 안되면 물줄기 활성화
+
 
     void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
 
         isHitBlock = false;
+        isActivation = false;
     }
 
     void OnEnable()
@@ -43,10 +46,11 @@ public class Water : MonoBehaviour
                     Vector3 plus = new Vector3(0, 0.3f, 0);
                     Ray(plus, Vector3.up);
 
-                    if (scanObject == null)
+                    if (scanObject == null && isActivation)
                     {
+                        isActivation = false;
                         upWater[Array.IndexOf(upWater, gameObject) + 1].SetActive(true);
-                        Invoke("BackCondition", 0.5f);
+                        Invoke("BackCondition", 0.55f);
                     }
                 }
                 break;
@@ -59,7 +63,7 @@ public class Water : MonoBehaviour
                     if (scanObject == null)
                     {
                         downWater[Array.IndexOf(downWater, gameObject) + 1].SetActive(true);
-                        Invoke("BackCondition", 0.5f);
+                        Invoke("BackCondition", 0.55f);
                     }
                 }
                 break;
@@ -72,7 +76,7 @@ public class Water : MonoBehaviour
                     if (scanObject == null)
                     {
                         leftWater[Array.IndexOf(leftWater, gameObject) + 1].SetActive(true);
-                        Invoke("BackCondition", 0.5f);
+                        Invoke("BackCondition", 0.55f);
                     }
                 }
                 break;
@@ -85,7 +89,7 @@ public class Water : MonoBehaviour
                     if(scanObject == null)
                     {
                         rightWater[Array.IndexOf(rightWater, gameObject) + 1].SetActive(true);
-                        Invoke("BackCondition", 0.5f);
+                        Invoke("BackCondition", 0.55f);
                     }
                 }
                 break;
@@ -101,6 +105,7 @@ public class Water : MonoBehaviour
         if (rayHit.collider != null)
         {
             scanObject = rayHit.collider.gameObject;
+            isActivation = false;
 
             if (!isHitBlock && scanObject.tag == "Block")
             {
@@ -109,7 +114,7 @@ public class Water : MonoBehaviour
                 Block Block = scanObject.GetComponent<Block>();
                     
                 Block.anim.SetBool("Hit", true);
-                Block.Invoke("Hit", 0.5f);
+                Block.Invoke("Hit", 0.55f);
 
                 StartCoroutine("hitBlock");
             }
@@ -127,6 +132,7 @@ public class Water : MonoBehaviour
         {
             scanObject = null;
             isHitBlock = false;
+            isActivation = true;
         }
     }
 
@@ -160,6 +166,7 @@ public class Water : MonoBehaviour
                 }
                 break;
         }
+
     }
 
     IEnumerator hitBlock()

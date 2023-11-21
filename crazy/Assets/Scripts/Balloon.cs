@@ -166,7 +166,7 @@ public class Balloon : MonoBehaviour
                 // Ray 에 블럭이 인식될 경우 블럭 Hit 작동
                 Block upBlock = upScanObject.GetComponent<Block>();
                 upBlock.anim.SetBool("Hit", true);
-                upBlock.Invoke("Hit", 0.5f);
+                upBlock.Invoke("Hit", 0.55f);
                 isHitUpBlock = true;
             }
         }
@@ -183,7 +183,7 @@ public class Balloon : MonoBehaviour
             {
                 Block downBlock = downScanObject.GetComponent<Block>();
                 downBlock.anim.SetBool("Hit", true);
-                downBlock.Invoke("Hit", 0.5f);
+                downBlock.Invoke("Hit", 0.55f);
                 isHitDownBlock = true;
 
             }
@@ -202,7 +202,7 @@ public class Balloon : MonoBehaviour
             {
                 Block leftBlock = leftScanObject.GetComponent<Block>();
                 leftBlock.anim.SetBool("Hit", true);
-                leftBlock.Invoke("Hit", 0.5f);
+                leftBlock.Invoke("Hit", 0.55f);
 
                 isHitLeftBlock = true;
             }
@@ -221,7 +221,7 @@ public class Balloon : MonoBehaviour
             {
                 Block rightBlock = rightScanObject.GetComponent<Block>();
                 rightBlock.anim.SetBool("Hit", true);
-                rightBlock.Invoke("Hit", 0.5f);
+                rightBlock.Invoke("Hit", 0.55f);
 
                 isHitRightBlock = true;
             }
