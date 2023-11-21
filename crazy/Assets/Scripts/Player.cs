@@ -28,9 +28,6 @@ public class Player : MonoBehaviour
     public AudioClip deathSound; //캐릭터 갇힌 물풍선 터질때
     AudioSource audioSource;
 
-
-
-
     int playerAballonIndex = 0; // 물풍선 오브젝트 풀 사용할 때 필요한 playerAballonIndex 변수
     public int playerAcountIndex = 0; // 물풍선을 생성할 때, 플레이어가 생성한 물풍선의 개수를 체크할 때 필요한 변수
     public bool playerAmakeBalloon; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수

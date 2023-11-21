@@ -44,6 +44,9 @@ public class Balloon : MonoBehaviour
     public bool isBoom;
     bool isFinish;
 
+    bool underThePlayerA;
+    bool underThePlayerB;
+
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -142,6 +145,42 @@ public class Balloon : MonoBehaviour
         {
             rightScanObject = null;
         }
+
+        Collider2D mainARay = Physics2D.OverlapCircle(rigid.position, 0.45f, LayerMask.GetMask("Player A"));
+
+        if (mainARay == null)
+        {
+            StartCoroutine("ChangeATrigger");
+        }
+
+        Collider2D mainBRay = Physics2D.OverlapCircle(rigid.position, 0.45f, LayerMask.GetMask("Player B"));
+
+        if (mainBRay == null)
+        {
+            StartCoroutine("ChangeBTrigger");
+        }
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1f, 1f, 0f);
+        // mainRay 모습
+        Gizmos.DrawWireSphere(transform.position, 0.45f);
+    }
+
+    IEnumerator ChangeATrigger()
+    {
+        yield return new WaitForSeconds(0.1f);
+        colliderA.isTrigger = false;
+
+        StopCoroutine("ChangeATrigger");
+    }
+
+    IEnumerator ChangeBTrigger()
+    {
+        yield return new WaitForSeconds(0.1f);
+        colliderB.isTrigger = false;
+
+        StopCoroutine("ChangeBTrigger");
     }
 
 
@@ -300,6 +339,36 @@ public class Balloon : MonoBehaviour
             }
         }
 
+        if(obj.tag == "PlayerA")
+        {
+            underThePlayerA = true;
+        }
+        else
+        {
+            underThePlayerA = false;
+        }
+
+        if(obj.tag == "PlayerB")
+        {
+            underThePlayerB = true;
+        } else
+        {
+            underThePlayerB = false;
+        }
+
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "PlayerA")
+        {
+            underThePlayerA = false;
+        }
+
+        if (collision.tag == "PlayerB")
+        {
+            underThePlayerB = false;
+        }
     }
 
 }
