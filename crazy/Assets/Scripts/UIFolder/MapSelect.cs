@@ -11,6 +11,8 @@ public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public GameObject largeImage;
     public GameObject border;
 
+    public string[] RandomSceneNames;
+
 
 
 
@@ -36,5 +38,18 @@ public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         SceneManager.LoadScene("BattelFieldFactory 1");
     }
 
+    public void LoadRandomScene()
+    {
+        if (RandomSceneNames.Length > 0)
+        {
+            int randomIndex = Random.Range(0, RandomSceneNames.Length);
+            string randomSceneName = RandomSceneNames[randomIndex];
+            SceneManager.LoadScene(randomSceneName);
+        }
+        else
+        {
+            Debug.LogError("씬 이름이 지정되지 않았습니다.");
+        }
+    }
 }
 

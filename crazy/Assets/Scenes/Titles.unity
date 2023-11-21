@@ -215,6 +215,7 @@ MonoBehaviour:
   title_to_scene: {fileID: 0}
   largeImage: {fileID: 2081518486}
   border: {fileID: 1659260869}
+  RandomSceneNames: []
 --- !u!82 &6168084
 AudioSource:
   m_ObjectHideFlags: 0
@@ -403,6 +404,7 @@ MonoBehaviour:
   title_to_scene: {fileID: 0}
   largeImage: {fileID: 812988874}
   border: {fileID: 1618393201}
+  RandomSceneNames: []
 --- !u!82 &27745133
 AudioSource:
   m_ObjectHideFlags: 0
@@ -667,6 +669,7 @@ GameObject:
   - component: {fileID: 190442101}
   - component: {fileID: 190442102}
   - component: {fileID: 190442103}
+  - component: {fileID: 190442104}
   m_Layer: 6
   m_Name: random
   m_TagString: Untagged
@@ -791,6 +794,9 @@ MonoBehaviour:
   title_to_scene: {fileID: 0}
   largeImage: {fileID: 166786536}
   border: {fileID: 1495079800}
+  RandomSceneNames:
+  - BattelFieldVillage
+  - BattleFieldFactory
 --- !u!82 &190442103
 AudioSource:
   m_ObjectHideFlags: 0
@@ -887,6 +893,62 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &190442104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190442096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 190442098}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 190442102}
+        m_TargetAssemblyTypeName: MapSelect, Assembly-CSharp
+        m_MethodName: LoadRandomScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &209555382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1194,7 @@ MonoBehaviour:
   title_to_scene: {fileID: 0}
   largeImage: {fileID: 922965612}
   border: {fileID: 1088434729}
+  RandomSceneNames: []
 --- !u!82 &259436806
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2907,6 +2970,7 @@ MonoBehaviour:
   title_to_scene: {fileID: 807312133}
   largeImage: {fileID: 273818945}
   border: {fileID: 209555382}
+  RandomSceneNames: []
 --- !u!114 &807312133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3526,6 +3590,7 @@ MonoBehaviour:
   title_to_scene: {fileID: 1086344054}
   largeImage: {fileID: 1730705393}
   border: {fileID: 1555393410}
+  RandomSceneNames: []
 --- !u!114 &1086344054
 MonoBehaviour:
   m_ObjectHideFlags: 0

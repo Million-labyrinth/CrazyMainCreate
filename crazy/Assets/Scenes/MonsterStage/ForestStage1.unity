@@ -997,7 +997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title_to_scene: {fileID: 274733380}
-  alert: {fileID: 0}
+  alert: {fileID: 1525054621}
   ttM: {fileID: 0}
 --- !u!114 &274733382
 MonoBehaviour:
@@ -6366,8 +6366,8 @@ RectTransform:
   - {fileID: 2016155293}
   - {fileID: 1840895560}
   - {fileID: 1111582658}
-  - {fileID: 80934477}
   - {fileID: 274733379}
+  - {fileID: 80934477}
   m_Father: {fileID: 1265614057}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
