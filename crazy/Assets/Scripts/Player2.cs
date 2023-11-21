@@ -244,12 +244,12 @@ public class Player2 : MonoBehaviour
     {
 
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
-        Collider2D playerARay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player B"));
+        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player A"));
         GameObject scanObject;
 
-        if (playerARay != null)
+        if (playerBRay != null)
         {
-            scanObject = playerARay.gameObject;
+            scanObject = playerBRay.gameObject;
 
             // 물풍선 생성 가능 여부
             if (scanObject.layer == 3)
@@ -258,15 +258,15 @@ public class Player2 : MonoBehaviour
             }
 
             // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
-            if (scanObject.tag == "PlayerB")
+            if (scanObject.tag == "PlayerA")
             {
-                Player2 playerBLogic = scanObject.GetComponent<Player2>();
+                Player playerALogic = scanObject.GetComponent<Player>();
 
-                if (playerBLogic.isDying == true && isDying == false)
+                if (playerALogic.isDying == true && isDying == false)
                 {
-                    playerBLogic.DeadTime();
+                    playerALogic.DeadTime();
                     //gameManager.touchDeath();
-                    playerBLogic.dyingTime = 0;
+                    playerALogic.dyingTime = 0;
                 }
             }
         }
@@ -367,7 +367,7 @@ public class Player2 : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0f, 1f, 0f);
-        // playerARay 모습
+        // playerBRay 모습
         Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.35f), 0.45f);
     }
 
