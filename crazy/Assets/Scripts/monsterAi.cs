@@ -11,18 +11,31 @@ public class monsterAi : MonoBehaviour
     private Vector3 targetPosition;
     private float moveSpeed = 2.0f;
 
+    public Animator anim;
+
     void Awake()
     {
         // 시작 시 초기 위치 설정
-
+        anim = GetComponent<Animator>();
         targetPosition = GetRandomPosition();
     }
 
     void Update()
     {
+        
+        //이동 애니메이션
+        if (transform.position.y > GetRandomPosition().y)
+        {
+            anim.SetBool("is_up", true);
+            anim.SetBool("is_down", false);
+        }
+        else if (transform.position.y < GetRandomPosition().y)
+        {
+            anim.SetBool("is_down", true);
+            anim.SetBool("is_up", false);
+        }
         // 현재 위치에서 목표 위치로 이동
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-
         // 만약 목표 위치에 도달했다면, 다른 랜덤 위치를 선택
         if (transform.position == targetPosition)
         {
