@@ -70,11 +70,12 @@ public class Player2 : MonoBehaviour
     public SpriteRenderer playerRenderer; //스프라이트 활성화 비활성화
 
     float playerSpeedRemeber; // 물풍선에 맞을 때 원래 속도 저장용
-    bool getShoesItem; // 신발 아이템 획득 여부
+    public bool getShoesItem; // 신발 아이템 획득 여부
     bool canKickBalloon; // 물풍선 위에 있을 때 물풍선을 차는 오류 방지
     bool getPurpleDevil; // 보라악마 획득 여부
     float purpleDevilTime; // 보라악마 지속 시간
     int changeColorCount = 0; // 보라악마 획득 후 색 변환 횟수 체크
+    string purpleDevilMode; // 물풍선 설치 or 방향키 반대
 
     void Awake()
     {
@@ -118,7 +119,7 @@ public class Player2 : MonoBehaviour
             }
         }
 
-        if (getPurpleDevil)
+        if (purpleDevilMode == "Balloon" && getPurpleDevil)
         {
             Skill();
             changeColorCount = 0;
@@ -144,7 +145,7 @@ public class Player2 : MonoBehaviour
     void Move()
     {
         // 이동
-        if (getPurpleDevil)
+        if (purpleDevilMode == "Move" && getPurpleDevil)
         {
             hAxis = Input.GetAxisRaw("2PH") * -1;
             vAxis = Input.GetAxisRaw("2PV") * -1;
@@ -592,6 +593,16 @@ public class Player2 : MonoBehaviour
                     getPurpleDevil = true;
                     purpleDevilTime = 0;
                     StartCoroutine("AfterGetPurpleDevil");
+
+                    int ran = UnityEngine.Random.Range(0, 2);
+                    if (ran == 0)
+                    {
+                        purpleDevilMode = "Balloon";
+                    }
+                    else if (ran == 1)
+                    {
+                        purpleDevilMode = "Move";
+                    }
                     break;
             }
 

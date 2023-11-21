@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
     bool getPurpleDevil; // 보라악마 획득 여부
     float purpleDevilTime; // 보라악마 지속 시간
     int changeColorCount = 0; // 보라악마 획득 후 색 변환 횟수 체크
+    string purpleDevilMode; // 물풍선 설치 or 방향키 반대
 
     void Awake()
     {
@@ -119,7 +120,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (getPurpleDevil)
+        if (purpleDevilMode == "Balloon" && getPurpleDevil)
         {
             Skill();
             changeColorCount = 0;
@@ -145,7 +146,7 @@ public class Player : MonoBehaviour
     void Move()
     {
         // 이동
-        if (getPurpleDevil)
+        if (purpleDevilMode == "Move" && getPurpleDevil)
         {
             hAxis = Input.GetAxisRaw("Horizontal") * -1;
             vAxis = Input.GetAxisRaw("Vertical") * -1;
@@ -587,6 +588,16 @@ public class Player : MonoBehaviour
                     getPurpleDevil = true;
                     purpleDevilTime = 0;
                     StartCoroutine("AfterGetPurpleDevil");
+
+                    int ran = UnityEngine.Random.Range(0, 2);
+                    if(ran == 0)
+                    {
+                        purpleDevilMode = "Balloon";
+                    }
+                    else if (ran == 1)
+                    {
+                        purpleDevilMode = "Move";
+                    }
                     break;
             }
 
