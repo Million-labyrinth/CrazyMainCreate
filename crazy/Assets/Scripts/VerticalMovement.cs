@@ -22,7 +22,7 @@ public class VerticalMovement : MonoBehaviour
 
     void MoveItem()
     {
-        
+        Debug.Log("아이템이 위아래로 움직임");
 
         Vector3 currentPosition = transform.position;
 
