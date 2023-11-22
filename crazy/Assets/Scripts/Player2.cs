@@ -405,10 +405,10 @@ public class Player2 : MonoBehaviour
     void UseItem()
     {
         //바늘 아이템 사용
-        if (Input.GetKeyDown(KeyCode.LeftControl) && gameManager.plB == true)
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         { //왼쪽컨트롤키를 누르고 플레이어의 상태가 true인 경우에만 실행
           // 0번째 활성화된 아이템을 사용
-            if (item2.Activeitem[0].name.Contains("shield"))
+            if (item2.Activeitem[0].name.Contains("shield") && !isDying)
             {
                 Debug.Log("쉴드 사용");
                 Shieldeffect.SetActive(true);

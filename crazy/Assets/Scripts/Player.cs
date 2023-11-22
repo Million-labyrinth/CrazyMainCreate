@@ -398,10 +398,10 @@ public class Player : MonoBehaviour
     void UseItem()
     {
         //바늘 아이템 사용
-        if (Input.GetKeyDown(KeyCode.RightControl) && gameManager.plA == true)
+        if (Input.GetKeyDown(KeyCode.RightControl))
         { //왼쪽컨트롤키를 누르고 플레이어의 상태가 true인 경우에만 실행
           // 0번째 활성화된 아이템을 사용
-            if (item.Activeitem[0].name.Contains("shield"))
+            if (item.Activeitem[0].name.Contains("shield") && !isDying)
             {
                 Debug.Log("쉴드 사용");
                 Shieldeffect.SetActive(true);
@@ -561,6 +561,7 @@ public class Player : MonoBehaviour
                     break;
                 case "ActiveItem":
                     // 먹은 아이템을 Activeitem 배열에 추가 (ActiveItem 태그를 가진 아이템만 추가)
+                    Debug.Log(itemName);
                     if (itemName.Contains("shield"))
                     {
                         if (p2niddle == true)

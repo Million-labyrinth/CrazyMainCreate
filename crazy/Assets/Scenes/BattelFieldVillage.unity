@@ -12280,7 +12280,7 @@ MonoBehaviour:
   bombItem: []
   rangeItem: []
   Activeitem:
-  - {fileID: 186842319}
+  - {fileID: 0}
 --- !u!4 &868673169
 Transform:
   m_ObjectHideFlags: 0
@@ -12311,8 +12311,6 @@ MonoBehaviour:
   playerA: {fileID: 1814193088}
   playerB: {fileID: 435125920}
   objectManager: {fileID: 1191335683}
-  plA: 1
-  plB: 1
   awin: {fileID: 1103411444}
   bwin: {fileID: 1889196952}
   draw: {fileID: 1380984725}

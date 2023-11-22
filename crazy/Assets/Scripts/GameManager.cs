@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
     public Player playerA;
     public Player2 playerB;
     public ObjectManager objectManager;
-    public bool plA = true;
-    public bool plB = true;
 
     public GameObject awin;
     public GameObject bwin;

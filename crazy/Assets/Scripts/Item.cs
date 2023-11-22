@@ -30,12 +30,6 @@ public class Item : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
-    private void Update()
-    {
-       /* Debug.Log(Activeitem[0].name);*/
-        Activeitem[0] = null;
-    }
-
 
     public void PowerAdd()
     {
@@ -131,8 +125,6 @@ public class Item : MonoBehaviour
         else if (Activeitem[0].name.Contains("shield"))
         {
             Debug.Log("shield item touch");
-
-
         }
 
 
