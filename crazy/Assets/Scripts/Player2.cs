@@ -417,7 +417,7 @@ public class Player2 : MonoBehaviour
                 //인보크를 이용하여 쉴드를 3초뒤에 꺼지게 함
                 Invoke("stopShield", 2f);
             }
-            else if (item2.Activeitem[0].name.Contains("niddle"))
+            else if (item2.Activeitem[0].name.Contains("niddle") && !useniddle)
             {
                 Debug.Log("바늘 사용");
                 useniddle = true;
@@ -458,6 +458,7 @@ public class Player2 : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         playerSpeed = playerSpeedRemeber;
         StopCoroutine(BackSpeed());
+        useniddle = false;
     }
 
     //플레이어 상태 스크립트(행동가능, 물풍선 같힌상태, 죽음)
