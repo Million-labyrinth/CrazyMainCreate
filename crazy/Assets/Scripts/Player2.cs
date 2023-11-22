@@ -70,11 +70,12 @@ public class Player2 : MonoBehaviour
     public SpriteRenderer playerRenderer; //스프라이트 활성화 비활성화
 
     float playerSpeedRemeber; // 물풍선에 맞을 때 원래 속도 저장용
-    bool getShoesItem; // 신발 아이템 획득 여부
+    public bool getShoesItem; // 신발 아이템 획득 여부
     bool canKickBalloon; // 물풍선 위에 있을 때 물풍선을 차는 오류 방지
     bool getPurpleDevil; // 보라악마 획득 여부
     float purpleDevilTime; // 보라악마 지속 시간
     int changeColorCount = 0; // 보라악마 획득 후 색 변환 횟수 체크
+    string purpleDevilMode; // 물풍선 설치 or 방향키 반대
 
     void Awake()
     {
@@ -118,7 +119,7 @@ public class Player2 : MonoBehaviour
             }
         }
 
-        if (getPurpleDevil)
+        if (purpleDevilMode == "Balloon" && getPurpleDevil)
         {
             Skill();
             changeColorCount = 0;
@@ -144,7 +145,7 @@ public class Player2 : MonoBehaviour
     void Move()
     {
         // 이동
-        if (getPurpleDevil)
+        if (purpleDevilMode == "Move" && getPurpleDevil)
         {
             hAxis = Input.GetAxisRaw("2PH") * -1;
             vAxis = Input.GetAxisRaw("2PV") * -1;
@@ -244,12 +245,12 @@ public class Player2 : MonoBehaviour
     {
 
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
-        Collider2D playerARay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player B"));
+        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player A"));
         GameObject scanObject;
 
-        if (playerARay != null)
+        if (playerBRay != null)
         {
-            scanObject = playerARay.gameObject;
+            scanObject = playerBRay.gameObject;
 
             // 물풍선 생성 가능 여부
             if (scanObject.layer == 3)
@@ -258,15 +259,15 @@ public class Player2 : MonoBehaviour
             }
 
             // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
-            if (scanObject.tag == "PlayerB")
+            if (scanObject.tag == "PlayerA")
             {
-                Player2 playerBLogic = scanObject.GetComponent<Player2>();
+                Player playerALogic = scanObject.GetComponent<Player>();
 
-                if (playerBLogic.isDying == true && isDying == false)
+                if (playerALogic.isDying == true && isDying == false)
                 {
-                    playerBLogic.DeadTime();
+                    playerALogic.DeadTime();
                     //gameManager.touchDeath();
-                    playerBLogic.dyingTime = 0;
+                    playerALogic.dyingTime = 0;
                 }
             }
         }
@@ -367,7 +368,7 @@ public class Player2 : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0f, 1f, 0f);
-        // playerARay 모습
+        // playerBRay 모습
         Gizmos.DrawWireSphere(transform.position - new Vector3(0, 0.35f), 0.45f);
     }
 
@@ -592,6 +593,16 @@ public class Player2 : MonoBehaviour
                     getPurpleDevil = true;
                     purpleDevilTime = 0;
                     StartCoroutine("AfterGetPurpleDevil");
+
+                    int ran = UnityEngine.Random.Range(0, 2);
+                    if (ran == 0)
+                    {
+                        purpleDevilMode = "Balloon";
+                    }
+                    else if (ran == 1)
+                    {
+                        purpleDevilMode = "Move";
+                    }
                     break;
             }
 

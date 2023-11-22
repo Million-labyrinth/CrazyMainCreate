@@ -24,11 +24,11 @@ public class Block : MonoBehaviour
 
     void Hit() {
         gameObject.SetActive(false);
-        anim.SetBool("Hit", false);
+        anim.SetBool("Hit", false); // 애니메이션 Idle 로 변경
 
         if(!blockBreak)
         {
-            Invoke("SpawnItem", 0.3f);
+            Invoke("SpawnItem", 0.2f);
             blockBreak = true;
         }
     }
@@ -129,7 +129,7 @@ public class Block : MonoBehaviour
     void OnTriggerEnter2D(Collider2D  obj) {
         if(obj.gameObject.tag == "upWater" || obj.gameObject.tag == "downWater" || obj.gameObject.tag == "leftWater" || obj.gameObject.tag == "rightWater") {
             anim.SetBool("Hit", true);
-            Invoke("Hit", 0.5f);
+            Invoke("Hit", 0.55f);
         }
     }
 

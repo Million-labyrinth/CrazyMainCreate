@@ -28,9 +28,6 @@ public class Player : MonoBehaviour
     public AudioClip deathSound; //캐릭터 갇힌 물풍선 터질때
     AudioSource audioSource;
 
-
-
-
     int playerAballonIndex = 0; // 물풍선 오브젝트 풀 사용할 때 필요한 playerAballonIndex 변수
     public int playerAcountIndex = 0; // 물풍선을 생성할 때, 플레이어가 생성한 물풍선의 개수를 체크할 때 필요한 변수
     public bool playerAmakeBalloon; // count 가 2 이상일 시, 바로 물풍선을 생성 가능하게 만들기 위한 변수
@@ -76,6 +73,7 @@ public class Player : MonoBehaviour
     bool getPurpleDevil; // 보라악마 획득 여부
     float purpleDevilTime; // 보라악마 지속 시간
     int changeColorCount = 0; // 보라악마 획득 후 색 변환 횟수 체크
+    string purpleDevilMode; // 물풍선 설치 or 방향키 반대
 
     void Awake()
     {
@@ -119,7 +117,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (getPurpleDevil)
+        if (purpleDevilMode == "Balloon" && getPurpleDevil)
         {
             Skill();
             changeColorCount = 0;
@@ -145,7 +143,7 @@ public class Player : MonoBehaviour
     void Move()
     {
         // 이동
-        if (getPurpleDevil)
+        if (purpleDevilMode == "Move" && getPurpleDevil)
         {
             hAxis = Input.GetAxisRaw("Horizontal") * -1;
             vAxis = Input.GetAxisRaw("Vertical") * -1;
@@ -587,6 +585,16 @@ public class Player : MonoBehaviour
                     getPurpleDevil = true;
                     purpleDevilTime = 0;
                     StartCoroutine("AfterGetPurpleDevil");
+
+                    int ran = UnityEngine.Random.Range(0, 2);
+                    if(ran == 0)
+                    {
+                        purpleDevilMode = "Balloon";
+                    }
+                    else if (ran == 1)
+                    {
+                        purpleDevilMode = "Move";
+                    }
                     break;
             }
 
