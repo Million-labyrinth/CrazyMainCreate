@@ -20,6 +20,8 @@ public class UI_IDinput_Title : IDMgr
     public GameObject P2UIBUtton;
 
 
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -100,6 +102,7 @@ public class UI_IDinput_Title : IDMgr
         }
     }
    
+
 
     public void P2UIActiveButton()
         {
