@@ -25,9 +25,9 @@ public class PLandBalloon : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
     }
 
-    void Start()
+    void OnEnable()
     {
-        MoveBalloon();
+        StartCoroutine(DoTween());
     }
 
 
@@ -43,14 +43,7 @@ public class PLandBalloon : MonoBehaviour
         transform.DOMoveX(secondPos.x, SecondMoveSpeed).SetEase(Ease.OutQuad);
         transform.DOMoveY(secondPos.y, SecondMoveSpeed).SetEase(Ease.InQuad);
 
-    }
-
-    public void MoveBalloon()
-    {
         // 물풍선 이동 시 터지는 시간 초기화
         balloonLogic.enableTime = 0;
-
-        StartCoroutine(DoTween());
     }
-
 }
