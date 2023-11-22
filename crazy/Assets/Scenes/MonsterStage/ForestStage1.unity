@@ -1911,6 +1911,7 @@ MonoBehaviour:
   isDying: 0
   dyingTime: 0
   playerRenderer: {fileID: 0}
+  getShoesItem: 0
 --- !u!58 &435125921
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5800,8 +5801,6 @@ MonoBehaviour:
   playerA: {fileID: 1814193088}
   playerB: {fileID: 435125920}
   objectManager: {fileID: 1191335683}
-  plA: 1
-  plB: 1
   awin: {fileID: 1103411444}
   bwin: {fileID: 1889196952}
   draw: {fileID: 1380984725}
@@ -9465,6 +9464,7 @@ GameObject:
   - component: {fileID: 1814193080}
   - component: {fileID: 1814193087}
   - component: {fileID: 1814193088}
+  - component: {fileID: 1814193093}
   - component: {fileID: 1814193089}
   - component: {fileID: 1814193090}
   - component: {fileID: 1814193091}
@@ -9782,6 +9782,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meRenderer: {fileID: 1814193080}
   layerMultiplier: 10
+--- !u!114 &1814193093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814193079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae64b6c807c7a640a3ee9a3cd619587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombPower: 0
+  bombPowerMax: 10
+  bombRange: 0
+  bombRangeMax: 7
+  playerSpeed: 0
+  playerSpeedMax: 7
+  playerHealth: 0
+  playerMaxHealth: 2
+  basicBubble: 
+  useShield: 0
+  useniddle: 0
+  playerDead: 0
+  itemAddSound: {fileID: 0}
+  balloonSetSound: {fileID: 0}
+  balloonEscapeSound: {fileID: 0}
+  balloonLockSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  playerAcountIndex: 0
+  playerAmakeBalloon: 0
+  objectManager: {fileID: 0}
+  p2shield: {fileID: 0}
+  p2niddle: {fileID: 0}
+  item: {fileID: 0}
+  gameManager: {fileID: 0}
+  pushBlock: {fileID: 0}
+  pushBalloon: {fileID: 0}
+  nextPushTime: 0
+  curPushTime: 0
+  anim: {fileID: 0}
+  Shieldeffect: {fileID: 0}
+  isDying: 0
+  dyingTime: 0
+  playerRenderer: {fileID: 0}
 --- !u!1 &1826168484
 GameObject:
   m_ObjectHideFlags: 0
@@ -11546,8 +11591,16 @@ PrefabInstance:
       value: enemy1
       objectReference: {fileID: 0}
     - target: {fileID: 752985873468641159, guid: b0207e911cd523647bdc0da6f3b40872, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 752985873468641159, guid: b0207e911cd523647bdc0da6f3b40872, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 752985873468641159, guid: b0207e911cd523647bdc0da6f3b40872, type: 3}
+      propertyPath: m_TagString
+      value: enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
