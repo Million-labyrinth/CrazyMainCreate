@@ -5,8 +5,7 @@ using UnityEngine;
 public class OrderLayer : MonoBehaviour
 {
     public SpriteRenderer meRenderer;
-    public float layerMultiplier = 10.0f;
-
+    public float layerMultiplier = 10.0f; 
     void Start()
     {
         meRenderer = gameObject.GetComponent<SpriteRenderer>();

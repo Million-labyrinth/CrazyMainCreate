@@ -602,6 +602,7 @@ public class Player2 : MonoBehaviour
                     else if (ran == 1)
                     {
                         purpleDevilMode = "Move";
+                        Invoke("OffpurpleDevilmode", 10f);
                     }
                     break;
             }
@@ -665,7 +666,12 @@ public class Player2 : MonoBehaviour
         gameManager.Death();
     }
 
-
+    private void OffpurpleDevilmode()
+    {
+        purpleDevilMode = "Nomal";
+        hAxis = Input.GetAxisRaw("Horizontal");
+        vAxis = Input.GetAxisRaw("Vertical");
+    }
     /*  이것은 구판 오더레이어
         void colliderRay()
         {
