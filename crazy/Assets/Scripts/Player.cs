@@ -93,6 +93,7 @@ public class Player : MonoBehaviour
         canKickBalloon = true;
         getPurpleDevil = false;
         playerSpeedRemeber = playerSpeed;
+
     }
 
     void Update()

@@ -8,6 +8,7 @@ public class Balloon : MonoBehaviour
 {
     Animator anim;
     BoxCollider2D collider;
+    SpriteRenderer sprite;
     public Rigidbody2D rigid;
 
     public AudioClip boomSound; //물풍선 터질때
@@ -42,24 +43,19 @@ public class Balloon : MonoBehaviour
     public float enableTime;
     bool isEnable;
     public bool isBoom;
-    bool isFinish;
-
-    bool underThePlayerA;
-    bool underThePlayerB;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
         collider = gameObject.GetComponent<BoxCollider2D>();
         rigid = gameObject.GetComponent<Rigidbody2D>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
 
         audioSource = GetComponent<AudioSource>();
-
     }
 
     void OnEnable()
     {
-
         isEnable = true;
         isBoom = false;
 
@@ -74,6 +70,7 @@ public class Balloon : MonoBehaviour
         isHitDownBlock = false;
         isHitLeftBlock = false;
         isHitRightBlock = false;
+
     }
 
     void Update()
@@ -96,7 +93,6 @@ public class Balloon : MonoBehaviour
                 isEnable = false;
             }
         }
-
     }
 
 
@@ -158,6 +154,16 @@ public class Balloon : MonoBehaviour
         if (mainBRay == null)
         {
             StartCoroutine("ChangeBTrigger");
+        }
+
+        Collider2D grassRay = Physics2D.OverlapCircle(rigid.position, 0.45f, LayerMask.GetMask("Grass"));
+
+        if(grassRay != null)
+        {
+            sprite.enabled = false;
+        } else
+        {
+            sprite.enabled = true;
         }
     }
     void OnDrawGizmosSelected()
@@ -303,6 +309,7 @@ public class Balloon : MonoBehaviour
 
         waterLineActive = true;
         isEnable = false;
+        sprite.enabled = false;
 
         // 트리거 활성화 (collider = Player A 물풍선, mainCol = Player B 물풍선)
         colliderA.isTrigger = true;
@@ -337,37 +344,6 @@ public class Balloon : MonoBehaviour
                 Boom();
                 Invoke("Finish", 0.5f);
             }
-        }
-
-        if(obj.tag == "PlayerA")
-        {
-            underThePlayerA = true;
-        }
-        else
-        {
-            underThePlayerA = false;
-        }
-
-        if(obj.tag == "PlayerB")
-        {
-            underThePlayerB = true;
-        } else
-        {
-            underThePlayerB = false;
-        }
-
-    }
-
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "PlayerA")
-        {
-            underThePlayerA = false;
-        }
-
-        if (collision.tag == "PlayerB")
-        {
-            underThePlayerB = false;
         }
     }
 
