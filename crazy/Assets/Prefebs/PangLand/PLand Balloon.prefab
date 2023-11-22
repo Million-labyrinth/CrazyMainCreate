@@ -210,7 +210,6 @@ GameObject:
   - component: {fileID: 9127962553987265370}
   - component: {fileID: 4127854452513620797}
   - component: {fileID: 63483408594229815}
-  - component: {fileID: 1438122344841906895}
   m_Layer: 11
   m_Name: PLand Balloon
   m_TagString: Untagged
@@ -313,26 +312,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &1438122344841906895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 657582169706693108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180995ef37c288b48b8022e1ccbc7fab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lerpTime: 1
-  rigid: {fileID: 0}
-  firstPos: {x: -2, y: 9, z: 0}
-  secondPos: {x: -5, y: 6, z: 0}
-  firstMoveSpeed: 0.4
-  SecondMoveSpeed: 0.4
-  balloon: {fileID: 4609780011861802453}
-  balloonLogic: {fileID: 1376532841456536946}
 --- !u!1 &2820392068185292283
 GameObject:
   m_ObjectHideFlags: 0
