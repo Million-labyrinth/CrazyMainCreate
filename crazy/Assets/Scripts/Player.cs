@@ -453,7 +453,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         playerSpeed = playerSpeedRemeber;
         StopCoroutine(BackSpeed());
-        useniddle == false;
+        useniddle = false;
     }
 
     //플레이어 상태 스크립트(행동가능, 물풍선 같힌상태, 죽음)
