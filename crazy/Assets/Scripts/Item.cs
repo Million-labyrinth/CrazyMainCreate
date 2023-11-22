@@ -30,6 +30,12 @@ public class Item : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
+    private void Update()
+    {
+        Debug.Log(Activeitem[0].name);
+        Activeitem[0] = null;
+    }
+
 
     public void PowerAdd()
     {
