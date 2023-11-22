@@ -2030,6 +2030,7 @@ MonoBehaviour:
   isDying: 0
   dyingTime: 0
   playerRenderer: {fileID: 0}
+  getShoesItem: 0
 --- !u!58 &435125921
 CircleCollider2D:
   m_ObjectHideFlags: 0
