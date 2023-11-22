@@ -159,8 +159,6 @@ public class GameManager : MonoBehaviour
         isFinishGame = true;
         playerA.anim.SetBool("isDamaged", false);
         playerB.anim.SetBool("isDamaged", false);
-        //playerA.playerSpeed = 4.0f;
-       // playerB.playerSpeed = 4.0f;
     }
 
 

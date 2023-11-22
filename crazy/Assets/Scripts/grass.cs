@@ -37,17 +37,30 @@ public class grass : MonoBehaviour
         else if (other.tag == "Block" || other.tag == "PlayerA" || other.tag == "PlayerB")
         {
             haveObj = true;
-            StartCoroutine(Movement());
 
             // Grass 안에 있는 오브젝트의 스프라이트 렌더러를 끕니다.
             SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
             otherSprite.enabled = false;
+
+            if(other.tag != "Block")
+            {
+                StartCoroutine(Movement());
+            }
         } else if(other.tag == "Balloon")
         {
             SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
             otherSprite.enabled = false;
         }
 
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.tag == "Balloon")
+        {
+            SpriteRenderer otherSprite = collision.GetComponent<SpriteRenderer>(); // SpriteRenderer 초기화
+            otherSprite.enabled = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
