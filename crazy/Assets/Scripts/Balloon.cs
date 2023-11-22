@@ -8,7 +8,7 @@ public class Balloon : MonoBehaviour
 {
     Animator anim;
     BoxCollider2D collider;
-    SpriteRenderer sprite;
+    public SpriteRenderer sprite;
     public Rigidbody2D rigid;
 
     public AudioClip boomSound; //물풍선 터질때
