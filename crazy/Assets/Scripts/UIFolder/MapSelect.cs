@@ -10,6 +10,13 @@ public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public Button title_to_scene;
     public GameObject largeImage;
     public GameObject border;
+    public GameObject PlayerRoomImg;
+    public GameObject MapSelectUI;
+    public GameObject MapIcon;
+    public GameObject MapNameText;
+
+    public GameObject[] OtherIcons; // 다른 아이콘들을 배열로 선언
+
 
     public string[] RandomSceneNames;
 
@@ -19,13 +26,42 @@ public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerEnter(PointerEventData eventData) // ū �̹��� ���콺 �÷��� �� ���� �ڵ�
     {
         largeImage.SetActive(true);
+        MapIcon.SetActive(true);
+        PlayerRoomImg.SetActive(true);
         border.SetActive(true);
+
+        MapNameText.SetActive(false);
+        foreach (GameObject icon in OtherIcons)
+        {
+            icon.SetActive(false); // 다른 아이콘들 비활성화
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData) // ���콺�� �������� ���� �ڵ�
     {
         largeImage.SetActive(false);
+        MapIcon.SetActive(false);
+        PlayerRoomImg.SetActive(false);
         border.SetActive(false);
+
+
+        MapNameText.SetActive(false);
+        foreach (GameObject icon in OtherIcons)
+        {
+            icon.SetActive(false); // 다른 아이콘들 비활성화
+        }
+    }   
+
+    public void Click_MapSelect_UI()
+    {
+        // 맵 선택 UI를 닫을 때 모든 요소를 비활성화
+        MapSelectUI.SetActive(false);
+
+        MapNameText.SetActive(false);
+        foreach (GameObject icon in OtherIcons)
+        {
+            icon.SetActive(false); // 다른 아이콘들 비활성화
+        }
     }
 
     public void ttv() // ��ư ���� �� ���� �� ����
