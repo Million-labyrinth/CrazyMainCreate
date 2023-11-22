@@ -32,7 +32,7 @@ public class Item : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(Activeitem[0].name);
+       /* Debug.Log(Activeitem[0].name);*/
         Activeitem[0] = null;
     }
 
