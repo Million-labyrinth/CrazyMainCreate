@@ -21,7 +21,7 @@ public class PLandOrderLayer : MonoBehaviour
 
     IEnumerator BalloonOrderLayer()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.59f);
 
         float x = 7 - Mathf.Round(transform.position.y);
         meRenderer.sortingOrder = (int)x;
