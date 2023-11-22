@@ -155,6 +155,16 @@ public class Balloon : MonoBehaviour
         {
             StartCoroutine("ChangeBTrigger");
         }
+
+        Collider2D grassRay = Physics2D.OverlapCircle(rigid.position, 0.45f, LayerMask.GetMask("Grass"));
+
+        if(grassRay != null)
+        {
+            sprite.enabled = false;
+        } else
+        {
+            sprite.enabled = true;
+        }
     }
     void OnDrawGizmosSelected()
     {
@@ -299,6 +309,7 @@ public class Balloon : MonoBehaviour
 
         waterLineActive = true;
         isEnable = false;
+        sprite.enabled = false;
 
         // 트리거 활성화 (collider = Player A 물풍선, mainCol = Player B 물풍선)
         colliderA.isTrigger = true;
