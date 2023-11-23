@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 699004326905267282}
   - component: {fileID: 2854973437547012180}
   - component: {fileID: 535841418749468805}
-  - component: {fileID: 7466482176607191909}
   - component: {fileID: -6769454140269477848}
   m_Layer: 17
   m_Name: purpleDevil
@@ -122,22 +121,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6
---- !u!114 &7466482176607191909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7418298021586379924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cedd3db4df8977341a09335cc0e0294b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0.15
-  initialY: 0
-  minY: 0
-  maxY: 0
 --- !u!114 &-6769454140269477848
 MonoBehaviour:
   m_ObjectHideFlags: 0

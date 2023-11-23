@@ -6,19 +6,15 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class monsterAi : MonoBehaviour
 {
-    private float xMin = -8.0f;
-    private float xMax = 8.0f;
-    private float yMin = -7.0f;
-    private float yMax = 7.0f;
     private Vector3 targetPosition;
     private float moveSpeed = 2.0f;
 
     List<Vector2> hitPoints = new List<Vector2>();
 
-    Vector2 uphitPoint;
-    Vector2 downhitPoint;
-    Vector2 lefthitPoint;
-    Vector2 righthitPoint;
+    Vector2 upPoint;
+    Vector2 downPoint;
+    Vector2 leftPoint;
+    Vector2 rightPoint;
     LayerMask layerMask;
     public Animator anim;
 
@@ -56,70 +52,77 @@ public class monsterAi : MonoBehaviour
 
     Vector2 GetRandomPosition()
     {
-        Vector2 farthestPoint = Vector2.zero;
-        Vector2 secondFarthestPoint = Vector2.zero;
-
-        hitPoints.Sort((a, b) => Vector2.Distance(transform.position, b).CompareTo(Vector2.Distance(transform.position, a)));
-
-        // 가장 먼 값과 두 번째로 먼 값을 구함
-        if (hitPoints.Count >= 1)
+        Vector2 currentPos = new Vector2(transform.position.x, transform.position.y);
+        if(upPoint != currentPos)
         {
-            farthestPoint = hitPoints[0];
+            int ranPos = Random.Range(0, 4);
+            if(ranPos == 0)
+            {
+                
+            }
+            else if(ranPos == 1)
+            {
+                 
+            }
+            else if (ranPos == 2)
+            {
+
+            }
+            else if (ranPos == 3)
+            {
+
+            }
+            
+
         }
-        if (hitPoints.Count >= 2)
-        {
-            secondFarthestPoint = hitPoints[1];
-        }
+        
+        
 
-        Vector2 selectedPoint;
+    }
+    void AIRay()
+    {   
+        hitPoints.Clear();
+        // 충돌 체크
+        Debug.DrawRay(transform.position + new Vector3(0, 0.45f, 0), Vector3.up * 0.6f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(0, -0.45f, 0), Vector3.down * 0.6f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left * 0.6f, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + new Vector3(0.45f, 0, 0), Vector3.right * 0.6f, new Color(0, 1, 0));
+        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0.45f, 0), Vector3.up, 0.6f, layerMask);
+        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position + new Vector3(0, -0.45f, 0), Vector3.down, 0.6f, layerMask);
+        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left, 0.6f, layerMask);
+        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0.45f, 0, 0), Vector3.right, 0.6f, layerMask);
 
-        if (Random.Range(0, 2) == 0)
+        if (upRayHit.collider == null)
         {
-            selectedPoint = farthestPoint;
+            upPoint = transform.position + Vector3.up;
         }
         else
         {
-            selectedPoint = secondFarthestPoint;
+            upPoint = transform.position;
         }
-
-        return selectedPoint;
-    }
-    void AIRay()
-    {
-        hitPoints.Clear();
-        // 충돌 체크
-        Debug.DrawRay(transform.position + new Vector3(0, 0, 0), Vector3.up * 13f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + new Vector3(0, 0, 0), Vector3.down * 13f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + new Vector3(0, 0, 0), Vector3.left * 15f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + new Vector3(0, 0, 0), Vector3.right * 15f, new Color(0, 1, 0));
-        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0, 0), Vector3.up, 13f, layerMask);
-        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0, 0), Vector3.down, 13f, layerMask);
-        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0, 0), Vector3.left, 15f, layerMask);
-        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0, 0), Vector3.right, 15f, layerMask);
-
-        if (upRayHit.collider != null)
+        if(downRayHit.collider == null)
         {
-            uphitPoint = upRayHit.point;
-            uphitPoint.y -= 1.0f;
-            hitPoints.Add(uphitPoint);
+            downPoint = transform.position + Vector3.down;
         }
-        else if(downRayHit.collider != null)
+        else
         {
-            downhitPoint = downRayHit.point;
-            downhitPoint.y += 1.0f;
-            hitPoints.Add(downhitPoint);
+            downPoint = transform.position;
         }
-        else if(leftRayHit.collider != null)
+        if (leftRayHit.collider == null)
         {
-            lefthitPoint = leftRayHit.point;
-            lefthitPoint.x += 1.0f;
-            hitPoints.Add(lefthitPoint);
+            leftPoint = transform.position + Vector3.left;
         }
-        else if(rightRayHit.collider != null)
+        else
         {
-            righthitPoint = rightRayHit.point;
-            righthitPoint.y -= 1.0f;
-            hitPoints.Add(righthitPoint);
+            leftPoint = transform.position;
+        }
+        if (rightRayHit.collider == null)
+        {
+            rightPoint = transform.position + Vector3.right;
+        }
+        else
+        {
+            rightPoint = transform.position;
         }
 
 
