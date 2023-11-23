@@ -58,26 +58,22 @@ public class monsterAi : MonoBehaviour
             int ranPos = Random.Range(0, 4);
             if(ranPos == 0)
             {
-                
+                return currentPos;
             }
             else if(ranPos == 1)
             {
-                 
+                return currentPos;
             }
             else if (ranPos == 2)
             {
-
+                return currentPos;
             }
             else if (ranPos == 3)
             {
-
+                return currentPos;
             }
-            
-
         }
-        
-        
-
+        return currentPos;
     }
     void AIRay()
     {   

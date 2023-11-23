@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 6108380504279614177}
   - component: {fileID: 2077666068428879734}
   - component: {fileID: 5491633181643929276}
+  - component: {fileID: 2613157406842784527}
   m_Layer: 17
   m_Name: ultraFluid
   m_TagString: rangeItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5757212328032227412
 Transform:
   m_ObjectHideFlags: 0
@@ -135,3 +136,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meRenderer: {fileID: 6108380504279614177}
   layerMultiplier: 10
+--- !u!114 &2613157406842784527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791380455028354811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daeb113bc7d19884d86f081b95e52317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpTime: 1
+  ObjPos: {x: 0, y: 0, z: 0}
+  elapsedTime: 0

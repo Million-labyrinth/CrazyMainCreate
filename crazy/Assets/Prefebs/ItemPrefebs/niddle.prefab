@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 7224308718406482112}
   - component: {fileID: 5062067626199591223}
   - component: {fileID: 2550738719556974679}
+  - component: {fileID: -6692012760560765199}
   m_Layer: 17
   m_Name: niddle
   m_TagString: ActiveItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8083190474743778677
 Transform:
   m_ObjectHideFlags: 0
@@ -135,3 +136,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meRenderer: {fileID: 7224308718406482112}
   layerMultiplier: 10
+--- !u!114 &-6692012760560765199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112012888330814227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daeb113bc7d19884d86f081b95e52317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpTime: 1
+  ObjPos: {x: 0, y: 0, z: 0}
+  elapsedTime: 0
