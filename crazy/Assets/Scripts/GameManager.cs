@@ -99,9 +99,17 @@ public class GameManager : MonoBehaviour
 
     public void Death()
     {
-        Invoke("Judgment", 0.3f);
+        if(gameMode == "PVP")
+        {
+            Invoke("Judgment", 0.3f);
+        } 
+        else if(gameMode == "PVE")
+        {
+            // PVE LOSE 판정 추가 필요
+        }
     }
 
+    // PVP 판정
     public async void Judgment()
     {
         //ui 승패 애니메이션 출력
