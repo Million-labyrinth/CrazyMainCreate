@@ -245,7 +245,7 @@ public class Player2 : MonoBehaviour
     {
 
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
-        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player A"));
+        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player A") | LayerMask.GetMask("Enemy"));
         GameObject scanObject;
 
         if (playerBRay != null)
@@ -278,6 +278,13 @@ public class Player2 : MonoBehaviour
                     }
                 }
 
+            }
+
+            // PVE 몬스터한테 피격
+            if (scanObject.tag == "enemy" && !useShield)
+            {
+                anim.SetTrigger("hitByEnemy");
+                DeadTime();
             }
         }
         else

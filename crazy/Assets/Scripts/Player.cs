@@ -271,7 +271,13 @@ public class Player : MonoBehaviour
                         playerBLogic.EscapeWater();
                     }
                 }
+            }
 
+            // PVE 몬스터한테 피격
+            if(scanObject.tag == "enemy" && !useShield)
+            {
+                anim.SetTrigger("hitByEnemy");
+                DeadTime();
             }
         }
         else
