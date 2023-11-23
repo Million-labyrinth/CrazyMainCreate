@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public bool isBlinking = false; // 애니메이션 깜빡임 상태
     public float blinkInterval = 0.2f; // 깜빡이는 간격
 
-
+    public string gameMode;
 
     //timer
     [SerializeField] private Text text;
