@@ -38607,6 +38607,8 @@ MonoBehaviour:
   bwin: {fileID: 1889196952}
   draw: {fileID: 1380984725}
   screen: {fileID: 1738861903}
+  PVEClear: {fileID: 0}
+  PVELose: {fileID: 0}
   redBlock: {fileID: 7383716445197891954, guid: 458b21735b82f9344a9bbce3c6a92c83, type: 3}
   orangeBlock: {fileID: 7383716445197891954, guid: 93e5e761c9cb6e44e9f98678b707187a, type: 3}
   villageBox: {fileID: 2367758887087915606, guid: 576af82bb061a7f4289bade78ce2defa, type: 3}

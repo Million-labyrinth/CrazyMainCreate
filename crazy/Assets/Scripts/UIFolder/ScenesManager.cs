@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class ScenesManager : MonoBehaviour
 {
-
     public GameObject map; //Ȱ��ȭ�� ������Ʈ
     public int receivedVariable = 0; // �޾Ƶ��̱� ���� ���� 
     public InputField inputID1;

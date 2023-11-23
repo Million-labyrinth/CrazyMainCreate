@@ -173,8 +173,6 @@ public class GameManager : MonoBehaviour
     private void PVEJudgment()
     {
         //PVE 맵을 클리어 했을시
-        if(gameMode == "PVE")
-        {
             if (playerA.playerDead == false && playerB.playerDead == false ) // 보스 죽는 조건도 넣을것
             {
 
@@ -184,7 +182,7 @@ public class GameManager : MonoBehaviour
                 StartWinAnimation(PVEClear);
                 PVEClear.SetActive(true);
             }
-        }
+        
         
     }
 

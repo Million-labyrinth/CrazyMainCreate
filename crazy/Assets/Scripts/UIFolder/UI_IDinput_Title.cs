@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UI_IDinput_Title : IDMgr
 {
+
     public InputField inputPlayer_1;
     public InputField inputPlayer_Expend_1;
     public InputField inputPlayer_Expend_2;
@@ -12,14 +13,12 @@ public class UI_IDinput_Title : IDMgr
     public GameObject IdInputAlert;
     public Text IdInputAlertText;
 
-
-
     public GameObject StartGame;
     public GameObject P1UI;
     public GameObject P2UI;
     public GameObject P2UIBUtton;
 
-
+    public GameObject Player2;
 
 
     protected override void Awake()
@@ -46,6 +45,7 @@ public class UI_IDinput_Title : IDMgr
                     DeletePlayer2();
                     StartGame.SetActive(true);
                     P1UI.SetActive(false);
+                    Player2.SetActive(false);
                 }
                 else
                 {
@@ -83,6 +83,9 @@ public class UI_IDinput_Title : IDMgr
                     Debug.Log("로그인 성공!");
                     StartGame.SetActive(true);
                     P2UI.SetActive(false);
+                    Player2.SetActive(true);
+
+
                 }
                 else
                 {

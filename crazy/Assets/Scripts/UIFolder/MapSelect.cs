@@ -15,6 +15,7 @@ public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public GameObject MapIcon;
     public GameObject MapNameText;
 
+
     public GameObject[] OtherIcons; // 다른 아이콘들을 배열로 선언
     public GameObject[] OtherMapName;
     public GameObject[] OtherMapBorder;
