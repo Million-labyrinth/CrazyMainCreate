@@ -257,23 +257,22 @@ public class Player : MonoBehaviour
             {
                 Player2 playerBLogic = scanObject.GetComponent<Player2>();
 
-                if (gameManager.gameMode == "PVP")
+                if (playerBLogic.isDying == true && isDying == false)
                 {
-                    // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
-                    if (playerBLogic.isDying == true && isDying == false)
+                    if (gameManager.gameMode == "PVP")
                     {
+                        // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
                         playerBLogic.DeadTime();
                         //gameManager.touchDeath();
                         playerBLogic.dyingTime = 0;
                     }
-                } else if(gameManager.gameMode == "PVE")
-                {
-                    // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 살릴 수 있게 만들어주는 코드
-                    if (playerBLogic.isDying == true && isDying == false)
+                    else if (gameManager.gameMode == "PVE")
                     {
+                        // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 살릴 수 있게 만들어주는 코드
                         playerBLogic.EscapeWater();
                     }
                 }
+
             }
         }
         else
