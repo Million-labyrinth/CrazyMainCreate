@@ -47,6 +47,8 @@ public class ObjectManager : MonoBehaviour
 
     GameObject[] targetPool; // switch 문을 통해 생성될 오브젝트 배열을 용도
 
+    public List<int> rememberNumbers; // 아이템 확률 숫자 중복 방지 저장용
+
     void Awake()
     {
 
@@ -61,8 +63,8 @@ public class ObjectManager : MonoBehaviour
         waterBalloon6 = new GameObject[20];
         waterBalloon7 = new GameObject[20];
 
-        bubbleItem = new GameObject[15];
-        fluidItem = new GameObject[10];
+        bubbleItem = new GameObject[20];
+        fluidItem = new GameObject[15];
         rollerItem = new GameObject[10];
         niddleItem = new GameObject[5];
         shieldItem = new GameObject[5];
@@ -72,6 +74,8 @@ public class ObjectManager : MonoBehaviour
         purpleDevil = new GameObject[5];
 
         Generate();
+
+        rememberNumbers = new List<int>();
 
     }
 

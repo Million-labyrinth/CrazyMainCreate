@@ -9,7 +9,9 @@ public class Block : MonoBehaviour
     public Animator anim;
     public ObjectManager objectManager;
     bool blockBreak = false;
-   
+    int ran; // 아이템 확률 숫자
+
+
     void Awake() {
         
         anim = GetComponent<Animator>();
@@ -35,8 +37,21 @@ public class Block : MonoBehaviour
 
     void SpawnItem()
     {
-        // Item 드랍률
-        int ran = UnityEngine.Random.Range(0, 100);
+        // Item 드랍률 (중복제거)
+        for(int i = 0; i < 100; i++)
+        {
+            ran = UnityEngine.Random.Range(0, 100);
+
+            for(int j = 0; j < objectManager.rememberNumbers.Count; j++)
+            {
+                if(ran != objectManager.rememberNumbers[j])
+                {
+                    objectManager.rememberNumbers.Add(ran);
+                    break;
+                }
+            }
+        }
+
         if (ran < 15)
         {   // bubbleItem 15%
             GameObject bubbleItem = objectManager.MakeItem("BubbleItem");
@@ -69,15 +84,15 @@ public class Block : MonoBehaviour
             MapItemMove ItemPos = shieldItem.GetComponent<MapItemMove>();
             ItemPos.ObjPos = transform.position; ;
         }
-        else if (ran < 33)
-        {   // ultraFluidItem 2%
+        else if (ran < 32)
+        {   // ultraFluidItem 1%
             GameObject ultraFluidItem = objectManager.MakeItem("UltraFluidItem");
             ultraFluidItem.transform.position = transform.position;
 
             MapItemMove ItemPos = ultraFluidItem.GetComponent<MapItemMove>();
             ItemPos.ObjPos = transform.position; ;
         }
-        else if (ran < 34)
+        else if (ran < 33)
         {   // niddleItem 1%
             GameObject niddleItem = objectManager.MakeItem("NiddleItem");
             niddleItem.transform.position = transform.position;
@@ -85,15 +100,15 @@ public class Block : MonoBehaviour
             MapItemMove ItemPos = niddleItem.GetComponent<MapItemMove>();
             ItemPos.ObjPos = transform.position; ;
         }
-        else if (ran < 39)
-        {   // shoesItem 5%
+        else if (ran < 36)
+        {   // shoesItem 3%
             GameObject shoesItem = objectManager.MakeItem("ShoesItem");
             shoesItem.transform.position = transform.position;
 
             MapItemMove ItemPos = shoesItem.GetComponent<MapItemMove>();
             ItemPos.ObjPos = transform.position; ;
         }
-        else if (ran < 41)
+        else if (ran < 38)
         {   // redDevil 2%
             GameObject redDevil = objectManager.MakeItem("RedDevil");
             redDevil.transform.position = transform.position;
@@ -101,8 +116,8 @@ public class Block : MonoBehaviour
             MapItemMove ItemPos = redDevil.GetComponent<MapItemMove>();
             ItemPos.ObjPos = transform.position; ;
         }
-        else if (ran < 45)
-        {   // purpleDevil 4%
+        else if (ran < 40)
+        {   // purpleDevil 2%
             GameObject purpleDevil = objectManager.MakeItem("PurpleDevil");
             purpleDevil.transform.position = transform.position;
 
@@ -110,11 +125,9 @@ public class Block : MonoBehaviour
             ItemPos.ObjPos = transform.position; ;
 
         } else if (ran < 100)
-        { // Not Item 55%
+        { // Not Item 60%
             Debug.Log("Not Item");
         }
-
-
     }
 
     // 이제 필요 없음

@@ -20336,7 +20336,7 @@ Transform:
   m_GameObject: {fileID: 435125915}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.994, y: 5.395, z: -2}
+  m_LocalPosition: {x: -0.85, y: 3.29, z: -2}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -55764,6 +55764,7 @@ MonoBehaviour:
   shoesItemPrefab: {fileID: 7418298021586379924, guid: 19954505f40acdd42b0139950a57253f, type: 3}
   redDevilPrefab: {fileID: 7418298021586379924, guid: eac15ad2b12b72b4da93fe3fd4ef22fd, type: 3}
   purpleDevilPrefab: {fileID: 7418298021586379924, guid: 3ecffbf33471c14479fa532d29455d0a, type: 3}
+  rememberNumbers: 
 --- !u!1 &1191469495
 GameObject:
   m_ObjectHideFlags: 0
@@ -58971,7 +58972,7 @@ GameObject:
   - component: {fileID: 1244864130}
   - component: {fileID: 1244864133}
   - component: {fileID: 1244864134}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Main Octopus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
