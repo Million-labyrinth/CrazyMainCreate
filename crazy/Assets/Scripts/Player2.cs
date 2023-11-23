@@ -258,16 +258,24 @@ public class Player2 : MonoBehaviour
                 playerBmakeBalloon = false;
             }
 
-            // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
             if (scanObject.tag == "PlayerA")
             {
                 Player playerALogic = scanObject.GetComponent<Player>();
 
-                if (playerALogic.isDying == true && isDying == false)
+                if(gameManager.gameMode == "PVP")
                 {
-                    playerALogic.DeadTime();
-                    //gameManager.touchDeath();
-                    playerALogic.dyingTime = 0;
+                    // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
+                    if (playerALogic.isDying == true && isDying == false)
+                    {
+                        playerALogic.DeadTime();
+                        //gameManager.touchDeath();
+                        playerALogic.dyingTime = 0;
+                    }
+                }
+                else if(gameManager.gameMode == "PVE")
+                {
+                    // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 살릴 수 있게 코드
+                    playerALogic.EscapeWater();
                 }
             }
         }
@@ -421,21 +429,11 @@ public class Player2 : MonoBehaviour
             {
                 Debug.Log("바늘 사용");
                 useniddle = true;
+                p1niddle.SetActive(false);
 
                 if (isDying)
                 {
-                    p1niddle.SetActive(false);
-                    audioSource.clip = balloonEscapeSound;
-                    audioSource.Play();
-
-                    dyingTime = 0; // 죽는 시간 초기화
-                    isDying = false; // 물풍선 탈출
-
-                    playerSpeed = 0;
-                    anim.SetBool("isDamaged", false);
-                    anim.SetBool("isDying", false);
-                    anim.SetTrigger("useNiddle");
-                    StartCoroutine(BackSpeed());
+                    EscapeWater();
                 }
 
             }
@@ -452,6 +450,21 @@ public class Player2 : MonoBehaviour
         Shieldeffect.SetActive(false);
     }
     //플레이어가 먹은 아이템 저장배열
+
+    public void EscapeWater()
+    {
+        audioSource.clip = balloonEscapeSound;
+        audioSource.Play();
+
+        dyingTime = 0; // 죽는 시간 초기화
+        isDying = false; // 물풍선 탈출
+
+        playerSpeed = 0;
+        anim.SetBool("isDamaged", false);
+        anim.SetBool("isDying", false);
+        anim.SetTrigger("useNiddle");
+        StartCoroutine(BackSpeed());
+    }
 
     IEnumerator BackSpeed()
     {

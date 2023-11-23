@@ -257,11 +257,22 @@ public class Player : MonoBehaviour
             {
                 Player2 playerBLogic = scanObject.GetComponent<Player2>();
 
-                if (playerBLogic.isDying == true && isDying == false)
+                if (gameManager.gameMode == "PVP")
                 {
-                    playerBLogic.DeadTime();
-                    //gameManager.touchDeath();
-                    playerBLogic.dyingTime = 0;
+                    // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
+                    if (playerBLogic.isDying == true && isDying == false)
+                    {
+                        playerBLogic.DeadTime();
+                        //gameManager.touchDeath();
+                        playerBLogic.dyingTime = 0;
+                    }
+                } else if(gameManager.gameMode == "PVE")
+                {
+                    // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 살릴 수 있게 만들어주는 코드
+                    if (playerBLogic.isDying == true && isDying == false)
+                    {
+                        playerBLogic.EscapeWater();
+                    }
                 }
             }
         }
@@ -419,18 +430,7 @@ public class Player : MonoBehaviour
 
                 if (isDying)
                 {
-
-                    audioSource.clip = balloonEscapeSound;
-                    audioSource.Play();
-
-                    dyingTime = 0; // 죽는 시간 초기화
-                    isDying = false; // 물풍선 탈출
-
-                    playerSpeed = 0;
-                    anim.SetBool("isDamaged", false);
-                    anim.SetBool("isDying", false);
-                    anim.SetTrigger("useNiddle");
-                    StartCoroutine(BackSpeed());
+                    EscapeWater();
                 }
 
             }
@@ -448,6 +448,20 @@ public class Player : MonoBehaviour
     }
     //플레이어가 먹은 아이템 저장배열
 
+    public void EscapeWater()
+    {
+        audioSource.clip = balloonEscapeSound;
+        audioSource.Play();
+
+        dyingTime = 0; // 죽는 시간 초기화
+        isDying = false; // 물풍선 탈출
+
+        playerSpeed = 0;
+        anim.SetBool("isDamaged", false);
+        anim.SetBool("isDying", false);
+        anim.SetTrigger("useNiddle");
+        StartCoroutine(BackSpeed());
+    }
     IEnumerator BackSpeed()
     {
         yield return new WaitForSeconds(0.4f);
@@ -589,7 +603,7 @@ public class Player : MonoBehaviour
                     StartCoroutine("AfterGetPurpleDevil");
 
                     int ran = UnityEngine.Random.Range(0, 2);
-                    if(ran == 0)
+                    if (ran == 0)
                     {
                         purpleDevilMode = "Balloon";
                     }
