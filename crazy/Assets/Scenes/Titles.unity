@@ -471,7 +471,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba7b097b548f2264ea086a17b4ef07bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dfcfb7d591101f145b0d1e68681a9f1d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -751,7 +751,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba7b097b548f2264ea086a17b4ef07bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dfcfb7d591101f145b0d1e68681a9f1d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -853,7 +853,6 @@ MonoBehaviour:
   RandomSceneNames:
   - BattelFieldVillage
   - BattleFieldFactory
-  gameRoom: {fileID: 0}
 --- !u!82 &190442103
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1178,7 +1177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &236126692
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1455,7 +1454,6 @@ MonoBehaviour:
   - {fileID: 1618393201}
   - {fileID: 1659260869}
   RandomSceneNames: []
-  gameRoom: {fileID: 0}
 --- !u!82 &259436806
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2027,7 +2025,6 @@ MonoBehaviour:
   OtherMapName: []
   OtherMapBorder: []
   RandomSceneNames: []
-  gameRoom: {fileID: 0}
 --- !u!1 &366773718
 GameObject:
   m_ObjectHideFlags: 0
@@ -3696,7 +3693,6 @@ MonoBehaviour:
   - {fileID: 1618393201}
   - {fileID: 1659260869}
   RandomSceneNames: []
-  gameRoom: {fileID: 0}
 --- !u!114 &719081460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4005,7 +4001,6 @@ MonoBehaviour:
   - {fileID: 1618393201}
   - {fileID: 1659260869}
   RandomSceneNames: []
-  gameRoom: {fileID: 0}
 --- !u!114 &807312133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4175,7 +4170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &849619445
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4902,7 +4897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1025701682
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4912,14 +4907,14 @@ RectTransform:
   m_GameObject: {fileID: 1025701681}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 2, y: 1.29, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 186407253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: 2}
+  m_AnchoredPosition: {x: 4, y: -1.6}
   m_SizeDelta: {x: 48, y: 49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1025701683
@@ -4942,7 +4937,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba7b097b548f2264ea086a17b4ef07bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: faf18306b1b872e4a9ef6775261a6275, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5001,7 +4996,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ba7b097b548f2264ea086a17b4ef07bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: faf18306b1b872e4a9ef6775261a6275, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5577,7 +5572,6 @@ MonoBehaviour:
   - {fileID: 1618393201}
   - {fileID: 1659260869}
   RandomSceneNames: []
-  gameRoom: {fileID: 0}
 --- !u!114 &1086344054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5966,7 +5960,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1115571380}
         m_TargetAssemblyTypeName: GameRoomMapSelect, Assembly-CSharp
         m_MethodName: ttv
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6025,10 +6019,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d58ab528622499499c4189a1c454f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapNameVillage: {fileID: 1051783977}
+  mapNameFactory: {fileID: 1092656949}
+  mapNameForest: {fileID: 1998791763}
+  mapNameRandom: {fileID: 1025701681}
   RandomSceneNames:
   - BattleFieldFactory
   - BattelFieldVillage
-  mapSelect: {fileID: 342584365}
 --- !u!1 &1129877158
 GameObject:
   m_ObjectHideFlags: 0
@@ -6349,7 +6346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1164463474
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6390,7 +6387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba7b097b548f2264ea086a17b4ef07bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dfcfb7d591101f145b0d1e68681a9f1d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
