@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public GameObject draw;
     public GameObject screen;
 
+    public GameObject PVEClear;
+    public GameObject PVELose;
+
     public GameObject redBlock;
     public GameObject orangeBlock;
     public GameObject villageBox;
@@ -27,7 +30,7 @@ public class GameManager : MonoBehaviour
     public bool isBlinking = false; // 애니메이션 깜빡임 상태
     public float blinkInterval = 0.2f; // 깜빡이는 간격
 
-
+    public string gameMode;
 
     //timer
     [SerializeField] private Text text;
@@ -99,9 +102,17 @@ public class GameManager : MonoBehaviour
 
     public void Death()
     {
-        Invoke("Judgment", 0.3f);
+        if(gameMode == "PVP")
+        {
+            Invoke("Judgment", 0.3f);
+        } 
+        else if(gameMode == "PVE")
+        {
+            Invoke("PVEJudgment", 0.3f); //PVE 클리어, 실패 판정
+        }
     }
 
+    // PVP 판정
     public async void Judgment()
     {
         //ui 승패 애니메이션 출력
@@ -159,11 +170,28 @@ public class GameManager : MonoBehaviour
         playerB.anim.SetBool("isDamaged", false);
     }
 
+    private void PVEJudgment()
+    {
+        //PVE 맵을 클리어 했을시
+        if(gameMode == "PVE")
+        {
+            if (playerA.playerDead == false && playerB.playerDead == false ) // 보스 죽는 조건도 넣을것
+            {
+
+                audiosource.clip = winSound;
+                audiosource.Play();
+                Debug.Log("PVEClear");
+                StartWinAnimation(PVEClear);
+                PVEClear.SetActive(true);
+            }
+        }
+        
+    }
 
     Coroutine coroutineWin = null;
-    private void StartWinAnimation(GameObject go, float stopTime = 2)
+    private void StartWinAnimation(GameObject go, float stopTime = 2) //승리 애니메이션 나오는 코드(코루틴이 두번 실행되서 고친코드)
     {
-        if (coroutineWin != null)
+        if (coroutineWin != null) 
             StopCoroutine(coroutineWin);
 
         coroutineWin = StartCoroutine(BlinkAnimation(go));

@@ -237,9 +237,8 @@ public class Player : MonoBehaviour
 
     void Ray()
     {
-
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
-        Collider2D playerARay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player B"));
+        Collider2D playerARay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player B") | LayerMask.GetMask("Enemy"));
         GameObject scanObject;
 
         if (playerARay != null)
@@ -259,10 +258,26 @@ public class Player : MonoBehaviour
 
                 if (playerBLogic.isDying == true && isDying == false)
                 {
-                    playerBLogic.DeadTime();
-                    //gameManager.touchDeath();
-                    playerBLogic.dyingTime = 0;
+                    if (gameManager.gameMode == "PVP")
+                    {
+                        // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
+                        playerBLogic.DeadTime();
+                        //gameManager.touchDeath();
+                        playerBLogic.dyingTime = 0;
+                    }
+                    else if (gameManager.gameMode == "PVE")
+                    {
+                        // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 살릴 수 있게 만들어주는 코드
+                        playerBLogic.EscapeWater();
+                    }
                 }
+            }
+
+            // PVE 몬스터한테 피격
+            if(scanObject.tag == "enemy" && !useShield)
+            {
+                anim.SetTrigger("hitByEnemy");
+                DeadTime();
             }
         }
         else
@@ -419,18 +434,7 @@ public class Player : MonoBehaviour
 
                 if (isDying)
                 {
-
-                    audioSource.clip = balloonEscapeSound;
-                    audioSource.Play();
-
-                    dyingTime = 0; // 죽는 시간 초기화
-                    isDying = false; // 물풍선 탈출
-
-                    playerSpeed = 0;
-                    anim.SetBool("isDamaged", false);
-                    anim.SetBool("isDying", false);
-                    anim.SetTrigger("useNiddle");
-                    StartCoroutine(BackSpeed());
+                    EscapeWater();
                 }
 
             }
@@ -448,6 +452,20 @@ public class Player : MonoBehaviour
     }
     //플레이어가 먹은 아이템 저장배열
 
+    public void EscapeWater()
+    {
+        audioSource.clip = balloonEscapeSound;
+        audioSource.Play();
+
+        dyingTime = 0; // 죽는 시간 초기화
+        isDying = false; // 물풍선 탈출
+
+        playerSpeed = 0;
+        anim.SetBool("isDamaged", false);
+        anim.SetBool("isDying", false);
+        anim.SetTrigger("useNiddle");
+        StartCoroutine(BackSpeed());
+    }
     IEnumerator BackSpeed()
     {
         yield return new WaitForSeconds(0.4f);
@@ -589,7 +607,7 @@ public class Player : MonoBehaviour
                     StartCoroutine("AfterGetPurpleDevil");
 
                     int ran = UnityEngine.Random.Range(0, 2);
-                    if(ran == 0)
+                    if (ran == 0)
                     {
                         purpleDevilMode = "Balloon";
                     }

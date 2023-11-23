@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4961652116502836528}
   - component: {fileID: 7414389115751271691}
   - component: {fileID: 2211894819397745}
+  - component: {fileID: 5285282303883751598}
   m_Layer: 13
   m_Name: factory12
   m_TagString: Block
@@ -132,7 +133,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.05, y: 1.05}
+  m_Size: {x: 0.85, y: 0.85}
   m_EdgeRadius: 0
 --- !u!50 &6619243612679302934
 Rigidbody2D:
@@ -207,3 +208,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meRenderer: {fileID: 0}
   layerMultiplier: 10
+--- !u!95 &5285282303883751598
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5570002400000999177}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 4feabdff22627e941bbe45d0caeb481c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

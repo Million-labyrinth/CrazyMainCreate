@@ -245,7 +245,7 @@ public class Player2 : MonoBehaviour
     {
 
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
-        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player A"));
+        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player A") | LayerMask.GetMask("Enemy"));
         GameObject scanObject;
 
         if (playerBRay != null)
@@ -258,17 +258,33 @@ public class Player2 : MonoBehaviour
                 playerBmakeBalloon = false;
             }
 
-            // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
             if (scanObject.tag == "PlayerA")
             {
                 Player playerALogic = scanObject.GetComponent<Player>();
 
                 if (playerALogic.isDying == true && isDying == false)
                 {
-                    playerALogic.DeadTime();
-                    //gameManager.touchDeath();
-                    playerALogic.dyingTime = 0;
+                    if (gameManager.gameMode == "PVP")
+                    {
+                        // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
+                        playerALogic.DeadTime();
+                        //gameManager.touchDeath();
+                        playerALogic.dyingTime = 0;
+                    }
+                    else if (gameManager.gameMode == "PVE")
+                    {
+                        // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 살릴 수 있게 코드
+                        playerALogic.EscapeWater();
+                    }
                 }
+
+            }
+
+            // PVE 몬스터한테 피격
+            if (scanObject.tag == "enemy" && !useShield)
+            {
+                anim.SetTrigger("hitByEnemy");
+                DeadTime();
             }
         }
         else
@@ -421,21 +437,11 @@ public class Player2 : MonoBehaviour
             {
                 Debug.Log("바늘 사용");
                 useniddle = true;
+                p1niddle.SetActive(false);
 
                 if (isDying)
                 {
-                    p1niddle.SetActive(false);
-                    audioSource.clip = balloonEscapeSound;
-                    audioSource.Play();
-
-                    dyingTime = 0; // 죽는 시간 초기화
-                    isDying = false; // 물풍선 탈출
-
-                    playerSpeed = 0;
-                    anim.SetBool("isDamaged", false);
-                    anim.SetBool("isDying", false);
-                    anim.SetTrigger("useNiddle");
-                    StartCoroutine(BackSpeed());
+                    EscapeWater();
                 }
 
             }
@@ -452,6 +458,21 @@ public class Player2 : MonoBehaviour
         Shieldeffect.SetActive(false);
     }
     //플레이어가 먹은 아이템 저장배열
+
+    public void EscapeWater()
+    {
+        audioSource.clip = balloonEscapeSound;
+        audioSource.Play();
+
+        dyingTime = 0; // 죽는 시간 초기화
+        isDying = false; // 물풍선 탈출
+
+        playerSpeed = 0;
+        anim.SetBool("isDamaged", false);
+        anim.SetBool("isDying", false);
+        anim.SetTrigger("useNiddle");
+        StartCoroutine(BackSpeed());
+    }
 
     IEnumerator BackSpeed()
     {
