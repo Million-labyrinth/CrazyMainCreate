@@ -9,7 +9,7 @@ public class monsterAi : MonoBehaviour
     private Vector3 targetPosition;
     private float moveSpeed = 2.0f;
 
-    List<Vector2> hitPoints = new List<Vector2>();
+    List<Vector2> targetPoint = new List<Vector2>();
 
     Vector2 upPoint;
     Vector2 downPoint;
@@ -20,64 +20,56 @@ public class monsterAi : MonoBehaviour
 
     void Awake()
     {
+        AIRay();
+        targetPosition = GetRandomPosition();
         layerMask = LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object");
         // 시작 시 초기 위치 설정
         anim = GetComponent<Animator>();
-        targetPosition = GetRandomPosition();
     }
 
     void Update()
     {
-        
-        //이동 애니메이션
-        //if (transform.position.y > GetRandomPosition().y)
-        //{
-        //    anim.SetBool("is_up", true);
-        //    anim.SetBool("is_down", false);
-        //}
-        //else if (transform.position.y < GetRandomPosition().y)
-        //{
-        //    anim.SetBool("is_down", true);
-        //    anim.SetBool("is_up", false);
-        //}
+        AIRay();
         // 현재 위치에서 목표 위치로 이동
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-        // 만약 목표 위치에 도달했다면, 다른 랜덤 위치를 선택
+
         if (transform.position == targetPosition)
         {
             targetPosition = GetRandomPosition();
         }
-        AIRay();
+        SetAnimation();
     }
 
     Vector2 GetRandomPosition()
     {
         Vector2 currentPos = new Vector2(transform.position.x, transform.position.y);
-        if(upPoint != currentPos)
+        if (upPoint != currentPos)
         {
-            int ranPos = Random.Range(0, 4);
-            if(ranPos == 0)
-            {
-                return currentPos;
-            }
-            else if(ranPos == 1)
-            {
-                return currentPos;
-            }
-            else if (ranPos == 2)
-            {
-                return currentPos;
-            }
-            else if (ranPos == 3)
-            {
-                return currentPos;
-            }
+            targetPoint.Add(upPoint);
         }
+        if (downPoint != currentPos)
+        {
+            targetPoint.Add(downPoint);
+        }
+        if (leftPoint != currentPos)
+        {
+            targetPoint.Add(leftPoint);
+        }
+        if (rightPoint != currentPos)
+        {
+            targetPoint.Add(rightPoint);
+        }
+        if(targetPoint.Count > 0)
+        {
+            int random = Random.Range(0, targetPoint.Count);
+            return targetPoint[random];
+        }
+
         return currentPos;
     }
     void AIRay()
     {   
-        hitPoints.Clear();
+        targetPoint.Clear();
         // 충돌 체크
         Debug.DrawRay(transform.position + new Vector3(0, 0.45f, 0), Vector3.up * 0.6f, new Color(0, 1, 0));
         Debug.DrawRay(transform.position + new Vector3(0, -0.45f, 0), Vector3.down * 0.6f, new Color(0, 1, 0));
@@ -121,7 +113,47 @@ public class monsterAi : MonoBehaviour
             rightPoint = transform.position;
         }
 
+    }
+    void SetAnimation()
+    {
+        Vector2 currentPos = new Vector2(transform.position.x, transform.position.y);
 
+        if (targetPosition.y > currentPos.y)
+        {
+            anim.SetBool("is_up", true);
+            anim.SetBool("is_down", false);
+            anim.SetBool("E_right", false);
+            anim.SetBool("E_left", false);
+        }
+        else if (targetPosition.y < currentPos.y)
+        {
+            anim.SetBool("is_up", false);
+            anim.SetBool("is_down", true);
+            anim.SetBool("E_right", false);
+            anim.SetBool("E_left", false);
+        }
+        else if (targetPosition.x < currentPos.x)
+        {
+            anim.SetBool("is_up", false);
+            anim.SetBool("is_down", false);
+            anim.SetBool("E_right", false);
+            anim.SetBool("E_left", true);
+            //FlipSprite(true); // 왼쪽으로 이동할 때 스프라이트를 뒤집음
+        }
+        else if (targetPosition.x > currentPos.x)
+        {
+            anim.SetBool("is_up", false);
+            anim.SetBool("is_down", false);
+            anim.SetBool("E_right", true);
+            anim.SetBool("E_left", false);
+            //FlipSprite(false); // 오른쪽으로 이동할 때 스프라이트를 원래대로
+        }
+    }
+    void FlipSprite(bool flipX)
+    {
+        // 스프라이트를 뒤집는 코드
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.flipX = flipX;
     }
 
 }
