@@ -50,11 +50,6 @@ public class Block : MonoBehaviour
                 }
             }
         }
-        // 중복이 아닐 시 for 문 탈출 후 추가
-        if(ran != objectManager.rememberNumbers.Count)
-        {
-            objectManager.rememberNumbers.Add(ran);
-        }
 
         if (ran < 15)
         {   // bubbleItem 15%
