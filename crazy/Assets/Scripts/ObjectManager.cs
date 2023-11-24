@@ -76,6 +76,7 @@ public class ObjectManager : MonoBehaviour
         Generate();
 
         rememberNumbers = new List<int>();
+        rememberNumbers.Add(100);
 
     }
 
