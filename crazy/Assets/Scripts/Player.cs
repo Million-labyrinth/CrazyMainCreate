@@ -703,6 +703,13 @@ public class Player : MonoBehaviour
         isDying = false;
 
         gameManager.Death();
+
+        StartCoroutine("Die");
+    }
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(1);
+        gameObject.SetActive(false);
     }
     private void OffpurpleDevilmode()
     {
