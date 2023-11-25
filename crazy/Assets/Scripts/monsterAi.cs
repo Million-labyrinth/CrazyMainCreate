@@ -18,26 +18,55 @@ public class monsterAi : MonoBehaviour
     LayerMask layerMask;
     public Animator anim;
 
+    bool scanedUp;
+    bool scanedDown;
+    bool scanedLeft;
+    bool scanedRight;
+    public List<string> canDir;
+    bool addUpDir;
+    bool addDownDir;
+    bool addLeftDir;
+    bool addRightDir;
+    Vector3 enemyDir;
+
     void Awake()
     {
         AIRay();
         targetPosition = GetRandomPosition();
-        layerMask = LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object");
+        layerMask = LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Balloon") | LayerMask.GetMask("Water");
         // 시작 시 초기 위치 설정
         anim = GetComponent<Animator>();
+
+        scanedUp = false;
+        scanedDown = false;
+        scanedLeft = false;
+        scanedRight = false;
+        canDir = new List<string>();
+        addUpDir = false;
+        addDownDir = false;
+        addLeftDir = false;
+        addRightDir = false;
     }
 
     void Update()
     {
-        AIRay();
-        // 현재 위치에서 목표 위치로 이동
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        //AIRay();
 
-        if (transform.position == targetPosition)
-        {
-            targetPosition = GetRandomPosition();
-        }
+        // 현재 위치에서 목표 위치로 이동
+        //transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+
+        //if (transform.position == targetPosition)
+        //{
+        //    targetPosition = GetRandomPosition();
+        //}
         SetAnimation();
+
+        AIUpRay();
+        AIDownRay();
+        AILeftRay();
+        AIRightRay();
+
+        transform.position += enemyDir * 2f * Time.deltaTime;
     }
 
     Vector2 GetRandomPosition()
@@ -59,7 +88,7 @@ public class monsterAi : MonoBehaviour
         {
             targetPoint.Add(rightPoint);
         }
-        if(targetPoint.Count > 0)
+        if (targetPoint.Count > 0)
         {
             int random = Random.Range(0, targetPoint.Count);
             return targetPoint[random];
@@ -68,7 +97,7 @@ public class monsterAi : MonoBehaviour
         return currentPos;
     }
     void AIRay()
-    {   
+    {
         targetPoint.Clear();
         // 충돌 체크
         Debug.DrawRay(transform.position + new Vector3(0, 0.45f, 0), Vector3.up * 0.6f, new Color(0, 1, 0));
@@ -80,6 +109,7 @@ public class monsterAi : MonoBehaviour
         RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left, 0.6f, layerMask);
         RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0.45f, 0, 0), Vector3.right, 0.6f, layerMask);
 
+
         if (upRayHit.collider == null)
         {
             upPoint = transform.position + Vector3.up;
@@ -88,7 +118,7 @@ public class monsterAi : MonoBehaviour
         {
             upPoint = transform.position;
         }
-        if(downRayHit.collider == null)
+        if (downRayHit.collider == null)
         {
             downPoint = transform.position + Vector3.down;
         }
@@ -114,6 +144,199 @@ public class monsterAi : MonoBehaviour
         }
 
     }
+
+    void AIUpRay()
+    {
+        Collider2D upRayHit = Physics2D.OverlapBox(transform.position + new Vector3(0, 0.5f), new Vector2(1f, 0.25f), 0, layerMask);
+
+        if (upRayHit != null)
+        {
+            scanedUp = true;
+            addUpDir = false;
+
+            // List 에 Up 이 있으면 삭제
+            if (canDir.Contains("Up"))
+            {
+                canDir.Remove("Up");
+            }
+
+            // 위로 가는데 벽에 가로 막혔을 때 addDownDir 값이 true 여서 방향전환이 안되는 오류 방지
+            if (enemyDir == new Vector3(0, 1) && addDownDir)
+            {
+                addDownDir = false;
+            }
+        }
+        else
+        {
+            // 앞에 아무것도 없을 시, List 에 Up 방향 추가
+            scanedUp = false;
+            if(!addUpDir)
+            {
+                StartCoroutine(AIDirection("Up"));
+            }
+        }
+    }
+
+    void AIDownRay()
+    {
+        Collider2D downRayHit = Physics2D.OverlapBox(transform.position + new Vector3(0, -0.5f), new Vector2(1f, 0.25f), 0, layerMask);
+
+        if (downRayHit != null)
+        {
+            scanedDown = true;
+            addDownDir = false;
+
+            if (canDir.Contains("Down"))
+            {
+                canDir.Remove("Down");
+            }
+
+            if (enemyDir == new Vector3(0, -1) && addUpDir)
+            {
+                addUpDir = false;
+            }
+        }
+        else
+        {
+            scanedDown = false;
+            if(!addDownDir)
+            {
+                StartCoroutine(AIDirection("Down"));
+            }
+        }
+    }
+    void AILeftRay()
+    {
+        Collider2D leftRayHit = Physics2D.OverlapBox(transform.position + new Vector3(-0.5f, 0), new Vector2(0.25f, 1f), 0, layerMask);
+
+        if (leftRayHit != null)
+        {
+            scanedLeft = true;
+            addLeftDir = false;
+
+            if (canDir.Contains("Left"))
+            {
+                canDir.Remove("Left");
+            }
+
+            if (enemyDir == new Vector3(-1, 0) && addRightDir)
+            {
+                addRightDir = false;
+            }
+        }
+        else
+        {
+            scanedLeft = false;
+            if(!addLeftDir)
+            {
+                StartCoroutine(AIDirection("Left"));
+            }
+        }
+    }
+    void AIRightRay()
+    {
+        Collider2D rightRayHit = Physics2D.OverlapBox(transform.position + new Vector3(0.5f, 0), new Vector2(0.25f, 1f), 0, layerMask);
+
+        if (rightRayHit != null)
+        {
+            scanedRight = true;
+            addRightDir = false;
+
+            if (canDir.Contains("Right"))
+            {
+                canDir.Remove("Right");
+            }
+
+            if(enemyDir == new Vector3(1, 0) && addLeftDir)
+            {
+                addLeftDir = false;
+            }
+        }
+        else
+        {
+            scanedRight = false;
+            if(!addRightDir)
+            {
+                StartCoroutine(AIDirection("Right"));
+            }
+        }
+    }
+
+    IEnumerator AIDirection(string dir)
+    {
+        switch (dir)
+        {
+            case "Up":
+                if(!canDir.Contains("Up"))
+                {
+                    canDir.Add("Up");
+                }
+                addUpDir = true;
+                break;
+            case "Down":
+                if (!canDir.Contains("Down"))
+                {
+                    canDir.Add("Down");
+                }
+                addDownDir = true;
+                break;
+            case "Left":
+                if (!canDir.Contains("Left"))
+                {
+                    canDir.Add("Left");
+                }
+                addLeftDir = true;
+                break;
+            case "Right":
+                if (!canDir.Contains("Right"))
+                {
+                    canDir.Add("Right");
+                }
+                addRightDir = true;
+                break;
+        }
+
+        yield return null;
+        StartCoroutine("AIMove");
+    }
+
+    // 갈 수 있는 방향을 List에 저장해서 랜덤 숫자를 돌려서 방향 선택
+    IEnumerator AIMove()
+    {
+        int max = canDir.Count;
+        int ran = Random.Range(0, max); ;
+
+        switch(canDir[ran])
+        {
+            case "Up":
+                enemyDir = new Vector3(0, 1);
+                break;
+            case "Down":
+                enemyDir = new Vector3(0, -1);
+                break;
+            case "Left":
+                enemyDir = new Vector3(-1, 0);
+                break;
+            case "Right":
+                enemyDir = new Vector3(1, 0);
+                break;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    // Ray 눈에 보이게 하는 용도
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+
+        Gizmos.DrawWireCube(transform.position + new Vector3(0, 0.5f), new Vector2(1f, 0.25f));
+        Gizmos.DrawWireCube(transform.position + new Vector3(0, -0.5f), new Vector2(1f, 0.25f));
+        Gizmos.DrawWireCube(transform.position + new Vector3(-0.5f, 0), new Vector2(0.25f, 1f));
+        Gizmos.DrawWireCube(transform.position + new Vector3(0.5f, 0), new Vector2(0.25f, 1f));
+
+    }
+
     void SetAnimation()
     {
         Vector2 currentPos = new Vector2(transform.position.x, transform.position.y);
