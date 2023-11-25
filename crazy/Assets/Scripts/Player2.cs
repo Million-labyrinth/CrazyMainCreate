@@ -77,6 +77,8 @@ public class Player2 : MonoBehaviour
     int changeColorCount = 0; // 보라악마 획득 후 색 변환 횟수 체크
     string purpleDevilMode; // 물풍선 설치 or 방향키 반대
 
+    bool damagedEnemy;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -96,42 +98,58 @@ public class Player2 : MonoBehaviour
         canKickBalloon = true;
         getPurpleDevil = false;
         playerSpeedRemeber = playerSpeed;
+
+        damagedEnemy = false;
+    }
+
+    void OnEnable()
+    {
+        playerBmakeBalloon = true;
+        getShoesItem = false;
+        canKickBalloon = true;
+        getPurpleDevil = false;
+        playerSpeedRemeber = playerSpeed;
+
+        damagedEnemy = false;
     }
 
     void Update()
     {
-        Move();
-        Ray();
-        UseItem();
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDying)
+        if(!gameManager.isFinishGame)
         {
-            Skill();
-        }
+            Move();
+            Ray();
+            UseItem();
 
-        if (isDying)
-        {
-            dyingTime += Time.deltaTime;
-
-            if (dyingTime > 4)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !isDying)
             {
-                DeadTime();
+                Skill();
             }
-        }
 
-        if (purpleDevilMode == "Balloon" && getPurpleDevil)
-        {
-            Skill();
-            changeColorCount = 0;
-            purpleDevilTime += Time.deltaTime;
-
-            if (purpleDevilTime >= 10)
+            if (isDying)
             {
-                getPurpleDevil = false;
-                purpleDevilTime = 0;
-                StopCoroutine("AfterGetPurpleDevil");
+                dyingTime += Time.deltaTime;
+
+                if (dyingTime > 4)
+                {
+                    DeadTime();
+                }
+            }
+
+            if (purpleDevilMode == "Balloon" && getPurpleDevil)
+            {
+                Skill();
                 changeColorCount = 0;
-                playerRenderer.color = new Color(1, 1, 1);
+                purpleDevilTime += Time.deltaTime;
+
+                if (purpleDevilTime >= 10)
+                {
+                    getPurpleDevil = false;
+                    purpleDevilTime = 0;
+                    StopCoroutine("AfterGetPurpleDevil");
+                    changeColorCount = 0;
+                    playerRenderer.color = new Color(1, 1, 1);
+                }
             }
         }
     }
@@ -281,9 +299,11 @@ public class Player2 : MonoBehaviour
             }
 
             // PVE 몬스터한테 피격
-            if (scanObject.tag == "enemy" && !useShield)
+            if (scanObject.tag == "enemy" && !useShield && !damagedEnemy)
             {
                 anim.SetTrigger("hitByEnemy");
+                anim.SetBool("isDamaged", true);
+                damagedEnemy = true;
                 DeadTime();
             }
         }
@@ -538,24 +558,22 @@ public class Player2 : MonoBehaviour
     //아이템 먹었을때 스탯 값 증감
     void OnTriggerEnter2D(Collider2D collision)
     {
-
-
-        if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "hitCollider")
+        if(!gameManager.isFinishGame)
         {
-            if (useShield == true)
+            if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "hitCollider")
             {
-                //DeathTime(); 실행안됨
+                if (useShield == true)
+                {
+                    //DeathTime(); 실행안됨
+                }
+                else
+                {
+                    DeathTime();
+                    getPurpleDevil = false;
+                    StopCoroutine("AfterGetPurpleDevil");
+                    playerRenderer.color = new Color(1, 1, 1);
+                }
             }
-            else
-            {
-                DeathTime();
-                getPurpleDevil = false;
-                StopCoroutine("AfterGetPurpleDevil");
-                playerRenderer.color = new Color(1, 1, 1);
-            }
-
-            Debug.Log(collision.name);
-
         }
 
 

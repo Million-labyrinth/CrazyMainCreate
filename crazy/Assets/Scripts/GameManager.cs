@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public Transform[] spawnPoints; // 플레이어 스폰 포인트
 
-    bool isFinishGame = false;
+    public bool isFinishGame = false;
 
     public void Awake()
     {

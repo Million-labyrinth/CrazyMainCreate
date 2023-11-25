@@ -574,6 +574,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: hitByEnemy
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isDamaged
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2336796939850992267}
   m_Solo: 0
