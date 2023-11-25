@@ -20,6 +20,11 @@ public class UI_IDinput_Title : IDMgr
 
     public GameObject Player2;
 
+    public bool is1P;
+    public bool is2P;
+    public static UI_IDinput_Title inputTitle; // 다른 씬 에서도 이 스크립트를 가져다가 사용가능하게 만들어 줌. (static)
+    // 골드메탈 뱀서라이크 강의처럼 "UI_IDinput_Title.inputTitle.변수" 이런 식으로 사용하시면 됩니다
+
 
     protected override void Awake()
     {
@@ -29,11 +34,15 @@ public class UI_IDinput_Title : IDMgr
         inputPlayer_Expend_1.text = inputPlayer_1.text = strPlayer_1;
         inputPlayer_Expend_2.text = strPlayer_2;
 
+        is1P = true;
+        is2P = false;
+        inputTitle = this;
+
     }
 
     public void Clicked_Btn1() //로그인 버튼 누를시 인풋 필트의 텍스트에 값 들어가기
     {
-       if(P1UI.activeSelf)
+        if (P1UI.activeSelf)
         {
             if (!string.IsNullOrEmpty(inputPlayer_1.text))
             {
@@ -104,24 +113,29 @@ public class UI_IDinput_Title : IDMgr
 
         }
     }
-   
+
 
 
     public void P2UIActiveButton()
-        {
-            P1UI.SetActive(false);
-            P2UI.SetActive(true);
-            Debug.Log("p2 ui 작동");
-        }
+    {
+        P1UI.SetActive(false);
+        P2UI.SetActive(true);
+        Debug.Log("p2 ui 작동");
+
+        is1P = false;
+        is2P = true;
+    }
     public void P1UIActiveButton()
     {
         P1UI.SetActive(true);
         P2UI.SetActive(false);
+
+        is1P = true;
+        is2P = false;
     }
 
     public void IdInputAlertOffButton()
-        {
-            IdInputAlert.SetActive(false);
-        }
+    {
+        IdInputAlert.SetActive(false);
     }
-        
+}

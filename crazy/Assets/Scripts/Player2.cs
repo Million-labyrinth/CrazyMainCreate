@@ -102,6 +102,14 @@ public class Player2 : MonoBehaviour
         damagedEnemy = false;
     }
 
+    void Start()
+    {
+        if(UI_IDinput_Title.inputTitle.is1P)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     void OnEnable()
     {
         playerBmakeBalloon = true;

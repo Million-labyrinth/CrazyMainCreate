@@ -5745,10 +5745,9 @@ MonoBehaviour:
   time: 0
   curTime: 0
   spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1408131694}
   - {fileID: 1359454777}
+  isFinishGame: 0
 --- !u!114 &868673171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7141,6 +7140,7 @@ MonoBehaviour:
   shoesItemPrefab: {fileID: 7418298021586379924, guid: 19954505f40acdd42b0139950a57253f, type: 3}
   redDevilPrefab: {fileID: 7418298021586379924, guid: eac15ad2b12b72b4da93fe3fd4ef22fd, type: 3}
   purpleDevilPrefab: {fileID: 7418298021586379924, guid: 3ecffbf33471c14479fa532d29455d0a, type: 3}
+  rememberNumbers: 
 --- !u!1001 &1230914723
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9472,39 +9472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae64b6c807c7a640a3ee9a3cd619587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombPower: 0
-  bombPowerMax: 10
-  bombRange: 0
-  bombRangeMax: 7
-  playerSpeed: 0
-  playerSpeedMax: 7
-  playerHealth: 0
-  playerMaxHealth: 2
-  basicBubble: 
-  useShield: 0
-  useniddle: 0
-  playerDead: 0
-  itemAddSound: {fileID: 0}
-  balloonSetSound: {fileID: 0}
-  balloonEscapeSound: {fileID: 0}
-  balloonLockSound: {fileID: 0}
-  deathSound: {fileID: 0}
-  playerAcountIndex: 0
-  playerAmakeBalloon: 0
-  objectManager: {fileID: 0}
-  p2shield: {fileID: 0}
-  p2niddle: {fileID: 0}
-  item: {fileID: 0}
-  gameManager: {fileID: 0}
-  pushBlock: {fileID: 0}
-  pushBalloon: {fileID: 0}
-  nextPushTime: 0
-  curPushTime: 0
-  anim: {fileID: 0}
-  Shieldeffect: {fileID: 0}
-  isDying: 0
-  dyingTime: 0
-  playerRenderer: {fileID: 0}
 --- !u!1 &1826168484
 GameObject:
   m_ObjectHideFlags: 0
@@ -11284,11 +11251,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 752985873468641159, guid: b0207e911cd523647bdc0da6f3b40872, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 8903417801624543282}
+    - targetCorrespondingSourceObject: {fileID: 752985873468641159, guid: b0207e911cd523647bdc0da6f3b40872, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8903417801624543281}
     - targetCorrespondingSourceObject: {fileID: 752985873468641159, guid: b0207e911cd523647bdc0da6f3b40872, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8903417801624543282}
+      addedObject: {fileID: 8903417801624543283}
   m_SourcePrefab: {fileID: 100100000, guid: b0207e911cd523647bdc0da6f3b40872, type: 3}
 --- !u!4 &8903417801624543279 stripped
 Transform:
@@ -11334,6 +11304,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8903417801624543283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8903417801624543280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e2864703bef464ba084267e600a91d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
