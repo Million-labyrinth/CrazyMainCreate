@@ -33,7 +33,7 @@ public class GameRoomUIBUtton : MonoBehaviour
     public void GoTitleAlertInButton()
     {
         PlayerRoom.SetActive(false);
-        GameTitleAlert.SetActive(false );
+        GameTitleAlert.SetActive(false);
         P1UION.SetActive(true);
     }
 
