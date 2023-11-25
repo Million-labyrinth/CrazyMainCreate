@@ -104,9 +104,13 @@ public class Player2 : MonoBehaviour
 
     void Start()
     {
-        if(UI_IDinput_Title.inputTitle.is1P)
+        if (UI_IDinput_Title.inputTitle.is1P)
         {
             gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
         }
     }
 
