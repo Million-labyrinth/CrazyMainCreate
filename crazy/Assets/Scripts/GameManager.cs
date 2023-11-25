@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public Transform[] spawnPoints; // 플레이어 스폰 포인트
 
-    public bool isFinishGame = false;
+    public bool isFinishGame;
 
     public void Awake()
     {
@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
         time = 180;
         StartCoroutine(StartTimer());
 
+        isFinishGame = false;
     }
 
     void Start()
