@@ -11,10 +11,10 @@ public class monsterAi : MonoBehaviour
 
     List<Vector2> targetPoint = new List<Vector2>();
 
-    Vector2 upPoint;
-    Vector2 downPoint;
-    Vector2 leftPoint;
-    Vector2 rightPoint;
+    //Vector2 upPoint;
+    //Vector2 downPoint;
+    //Vector2 leftPoint;
+    //Vector2 rightPoint;
     LayerMask layerMask;
     public Animator anim;
 
@@ -31,8 +31,8 @@ public class monsterAi : MonoBehaviour
 
     void Awake()
     {
-        AIRay();
-        targetPosition = GetRandomPosition();
+        //AIRay();
+        //targetPosition = GetRandomPosition();
         layerMask = LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Balloon") | LayerMask.GetMask("Water");
         // 시작 시 초기 위치 설정
         anim = GetComponent<Animator>();
@@ -59,8 +59,6 @@ public class monsterAi : MonoBehaviour
         //{
         //    targetPosition = GetRandomPosition();
         //}
-        SetAnimation();
-
         AIUpRay();
         AIDownRay();
         AILeftRay();
@@ -69,82 +67,81 @@ public class monsterAi : MonoBehaviour
         transform.position += enemyDir * 2f * Time.deltaTime;
     }
 
-    Vector2 GetRandomPosition()
-    {
-        Vector2 currentPos = new Vector2(transform.position.x, transform.position.y);
-        if (upPoint != currentPos)
-        {
-            targetPoint.Add(upPoint);
-        }
-        if (downPoint != currentPos)
-        {
-            targetPoint.Add(downPoint);
-        }
-        if (leftPoint != currentPos)
-        {
-            targetPoint.Add(leftPoint);
-        }
-        if (rightPoint != currentPos)
-        {
-            targetPoint.Add(rightPoint);
-        }
-        if (targetPoint.Count > 0)
-        {
-            int random = Random.Range(0, targetPoint.Count);
-            return targetPoint[random];
-        }
+    //Vector2 GetRandomPosition()
+    //{
+    //    Vector2 currentPos = new Vector2(transform.position.x, transform.position.y);
+    //    if (upPoint != currentPos)
+    //    {
+    //        targetPoint.Add(upPoint);
+    //    }
+    //    if (downPoint != currentPos)
+    //    {
+    //        targetPoint.Add(downPoint);
+    //    }
+    //    if (leftPoint != currentPos)
+    //    {
+    //        targetPoint.Add(leftPoint);
+    //    }
+    //    if (rightPoint != currentPos)
+    //    {
+    //        targetPoint.Add(rightPoint);
+    //    }
+    //    if (targetPoint.Count > 0)
+    //    {
+    //        int random = Random.Range(0, targetPoint.Count);
+    //        return targetPoint[random];
+    //    }
 
-        return currentPos;
-    }
-    void AIRay()
-    {
-        targetPoint.Clear();
-        // 충돌 체크
-        Debug.DrawRay(transform.position + new Vector3(0, 0.45f, 0), Vector3.up * 0.6f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + new Vector3(0, -0.45f, 0), Vector3.down * 0.6f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left * 0.6f, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + new Vector3(0.45f, 0, 0), Vector3.right * 0.6f, new Color(0, 1, 0));
-        RaycastHit2D upRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0.45f, 0), Vector3.up, 0.6f, layerMask);
-        RaycastHit2D downRayHit = Physics2D.Raycast(transform.position + new Vector3(0, -0.45f, 0), Vector3.down, 0.6f, layerMask);
-        RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left, 0.6f, layerMask);
-        RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0.45f, 0, 0), Vector3.right, 0.6f, layerMask);
+    //    return currentPos;
+    //}
+    //void AIRay()
+    //{
+    //    targetPoint.Clear();
+    //    // 충돌 체크
+    //    Debug.DrawRay(transform.position + new Vector3(0, 0.45f, 0), Vector3.up * 0.6f, new Color(0, 1, 0));
+    //    Debug.DrawRay(transform.position + new Vector3(0, -0.45f, 0), Vector3.down * 0.6f, new Color(0, 1, 0));
+    //    Debug.DrawRay(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left * 0.6f, new Color(0, 1, 0));
+    //    Debug.DrawRay(transform.position + new Vector3(0.45f, 0, 0), Vector3.right * 0.6f, new Color(0, 1, 0));
+    //    RaycastHit2D upRayHit = Physics2D.Raycast(transform.position + new Vector3(0, 0.45f, 0), Vector3.up, 0.6f, layerMask);
+    //    RaycastHit2D downRayHit = Physics2D.Raycast(transform.position + new Vector3(0, -0.45f, 0), Vector3.down, 0.6f, layerMask);
+    //    RaycastHit2D leftRayHit = Physics2D.Raycast(transform.position + new Vector3(-0.45f, 0, 0), Vector3.left, 0.6f, layerMask);
+    //    RaycastHit2D rightRayHit = Physics2D.Raycast(transform.position + new Vector3(0.45f, 0, 0), Vector3.right, 0.6f, layerMask);
 
 
-        if (upRayHit.collider == null)
-        {
-            upPoint = transform.position + Vector3.up;
-        }
-        else
-        {
-            upPoint = transform.position;
-        }
-        if (downRayHit.collider == null)
-        {
-            downPoint = transform.position + Vector3.down;
-        }
-        else
-        {
-            downPoint = transform.position;
-        }
-        if (leftRayHit.collider == null)
-        {
-            leftPoint = transform.position + Vector3.left;
-        }
-        else
-        {
-            leftPoint = transform.position;
-        }
-        if (rightRayHit.collider == null)
-        {
-            rightPoint = transform.position + Vector3.right;
-        }
-        else
-        {
-            rightPoint = transform.position;
-        }
+    //    if (upRayHit.collider == null)
+    //    {
+    //        upPoint = transform.position + Vector3.up;
+    //    }
+    //    else
+    //    {
+    //        upPoint = transform.position;
+    //    }
+    //    if (downRayHit.collider == null)
+    //    {
+    //        downPoint = transform.position + Vector3.down;
+    //    }
+    //    else
+    //    {
+    //        downPoint = transform.position;
+    //    }
+    //    if (leftRayHit.collider == null)
+    //    {
+    //        leftPoint = transform.position + Vector3.left;
+    //    }
+    //    else
+    //    {
+    //        leftPoint = transform.position;
+    //    }
+    //    if (rightRayHit.collider == null)
+    //    {
+    //        rightPoint = transform.position + Vector3.right;
+    //    }
+    //    else
+    //    {
+    //        rightPoint = transform.position;
+    //    }
 
-    }
-
+    //}
     void AIUpRay()
     {
         Collider2D upRayHit = Physics2D.OverlapBox(transform.position + new Vector3(0, 0.5f), new Vector2(1f, 0.25f), 0, layerMask);
@@ -170,7 +167,7 @@ public class monsterAi : MonoBehaviour
         {
             // 앞에 아무것도 없을 시, List 에 Up 방향 추가
             scanedUp = false;
-            if(!addUpDir)
+            if (!addUpDir)
             {
                 StartCoroutine(AIDirection("Up"));
             }
@@ -199,7 +196,7 @@ public class monsterAi : MonoBehaviour
         else
         {
             scanedDown = false;
-            if(!addDownDir)
+            if (!addDownDir)
             {
                 StartCoroutine(AIDirection("Down"));
             }
@@ -227,7 +224,7 @@ public class monsterAi : MonoBehaviour
         else
         {
             scanedLeft = false;
-            if(!addLeftDir)
+            if (!addLeftDir)
             {
                 StartCoroutine(AIDirection("Left"));
             }
@@ -247,7 +244,7 @@ public class monsterAi : MonoBehaviour
                 canDir.Remove("Right");
             }
 
-            if(enemyDir == new Vector3(1, 0) && addLeftDir)
+            if (enemyDir == new Vector3(1, 0) && addLeftDir)
             {
                 addLeftDir = false;
             }
@@ -255,7 +252,7 @@ public class monsterAi : MonoBehaviour
         else
         {
             scanedRight = false;
-            if(!addRightDir)
+            if (!addRightDir)
             {
                 StartCoroutine(AIDirection("Right"));
             }
@@ -267,7 +264,7 @@ public class monsterAi : MonoBehaviour
         switch (dir)
         {
             case "Up":
-                if(!canDir.Contains("Up"))
+                if (!canDir.Contains("Up"))
                 {
                     canDir.Add("Up");
                 }
@@ -306,19 +303,36 @@ public class monsterAi : MonoBehaviour
         int max = canDir.Count;
         int ran = Random.Range(0, max); ;
 
-        switch(canDir[ran])
+        switch (canDir[ran])
         {
             case "Up":
                 enemyDir = new Vector3(0, 1);
+                //각 방향에 따른 애니메이션 실행
+                anim.SetBool("is_up", true);
+                anim.SetBool("is_down", false);
+                anim.SetBool("is_right", false);
+                anim.SetBool("is_left", false);
                 break;
             case "Down":
                 enemyDir = new Vector3(0, -1);
+                anim.SetBool("is_up", false);
+                anim.SetBool("is_down", true);
+                anim.SetBool("is_right", false);
+                anim.SetBool("is_left", false);
                 break;
             case "Left":
                 enemyDir = new Vector3(-1, 0);
+                anim.SetBool("is_up", false);
+                anim.SetBool("is_down", false);
+                anim.SetBool("is_right", false);
+                anim.SetBool("is_left", true);
                 break;
             case "Right":
                 enemyDir = new Vector3(1, 0);
+                anim.SetBool("is_up", false);
+                anim.SetBool("is_down", false);
+                anim.SetBool("is_right", true);
+                anim.SetBool("is_left", false);
                 break;
         }
 
@@ -336,47 +350,11 @@ public class monsterAi : MonoBehaviour
         Gizmos.DrawWireCube(transform.position + new Vector3(0.5f, 0), new Vector2(0.25f, 1f));
 
     }
-
-    void SetAnimation()
-    {
-        Vector2 currentPos = new Vector2(transform.position.x, transform.position.y);
-
-        if (targetPosition.y > currentPos.y)
-        {
-            anim.SetBool("is_up", true);
-            anim.SetBool("is_down", false);
-            anim.SetBool("E_right", false);
-            anim.SetBool("E_left", false);
-        }
-        else if (targetPosition.y < currentPos.y)
-        {
-            anim.SetBool("is_up", false);
-            anim.SetBool("is_down", true);
-            anim.SetBool("E_right", false);
-            anim.SetBool("E_left", false);
-        }
-        else if (targetPosition.x < currentPos.x)
-        {
-            anim.SetBool("is_up", false);
-            anim.SetBool("is_down", false);
-            anim.SetBool("E_right", false);
-            anim.SetBool("E_left", true);
-            //FlipSprite(true); // 왼쪽으로 이동할 때 스프라이트를 뒤집음
-        }
-        else if (targetPosition.x > currentPos.x)
-        {
-            anim.SetBool("is_up", false);
-            anim.SetBool("is_down", false);
-            anim.SetBool("E_right", true);
-            anim.SetBool("E_left", false);
-            //FlipSprite(false); // 오른쪽으로 이동할 때 스프라이트를 원래대로
-        }
-    }
-    void FlipSprite(bool flipX)
-    {
-        // 스프라이트를 뒤집는 코드
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.flipX = flipX;
-    }
+    //void FlipSprite(bool flipX)
+    //{
+    //    // 스프라이트를 뒤집는 코드
+    //    SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+    //    spriteRenderer.flipX = flipX;
+    //}
 
 }
