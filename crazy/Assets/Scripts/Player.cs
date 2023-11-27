@@ -268,7 +268,6 @@ public class Player : MonoBehaviour
             // 물풍선 생성 가능 여부
             if (scanObject.layer == 3 || scanObject.layer == 11)
             {
-                Debug.Log("aaa");
                 playerAmakeBalloon = false;
             } else
             {
