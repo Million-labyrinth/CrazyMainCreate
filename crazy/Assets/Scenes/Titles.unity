@@ -1178,7 +1178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &236126692
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3762,7 +3762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title_to_scene: {fileID: 719081458}
-  largeImage: {fileID: 2115277994}
+  largeImage: {fileID: 1025712117}
   border: {fileID: 1033877692}
   PlayerRoomImg: {fileID: 315560970}
   MapSelectUI: {fileID: 0}
@@ -5792,7 +5792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title_to_scene: {fileID: 1086344054}
-  largeImage: {fileID: 1730705393}
+  largeImage: {fileID: 1025712117}
   border: {fileID: 1555393410}
   PlayerRoomImg: {fileID: 1278620268}
   MapSelectUI: {fileID: 0}
@@ -6266,6 +6266,7 @@ MonoBehaviour:
   mapNameVillage: {fileID: 1051783977}
   mapNameFactory: {fileID: 1092656949}
   mapNameForest: {fileID: 1998791763}
+  mapNamePVE: {fileID: 1642047802}
   mapNameRandom: {fileID: 1025701681}
   RandomSceneNames:
   - BattleFieldFactory
@@ -8196,7 +8197,7 @@ GameObject:
   - component: {fileID: 1642047805}
   - component: {fileID: 1642047804}
   m_Layer: 0
-  m_Name: pveIcon
+  m_Name: PveIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

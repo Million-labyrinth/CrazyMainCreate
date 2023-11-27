@@ -76,15 +76,15 @@ public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
  
 
-    public void ttv() // ��ư ���� �� ���� �� ����
-    {
+    //public void ttv() // ��ư ���� �� ���� �� ����
+    //{
 
-        SceneManager.LoadScene("BattelFieldVillage");
-    }
-    public void ttf()
-    {
-        SceneManager.LoadScene("BattelFieldFactory 1");
-    }
+    //    SceneManager.LoadScene("BattelFieldVillage");
+    //}
+    //public void ttf()
+    //{
+    //    SceneManager.LoadScene("BattelFieldFactory 1");
+    //}
 
     public void LoadRandomScene()
     {

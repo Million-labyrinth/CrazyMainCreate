@@ -12,6 +12,7 @@ public class GameRoomMapSelect : MonoBehaviour
     public GameObject mapNameVillage;
     public GameObject mapNameFactory;
     public GameObject mapNameForest;
+    public GameObject mapNamePVE;
     public GameObject mapNameRandom;
 
     public string[] RandomSceneNames;
@@ -21,7 +22,8 @@ public class GameRoomMapSelect : MonoBehaviour
     public void ttv()
     {
         int ran = Random.Range(0, 2);
-        if (mapNameVillage.activeSelf == true || mapNameForest.activeSelf == true || mapNameFactory.activeSelf == true)
+
+        if (mapNameVillage.activeSelf == true || mapNameForest.activeSelf == true || mapNameFactory.activeSelf == true || mapNamePVE.activeSelf == true)
         {
             if (mapNameVillage.activeSelf == true)
             {
@@ -38,8 +40,13 @@ public class GameRoomMapSelect : MonoBehaviour
                 SceneManager.LoadScene("BattleFieldFactory");
                 Debug.Log("factory map move");
             }
+            else if (mapNamePVE.activeSelf == true)
+            {
+                SceneManager.LoadScene("ForestStage1");
+                Debug.Log("PVE map move");
+            }
 
-          
+
         }
         else if (mapNameRandom.activeSelf == true)
         {
@@ -53,10 +60,7 @@ public class GameRoomMapSelect : MonoBehaviour
                     SceneManager.LoadScene("BattleFieldFactory");
                     Debug.Log("random factory map move");
                     break;
-                case 2:
-                    SceneManager.LoadScene("BattleFieldFactory");
-                    Debug.Log("random factory map move");
-                    break;
+           
                     // case 2:
                     //     // SceneManager.LoadScene("BattleFieldForest");
                     //     break;
