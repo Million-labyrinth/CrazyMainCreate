@@ -79,7 +79,7 @@ public class UI_IDinput_Title : IDMgr
             else
             {
                 IdInputAlert.SetActive(true);
-                IdInputAlertText.text = "ID공백 확인 요망";
+                //IdInputAlertText.text = "ID공백 확인 요망";
 
                 Debug.Log("ID공백 확인 요망");
             }
@@ -116,14 +116,14 @@ public class UI_IDinput_Title : IDMgr
                 else
                 {
                     IdInputAlert.SetActive(true);
-                    IdInputAlertText.text = "입력받은 값 초과";
+                    //IdInputAlertText.text = "입력받은 값 초과";
                     Debug.Log("입력받은 값 초과");
                 }
             }
             else
             {
                 IdInputAlert.SetActive(true);
-                IdInputAlertText.text = "ID공백 확인 요망";
+                //IdInputAlertText.text = "ID공백 확인 요망";
 
                 Debug.Log("2P : ID공백 확인 요망");
             }
