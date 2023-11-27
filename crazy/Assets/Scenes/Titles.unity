@@ -1354,6 +1354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRoom: {fileID: 236126691}
+  uI_IDinput_Title: {fileID: 0}
 --- !u!1 &259436801
 GameObject:
   m_ObjectHideFlags: 0
@@ -5792,7 +5793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title_to_scene: {fileID: 1086344054}
-  largeImage: {fileID: 1025712117}
+  largeImage: {fileID: 1730705393}
   border: {fileID: 1555393410}
   PlayerRoomImg: {fileID: 1278620268}
   MapSelectUI: {fileID: 0}

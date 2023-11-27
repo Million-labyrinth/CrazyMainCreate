@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class IDMgr : MonoBehaviour
 {
-    protected string strPlayer_1 = string.Empty;
-    protected string strPlayer_2 = string.Empty;  
+    public string strPlayer_1 = string.Empty;
+    public string strPlayer_2 = string.Empty;  
 
     protected virtual void Awake()
     {

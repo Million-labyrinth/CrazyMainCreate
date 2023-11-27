@@ -1,13 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class TitlesOnPlayerRoom : MonoBehaviour
 {
     public GameObject playerRoom;
-    //public UI_IDinput_Title uI_IDinput_Title;
+
+    public IDMgr idmgr;
     // public GameObject Player2;
 
     void Awake()
     {
+        idmgr.strPlayer_1 = "";
+        idmgr.strPlayer_2 = "";
         if (playerRoom != null)
         {
             int activatePlayerRoom = PlayerPrefs.GetInt("PlayerRoomState", 0);
