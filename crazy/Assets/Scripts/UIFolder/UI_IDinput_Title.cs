@@ -20,6 +20,13 @@ public class UI_IDinput_Title : IDMgr
 
     public GameObject Player2;
 
+    public string PVPorPVE;
+    public GameObject PVPMap1;
+    public GameObject PVPMap2;
+    public GameObject PVPMap3;
+    public GameObject PVPMap4;
+    public GameObject PVEMap;
+
     public bool is1P;
     public bool is2P;
     public static UI_IDinput_Title inputTitle; // 다른 씬 에서도 이 스크립트를 가져다가 사용가능하게 만들어 줌. (static)
@@ -55,6 +62,12 @@ public class UI_IDinput_Title : IDMgr
                     StartGame.SetActive(true);
                     P1UI.SetActive(false);
                     Player2.SetActive(false);
+                    PVPorPVE = "PVE";
+                    if (PVPorPVE.Equals("PVE"))
+                    {
+                        PVEMap.SetActive(true);
+                        DeactivePVPMap();
+                    }
                 }
                 else
                 {
@@ -93,8 +106,12 @@ public class UI_IDinput_Title : IDMgr
                     StartGame.SetActive(true);
                     P2UI.SetActive(false);
                     Player2.SetActive(true);
-
-
+                    PVPorPVE = "PVP";
+                    if (PVPorPVE.Equals("PVP"))
+                    {
+                        PVEMap.SetActive(false);
+                        DeactivePVEMap();
+                    }
                 }
                 else
                 {
@@ -137,5 +154,17 @@ public class UI_IDinput_Title : IDMgr
     public void IdInputAlertOffButton()
     {
         IdInputAlert.SetActive(false);
+    }
+
+    public void DeactivePVPMap()
+    {
+        PVPMap1.SetActive(false);
+        PVPMap2.SetActive(false);
+        PVPMap3.SetActive(false);
+        PVPMap4.SetActive(false);
+    }
+    public void DeactivePVEMap()
+    {
+        PVEMap.SetActive(false);
     }
 }

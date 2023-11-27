@@ -16,6 +16,8 @@ public class GameRoomMapSelect : MonoBehaviour
 
     public string[] RandomSceneNames;
 
+   
+
     public void ttv()
     {
         int ran = Random.Range(0, 2);
@@ -37,6 +39,7 @@ public class GameRoomMapSelect : MonoBehaviour
                 Debug.Log("factory map move");
             }
 
+          
         }
         else if (mapNameRandom.activeSelf == true)
         {
@@ -47,6 +50,10 @@ public class GameRoomMapSelect : MonoBehaviour
                     Debug.Log("random village map move");
                     break;
                 case 1:
+                    SceneManager.LoadScene("BattleFieldFactory");
+                    Debug.Log("random factory map move");
+                    break;
+                case 2:
                     SceneManager.LoadScene("BattleFieldFactory");
                     Debug.Log("random factory map move");
                     break;

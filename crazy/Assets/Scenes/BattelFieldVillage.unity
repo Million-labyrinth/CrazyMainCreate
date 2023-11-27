@@ -12335,6 +12335,7 @@ MonoBehaviour:
   - {fileID: 1462264972}
   - {fileID: 1408131694}
   - {fileID: 1359454777}
+  isFinishGame: 0
 --- !u!114 &868673171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12964,7 +12965,7 @@ GameObject:
   - component: {fileID: 908024588}
   - component: {fileID: 908024585}
   m_Layer: 5
-  m_Name: mapselect
+  m_Name: GoPlayerRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13036,7 +13037,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 908024588}
         m_TargetAssemblyTypeName: ReStartButton, Assembly-CSharp
-        m_MethodName: ttv
+        m_MethodName: GoPlayerRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

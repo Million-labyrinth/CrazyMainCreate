@@ -11,18 +11,20 @@ public class ReStartButton : MonoBehaviour
     public GameObject alert;
     public TitletoManual ttM;
 
-    int seenCtn; // ���� ����
+    int seenCtn; // 이전 값 읽을 변수
 
-    public void ttv()
+    public void GoPlayerRoom()
     {
+        int playerRoomState = 2; // 새로운 값을 설정
 
-        seenCtn = PlayerPrefs.GetInt("MyVariable", 0); //
-        seenCtn = 2;//���� ���� ���� 1 = Ÿ��Ʋ/ 2= �ʼ���
-        PlayerPrefs.SetInt("MyVariable", seenCtn); // �� ���� �߼�
+        // 값을 저장하고 현재 씬을 종료
+        PlayerPrefs.SetInt("PlayerRoomState", playerRoomState);
+        PlayerPrefs.Save();
 
-        PlayerPrefs.Save(); // ���� ����
-        SceneManager.LoadScene("Titles"); //�� �ҷ����� 
+        // 현재 씬을 종료하면서 다음 씬으로 전환
+        SceneManager.LoadScene("Titles");
     }
+
 
     public void GoTitle()
     {
