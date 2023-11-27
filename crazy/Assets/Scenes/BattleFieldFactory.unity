@@ -11846,6 +11846,7 @@ MonoBehaviour:
   - {fileID: 1359454777}
   - {fileID: 476787356}
   - {fileID: 2112307380}
+  isFinishGame: 0
 --- !u!114 &868673171
 MonoBehaviour:
   m_ObjectHideFlags: 0
