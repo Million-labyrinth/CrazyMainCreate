@@ -46,6 +46,11 @@ public class monsterAi : MonoBehaviour
         addDownDir = false;
         addLeftDir = false;
         addRightDir = false;
+
+        StartCoroutine(AIDirection("Up"));
+        StartCoroutine(AIDirection("Down"));
+        StartCoroutine(AIDirection("Left"));
+        StartCoroutine(AIDirection("Right"));
     }
 
     void Update()
@@ -167,7 +172,7 @@ public class monsterAi : MonoBehaviour
         {
             // 앞에 아무것도 없을 시, List 에 Up 방향 추가
             scanedUp = false;
-            if (!addUpDir)
+            if (!addUpDir && scanedDown)
             {
                 StartCoroutine(AIDirection("Up"));
             }
@@ -196,7 +201,7 @@ public class monsterAi : MonoBehaviour
         else
         {
             scanedDown = false;
-            if (!addDownDir)
+            if (!addDownDir && scanedUp)
             {
                 StartCoroutine(AIDirection("Down"));
             }
@@ -224,7 +229,7 @@ public class monsterAi : MonoBehaviour
         else
         {
             scanedLeft = false;
-            if (!addLeftDir)
+            if (!addLeftDir && scanedRight)
             {
                 StartCoroutine(AIDirection("Left"));
             }
@@ -252,7 +257,7 @@ public class monsterAi : MonoBehaviour
         else
         {
             scanedRight = false;
-            if (!addRightDir)
+            if (!addRightDir && scanedLeft)
             {
                 StartCoroutine(AIDirection("Right"));
             }
