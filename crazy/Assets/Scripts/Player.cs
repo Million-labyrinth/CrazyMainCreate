@@ -259,17 +259,20 @@ public class Player : MonoBehaviour
     void Ray()
     {
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
-        Collider2D playerARay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("Player B") | LayerMask.GetMask("Enemy"));
+        Collider2D playerARay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("BalloonGroup") | LayerMask.GetMask("Player B") | LayerMask.GetMask("Enemy"));
         GameObject scanObject;
-
         if (playerARay != null)
         {
             scanObject = playerARay.gameObject;
 
             // 물풍선 생성 가능 여부
-            if (scanObject.layer == 3)
+            if (scanObject.layer == 3 || scanObject.layer == 11)
             {
+                Debug.Log("aaa");
                 playerAmakeBalloon = false;
+            } else
+            {
+                playerAmakeBalloon = true;
             }
 
             // 상대 플레이어가 물풍선에 갇혀 있을 때 피격 가능하게 만들어주는 코드
