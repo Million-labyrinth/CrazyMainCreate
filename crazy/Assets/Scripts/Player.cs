@@ -628,9 +628,12 @@ public class Player : MonoBehaviour
                     item.AddActiveItem(collision.gameObject, 0);
                     break;
                 case "purpleDevil":
-                    getPurpleDevil = true;
-                    purpleDevilTime = 0;
-                    StartCoroutine("AfterGetPurpleDevil");
+                    if(!getPurpleDevil)
+                    {
+                        getPurpleDevil = true;
+                        purpleDevilTime = 0;
+                        StartCoroutine("AfterGetPurpleDevil");
+                    }
 
                     int ran = UnityEngine.Random.Range(0, 2);
                     if (ran == 0)
