@@ -48,5 +48,9 @@ public class PLandBalloon : MonoBehaviour
 
         // 물풍선 이동 시 터지는 시간 초기화
         balloonLogic.enableTime = 0;
+
+        yield return new WaitForSeconds(0.4f);
+        // 물풍선 이동 시 터지는 시간 초기화
+        balloonLogic.enableTime = 0;
     }
 }
