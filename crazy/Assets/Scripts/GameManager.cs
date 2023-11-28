@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
 
         isFinishGame = false;
         startedGame = false;
+        loadingCanvas.SetActive(true);
     }
 
     void Start()
@@ -87,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         startedGame = true;
         loadingCanvas.SetActive(false);
         playerA.collider.enabled = true;
