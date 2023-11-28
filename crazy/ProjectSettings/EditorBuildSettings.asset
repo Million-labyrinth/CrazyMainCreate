@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MonsterStage/ForestStage1.unity
     guid: 1c7ebf3aae07df94aaa1815b30336421
+  - enabled: 1
+    path: Assets/Scenes/BattleFieldForest.unity
+    guid: a9fe13ef81df75743b10301dd28488bc
+  - enabled: 1
+    path: Assets/Scenes/BattelFieldPangLand.unity
+    guid: 039f8aa56fd4bbb419d625a6dab1a1c2
   m_configObjects: {}

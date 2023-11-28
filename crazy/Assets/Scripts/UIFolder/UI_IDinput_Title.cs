@@ -27,6 +27,9 @@ public class UI_IDinput_Title : IDMgr
     public GameObject PVPMap4;
     public GameObject PVEMap;
 
+    public IDMgr idmgr;
+
+
     public bool is1P;
     public bool is2P;
     public static UI_IDinput_Title inputTitle; // 다른 씬 에서도 이 스크립트를 가져다가 사용가능하게 만들어 줌. (static)
@@ -64,6 +67,8 @@ public class UI_IDinput_Title : IDMgr
                     P1UI.SetActive(false);
                     Player2.SetActive(false);
                     PVPorPVE = "PVE";
+                    idmgr.DeletePlayer2();
+
                     PlayerPrefs.SetString("PVPorPVE", PVPorPVE);
                     PlayerPrefs.Save();
 

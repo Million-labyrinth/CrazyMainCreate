@@ -14,26 +14,27 @@ public class GameRoomMapSelect : MonoBehaviour
     public GameObject mapNameForest;
     public GameObject mapNamePVE;
     public GameObject mapNameRandom;
+    public GameObject mapNamePangLand;
 
     public string[] RandomSceneNames;
 
-   
 
     public void ttv()
     {
-        int ran = Random.Range(0, 2);
+        int ran = Random.Range(0, 4);
 
-        if (mapNameVillage.activeSelf == true || mapNameForest.activeSelf == true || mapNameFactory.activeSelf == true || mapNamePVE.activeSelf == true)
+        if (mapNameVillage.activeSelf == true || mapNameForest.activeSelf == true || mapNameFactory.activeSelf == true || mapNamePangLand.activeSelf == true)
         {
             if (mapNameVillage.activeSelf == true)
             {
-
                 SceneManager.LoadScene("BattelFieldVillage");
                 Debug.Log("village map move");
             }
             else if (mapNameForest.activeSelf == true)
             {
-                //SceneManager.LoadScene("BattleFieldForest");
+                SceneManager.LoadScene("BattleFieldForest");
+                Debug.Log("forest map move");
+
             }
             else if (mapNameFactory.activeSelf == true)
             {
@@ -44,6 +45,11 @@ public class GameRoomMapSelect : MonoBehaviour
             {
                 SceneManager.LoadScene("ForestStage1");
                 Debug.Log("PVE map move");
+            }
+            else if (mapNamePangLand.activeSelf == true)
+            {
+                SceneManager.LoadScene("BattelFieldPangLand");
+                Debug.Log("PangLand map move");
             }
 
 
@@ -60,10 +66,14 @@ public class GameRoomMapSelect : MonoBehaviour
                     SceneManager.LoadScene("BattleFieldFactory");
                     Debug.Log("random factory map move");
                     break;
-           
-                    // case 2:
-                    //     // SceneManager.LoadScene("BattleFieldForest");
-                    //     break;
+                 case 2:
+                    SceneManager.LoadScene("BattleFieldForest");
+                    Debug.Log("random Forest map move");
+                    break;
+                case 3:
+                    SceneManager.LoadScene("BattelFieldPangLand");
+                    Debug.Log("random Pangland map move");
+                    break;
             }
 
         }
@@ -111,17 +121,4 @@ public class GameRoomMapSelect : MonoBehaviour
         // }
     }
 
-    public void LoadRandomScene()
-    {
-        if (RandomSceneNames.Length > 0)
-        {
-            int randomIndex = Random.Range(0, RandomSceneNames.Length);
-            string randomSceneName = RandomSceneNames[randomIndex];
-            SceneManager.LoadScene(randomSceneName);
-        }
-        else
-        {
-            Debug.LogError("씬 이름이 지정되지 않았습니다.");
-        }
-    }
 }
