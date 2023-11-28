@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -3006607968712800873}
   - component: {fileID: -4924198247353581216}
   - component: {fileID: 5807420269868615345}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: MossBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
