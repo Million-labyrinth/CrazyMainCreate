@@ -17,13 +17,16 @@ public class ReStartButton : MonoBehaviour
     {
         int playerRoomState = 2; // 새로운 값을 설정
 
+
         // 값을 저장하고 현재 씬을 종료
         PlayerPrefs.SetInt("PlayerRoomState", playerRoomState);
+
         PlayerPrefs.Save();
 
         // 현재 씬을 종료하면서 다음 씬으로 전환
         SceneManager.LoadScene("Titles");
     }
+
 
 
     public void GoTitle()
@@ -35,7 +38,6 @@ public class ReStartButton : MonoBehaviour
 
         PlayerPrefs.Save(); // ���� ����
         SceneManager.LoadScene("Titles"); //�� �ҷ����� 
-
     }
 
     public void openRestartAlert()

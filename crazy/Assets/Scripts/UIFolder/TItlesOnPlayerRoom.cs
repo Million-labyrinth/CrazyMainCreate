@@ -1,3 +1,4 @@
+using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,14 +6,16 @@ using UnityEngine.UI;
 public class TitlesOnPlayerRoom : MonoBehaviour
 {
     public GameObject playerRoom;
-
     public IDMgr idmgr;
-    // public GameObject Player2;
 
+    // public GameObject Player2;
+    private void Start()
+    {
+       idmgr.DeletePlayer1();
+        idmgr.DeletePlayer2();
+    }
     void Awake()
     {
-        idmgr.strPlayer_1 = "";
-        idmgr.strPlayer_2 = "";
         if (playerRoom != null)
         {
             int activatePlayerRoom = PlayerPrefs.GetInt("PlayerRoomState", 0);
@@ -24,6 +27,8 @@ public class TitlesOnPlayerRoom : MonoBehaviour
                 // 값을 초기화
                 PlayerPrefs.SetInt("PlayerRoomState", 0);
                 PlayerPrefs.Save();
+
+
             }
         }
     }

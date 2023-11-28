@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IDMgr : MonoBehaviour
 {
+
     public string strPlayer_1 = string.Empty;
     public string strPlayer_2 = string.Empty;  
 
@@ -14,12 +15,12 @@ public class IDMgr : MonoBehaviour
         strPlayer_2 = PlayerPrefs.GetString("PlayerName2", "");
     }
 
-    protected void DeletePlayer1()
+    public void DeletePlayer1()
     {
         PlayerPrefs.DeleteKey("PlayerName1");
     }
 
-    protected void DeletePlayer2()
+    public void DeletePlayer2()
     {
         PlayerPrefs.DeleteKey("PlayerName2");
     }
