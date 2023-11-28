@@ -1354,7 +1354,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRoom: {fileID: 236126691}
-  idmgr: {fileID: 0}
 --- !u!1 &259436801
 GameObject:
   m_ObjectHideFlags: 0

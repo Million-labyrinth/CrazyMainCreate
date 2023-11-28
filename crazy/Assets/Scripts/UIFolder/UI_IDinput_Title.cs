@@ -30,6 +30,7 @@ public class UI_IDinput_Title : IDMgr
     public bool is1P;
     public bool is2P;
     public static UI_IDinput_Title inputTitle; // 다른 씬 에서도 이 스크립트를 가져다가 사용가능하게 만들어 줌. (static)
+    public UI_IDInput_Ingame UI_IDInput_Ingame;
     // 골드메탈 뱀서라이크 강의처럼 "UI_IDinput_Title.inputTitle.변수" 이런 식으로 사용하시면 됩니다
 
 
@@ -63,6 +64,9 @@ public class UI_IDinput_Title : IDMgr
                     P1UI.SetActive(false);
                     Player2.SetActive(false);
                     PVPorPVE = "PVE";
+                    PlayerPrefs.SetString("PVPorPVE", PVPorPVE);
+                    PlayerPrefs.Save();
+
                     if (PVPorPVE.Equals("PVE"))
                     {
                         PVEMap.SetActive(true);
