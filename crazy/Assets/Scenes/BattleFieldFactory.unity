@@ -16851,7 +16851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a511164987e604597039488390c76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgPangSound: {fileID: 8300000, guid: 7c7ae328b2b119e49a8fc63773cd92c8, type: 3}
+  bgPangSound: {fileID: 8300000, guid: 233d65a293d6ae642afde78a282fdb2e, type: 3}
   bgStartSound: {fileID: 8300000, guid: c1ea090f200a6bb4280e475534280026, type: 3}
 --- !u!82 &1255960719
 AudioSource:
