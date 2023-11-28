@@ -104,7 +104,7 @@ public class Player2 : MonoBehaviour
 
     void Start()
     {
-        if (UI_IDinput_Title.inputTitle.is1P)
+        if (UI_IDinput_Title.inputTitle.is1P && !UI_IDinput_Title.inputTitle.is2P)
         {
             gameObject.SetActive(false);
         }
@@ -127,7 +127,7 @@ public class Player2 : MonoBehaviour
 
     void Update()
     {
-        if(!gameManager.isFinishGame && gameManager.startedGame)
+        if (!gameManager.isFinishGame && gameManager.startedGame)
         {
             Move();
             Ray();
@@ -286,7 +286,8 @@ public class Player2 : MonoBehaviour
             if (scanObject.layer == 3 || scanObject.layer == 11)
             {
                 playerBmakeBalloon = false;
-            } else
+            }
+            else
             {
                 playerBmakeBalloon = true;
             }
@@ -573,7 +574,7 @@ public class Player2 : MonoBehaviour
     //아이템 먹었을때 스탯 값 증감
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!gameManager.isFinishGame)
+        if (!gameManager.isFinishGame)
         {
             if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "hitCollider")
             {
