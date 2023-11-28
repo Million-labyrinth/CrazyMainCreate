@@ -45,10 +45,14 @@ public class UI_IDinput_Title : IDMgr
         inputPlayer_Expend_1.text = inputPlayer_1.text = strPlayer_1;
         inputPlayer_Expend_2.text = strPlayer_2;
 
-        is1P = true;
-        is2P = false;
         inputTitle = this;
 
+    }
+
+    private void OnEnable()
+    {
+        is1P = true;
+        is2P = false;
     }
 
     public void Clicked_Btn1() //로그인 버튼 누를시 인풋 필트의 텍스트에 값 들어가기
@@ -93,6 +97,7 @@ public class UI_IDinput_Title : IDMgr
                 Debug.Log("ID공백 확인 요망");
             }
 
+            gameObject.SetActive(false);
         }
 
 
@@ -137,6 +142,7 @@ public class UI_IDinput_Title : IDMgr
                 Debug.Log("2P : ID공백 확인 요망");
             }
 
+            gameObject.SetActive(false);
         }
     }
 
@@ -150,6 +156,7 @@ public class UI_IDinput_Title : IDMgr
 
         is1P = false;
         is2P = true;
+
     }
     public void P1UIActiveButton()
     {
