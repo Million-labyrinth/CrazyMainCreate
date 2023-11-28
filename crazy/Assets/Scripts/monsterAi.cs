@@ -46,7 +46,6 @@ public class monsterAi : MonoBehaviour
         addDownDir = false;
         addLeftDir = false;
         addRightDir = false;
-
         StartCoroutine(AIDirection("Up"));
         StartCoroutine(AIDirection("Down"));
         StartCoroutine(AIDirection("Left"));
