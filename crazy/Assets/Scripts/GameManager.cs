@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     public Transform[] spawnPoints; // 플레이어 스폰 포인트
 
     public bool isFinishGame;
+    public GameObject loadingCanvas;
+    public bool startedGame;
 
     public void Awake()
     {
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartTimer());
 
         isFinishGame = false;
+        startedGame = false;
     }
 
     void Start()
@@ -76,6 +79,19 @@ public class GameManager : MonoBehaviour
             playerA.transform.position = spawnPoints[randomA].position;
             playerB.transform.position = spawnPoints[randomB].position;
         }
+
+        playerA.collider.enabled = false;
+        playerB.collider.enabled = false;
+        StartCoroutine(StartGame());   
+    }
+
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(3f);
+        startedGame = true;
+        loadingCanvas.SetActive(false);
+        playerA.collider.enabled = true;
+        playerB.collider.enabled = true;
     }
 
     IEnumerator StartTimer()

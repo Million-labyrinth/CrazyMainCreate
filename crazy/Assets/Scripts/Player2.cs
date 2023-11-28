@@ -39,7 +39,7 @@ public class Player2 : MonoBehaviour
     public AudioClip deathSound; //캐릭터 갇힌 물풍선 터질때
     AudioSource audioSource;
 
-    CircleCollider2D collider;
+    public CircleCollider2D collider;
 
     public Item2 item2;
     public GameManager gameManager;
@@ -127,7 +127,7 @@ public class Player2 : MonoBehaviour
 
     void Update()
     {
-        if(!gameManager.isFinishGame)
+        if(!gameManager.isFinishGame && gameManager.startedGame)
         {
             Move();
             Ray();

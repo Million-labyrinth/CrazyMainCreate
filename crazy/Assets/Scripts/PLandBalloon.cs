@@ -23,6 +23,9 @@ public class PLandBalloon : MonoBehaviour
         balloonLogic = balloon.GetComponent<Balloon>();
 
         rigid = GetComponent<Rigidbody2D>();
+
+        firstMoveSpeed = 0.3f;
+        SecondMoveSpeed = 0.3f;
     }
 
     void OnEnable()

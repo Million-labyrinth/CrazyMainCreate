@@ -18,7 +18,7 @@ public class PLandManager : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(3.2f);
+        yield return new WaitForSeconds(2.4f);
         OctopusBalloon.SetActive(true);
 
         StopCoroutine("StartGame");

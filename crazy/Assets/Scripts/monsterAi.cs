@@ -28,6 +28,8 @@ public class monsterAi : MonoBehaviour
     bool addLeftDir;
     bool addRightDir;
     Vector3 enemyDir;
+    
+    public GameManager gameManager;
 
     void Awake()
     {
@@ -50,6 +52,8 @@ public class monsterAi : MonoBehaviour
         StartCoroutine(AIDirection("Down"));
         StartCoroutine(AIDirection("Left"));
         StartCoroutine(AIDirection("Right"));
+
+        gameManager = FindAnyObjectByType<GameManager>();
     }
 
     void Update()
@@ -63,12 +67,15 @@ public class monsterAi : MonoBehaviour
         //{
         //    targetPosition = GetRandomPosition();
         //}
-        AIUpRay();
-        AIDownRay();
-        AILeftRay();
-        AIRightRay();
+        if(gameManager.startedGame && !gameManager.isFinishGame)
+        {
+            AIUpRay();
+            AIDownRay();
+            AILeftRay();
+            AIRightRay();
 
-        transform.position += enemyDir * 2f * Time.deltaTime;
+            transform.position += enemyDir * 2f * Time.deltaTime;
+        }
     }
 
     //Vector2 GetRandomPosition()

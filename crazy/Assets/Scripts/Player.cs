@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     public GameObject p2shield;
     public GameObject p2niddle;
 
-    CircleCollider2D collider;
+    public CircleCollider2D collider;
 
     public Item item;
     public GameManager gameManager;
@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(!gameManager.isFinishGame)
+        if(!gameManager.isFinishGame && gameManager.startedGame)
         {
             Move();
             Ray();
