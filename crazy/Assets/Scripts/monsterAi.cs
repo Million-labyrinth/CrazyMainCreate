@@ -73,9 +73,24 @@ public class monsterAi : MonoBehaviour
             AIDownRay();
             AILeftRay();
             AIRightRay();
+            anim.SetBool("start", true);
 
             transform.position += enemyDir * 2f * Time.deltaTime;
+
+            if (scanedUp && scanedDown && scanedLeft && scanedRight)
+            {
+                anim.SetBool("allBlocked", true);
+                enemyDir = Vector3.zero;
+            }
+            else
+            {
+                anim.SetBool("allBlocked", false);
+            }
+        } else if(gameManager.isFinishGame)
+        {
+            anim.SetBool("allBlocked", true);
         }
+
     }
 
     //Vector2 GetRandomPosition()
