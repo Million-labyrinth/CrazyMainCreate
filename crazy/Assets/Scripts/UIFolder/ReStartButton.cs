@@ -15,9 +15,8 @@ public class ReStartButton : MonoBehaviour
 
     public void GoPlayerRoom()
     {
+        TitlesOnPlayerRoom.shouldInitialize = false;
         int playerRoomState = 2; // 새로운 값을 설정
-
-
         // 값을 저장하고 현재 씬을 종료
         PlayerPrefs.SetInt("PlayerRoomState", playerRoomState);
 
@@ -31,6 +30,9 @@ public class ReStartButton : MonoBehaviour
 
     public void GoTitle()
     {
+        TitlesOnPlayerRoom.shouldInitialize = true;
+        Debug.Log("로그인 초기화 트루");
+
         seenCtn = PlayerPrefs.GetInt("MyVariable", 0); //
         seenCtn = 1;//���� ���� ���� 1 = Ÿ��Ʋ/ 2= �ʼ���
         PlayerPrefs.SetInt("MyVariable", seenCtn); // �� ���� �߼�
