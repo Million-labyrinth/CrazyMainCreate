@@ -5,11 +5,18 @@ using UnityEngine;
 public class Enemy_mini : MonoBehaviour
 {
     public GameObject enemy;
+    public PVEManager pveManager;
+
+    private void Start()
+    {
+        pveManager = FindObjectOfType<PVEManager>();
+    }
 
     IEnumerator Die()
     {
         yield return new WaitForSeconds(1);
         gameObject.SetActive(false);
+        pveManager.enemyCount--;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -18,6 +25,7 @@ public class Enemy_mini : MonoBehaviour
         {
             // 사망 애니메이션 추가 필요
             StartCoroutine("Die");
+
         }
     }
 }

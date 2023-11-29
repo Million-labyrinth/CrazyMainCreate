@@ -20,7 +20,7 @@ public class Box : MonoBehaviour
 
     void Awake()
     {
-        layerMask = LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Player A") | LayerMask.GetMask("Player B") | LayerMask.GetMask("Water") | LayerMask.GetMask("Balloon");
+        layerMask = LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Player A") | LayerMask.GetMask("Player B") | LayerMask.GetMask("Water") | LayerMask.GetMask("Balloon") | LayerMask.GetMask("Enemy");
         BoxRenderer = GetComponent<SpriteRenderer>();
     }
 
