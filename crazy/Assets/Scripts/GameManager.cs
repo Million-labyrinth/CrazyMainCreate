@@ -206,11 +206,11 @@ public class GameManager : MonoBehaviour
 
     public void PVELoseGame()
     {
-        audiosource.clip = winSound;
+        audiosource.clip = winSound; // lose Sound 필요
         audiosource.Play();
         Debug.Log("PVELose");
-        StartWinAnimation(PVEClear);
-        PVEClear.SetActive(true);
+        StartWinAnimation(PVELose);
+        PVELose.SetActive(true);
     }
 
     Coroutine coroutineWin = null;
