@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 23084827}
   - component: {fileID: 23084826}
   m_Layer: 0
-  m_Name: Boss_Attack_A (1)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2325,7 +2325,7 @@ GameObject:
   - component: {fileID: 300140066}
   - component: {fileID: 300140065}
   m_Layer: 0
-  m_Name: Boss_Attack_A (2)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3478,7 +3478,7 @@ GameObject:
   - component: {fileID: 366984064}
   - component: {fileID: 366984063}
   m_Layer: 0
-  m_Name: Boss_Attack_A (11)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3759,7 +3759,7 @@ GameObject:
   - component: {fileID: 391089917}
   - component: {fileID: 391089916}
   m_Layer: 0
-  m_Name: Boss_Attack_A
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5004,8 +5004,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1471594462}
   - {fileID: 655910229}
+  - {fileID: 1471594462}
   - {fileID: 1776487396}
   - {fileID: 1282808015}
   m_Father: {fileID: 0}
@@ -5923,7 +5923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &655910229
 Transform:
   m_ObjectHideFlags: 0
@@ -6407,7 +6407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &693066775
 Transform:
   m_ObjectHideFlags: 0
@@ -6514,7 +6514,7 @@ GameObject:
   - component: {fileID: 699427428}
   - component: {fileID: 699427427}
   m_Layer: 0
-  m_Name: Boss_Attack_A (3)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6620,7 +6620,7 @@ GameObject:
   - component: {fileID: 709876454}
   - component: {fileID: 709876453}
   m_Layer: 0
-  m_Name: Boss_Attack_A (5)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7753,7 +7753,7 @@ GameObject:
   - component: {fileID: 785994965}
   - component: {fileID: 785994964}
   m_Layer: 0
-  m_Name: Boss_Attack_A (4)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12504,7 +12504,7 @@ GameObject:
   - component: {fileID: 999649494}
   - component: {fileID: 999649493}
   m_Layer: 0
-  m_Name: Boss_Attack_A (12)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14128,7 +14128,7 @@ GameObject:
   - component: {fileID: 1132709429}
   - component: {fileID: 1132709428}
   m_Layer: 0
-  m_Name: Boss_Attack_A
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14234,7 +14234,7 @@ GameObject:
   - component: {fileID: 1137042491}
   - component: {fileID: 1137042490}
   m_Layer: 0
-  m_Name: Boss_Attack_A (10)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14719,7 +14719,7 @@ GameObject:
   - component: {fileID: 1179058746}
   - component: {fileID: 1179058745}
   m_Layer: 0
-  m_Name: Boss_Attack_A (6)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15866,7 +15866,7 @@ GameObject:
   - component: {fileID: 1275162376}
   - component: {fileID: 1275162375}
   m_Layer: 0
-  m_Name: Boss_Attack_A (8)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15972,7 +15972,7 @@ GameObject:
   - component: {fileID: 1276711268}
   - component: {fileID: 1276711267}
   m_Layer: 0
-  m_Name: Boss_Attack_A (9)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16086,7 +16086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1282808015
 Transform:
   m_ObjectHideFlags: 0
@@ -17981,7 +17981,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1471594462
 Transform:
   m_ObjectHideFlags: 0
@@ -19535,7 +19535,7 @@ GameObject:
   - component: {fileID: 1694204445}
   - component: {fileID: 1694204444}
   m_Layer: 0
-  m_Name: Boss_Attack_A (13)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20306,7 +20306,7 @@ GameObject:
   - component: {fileID: 1762424861}
   - component: {fileID: 1762424860}
   m_Layer: 0
-  m_Name: Boss_Attack_A (7)
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20696,7 +20696,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1776487396
 Transform:
   m_ObjectHideFlags: 0
@@ -20756,7 +20756,7 @@ GameObject:
   - component: {fileID: 1776774990}
   - component: {fileID: 1776774989}
   m_Layer: 0
-  m_Name: Boss_Attack_A
+  m_Name: Boss_Attack_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
