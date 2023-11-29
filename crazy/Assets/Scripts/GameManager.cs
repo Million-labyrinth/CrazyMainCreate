@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     public GameObject loadingCanvas;
     public bool startedGame;
 
+    public ReStartButton restart;
+
     public void Awake()
     {
         awin_Ani = GetComponent<Animator>();
@@ -179,13 +181,20 @@ public class GameManager : MonoBehaviour
                 playerA.isDying = false;
             }
         }
-
+        Wintitle();
         // 끝나면 바뀐 값들 초기화(나중에 함수로 만들어서 재시작시 초기화)
         isFinishGame = true;
         playerA.anim.SetBool("isDamaged", false);
         playerB.anim.SetBool("isDamaged", false);
     }
-
+    void GoRoom()
+    {
+        restart.GoPlayerRoom();
+    }
+    public void Wintitle()
+    {
+        Invoke("GoRoom", 5f);
+    }
     public void PVEWinGame()
     {
         audiosource.clip = winSound;
@@ -200,8 +209,9 @@ public class GameManager : MonoBehaviour
         audiosource.clip = winSound;
         audiosource.Play();
         Debug.Log("PVELose");
-        StartWinAnimation(PVELose);
-        PVELose.SetActive(true);
+        StartWinAnimation(PVEClear);
+        PVEClear.SetActive(true);
+        Wintitle();
     }
 
     Coroutine coroutineWin = null;
