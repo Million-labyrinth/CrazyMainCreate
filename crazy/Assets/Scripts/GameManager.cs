@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
         if (playerA.playerDead == true && playerB.playerDead == true || curTime <= 0.9)
         {
 
-            audiosource.clip = winSound;
+            audiosource.clip = loseSound; // lose Sound 필요
             audiosource.Play();
             Debug.Log("Draw");
             // draw_Ani.SetBool("draw", true);//드로우 애니메이션 실행

@@ -12946,9 +12946,12 @@ MonoBehaviour:
   bwin_Ani: {fileID: 1889196956}
   draw_Ani: {fileID: 1380984727}
   winSound: {fileID: 8300000, guid: b73c7da81dd2be6458dd5aacefc964ec, type: 3}
+  enemyWinSound: {fileID: 0}
+  loseSound: {fileID: 8300000, guid: 0c978ad17b12bc94d86f0310b896b05f, type: 3}
   isBlinking: 0
   blinkInterval: 0.2
   gameMode: PVP
+  bossMap: {fileID: 0}
   text: {fileID: 737397801}
   time: 0
   curTime: 0
