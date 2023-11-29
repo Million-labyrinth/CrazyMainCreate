@@ -19,6 +19,7 @@ public class UI_IDinput_Title : IDMgr
     public GameObject P2UIBUtton;
 
     public GameObject Player2;
+    public GameObject Player2XIMG;
 
     public string PVPorPVE;
     public GameObject PVPMap1;
@@ -71,6 +72,7 @@ public class UI_IDinput_Title : IDMgr
                     StartGame.SetActive(true);
                     P1UI.SetActive(false);
                     Player2.SetActive(false);
+                    Player2XIMG.SetActive(true);
                     PVPorPVE = "PVE";
                     idmgr.DeletePlayer2();
 
@@ -121,6 +123,7 @@ public class UI_IDinput_Title : IDMgr
                     StartGame.SetActive(true);
                     P2UI.SetActive(false);
                     Player2.SetActive(true);
+                    Player2XIMG.SetActive(false);
                     PVPorPVE = "PVP";
                     if (is2P)
                     {
