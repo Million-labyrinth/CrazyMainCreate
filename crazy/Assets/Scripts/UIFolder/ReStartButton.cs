@@ -16,10 +16,11 @@ public class ReStartButton : MonoBehaviour
     int playerRoomState;
     int seenCtn; // 이전 값 읽을 변수
 
-    
+
     public void GoPlayerRoom()
     {
-        if (playFieldName.text.Contains("Forest") ){
+        if (playFieldName.text.Contains("Forest"))
+        {
             playerRoomState = 2; // 새로운 값을 설정
 
 
@@ -29,7 +30,7 @@ public class ReStartButton : MonoBehaviour
             PlayerPrefs.Save();
 
             // 현재 씬을 종료하면서 다음 씬으로 전환
-            SceneManager.LoadScene("Titles"); 
+            SceneManager.LoadScene("Titles");
         }
         else
         {
@@ -72,13 +73,13 @@ public class ReStartButton : MonoBehaviour
 
     public void closeReStartAlert() //
     {
-        gameRoomUIBUtton.BackBoard.SetActive(false);
+        //gameRoomUIBUtton.BackBoard.SetActive(false);
         alert.SetActive(false);
     }
     public void closeMapSelectAlert() // 
     {
         gameRoomUIBUtton.BackBoard.SetActive(false);
-        mapSelect.MapSelectUI.SetActive(false); 
+        mapSelect.MapSelectUI.SetActive(false);
         alert.SetActive(false);
     }
 }

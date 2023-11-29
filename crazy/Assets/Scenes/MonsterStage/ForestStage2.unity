@@ -7225,7 +7225,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1780419684}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
         m_Mode: 1
@@ -9333,7 +9333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a511164987e604597039488390c76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgPangSound: {fileID: 8300000, guid: 061247b83a238604aba5e9c2ecb23e7f, type: 3}
+  bgPangSound: {fileID: 8300000, guid: 81e150bb72605b341a0d72a25de9fda5, type: 3}
   bgStartSound: {fileID: 8300000, guid: c1ea090f200a6bb4280e475534280026, type: 3}
 --- !u!82 &1255960719
 AudioSource:
@@ -9347,7 +9347,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -11035,7 +11035,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1780419684}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
         m_Mode: 1
@@ -13400,7 +13400,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1780419684}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
         m_Mode: 1
