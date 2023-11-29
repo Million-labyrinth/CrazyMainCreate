@@ -29,7 +29,6 @@ public class PVEManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(is2P);
         if(enemyCount == 0) {
             StartCoroutine(WinGame());
         }
