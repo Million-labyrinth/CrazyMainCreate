@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public Button title_to_scene;
     public GameObject largeImage;
     public GameObject border;
     public GameObject PlayerRoomImg;

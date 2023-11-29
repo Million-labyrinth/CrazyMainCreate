@@ -23,7 +23,7 @@ public class GameRoomMapSelect : MonoBehaviour
     {
         int ran = Random.Range(0, 4);
 
-        if (mapNameVillage.activeSelf == true || mapNameForest.activeSelf == true || mapNameFactory.activeSelf == true || mapNamePangLand.activeSelf == true)
+        if (mapNameVillage.activeSelf == true || mapNameForest.activeSelf == true || mapNameFactory.activeSelf == true || mapNamePangLand.activeSelf == true || mapNamePVE.activeSelf == true)
         {
             if (mapNameVillage.activeSelf == true)
             {
@@ -43,7 +43,7 @@ public class GameRoomMapSelect : MonoBehaviour
             }
             else if (mapNamePVE.activeSelf == true)
             {
-                SceneManager.LoadScene("ForestStage1");
+                SceneManager.LoadScene("ForestStage1"); //PVEMap
                 Debug.Log("PVE map move");
             }
             else if (mapNamePangLand.activeSelf == true)
