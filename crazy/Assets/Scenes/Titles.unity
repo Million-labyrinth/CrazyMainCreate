@@ -625,6 +625,7 @@ MonoBehaviour:
   alert: {fileID: 1451610002}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 236126695}
+  playFieldName: {fileID: 0}
 --- !u!114 &182266810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1352,7 +1353,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df76f37fcbd31b448909e7ade2fdd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PVPorPVE: 
   playerRoom: {fileID: 236126691}
+  Player2: {fileID: 891801813}
+  Player2XIMG: {fileID: 1085625189}
+  PVPMap1: {fileID: 190442096}
+  PVPMap2: {fileID: 807312128}
+  PVPMap3: {fileID: 1086344049}
+  PVPMap4: {fileID: 259436801}
+  PVPMap5: {fileID: 1368372046}
+  PVEMap: {fileID: 719081455}
   idmgr: {fileID: 258510945}
 --- !u!114 &258510945
 MonoBehaviour:
@@ -4501,7 +4511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.48487014, g: 0.43040225, b: 0.9811321, a: 0.1764706}
+  m_Color: {r: 0.48487014, g: 0.43040225, b: 0.9811321, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4814,6 +4824,7 @@ MonoBehaviour:
   alert: {fileID: 1451610002}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 0}
+  playFieldName: {fileID: 0}
 --- !u!114 &904319495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9778,6 +9789,7 @@ MonoBehaviour:
   alert: {fileID: 1162894170}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 236126695}
+  playFieldName: {fileID: 0}
 --- !u!114 &1789576066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9927,6 +9939,7 @@ MonoBehaviour:
   alert: {fileID: 0}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 0}
+  playFieldName: {fileID: 0}
 --- !u!114 &1798437098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10070,6 +10083,7 @@ MonoBehaviour:
   alert: {fileID: 1162894170}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 0}
+  playFieldName: {fileID: 0}
 --- !u!114 &1804050429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10972,6 +10986,7 @@ MonoBehaviour:
   alert: {fileID: 1162894170}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 236126695}
+  playFieldName: {fileID: 0}
 --- !u!114 &2115277998
 MonoBehaviour:
   m_ObjectHideFlags: 0
