@@ -16059,8 +16059,6 @@ MonoBehaviour:
   title_to_scene: {fileID: 352013340}
   alert: {fileID: 1525054621}
   ttM: {fileID: 0}
-  gameRoomUIBUtton: {fileID: 0}
-  playFieldName: {fileID: 370156727}
 --- !u!1 &354128918
 GameObject:
   m_ObjectHideFlags: 0
@@ -35158,8 +35156,6 @@ MonoBehaviour:
   title_to_scene: {fileID: 800058141}
   alert: {fileID: 1525054621}
   ttM: {fileID: 0}
-  gameRoomUIBUtton: {fileID: 0}
-  playFieldName: {fileID: 0}
 --- !u!1 &803241411 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3611363430429087166, guid: fd32bcbb24da3554880fcdedb09f272c, type: 3}
@@ -42556,8 +42552,6 @@ MonoBehaviour:
   title_to_scene: {fileID: 908024585}
   alert: {fileID: 0}
   ttM: {fileID: 0}
-  gameRoomUIBUtton: {fileID: 0}
-  playFieldName: {fileID: 370156727}
 --- !u!1 &908374735
 GameObject:
   m_ObjectHideFlags: 0
@@ -71311,8 +71305,6 @@ MonoBehaviour:
   title_to_scene: {fileID: 0}
   alert: {fileID: 1525054621}
   ttM: {fileID: 0}
-  gameRoomUIBUtton: {fileID: 0}
-  playFieldName: {fileID: 370156727}
 --- !u!1 &1489538151
 GameObject:
   m_ObjectHideFlags: 0

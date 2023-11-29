@@ -5,16 +5,7 @@ using UnityEngine.UI;
 
 public class TitlesOnPlayerRoom : MonoBehaviour
 {
-    public string PVPorPVE;
     public GameObject playerRoom;
-    public GameObject Player2;
-    public GameObject Player2XIMG;
-    public GameObject PVPMap1;
-    public GameObject PVPMap2;
-    public GameObject PVPMap3;
-    public GameObject PVPMap4;
-    public GameObject PVPMap5;
-    public GameObject PVEMap;
     public IDMgr idmgr;
     public static bool shouldInitialize = true; // 초기화를 진행할지 여부를 결정하는 변수
 
@@ -40,17 +31,6 @@ public class TitlesOnPlayerRoom : MonoBehaviour
             if (activatePlayerRoom == 2)
             {
                 playerRoom.SetActive(true);
-                Player2.SetActive(false);
-                Player2XIMG.SetActive(true);
-                PVPorPVE = "PVE";
-                idmgr.DeletePlayer2();
-
-                PlayerPrefs.SetString("PVPorPVE", PVPorPVE);
-                PlayerPrefs.Save();
-
-
-                PVEMap.SetActive(true);
-                DeactivePVPMap();
 
                 // 값을 초기화
                 PlayerPrefs.SetInt("PlayerRoomState", 0);
@@ -58,19 +38,6 @@ public class TitlesOnPlayerRoom : MonoBehaviour
 
 
             }
-            else if (activatePlayerRoom == 3)
-            {
-                playerRoom.SetActive(true);
-            }
-           
         }
-}
-    public void DeactivePVPMap()
-    {
-        PVPMap1.SetActive(false);
-        PVPMap2.SetActive(false);
-        PVPMap3.SetActive(false);
-        PVPMap4.SetActive(false);
-        PVPMap5.SetActive(false);
     }
 }
