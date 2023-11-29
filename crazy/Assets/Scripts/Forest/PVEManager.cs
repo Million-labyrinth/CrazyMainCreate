@@ -64,6 +64,8 @@ public class PVEManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         Debug.Log("lose");
+        gameManager.isFinishGame = true;
+        gameManager.PVELoseGame();
         StopCoroutine(LoseGame());
 
         yield return new WaitForSeconds(2f);

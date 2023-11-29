@@ -6403,18 +6403,18 @@ MonoBehaviour:
   playerA: {fileID: 1814193088}
   playerB: {fileID: 435125920}
   objectManager: {fileID: 1191335683}
-  awin: {fileID: 0}
-  bwin: {fileID: 1889196952}
-  draw: {fileID: 1380984725}
+  awin: {fileID: 1925691665}
+  bwin: {fileID: 1380984725}
+  draw: {fileID: 0}
   screen: {fileID: 1738861903}
   PVEClear: {fileID: 1889196952}
   PVELose: {fileID: 1380984725}
   redBlock: {fileID: 7383716445197891954, guid: 458b21735b82f9344a9bbce3c6a92c83, type: 3}
   orangeBlock: {fileID: 7383716445197891954, guid: 93e5e761c9cb6e44e9f98678b707187a, type: 3}
   villageBox: {fileID: 2367758887087915606, guid: 576af82bb061a7f4289bade78ce2defa, type: 3}
-  awin_Ani: {fileID: 0}
-  bwin_Ani: {fileID: 1889196956}
-  draw_Ani: {fileID: 1380984727}
+  awin_Ani: {fileID: 1889196956}
+  bwin_Ani: {fileID: 1380984727}
+  draw_Ani: {fileID: 0}
   winSound: {fileID: 8300000, guid: b73c7da81dd2be6458dd5aacefc964ec, type: 3}
   isBlinking: 0
   blinkInterval: 0.2
@@ -9473,7 +9473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1380984726
 RectTransform:
   m_ObjectHideFlags: 0
