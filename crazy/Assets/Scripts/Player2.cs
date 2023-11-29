@@ -718,7 +718,10 @@ public class Player2 : MonoBehaviour
         playerDead = true;
         isDying = false;
 
-        gameManager.Death();
+        if (gameManager.gameMode == "PVP")
+        {
+            gameManager.Death();
+        }
 
         StartCoroutine("Die");
     }
