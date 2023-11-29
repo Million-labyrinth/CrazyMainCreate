@@ -2555,9 +2555,9 @@ GameObject:
   - component: {fileID: 512440707}
   - component: {fileID: 512440706}
   - component: {fileID: 512440705}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: BOSS
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2820,6 +2820,7 @@ MonoBehaviour:
   title_to_scene: {fileID: 527642729}
   alert: {fileID: 0}
   ttM: {fileID: 0}
+  gameRoomUIBUtton: {fileID: 0}
 --- !u!114 &527642729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7311,6 +7312,7 @@ MonoBehaviour:
   title_to_scene: {fileID: 1060516220}
   alert: {fileID: 328832392}
   ttM: {fileID: 0}
+  gameRoomUIBUtton: {fileID: 0}
 --- !u!114 &1060516222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7557,6 +7559,7 @@ MonoBehaviour:
   title_to_scene: {fileID: 1083820074}
   alert: {fileID: 328832392}
   ttM: {fileID: 0}
+  gameRoomUIBUtton: {fileID: 0}
 --- !u!114 &1083820076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9352,6 +9355,7 @@ MonoBehaviour:
   title_to_scene: {fileID: 0}
   alert: {fileID: 328832392}
   ttM: {fileID: 0}
+  gameRoomUIBUtton: {fileID: 0}
 --- !u!114 &1515531044
 MonoBehaviour:
   m_ObjectHideFlags: 0
