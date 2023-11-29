@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Enemy_BOSS : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+/*    IEnumerator AttackDelay()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        Time.timeScale = 1f
+        yield return;  
+    }*/
 }
