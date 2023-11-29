@@ -25,6 +25,7 @@ public class UI_IDinput_Title : IDMgr
     public GameObject PVPMap2;
     public GameObject PVPMap3;
     public GameObject PVPMap4;
+    public GameObject PVPMap5;
     public GameObject PVEMap;
 
     public IDMgr idmgr;
@@ -76,7 +77,7 @@ public class UI_IDinput_Title : IDMgr
                     PlayerPrefs.SetString("PVPorPVE", PVPorPVE);
                     PlayerPrefs.Save();
 
-                    if (PVPorPVE.Equals("PVE"))
+                    if (is1P)
                     {
                         PVEMap.SetActive(true);
                         DeactivePVPMap();
@@ -121,7 +122,7 @@ public class UI_IDinput_Title : IDMgr
                     P2UI.SetActive(false);
                     Player2.SetActive(true);
                     PVPorPVE = "PVP";
-                    if (PVPorPVE.Equals("PVP"))
+                    if (is2P)
                     {
                         PVEMap.SetActive(false);
                         DeactivePVEMap();
@@ -178,6 +179,7 @@ public class UI_IDinput_Title : IDMgr
         PVPMap2.SetActive(false);
         PVPMap3.SetActive(false);
         PVPMap4.SetActive(false);
+        PVPMap5.SetActive(false);
     }
     public void DeactivePVEMap()
     {

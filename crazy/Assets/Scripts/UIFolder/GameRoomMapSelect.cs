@@ -43,7 +43,7 @@ public class GameRoomMapSelect : MonoBehaviour
             }
             else if (mapNamePVE.activeSelf == true)
             {
-                SceneManager.LoadScene("ForestStage1");
+                SceneManager.LoadScene("ForestStage1"); //PVEMap
                 Debug.Log("PVE map move");
             }
             else if (mapNamePangLand.activeSelf == true)
