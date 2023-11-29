@@ -11,28 +11,49 @@ public class ReStartButton : MonoBehaviour
     public GameObject alert;
     public TitletoManual ttM;
     public GameRoomUIBUtton gameRoomUIBUtton;
-
-
+    public Text playFieldName;
+    int playerRoomState;
     int seenCtn; // 이전 값 읽을 변수
 
+    
     public void GoPlayerRoom()
     {
-        int playerRoomState = 2; // 새로운 값을 설정
+        if (playFieldName.text.Contains("Forest") ){
+            playerRoomState = 2; // 새로운 값을 설정
 
 
-        // 값을 저장하고 현재 씬을 종료
-        PlayerPrefs.SetInt("PlayerRoomState", playerRoomState);
+            // 값을 저장하고 현재 씬을 종료
+            PlayerPrefs.SetInt("PlayerRoomState", playerRoomState);
+            PlayerPrefs.SetString("PlayerRoomPvE", "PvERoom");
+            PlayerPrefs.Save();
 
-        PlayerPrefs.Save();
+            // 현재 씬을 종료하면서 다음 씬으로 전환
+            SceneManager.LoadScene("Titles"); 
+        }
+        else
+        {
+            playerRoomState = 3; // 새로운 값을 설정
 
-        // 현재 씬을 종료하면서 다음 씬으로 전환
-        SceneManager.LoadScene("Titles");
+
+            // 값을 저장하고 현재 씬을 종료
+            PlayerPrefs.SetInt("PlayerRoomState", playerRoomState);
+            PlayerPrefs.SetString("PlayerRoomPvE", "PvERoom");
+            PlayerPrefs.Save();
+
+            // 현재 씬을 종료하면서 다음 씬으로 전환
+            SceneManager.LoadScene("Titles");
+        }
     }
 
 
 
     public void GoTitle()
     {
+        playerRoomState = 1; // 새로운 값을 설정
+
+
+        // 값을 저장하고 현재 씬을 종료
+        PlayerPrefs.SetInt("PlayerRoomState", playerRoomState);
         TitlesOnPlayerRoom.shouldInitialize = true;
 
         seenCtn = PlayerPrefs.GetInt("MyVariable", 0); //
