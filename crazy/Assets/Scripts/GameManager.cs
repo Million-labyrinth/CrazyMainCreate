@@ -26,12 +26,14 @@ public class GameManager : MonoBehaviour
 
     AudioSource audiosource;
     public AudioClip winSound;
-
+    public AudioClip enemyWinSound;
+    public AudioClip loseSound;
     public bool isBlinking = false; // 애니메이션 깜빡임 상태
     public float blinkInterval = 0.2f; // 깜빡이는 간격
 
     public string gameMode;
 
+    public Text bossMap;//보스맥 확인
     //timer
     [SerializeField] private Text text;
     [SerializeField] private float time;
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
     public bool startedGame;
 
     public ReStartButton restart;
+
 
     public void Awake()
     {
@@ -206,8 +209,18 @@ public class GameManager : MonoBehaviour
 
     public void PVELoseGame()
     {
-        audiosource.clip = winSound; // lose Sound 필요
-        audiosource.Play();
+        if (bossMap.text.Contains("03"))
+        {
+            audiosource.clip = enemyWinSound; // lose Sound 필요
+            audiosource.Play();
+        }
+        else
+        {
+            audiosource.clip = loseSound; // lose Sound 필요
+            audiosource.Play();
+        }
+
+
         Debug.Log("PVELose");
         StartWinAnimation(PVELose);
         PVELose.SetActive(true);
