@@ -116,6 +116,9 @@ public class GameManager : MonoBehaviour
             if (curTime <= 0.9)
             {
                 Debug.Log("Time out Draw");
+                audiosource.clip = loseSound; // lose Sound 필요
+                audiosource.Play();
+
                 //draw_Ani.SetBool("draw", true);
                 StartWinAnimation(draw);
                 draw.SetActive(true);
@@ -149,6 +152,7 @@ public class GameManager : MonoBehaviour
             StartWinAnimation(draw);
             draw.SetActive(true);
         }
+
         // B Win
         else if (playerA.playerDead == true && playerB.playerDead == false)
         {

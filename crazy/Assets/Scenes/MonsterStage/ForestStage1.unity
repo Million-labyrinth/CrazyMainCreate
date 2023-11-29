@@ -6403,7 +6403,7 @@ MonoBehaviour:
   playerA: {fileID: 1814193088}
   playerB: {fileID: 435125920}
   objectManager: {fileID: 1191335683}
-  awin: {fileID: 1925691665}
+  awin: {fileID: 1889196952}
   bwin: {fileID: 1380984725}
   draw: {fileID: 0}
   screen: {fileID: 1738861903}
