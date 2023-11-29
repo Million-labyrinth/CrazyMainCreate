@@ -743,7 +743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -245, y: -230}
+  m_AnchoredPosition: {x: -291, y: -230}
   m_SizeDelta: {x: 110, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &190442098
@@ -853,16 +853,19 @@ MonoBehaviour:
   - {fileID: 1405316255}
   - {fileID: 1092656949}
   - {fileID: 1051783977}
+  - {fileID: 1642047802}
   OtherMapName:
   - {fileID: 1909460471}
   - {fileID: 1129877158}
   - {fileID: 538928586}
   - {fileID: 1036269551}
+  - {fileID: 1677745169}
   OtherMapBorder:
   - {fileID: 209555382}
   - {fileID: 1555393410}
   - {fileID: 1088434729}
   - {fileID: 1140776013}
+  - {fileID: 1033877692}
   RandomSceneNames:
   - BattelFieldVillage
   - BattleFieldFactory
@@ -1183,7 +1186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -125, y: -230}
+  m_AnchoredPosition: {x: -171, y: -230}
   m_SizeDelta: {x: 117, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &236126691
@@ -1415,7 +1418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 115, y: -230}
+  m_AnchoredPosition: {x: 69, y: -230}
   m_SizeDelta: {x: 110, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &259436803
@@ -1480,16 +1483,19 @@ MonoBehaviour:
   - {fileID: 1092656949}
   - {fileID: 1051783977}
   - {fileID: 1025701681}
+  - {fileID: 1642047802}
   OtherMapName:
   - {fileID: 335197071}
   - {fileID: 1909460471}
   - {fileID: 1129877158}
   - {fileID: 1036269551}
+  - {fileID: 1677745169}
   OtherMapBorder:
   - {fileID: 1495079800}
   - {fileID: 209555382}
   - {fileID: 1555393410}
   - {fileID: 1140776013}
+  - {fileID: 1033877692}
   RandomSceneNames: []
 --- !u!82 &259436806
 AudioSource:
@@ -2061,7 +2067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &342584362
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3691,7 +3697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &719081456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3708,7 +3714,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9999, y: -230}
+  m_AnchoredPosition: {x: 309, y: -230}
   m_SizeDelta: {x: 110, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &719081457
@@ -3898,6 +3904,7 @@ MonoBehaviour:
   - {fileID: 1998791763}
   - {fileID: 1405316255}
   - {fileID: 1092656949}
+  - {fileID: 1025701681}
   - {fileID: 1025701681}
   OtherMapName:
   - {fileID: 335197071}
@@ -4142,7 +4149,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -125, y: -230}
+  m_AnchoredPosition: {x: -171, y: -230}
   m_SizeDelta: {x: 110, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &807312130
@@ -4207,16 +4214,19 @@ MonoBehaviour:
   - {fileID: 1405316255}
   - {fileID: 1092656949}
   - {fileID: 1025701681}
+  - {fileID: 1642047802}
   OtherMapName:
   - {fileID: 335197071}
   - {fileID: 1129877158}
   - {fileID: 538928586}
   - {fileID: 1036269551}
+  - {fileID: 1677745169}
   OtherMapBorder:
   - {fileID: 1495079800}
   - {fileID: 1555393410}
   - {fileID: 1088434729}
   - {fileID: 1140776013}
+  - {fileID: 1033877692}
   RandomSceneNames: []
 --- !u!114 &807312133
 MonoBehaviour:
@@ -4511,7 +4521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.48487014, g: 0.43040225, b: 0.9811321, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.23921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5478,7 +5488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.99999, y: -230}
+  m_AnchoredPosition: {x: 308.99994, y: -230}
   m_SizeDelta: {x: 117, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1036269551
@@ -6199,7 +6209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5, y: -230}
+  m_AnchoredPosition: {x: -51.000004, y: -230}
   m_SizeDelta: {x: 110, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1086344051
@@ -6264,16 +6274,19 @@ MonoBehaviour:
   - {fileID: 1405316255}
   - {fileID: 1051783977}
   - {fileID: 1025701681}
+  - {fileID: 1642047802}
   OtherMapName:
   - {fileID: 335197071}
   - {fileID: 1909460471}
   - {fileID: 538928586}
   - {fileID: 1036269551}
+  - {fileID: 1677745169}
   OtherMapBorder:
   - {fileID: 1495079800}
   - {fileID: 209555382}
   - {fileID: 1088434729}
   - {fileID: 1140776013}
+  - {fileID: 1033877692}
   RandomSceneNames: []
 --- !u!114 &1086344054
 MonoBehaviour:
@@ -6511,7 +6524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 115, y: -230}
+  m_AnchoredPosition: {x: 69, y: -230}
   m_SizeDelta: {x: 117, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1092656949
@@ -7054,7 +7067,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 236, y: -230}
+  m_AnchoredPosition: {x: 190, y: -230}
   m_SizeDelta: {x: 117, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1162894170
@@ -8103,7 +8116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 236, y: -230}
+  m_AnchoredPosition: {x: 190, y: -230}
   m_SizeDelta: {x: 110, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368372048
@@ -8294,16 +8307,19 @@ MonoBehaviour:
   - {fileID: 1092656949}
   - {fileID: 1051783977}
   - {fileID: 1025701681}
+  - {fileID: 1642047802}
   OtherMapName:
   - {fileID: 335197071}
   - {fileID: 1909460471}
   - {fileID: 1129877158}
   - {fileID: 538928586}
+  - {fileID: 1677745169}
   OtherMapBorder:
   - {fileID: 1495079800}
   - {fileID: 209555382}
   - {fileID: 1555393410}
   - {fileID: 1088434729}
+  - {fileID: 1033877692}
   RandomSceneNames: []
 --- !u!114 &1368372051
 MonoBehaviour:
@@ -8791,7 +8807,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -245, y: -230}
+  m_AnchoredPosition: {x: -291, y: -230}
   m_SizeDelta: {x: 117, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1555393410
@@ -8866,7 +8882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5, y: -230}
+  m_AnchoredPosition: {x: -51.000004, y: -230}
   m_SizeDelta: {x: 117, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1570510508
@@ -9020,7 +9036,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 125, y: -230}
+  m_AnchoredPosition: {x: 79, y: -230}
   m_SizeDelta: {x: 117, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1642047802
@@ -9170,7 +9186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 245, y: -230}
+  m_AnchoredPosition: {x: 199, y: -230}
   m_SizeDelta: {x: 117, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1677745169

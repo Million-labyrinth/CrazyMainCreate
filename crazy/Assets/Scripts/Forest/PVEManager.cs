@@ -63,10 +63,10 @@ public class PVEManager : MonoBehaviour
     IEnumerator LoseGame()
     {
         yield return new WaitForSeconds(0.3f);
-        Debug.Log("lose");
         gameManager.isFinishGame = true;
         gameManager.PVELoseGame();
         StopCoroutine(LoseGame());
+        Debug.Log("lose");
 
         yield return new WaitForSeconds(2f);
         // 맵 선택 창으로 이동
