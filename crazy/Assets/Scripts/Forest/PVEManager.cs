@@ -70,7 +70,7 @@ public class PVEManager : MonoBehaviour
         }
         else 
         {
-            gameManager.Wintitle();
+           // gameManager.Wintitle();
         }
     }
     void goTitle()
