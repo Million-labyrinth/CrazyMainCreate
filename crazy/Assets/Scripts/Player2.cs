@@ -313,20 +313,28 @@ public class Player2 : MonoBehaviour
                 }
 
             }
-
-            // PVE 몬스터한테 피격
-            if (scanObject.tag == "enemy" && !useShield && !damagedEnemy)
-            {
-                anim.SetTrigger("hitByEnemy");
-                anim.SetBool("isDamaged", true);
-                damagedEnemy = true;
-                DeadTime();
-            }
         }
         else
         {
             scanObject = null;
             playerBmakeBalloon = true;
+        }
+
+        // PVE playerB Ray (enemy 피격 판정)
+        if(gameManager.gameMode == "PVE")
+        {
+            Collider2D pvePlayerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, -0.35f), 0.45f, LayerMask.GetMask("Enemy"));
+
+            if (pvePlayerBRay != null)
+            {
+                if (pvePlayerBRay.gameObject.tag == "enemy" && !useShield && !damagedEnemy)
+                {
+                    anim.SetTrigger("hitByEnemy");
+                    anim.SetBool("isDamaged", true);
+                    damagedEnemy = true;
+                    DeadTime();
+                }
+            }
         }
 
         // 밀 수 있는 상자 / 물풍선 Ray

@@ -30,11 +30,11 @@ public class PVEManager : MonoBehaviour
 
     private void Update()
     {
-        if(enemyCount == 0) {
+        if(enemyCount == 0 && !gameManager.isFinishGame) {
             StartCoroutine(WinGame());
         }
 
-        if(is2P)
+        if(is2P && !gameManager.isFinishGame)
         {
             if ((playerA.playerDead && playerB.playerDead) || gameManager.timeOver)
             {
@@ -52,6 +52,7 @@ public class PVEManager : MonoBehaviour
 
     IEnumerator WinGame()
     {
+        gameManager.isFinishGame = true;
         yield return new WaitForSeconds(0.3f);
         gameManager.isFinishGame = true;
         gameManager.PVEWinGame();
@@ -80,6 +81,7 @@ public class PVEManager : MonoBehaviour
 
     IEnumerator LoseGame()
     {
+        gameManager.isFinishGame = true;
         yield return new WaitForSeconds(0.3f);
         gameManager.isFinishGame = true;
         gameManager.PVELoseGame();
