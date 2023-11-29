@@ -10,22 +10,42 @@ public class PVEManager : MonoBehaviour
 
     public Player playerA;
     public Player2 playerB;
+    public GameObject bazzi;
 
+    bool is2P;
 
-    void Awake()
+    void Start()
     {
         enemyCount = enemy.Length;
+
+        if(bazzi.activeInHierarchy)
+        {
+            is2P = true;
+        } else
+        {
+            is2P = false;
+        }
     }
 
     private void Update()
     {
+        Debug.Log(is2P);
         if(enemyCount == 0) {
             StartCoroutine(WinGame());
         }
 
-        if((playerA.playerDead && playerB.playerDead) || gameManager.timeOver)
+        if(is2P)
         {
-            StartCoroutine(LoseGame());
+            if ((playerA.playerDead && playerB.playerDead) || gameManager.timeOver)
+            {
+                StartCoroutine(LoseGame());
+            }
+        } else if(!is2P)
+        {
+            if (playerA.playerDead || gameManager.timeOver)
+            {
+                StartCoroutine(LoseGame());
+            }
         }
     }
 
@@ -41,5 +61,7 @@ public class PVEManager : MonoBehaviour
     IEnumerator LoseGame()
     {
         yield return new WaitForSeconds(0.3f);
+        Debug.Log("lose");
+        StopCoroutine(LoseGame());
     }
 }

@@ -6421,6 +6421,7 @@ MonoBehaviour:
   text: {fileID: 737397801}
   time: 0
   curTime: 0
+  timeOver: 0
   spawnPoints:
   - {fileID: 1408131694}
   - {fileID: 1359454777}
@@ -11728,6 +11729,9 @@ MonoBehaviour:
   - {fileID: 1834796660}
   - {fileID: 126516330}
   enemyCount: 0
+  playerA: {fileID: 1814193088}
+  playerB: {fileID: 435125920}
+  bazzi: {fileID: 435125915}
 --- !u!1 &1889196952
 GameObject:
   m_ObjectHideFlags: 0
