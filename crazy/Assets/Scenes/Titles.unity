@@ -856,11 +856,12 @@ MonoBehaviour:
   - {fileID: 1909460471}
   - {fileID: 1129877158}
   - {fileID: 538928586}
+  - {fileID: 1036269551}
   OtherMapBorder:
   - {fileID: 209555382}
   - {fileID: 1555393410}
   - {fileID: 1088434729}
-  - {fileID: 1618393201}
+  - {fileID: 1140776013}
   RandomSceneNames:
   - BattelFieldVillage
   - BattleFieldFactory
@@ -1482,14 +1483,12 @@ MonoBehaviour:
   - {fileID: 335197071}
   - {fileID: 1909460471}
   - {fileID: 1129877158}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1036269551}
   OtherMapBorder:
   - {fileID: 1495079800}
   - {fileID: 209555382}
   - {fileID: 1555393410}
-  - {fileID: 1618393201}
-  - {fileID: 1659260869}
+  - {fileID: 1140776013}
   RandomSceneNames: []
 --- !u!82 &259436806
 AudioSource:
@@ -4211,14 +4210,12 @@ MonoBehaviour:
   - {fileID: 335197071}
   - {fileID: 1129877158}
   - {fileID: 538928586}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1036269551}
   OtherMapBorder:
   - {fileID: 1495079800}
   - {fileID: 1555393410}
   - {fileID: 1088434729}
-  - {fileID: 1618393201}
-  - {fileID: 1659260869}
+  - {fileID: 1140776013}
   RandomSceneNames: []
 --- !u!114 &807312133
 MonoBehaviour:
@@ -6269,14 +6266,12 @@ MonoBehaviour:
   - {fileID: 335197071}
   - {fileID: 1909460471}
   - {fileID: 538928586}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1036269551}
   OtherMapBorder:
   - {fileID: 1495079800}
   - {fileID: 209555382}
   - {fileID: 1088434729}
-  - {fileID: 1618393201}
-  - {fileID: 1659260869}
+  - {fileID: 1140776013}
   RandomSceneNames: []
 --- !u!114 &1086344054
 MonoBehaviour:
