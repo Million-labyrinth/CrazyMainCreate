@@ -124,7 +124,7 @@ public class UI_IDinput_Title : IDMgr
                     P2UI.SetActive(false);
                     Player2.SetActive(true);
                     Player2XIMG.SetActive(false);
-                    PlayerPrefs.SetInt("PlayerRoomState", 1);
+                    PVPorPVE = "PVP";
                     if (is2P)
                     {
                         PVEMap.SetActive(false);

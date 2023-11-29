@@ -1456,8 +1456,6 @@ MonoBehaviour:
   title_to_scene: {fileID: 274733380}
   alert: {fileID: 1140816676}
   ttM: {fileID: 0}
-  gameRoomUIBUtton: {fileID: 0}
-  playFieldName: {fileID: 0}
 --- !u!114 &274733382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8967,8 +8965,6 @@ MonoBehaviour:
   title_to_scene: {fileID: 1301670148}
   alert: {fileID: 1140816676}
   ttM: {fileID: 0}
-  gameRoomUIBUtton: {fileID: 0}
-  playFieldName: {fileID: 975335487}
 --- !u!114 &1301670150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12427,8 +12423,6 @@ MonoBehaviour:
   title_to_scene: {fileID: 1972080082}
   alert: {fileID: 0}
   ttM: {fileID: 0}
-  gameRoomUIBUtton: {fileID: 0}
-  playFieldName: {fileID: 975335487}
 --- !u!114 &1972080082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12766,8 +12760,6 @@ MonoBehaviour:
   title_to_scene: {fileID: 0}
   alert: {fileID: 1140816676}
   ttM: {fileID: 0}
-  gameRoomUIBUtton: {fileID: 0}
-  playFieldName: {fileID: 975335487}
 --- !u!114 &1994000542
 MonoBehaviour:
   m_ObjectHideFlags: 0
