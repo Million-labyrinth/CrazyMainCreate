@@ -23,7 +23,7 @@ public class GameRoomMapSelect : MonoBehaviour
     {
         int ran = Random.Range(0, 4);
 
-        if (mapNameVillage.activeSelf == true || mapNameForest.activeSelf == true || mapNameFactory.activeSelf == true || mapNamePangLand.activeSelf == true)
+        if (mapNameVillage.activeSelf == true || mapNameForest.activeSelf == true || mapNameFactory.activeSelf == true || mapNamePangLand.activeSelf == true || mapNamePVE.activeSelf == true)
         {
             if (mapNameVillage.activeSelf == true)
             {
