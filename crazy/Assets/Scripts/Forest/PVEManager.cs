@@ -14,7 +14,7 @@ public class PVEManager : MonoBehaviour
     public GameObject bazzi;
 
     bool is2P;
-
+    ReStartButton restart;
     void Start()
     {
         enemyCount = enemy.Length;
@@ -73,7 +73,10 @@ public class PVEManager : MonoBehaviour
             gameManager.Wintitle();
         }
     }
-
+    void goTitle()
+    {
+        restart.GoPlayerRoom();
+    }
 
     IEnumerator LoseGame()
     {
@@ -84,6 +87,7 @@ public class PVEManager : MonoBehaviour
         Debug.Log("lose");
 
         yield return new WaitForSeconds(2f);
+        Invoke("goTitle", 5f);
         // 맵 선택 창으로 이동
 
     }

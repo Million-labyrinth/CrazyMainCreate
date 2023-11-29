@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
         playerA.anim.SetBool("isDamaged", false);
         playerB.anim.SetBool("isDamaged", false);
     }
-    void GoRoom()
+    public void GoRoom()
     {
         restart.GoPlayerRoom();
     }
@@ -211,7 +211,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("PVELose");
         StartWinAnimation(PVEClear);
         PVEClear.SetActive(true);
-        Wintitle();
     }
 
     Coroutine coroutineWin = null;

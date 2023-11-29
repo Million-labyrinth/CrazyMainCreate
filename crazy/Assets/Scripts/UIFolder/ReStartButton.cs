@@ -38,7 +38,7 @@ public class ReStartButton : MonoBehaviour
 
             // 값을 저장하고 현재 씬을 종료
             PlayerPrefs.SetInt("PlayerRoomState", playerRoomState);
-            PlayerPrefs.SetString("PlayerRoomPvE", "PvERoom");
+            PlayerPrefs.SetString("PlayerRoomPvE", "PvPRoom");
             PlayerPrefs.Save();
 
             // 현재 씬을 종료하면서 다음 씬으로 전환
