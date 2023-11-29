@@ -61,7 +61,6 @@ public class ReStartButton : MonoBehaviour
         seenCtn = 1;//               1 = Ÿ  Ʋ/ 2=  ʼ   
         PlayerPrefs.SetInt("MyVariable", seenCtn); //          ߼ 
 
-
         PlayerPrefs.Save(); //          
         SceneManager.LoadScene("Titles"); //    ҷ      
     }
@@ -71,12 +70,12 @@ public class ReStartButton : MonoBehaviour
         alert.SetActive(true);
     }
 
-    public void closeReStartAlert() // ش  â        ư
+    public void closeReStartAlert() //
     {
         gameRoomUIBUtton.BackBoard.SetActive(false);
         alert.SetActive(false);
     }
-    public void closeMapSelectAlert() // ش  â        ư
+    public void closeMapSelectAlert() // 
     {
         gameRoomUIBUtton.BackBoard.SetActive(false);
         mapSelect.MapSelectUI.SetActive(false); 

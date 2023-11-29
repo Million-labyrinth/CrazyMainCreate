@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PVEManager : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class PVEManager : MonoBehaviour
                 StartCoroutine(LoseGame());
             }
         }
+
     }
 
     IEnumerator WinGame()
@@ -58,15 +60,28 @@ public class PVEManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         // 다음 스테이지로 씬 이동
+        if (SceneManager.GetActiveScene().name.Contains("1"))
+        {
+            SceneManager.LoadScene("ForestStage2");
+        }
+        else if (SceneManager.GetActiveScene().name.Contains("2"))
+        {
+            SceneManager.LoadScene("ForestStage3");
+        }
+        else 
+        {
+            gameManager.Wintitle();
+        }
     }
+
 
     IEnumerator LoseGame()
     {
         yield return new WaitForSeconds(0.3f);
-        Debug.Log("lose");
         gameManager.isFinishGame = true;
         gameManager.PVELoseGame();
         StopCoroutine(LoseGame());
+        Debug.Log("lose");
 
         yield return new WaitForSeconds(2f);
         // 맵 선택 창으로 이동

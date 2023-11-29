@@ -6297,12 +6297,14 @@ MonoBehaviour:
   text: {fileID: 737397801}
   time: 0
   curTime: 0
+  timeOver: 0
   spawnPoints:
   - {fileID: 1408131694}
   - {fileID: 1359454777}
   isFinishGame: 0
   loadingCanvas: {fileID: 771002448}
   startedGame: 0
+  restart: {fileID: 936538669}
 --- !u!114 &868673171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7146,6 +7148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f793aeb9e84598c4e86bc84ff6aeb381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSelect: {fileID: 0}
   title_to_scene: {fileID: 936538670}
   alert: {fileID: 0}
   ttM: {fileID: 0}
@@ -8256,6 +8259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f793aeb9e84598c4e86bc84ff6aeb381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSelect: {fileID: 0}
   title_to_scene: {fileID: 1060516220}
   alert: {fileID: 52125170}
   ttM: {fileID: 0}
@@ -11030,6 +11034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f793aeb9e84598c4e86bc84ff6aeb381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSelect: {fileID: 0}
   title_to_scene: {fileID: 0}
   alert: {fileID: 52125170}
   ttM: {fileID: 0}
@@ -13394,6 +13399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f793aeb9e84598c4e86bc84ff6aeb381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSelect: {fileID: 0}
   title_to_scene: {fileID: 1853834973}
   alert: {fileID: 52125170}
   ttM: {fileID: 0}

@@ -200,8 +200,8 @@ public class GameManager : MonoBehaviour
         audiosource.clip = winSound;
         audiosource.Play();
         Debug.Log("PVELose");
-        //StartWinAnimation(PVEClear);
-        //PVEClear.SetActive(true);
+        StartWinAnimation(PVELose);
+        PVELose.SetActive(true);
     }
 
     Coroutine coroutineWin = null;

@@ -9173,6 +9173,7 @@ MonoBehaviour:
   isFinishGame: 0
   loadingCanvas: {fileID: 1311665189}
   startedGame: 0
+  restart: {fileID: 527642728}
 --- !u!114 &868673171
 MonoBehaviour:
   m_ObjectHideFlags: 0
