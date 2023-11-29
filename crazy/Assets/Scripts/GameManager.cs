@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         int randomB = Random.Range(0, spawnPoints.Length);
 
         // 중복 제거
-        if(randomA == randomB)
+        if (randomA == randomB)
         {
             while (randomA != randomB)
             {
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(randomA != randomB)
+        if (randomA != randomB)
         {
             playerA.transform.position = spawnPoints[randomA].position;
             playerB.transform.position = spawnPoints[randomB].position;
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 
         playerA.collider.enabled = false;
         playerB.collider.enabled = false;
-        StartCoroutine(StartGame());   
+        StartCoroutine(StartGame());
     }
 
     IEnumerator StartGame()
@@ -120,14 +120,8 @@ public class GameManager : MonoBehaviour
 
     public void Death()
     {
-        if(gameMode == "PVP")
-        {
-            Invoke("Judgment", 0.3f);
-        } 
-        else if(gameMode == "PVE")
-        {
-            Invoke("PVEJudgment", 0.3f); //PVE 클리어, 실패 판정
-        }
+
+        Invoke("Judgment", 0.3f);
     }
 
     // PVP 판정
@@ -138,7 +132,7 @@ public class GameManager : MonoBehaviour
         // Draw
         if (playerA.playerDead == true && playerB.playerDead == true || curTime <= 0.9)
         {
-            
+
             audiosource.clip = winSound;
             audiosource.Play();
             Debug.Log("Draw");
@@ -149,7 +143,7 @@ public class GameManager : MonoBehaviour
         // B Win
         else if (playerA.playerDead == true && playerB.playerDead == false)
         {
-            
+
             audiosource.clip = winSound;
             audiosource.Play();
             Debug.Log("player B Win");
@@ -175,7 +169,7 @@ public class GameManager : MonoBehaviour
 
             playerA.dyingTime = 0;
 
-            if(playerA.isDying)
+            if (playerA.isDying)
             {
                 playerA.anim.SetTrigger("finishGame"); // 애니메이션 추가 필요
                 playerA.isDying = false;
@@ -188,26 +182,20 @@ public class GameManager : MonoBehaviour
         playerB.anim.SetBool("isDamaged", false);
     }
 
-    private void PVEJudgment()
+    public void PVEJudgment()
     {
-        //PVE 맵을 클리어 했을시
-            if (playerA.playerDead == false && playerB.playerDead == false ) // 보스 죽는 조건도 넣을것
-            {
 
-                audiosource.clip = winSound;
-                audiosource.Play();
-                Debug.Log("PVEClear");
-                StartWinAnimation(PVEClear);
-                PVEClear.SetActive(true);
-            }
-        
-        
+            audiosource.clip = winSound;
+            audiosource.Play();
+            Debug.Log("PVEClear");
+            StartWinAnimation(PVEClear);
+            PVEClear.SetActive(true);
     }
 
     Coroutine coroutineWin = null;
     private void StartWinAnimation(GameObject go, float stopTime = 2) //승리 애니메이션 나오는 코드(코루틴이 두번 실행되서 고친코드)
     {
-        if (coroutineWin != null) 
+        if (coroutineWin != null)
             StopCoroutine(coroutineWin);
 
         coroutineWin = StartCoroutine(BlinkAnimation(go));
