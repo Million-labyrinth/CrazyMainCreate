@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class ReStartButton : MonoBehaviour
 {
+    public MapSelect mapSelect;
     public Button title_to_scene;
     public GameObject alert;
     public TitletoManual ttM;
@@ -73,6 +74,12 @@ public class ReStartButton : MonoBehaviour
     public void closeReStartAlert() // ش  â        ư
     {
         gameRoomUIBUtton.BackBoard.SetActive(false);
+        alert.SetActive(false);
+    }
+    public void closeMapSelectAlert() // ش  â        ư
+    {
+        gameRoomUIBUtton.BackBoard.SetActive(false);
+        mapSelect.MapSelectUI.SetActive(false); 
         alert.SetActive(false);
     }
 }
