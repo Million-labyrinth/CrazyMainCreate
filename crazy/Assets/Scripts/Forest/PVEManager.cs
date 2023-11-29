@@ -14,7 +14,8 @@ public class PVEManager : MonoBehaviour
     public GameObject bazzi;
 
     bool is2P;
-    ReStartButton restart;
+    public ReStartButton restart;
+
     void Start()
     {
         enemyCount = enemy.Length;
