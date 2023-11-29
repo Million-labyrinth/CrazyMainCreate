@@ -13305,7 +13305,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PangLand Pillar (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1591241592172205868, guid: 95c6b3fcfd0e8d744bbc00a19e1784d4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -18371,7 +18372,7 @@ Transform:
   m_GameObject: {fileID: 397997352}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.21, y: -7.61, z: -0.11358155}
+  m_LocalPosition: {x: -8.21, y: -7.79, z: -0.11358155}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26820,7 +26821,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6534198368562719432, guid: 95c6b3fcfd0e8d744bbc00a19e1784d4, type: 3}
       propertyPath: m_SortingOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6534198368562719433, guid: 95c6b3fcfd0e8d744bbc00a19e1784d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26866,7 +26867,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PangLand Pillar (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1591241592172205868, guid: 95c6b3fcfd0e8d744bbc00a19e1784d4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -51598,7 +51600,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PangLand Pillar (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1591241592172205868, guid: 95c6b3fcfd0e8d744bbc00a19e1784d4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -75505,7 +75508,7 @@ Transform:
   m_GameObject: {fileID: 1583763137}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.184909, y: 6.2112, z: -0.11358155}
+  m_LocalPosition: {x: -3.2, y: 6.42, z: -0.11358155}
   m_LocalScale: {x: 40, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76150,7 +76153,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6534198368562719432, guid: 95c6b3fcfd0e8d744bbc00a19e1784d4, type: 3}
       propertyPath: m_SortingOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6534198368562719433, guid: 95c6b3fcfd0e8d744bbc00a19e1784d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -76196,7 +76199,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PangLand Pillar
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1591241592172205868, guid: 95c6b3fcfd0e8d744bbc00a19e1784d4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -91751,7 +91755,7 @@ Transform:
   m_GameObject: {fileID: 1907781835}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.8, y: -1.6451727, z: -0.11358155}
+  m_LocalPosition: {x: -15.889, y: -1.37, z: -0.11358155}
   m_LocalScale: {x: 1, y: 40, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98835,7 +98839,7 @@ Transform:
   m_GameObject: {fileID: 2050003218}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: -0.105172634, z: -0.11358155}
+  m_LocalPosition: {x: 0.32, y: -0.105172634, z: -0.11358155}
   m_LocalScale: {x: 1, y: 40, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
