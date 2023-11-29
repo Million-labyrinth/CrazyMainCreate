@@ -98,7 +98,7 @@ public class UI_IDinput_Title : IDMgr
                 Debug.Log("ID공백 확인 요망");
             }
 
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
 
 
@@ -143,7 +143,7 @@ public class UI_IDinput_Title : IDMgr
                 Debug.Log("2P : ID공백 확인 요망");
             }
 
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 
