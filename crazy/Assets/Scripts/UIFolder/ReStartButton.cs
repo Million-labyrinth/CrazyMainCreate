@@ -10,6 +10,7 @@ public class ReStartButton : MonoBehaviour
     public Button title_to_scene;
     public GameObject alert;
     public TitletoManual ttM;
+    public GameRoomUIBUtton gameRoomUIBUtton;
 
 
     int seenCtn; // 이전 값 읽을 변수
@@ -50,6 +51,7 @@ public class ReStartButton : MonoBehaviour
 
     public void closeReStartAlert() // ش  â        ư
     {
+        gameRoomUIBUtton.BackBoard.SetActive(false);
         alert.SetActive(false);
     }
 }
