@@ -8,6 +8,9 @@ public class PVEManager : MonoBehaviour
     public GameObject[] enemy;
     public int enemyCount;
 
+    public Player playerA;
+    public Player2 playerB;
+
 
     void Awake()
     {
@@ -19,14 +22,24 @@ public class PVEManager : MonoBehaviour
         if(enemyCount == 0) {
             StartCoroutine(WinGame());
         }
+
+        if((playerA.playerDead && playerB.playerDead) || gameManager.timeOver)
+        {
+            StartCoroutine(LoseGame());
+        }
     }
 
     IEnumerator WinGame()
     {
         yield return new WaitForSeconds(0.3f);
         gameManager.isFinishGame = true;
-        gameManager.PVEJudgment();
+        gameManager.PVEWinGame();
 
         StopCoroutine(WinGame());
+    }
+
+    IEnumerator LoseGame()
+    {
+        yield return new WaitForSeconds(0.3f);
     }
 }

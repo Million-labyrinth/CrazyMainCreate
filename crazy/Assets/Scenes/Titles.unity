@@ -620,6 +620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f793aeb9e84598c4e86bc84ff6aeb381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSelect: {fileID: 0}
   title_to_scene: {fileID: 0}
   alert: {fileID: 1451610002}
   ttM: {fileID: 0}
@@ -2060,7 +2061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &342584362
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4818,6 +4819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f793aeb9e84598c4e86bc84ff6aeb381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSelect: {fileID: 0}
   title_to_scene: {fileID: 904319493}
   alert: {fileID: 1451610002}
   ttM: {fileID: 0}
@@ -9782,6 +9784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f793aeb9e84598c4e86bc84ff6aeb381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSelect: {fileID: 0}
   title_to_scene: {fileID: 0}
   alert: {fileID: 1162894170}
   ttM: {fileID: 0}
@@ -9931,6 +9934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f793aeb9e84598c4e86bc84ff6aeb381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSelect: {fileID: 0}
   title_to_scene: {fileID: 0}
   alert: {fileID: 0}
   ttM: {fileID: 0}
@@ -10074,6 +10078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f793aeb9e84598c4e86bc84ff6aeb381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSelect: {fileID: 0}
   title_to_scene: {fileID: 1804050427}
   alert: {fileID: 1162894170}
   ttM: {fileID: 0}
@@ -10942,7 +10947,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2115277997}
         m_TargetAssemblyTypeName: ReStartButton, Assembly-CSharp
-        m_MethodName: closeReStartAlert
+        m_MethodName: closeMapSelectAlert
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10976,6 +10981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f793aeb9e84598c4e86bc84ff6aeb381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSelect: {fileID: 342584365}
   title_to_scene: {fileID: 0}
   alert: {fileID: 1162894170}
   ttM: {fileID: 0}

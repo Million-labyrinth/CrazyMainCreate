@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text text;
     [SerializeField] private float time;
     [SerializeField] private float curTime;
+    public bool timeOver;
     int minute;
     int second;
 
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
         isFinishGame = false;
         startedGame = false;
         loadingCanvas.SetActive(true);
+        timeOver = false;
     }
 
     void Start()
@@ -113,6 +115,8 @@ public class GameManager : MonoBehaviour
                 StartWinAnimation(draw);
                 draw.SetActive(true);
                 curTime = 0;
+                isFinishGame = true;
+                timeOver = true;
                 yield break;
             }
         }
@@ -182,14 +186,22 @@ public class GameManager : MonoBehaviour
         playerB.anim.SetBool("isDamaged", false);
     }
 
-    public void PVEJudgment()
+    public void PVEWinGame()
     {
+        audiosource.clip = winSound;
+        audiosource.Play();
+        Debug.Log("PVEClear");
+        StartWinAnimation(PVEClear);
+        PVEClear.SetActive(true);
+    }
 
-            audiosource.clip = winSound;
-            audiosource.Play();
-            Debug.Log("PVEClear");
-            StartWinAnimation(PVEClear);
-            PVEClear.SetActive(true);
+    public void PVELoseGame()
+    {
+        audiosource.clip = winSound;
+        audiosource.Play();
+        Debug.Log("PVELose");
+        StartWinAnimation(PVEClear);
+        PVEClear.SetActive(true);
     }
 
     Coroutine coroutineWin = null;
