@@ -56,6 +56,9 @@ public class PVEManager : MonoBehaviour
         gameManager.PVEWinGame();
 
         StopCoroutine(WinGame());
+
+        yield return new WaitForSeconds(2f);
+        // 다음 스테이지로 씬 이동
     }
 
     IEnumerator LoseGame()
@@ -63,5 +66,9 @@ public class PVEManager : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         Debug.Log("lose");
         StopCoroutine(LoseGame());
+
+        yield return new WaitForSeconds(2f);
+        // 맵 선택 창으로 이동
+
     }
 }
