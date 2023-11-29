@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public GameRoomUIBUtton GameRoomUIBUtton;
+
     public GameObject largeImage;
     public GameObject border;
     public GameObject PlayerRoomImg;
@@ -18,7 +20,6 @@ public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public GameObject[] OtherIcons; // 다른 아이콘들을 배열로 선언
     public GameObject[] OtherMapName;
     public GameObject[] OtherMapBorder;
-
 
     public string[] RandomSceneNames;
 
@@ -66,6 +67,7 @@ public class MapSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         // 맵 선택 UI를 닫을 때 모든 요소를 비활성화
         MapSelectUI.SetActive(false);
+        GameRoomUIBUtton.BackBoard.SetActive(false);
 
         foreach (GameObject icon in OtherIcons)
         {
