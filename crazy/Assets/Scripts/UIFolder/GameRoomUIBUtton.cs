@@ -11,29 +11,6 @@ public class GameRoomUIBUtton : MonoBehaviour
     public GameObject PlayerRoom;
     public GameObject P1UION;
     public GameObject BackBoard;
-    public GameObject bazzi;
-
-    public bool player_1 = true;
-
-
-    public static GameRoomUIBUtton gameRoom;
-
-
-
-    private void Start()
-    {
-        if (bazzi.activeSelf == true)
-        {
-            UI_IDinput_Title.inputTitle.is1P = false;
-            UI_IDinput_Title.inputTitle.is2P = true;
-        }
-        else
-        {
-            UI_IDinput_Title.inputTitle.is1P = true;
-            UI_IDinput_Title.inputTitle.is2P = false;
-        }
-
-    }
 
     public void GameExitAlertButton()
     {

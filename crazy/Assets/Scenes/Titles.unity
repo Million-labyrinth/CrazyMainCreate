@@ -1294,7 +1294,6 @@ MonoBehaviour:
   PlayerRoom: {fileID: 236126691}
   P1UION: {fileID: 1694387719}
   BackBoard: {fileID: 859592564}
-  bazzi: {fileID: 891801813}
 --- !u!1 &258510940
 GameObject:
   m_ObjectHideFlags: 0
