@@ -59,6 +59,7 @@ public class Player2 : MonoBehaviour
     Rigidbody2D rigid;
     public Animator anim;
 
+    GameRoomUIBUtton gameRoom;
 
     public GameObject Shieldeffect;
     public bool isDying = false; // 물풍선에 갇혀 있는 지 여부를 판단하는 bool 값
@@ -100,19 +101,20 @@ public class Player2 : MonoBehaviour
         playerSpeedRemeber = playerSpeed;
 
         damagedEnemy = false;
+        
     }
 
-    void Start()
+    private void Start()
     {
-        if (UI_IDinput_Title.inputTitle.is1P && !UI_IDinput_Title.inputTitle.is2P)
+        if(UI_IDinput_Title.inputTitle.is2P && !UI_IDinput_Title.inputTitle.is1P)
+        {
+            gameObject.SetActive(true);
+        } else
         {
             gameObject.SetActive(false);
         }
-        else
-        {
-            gameObject.SetActive(true);
-        }
     }
+
 
     void OnEnable()
     {
