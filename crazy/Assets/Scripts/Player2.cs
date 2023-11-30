@@ -321,7 +321,7 @@ public class Player2 : MonoBehaviour
         }
 
         // PVE playerB Ray (enemy 피격 판정)
-        if(gameManager.gameMode == "PVE")
+        if (gameManager.gameMode == "PVE")
         {
             Collider2D pvePlayerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, -0.35f), 0.45f, LayerMask.GetMask("Enemy"));
 
