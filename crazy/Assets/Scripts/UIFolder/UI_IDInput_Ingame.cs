@@ -14,8 +14,8 @@ public class UI_IDInput_Ingame : IDMgr
         base.Awake();           // ID ·Îµå
 
         textPlayer_1.text = strPlayer_1;
-        textPlayer_A.text = strPlayer_1;
         textPlayer_2.text = strPlayer_2;
+        textPlayer_A.text = strPlayer_1;
         textPlayer_B.text = strPlayer_2;
     }
 }

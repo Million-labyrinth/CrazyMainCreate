@@ -1294,8 +1294,6 @@ MonoBehaviour:
   PlayerRoom: {fileID: 236126691}
   P1UION: {fileID: 1694387719}
   BackBoard: {fileID: 859592564}
-  bazzi: {fileID: 891801813}
-  player_1: 1
 --- !u!1 &258510940
 GameObject:
   m_ObjectHideFlags: 0
@@ -2549,8 +2547,6 @@ MonoBehaviour:
   strPlayer_2: 
   textPlayer_1: {fileID: 1335978121}
   textPlayer_2: {fileID: 958394448}
-  textPlayer_A: {fileID: 1335978121}
-  textPlayer_B: {fileID: 958394448}
 --- !u!114 &434985619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9942,6 +9938,7 @@ MonoBehaviour:
   ttg_2: {fileID: 0}
   ttm_1: {fileID: 1697780919}
   ttm_2: {fileID: 0}
+  playerRoom: {fileID: 236126691}
 --- !u!114 &1798437097
 MonoBehaviour:
   m_ObjectHideFlags: 0
