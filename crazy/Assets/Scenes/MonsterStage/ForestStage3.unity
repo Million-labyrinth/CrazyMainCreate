@@ -14097,18 +14097,18 @@ MonoBehaviour:
   playerA: {fileID: 1814193088}
   playerB: {fileID: 435125920}
   objectManager: {fileID: 1191335683}
-  awin: {fileID: 1103411444}
-  bwin: {fileID: 1889196952}
-  draw: {fileID: 1380984725}
+  awin: {fileID: 0}
+  bwin: {fileID: 0}
+  draw: {fileID: 0}
   screen: {fileID: 1738861903}
   PVEClear: {fileID: 0}
   PVELose: {fileID: 0}
   redBlock: {fileID: 7383716445197891954, guid: 458b21735b82f9344a9bbce3c6a92c83, type: 3}
   orangeBlock: {fileID: 7383716445197891954, guid: 93e5e761c9cb6e44e9f98678b707187a, type: 3}
   villageBox: {fileID: 2367758887087915606, guid: 576af82bb061a7f4289bade78ce2defa, type: 3}
-  awin_Ani: {fileID: 1103411448}
-  bwin_Ani: {fileID: 1889196956}
-  draw_Ani: {fileID: 1380984727}
+  awin_Ani: {fileID: 0}
+  bwin_Ani: {fileID: 0}
+  draw_Ani: {fileID: 0}
   winSound: {fileID: 8300000, guid: b73c7da81dd2be6458dd5aacefc964ec, type: 3}
   enemyWinSound: {fileID: 8300000, guid: 8819a7432bb46c24287b77725326fc34, type: 3}
   loseSound: {fileID: 8300000, guid: 0c978ad17b12bc94d86f0310b896b05f, type: 3}
