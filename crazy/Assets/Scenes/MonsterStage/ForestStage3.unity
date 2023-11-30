@@ -6283,6 +6283,7 @@ MonoBehaviour:
   gameManager: {fileID: 868673170}
   enemy:
   - {fileID: 512440704}
+  noBazzi: {fileID: 2032012433}
   enemyCount: 0
   playerA: {fileID: 1814193088}
   playerB: {fileID: 435125920}
@@ -24325,7 +24326,7 @@ GameObject:
   - component: {fileID: 2032012436}
   - component: {fileID: 2032012435}
   m_Layer: 5
-  m_Name: Image
+  m_Name: noBazzi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

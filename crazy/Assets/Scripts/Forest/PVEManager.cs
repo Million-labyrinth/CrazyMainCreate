@@ -7,6 +7,7 @@ public class PVEManager : MonoBehaviour
 {
     public GameManager gameManager;
     public GameObject[] enemy;
+    public GameObject noBazzi;
     public int enemyCount;
 
     public Player playerA;
@@ -20,12 +21,15 @@ public class PVEManager : MonoBehaviour
     {
         enemyCount = enemy.Length;
 
-        if(bazzi.activeInHierarchy)
+        
+        if (UI_IDinput_Title.inputTitle.is2P && !UI_IDinput_Title.inputTitle.is1P)
         {
-            is2P = true;
-        } else
+            noBazzi.SetActive(false);
+            
+        }
+        else
         {
-            is2P = false;
+            noBazzi.SetActive(true);
         }
     }
 

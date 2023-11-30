@@ -11780,6 +11780,7 @@ MonoBehaviour:
   - {fileID: 554411671}
   - {fileID: 1834796660}
   - {fileID: 126516330}
+  noBazzi: {fileID: 2134917942}
   enemyCount: 0
   playerA: {fileID: 1814193088}
   playerB: {fileID: 435125920}
@@ -13408,7 +13409,7 @@ GameObject:
   - component: {fileID: 2134917945}
   - component: {fileID: 2134917944}
   m_Layer: 5
-  m_Name: Image
+  m_Name: noBazzi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
