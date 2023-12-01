@@ -6409,6 +6409,11 @@ MonoBehaviour:
   bwin: {fileID: 1380984725}
   draw: {fileID: 0}
   screen: {fileID: 1738861903}
+  Namespace: {fileID: 0}
+  dao: {fileID: 0}
+  bazzi: {fileID: 0}
+  AObj: {fileID: 0}
+  BObj: {fileID: 0}
   PVEClear: {fileID: 1889196952}
   PVELose: {fileID: 1380984725}
   redBlock: {fileID: 7383716445197891954, guid: 458b21735b82f9344a9bbce3c6a92c83, type: 3}

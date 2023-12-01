@@ -57,6 +57,11 @@ public class monsterAi : MonoBehaviour
         StartCoroutine(AIDirection("Left"));
         StartCoroutine(AIDirection("Right"));
 
+        AIUpRay();
+        AIDownRay();
+        AILeftRay();
+        AIRightRay();
+
         gameManager = FindAnyObjectByType<GameManager>();
         pveManager = FindObjectOfType<PVEManager>();
 
@@ -395,7 +400,7 @@ public class monsterAi : MonoBehaviour
         yield return null;
         isDie = true;
         anim.SetTrigger("die");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         gameObject.SetActive(false);
         pveManager.enemyCount--;
     }
