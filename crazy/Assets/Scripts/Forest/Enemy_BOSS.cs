@@ -11,6 +11,7 @@ public class Enemy_BOSS : MonoBehaviour
     bool attack;
     bool damaged;
 
+    public bool ray_active;
     public Image realHpBar;
     float maxHp;
     float nowHp;
@@ -19,6 +20,7 @@ public class Enemy_BOSS : MonoBehaviour
     {
         attack = false;
         damaged = false;
+        ray_active = false;
 
         maxHp = 10;
         nowHp = 10;
@@ -39,10 +41,13 @@ public class Enemy_BOSS : MonoBehaviour
         if (pick == 0)
         {
             int ran = UnityEngine.Random.Range(0, Boss_Attack.Length);
-                Boss_Attack[ran].SetActive(true);
-                yield return new WaitForSeconds(1.85f);
-                Boss_Attack[ran].SetActive(false);
-                attack = false;
+            Boss_Attack[ran].SetActive(true);
+            yield return new WaitForSeconds(1f);
+            ray_active = true;
+            yield return new WaitForSeconds(0.85f);
+            Boss_Attack[ran].SetActive(false);
+            attack = false;
+            ray_active = false;
         }
         else
         {
@@ -61,10 +66,13 @@ public class Enemy_BOSS : MonoBehaviour
             {
                 Boss_Attack[randomA].SetActive(true);
                 Boss_Attack[randomB].SetActive(true);
-                yield return new WaitForSeconds(1.85f);
+                yield return new WaitForSeconds(1f);
+                ray_active = true;
+                yield return new WaitForSeconds(0.85f);
                 Boss_Attack[randomA].SetActive(false);
                 Boss_Attack[randomB].SetActive(false);
                 attack = false;
+                ray_active = false;
             }
         }
     }
@@ -77,18 +85,18 @@ public class Enemy_BOSS : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if((collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater") && !damaged)
+        if ((collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater") && !damaged)
         {
             damaged = true;
             nowHp -= 1;
             realHpBar.fillAmount = (float)nowHp / (float)maxHp;
 
-            if(nowHp == 0)
+            if (nowHp == 0)
             {
                 Debug.Log("Die");
             }
 
             StartCoroutine(canDamaged());
-        }    
+        }
     }
 }

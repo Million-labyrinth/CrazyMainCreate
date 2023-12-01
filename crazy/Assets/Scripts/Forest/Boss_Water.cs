@@ -8,17 +8,23 @@ public class Boss_Water : MonoBehaviour
 
     GameObject scanObject; // upRay �� �νĵǴ� ������Ʈ ����
     SpriteRenderer sprite;
-
+    public Enemy_BOSS boss;
     bool isHitBlock; // ���ٱ� Ray �� Block �� �ν����� ��, Block �μ���
     bool isActivation; // Ray �� �ƹ��͵� �ν� �ȵǸ� ���ٱ� Ȱ��ȭ
-
+    public Collider2D collider;
 
     void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        collider = GetComponent<Collider2D>();
 
         isHitBlock = false;
         isActivation = false;
+    }
+
+    void Start()
+    {
+        boss = FindObjectOfType<Enemy_BOSS>();
     }
 
     void OnEnable()
@@ -30,11 +36,11 @@ public class Boss_Water : MonoBehaviour
 
     void Update()
     {
-        Ray();
-        if (scanObject == null && isActivation)
+        if (boss.ray_active)
         {
-            isActivation = false;
+            Ray();
         }
+
     }
 
     void Ray()

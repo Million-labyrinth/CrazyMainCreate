@@ -16186,6 +16186,7 @@ MonoBehaviour:
   - {fileID: 1282808014}
   - {fileID: 1762889169}
   - {fileID: 56526830}
+  - {fileID: 1065816321}
   Boss_Life: 1
   gamemanager: {fileID: 868673170}
   realHpBar: {fileID: 1067110113}
@@ -20071,6 +20072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossBoomSound: {fileID: 8300000, guid: 672df0aa197e30644baaef9262a293a7, type: 3}
+  itemAddSound: {fileID: 0}
   atkcheck:
   - {fileID: 655910228}
   - {fileID: 1471594461}
@@ -43613,7 +43615,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.01, y: 1.04}
     newSize: {x: 1.01, y: 1.04}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
