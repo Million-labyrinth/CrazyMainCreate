@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy_BOSS : MonoBehaviour
 {
@@ -8,14 +9,23 @@ public class Enemy_BOSS : MonoBehaviour
     public bool Boss_Life = true;
     public GameManager gamemanager;
     bool attack;
+    bool damaged;
+
+    public Image realHpBar;
+    float maxHp;
+    float nowHp;
 
     void Start()
     {
         attack = false;
+        damaged = false;
+
+        maxHp = 10;
+        nowHp = 10;
     }
     void Update()
     {
-        if (!attack)
+        if (attack)
         {
             StartCoroutine("AttackDelay");
         }
@@ -55,5 +65,28 @@ public class Enemy_BOSS : MonoBehaviour
             attack = false;
         }
 
+    }
+
+    IEnumerator canDamaged()
+    {
+        yield return new WaitForSeconds(0.5f);
+        damaged = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "upWater" && !damaged)
+        {
+            damaged = true;
+            nowHp -= 1;
+            realHpBar.fillAmount = (float)nowHp / (float)maxHp;
+
+            if(nowHp == 0)
+            {
+                Debug.Log("Die");
+            }
+
+            StartCoroutine(canDamaged());
+        }    
     }
 }
