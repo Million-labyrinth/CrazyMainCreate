@@ -165,7 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e989875c5c04dc4fb45485663819ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossBoomSound: {fileID: 0}
   itemAddSound: {fileID: 8300000, guid: 8a4fca255cccde342b437e036de16be8, type: 3}
+  atkcheck: []
 --- !u!82 &-4217724031613559165
 AudioSource:
   m_ObjectHideFlags: 0
@@ -178,7 +180,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.597
   m_Pitch: 1
   Loop: 0
   Mute: 0

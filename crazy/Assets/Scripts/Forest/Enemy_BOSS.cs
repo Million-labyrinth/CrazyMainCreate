@@ -34,37 +34,39 @@ public class Enemy_BOSS : MonoBehaviour
     IEnumerator AttackDelay()
     {
         attack = true;
-        yield return new WaitForSeconds(0.5f);
-        int ran = UnityEngine.Random.Range(0, 4);
-        if (ran == 0)
+        yield return new WaitForSeconds(2f);
+        int pick = UnityEngine.Random.Range(0, 2);
+        if (pick == 0)
         {
-            Boss_Attack[0].SetActive(true);
-            yield return new WaitForSeconds(0.45f);
-            Boss_Attack[0].SetActive(false);
-            attack = false;
+            int ran = UnityEngine.Random.Range(0, Boss_Attack.Length);
+                Boss_Attack[ran].SetActive(true);
+                yield return new WaitForSeconds(1.85f);
+                Boss_Attack[ran].SetActive(false);
+                attack = false;
         }
-        else if (ran == 1)
+        else
         {
-            Boss_Attack[1].SetActive(true);
-            yield return new WaitForSeconds(0.45f);
-            Boss_Attack[1].SetActive(false);
-            attack = false;
-        }
-        else if (ran == 2)
-        {
-            Boss_Attack[2].SetActive(true);
-            yield return new WaitForSeconds(0.45f);
-            Boss_Attack[2].SetActive(false);
-            attack = false;
-        }
-        else if (ran == 3)
-        {
-            Boss_Attack[3].SetActive(true);
-            yield return new WaitForSeconds(0.45f);
-            Boss_Attack[3].SetActive(false);
-            attack = false;
-        }
+            int randomA = Random.Range(0, Boss_Attack.Length);
+            int randomB = Random.Range(0, Boss_Attack.Length);
 
+            // 중복 제거
+            if (randomA == randomB)
+            {
+                while (randomA != randomB)
+                {
+                    randomB = Random.Range(0, Boss_Attack.Length);
+                }
+            }
+            if (randomA != randomB)
+            {
+                Boss_Attack[randomA].SetActive(true);
+                Boss_Attack[randomB].SetActive(true);
+                yield return new WaitForSeconds(1.85f);
+                Boss_Attack[randomA].SetActive(false);
+                Boss_Attack[randomB].SetActive(false);
+                attack = false;
+            }
+        }
     }
 
     IEnumerator canDamaged()

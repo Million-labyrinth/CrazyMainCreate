@@ -6,6 +6,7 @@ public class itemSound : MonoBehaviour
 {
     AudioSource audioSource;
     public AudioClip bossBoomSound;
+    public AudioClip itemAddSound;
     public GameObject[] atkcheck;
     void Awake()
     {
@@ -35,14 +36,15 @@ public class itemSound : MonoBehaviour
             }
         }
     }
-
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.gameObject.name("PlayerA") || other.gameObject.name("PlayerB"))
-    //     {
-    //         audioSource.clip = itemAddSound;
-    //         audioSource.Play();
-    //         Debug.Log(other.gameObject.name);
-    //     }
-    // }
+/*
+     void OnTriggerEnter2D(Collider2D collider)
+     {
+         if (collider.gameObject.tag=="PlayerA" || collider.gameObject.tag=="PlayerB")
+         {
+            audioSource.clip = itemAddSound;
+            audioSource.Play();
+            Debug.Log(audioSource.isPlaying);
+            Debug.Log("player item add"+collider.gameObject.tag);
+         }
+     }*/
 }
