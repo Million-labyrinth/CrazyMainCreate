@@ -19,11 +19,6 @@ public class TitletoManual : MonoBehaviour
     public GameObject ttm_1;
     public GameObject ttm_2;
     public GameObject playerRoom;
-    void Start()
-    {
-        title.SetActive(true);
-        playerRoom.SetActive(false);
-    }
 
     public void title_to_manual()
     {

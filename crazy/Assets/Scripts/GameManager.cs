@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
     public GameObject bwin;
     public GameObject draw;
     public GameObject screen;
+    public GameObject Namespace;
+    public GameObject dao;
+    public GameObject bazzi;
+    public GameObject AObj;
+    public GameObject BObj;
 
     public GameObject PVEClear;
     public GameObject PVELose;
@@ -140,6 +145,8 @@ public class GameManager : MonoBehaviour
     public async void Judgment()
     {
         //ui 승패 애니메이션 출력
+        Namespace.SetActive(true);
+
 
         // Draw
         if (playerA.playerDead == true && playerB.playerDead == true || curTime <= 0.9)
@@ -163,6 +170,7 @@ public class GameManager : MonoBehaviour
             //bwin_Ani.SetBool("b", true);//플레이어b 애니메이션 실행
             StartWinAnimation(bwin);
             bwin.SetActive(true);
+            BObj.SetActive(true);
 
             playerB.dyingTime = 0;
 
@@ -179,7 +187,7 @@ public class GameManager : MonoBehaviour
             // awin_Ani.SetBool("a", true);//플레이어a 애니메이션 실행
             StartWinAnimation(awin);
             awin.SetActive(true);
-
+            AObj.SetActive(true);
             playerA.dyingTime = 0;
 
             if (playerA.isDying)
