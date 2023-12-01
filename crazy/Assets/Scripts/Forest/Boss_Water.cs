@@ -17,6 +17,7 @@ public class Boss_Water : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
+        collider.enabled = false;
 
         isHitBlock = false;
         isActivation = false;
@@ -39,6 +40,10 @@ public class Boss_Water : MonoBehaviour
         if (boss.ray_active)
         {
             Ray();
+            collider.enabled = true;
+        }else
+        {
+            collider.enabled = false;
         }
 
     }

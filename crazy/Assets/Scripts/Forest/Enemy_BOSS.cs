@@ -11,6 +11,7 @@ public class Enemy_BOSS : MonoBehaviour
     bool attack;
     bool damaged;
 
+
     public bool ray_active;
     public Image realHpBar;
     float maxHp;
@@ -49,7 +50,7 @@ public class Enemy_BOSS : MonoBehaviour
             attack = false;
             ray_active = false;
         }
-        else
+        else 
         {
             int randomA = Random.Range(0, Boss_Attack.Length);
             int randomB = Random.Range(0, Boss_Attack.Length);
@@ -61,8 +62,8 @@ public class Enemy_BOSS : MonoBehaviour
                 {
                     randomB = Random.Range(0, Boss_Attack.Length);
                 }
-            }
-            if (randomA != randomB)
+              }
+            else if (randomA != randomB)
             {
                 Boss_Attack[randomA].SetActive(true);
                 Boss_Attack[randomB].SetActive(true);
