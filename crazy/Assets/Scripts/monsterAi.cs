@@ -57,15 +57,18 @@ public class monsterAi : MonoBehaviour
         StartCoroutine(AIDirection("Left"));
         StartCoroutine(AIDirection("Right"));
 
-        AIUpRay();
-        AIDownRay();
-        AILeftRay();
-        AIRightRay();
-
         gameManager = FindAnyObjectByType<GameManager>();
         pveManager = FindObjectOfType<PVEManager>();
 
         isDie = false;
+    }
+
+    void Start()
+    {
+        AIUpRay();
+        AIDownRay();
+        AILeftRay();
+        AIRightRay();
     }
 
     void Update()

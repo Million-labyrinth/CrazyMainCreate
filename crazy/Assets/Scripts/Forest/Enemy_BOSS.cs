@@ -39,7 +39,6 @@ public class Enemy_BOSS : MonoBehaviour
         attack = true;
         yield return new WaitForSeconds(2f);
         int pick = Random.Range(0, 2);
-        Debug.Log(pick);
         if (pick == 0)
         {
             int ran = Random.Range(0, Boss_Attack.Length);
@@ -60,7 +59,6 @@ public class Enemy_BOSS : MonoBehaviour
             do
             {
                 randomB = Random.Range(0, Boss_Attack.Length);
-                Debug.Log(randomA + ", " + randomB);
 
                 if (randomA != randomB)
                 {
