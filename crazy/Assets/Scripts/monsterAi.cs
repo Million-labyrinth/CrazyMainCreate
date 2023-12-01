@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -28,8 +29,11 @@ public class monsterAi : MonoBehaviour
     bool addLeftDir;
     bool addRightDir;
     Vector3 enemyDir;
+
+    bool isDie;
     
     public GameManager gameManager;
+    public PVEManager pveManager;
 
     void Awake()
     {
@@ -54,6 +58,9 @@ public class monsterAi : MonoBehaviour
         StartCoroutine(AIDirection("Right"));
 
         gameManager = FindAnyObjectByType<GameManager>();
+        pveManager = FindObjectOfType<PVEManager>();
+
+        isDie = false;
     }
 
     void Update()
@@ -67,7 +74,7 @@ public class monsterAi : MonoBehaviour
         //{
         //    targetPosition = GetRandomPosition();
         //}
-        if(gameManager.startedGame && !gameManager.isFinishGame)
+        if(gameManager.startedGame && !gameManager.isFinishGame && !isDie)
         {
             AIUpRay();
             AIDownRay();
@@ -382,5 +389,25 @@ public class monsterAi : MonoBehaviour
     //    SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
     //    spriteRenderer.flipX = flipX;
     //}
+
+    IEnumerator Die()
+    {
+        yield return null;
+        isDie = true;
+        anim.SetTrigger("die");
+        yield return new WaitForSeconds(0.5f);
+        gameObject.SetActive(false);
+        pveManager.enemyCount--;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "hitCollider")
+        {
+            // 사망 애니메이션 추가 필요
+            StartCoroutine("Die");
+
+        }
+    }
 
 }
