@@ -239,7 +239,7 @@ public class GameManager : MonoBehaviour
     }
 
     Coroutine coroutineWin = null;
-    private void StartWinAnimation(GameObject go, float stopTime = 2) //승리 애니메이션 나오는 코드(코루틴이 두번 실행되서 고친코드)
+    private void StartWinAnimation(GameObject go, float stopTime = 2f) //승리 애니메이션 나오는 코드(코루틴이 두번 실행되서 고친코드)
     {
         if (coroutineWin != null)
             StopCoroutine(coroutineWin);
@@ -248,7 +248,7 @@ public class GameManager : MonoBehaviour
     }
 
     //깜빡이는 기능
-    private IEnumerator BlinkAnimation(GameObject objToBlink, float stopTime = 2)
+    private IEnumerator BlinkAnimation(GameObject objToBlink, float stopTime = 2f)
     {
         screen.SetActive(true);
         objToBlink.SetActive(true);
