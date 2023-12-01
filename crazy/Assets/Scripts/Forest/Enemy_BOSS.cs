@@ -12,9 +12,11 @@ public class Enemy_BOSS : MonoBehaviour
     bool damaged;
     bool isDying;
     bool isDead;
+    float dyingTime;
 
 
     public bool ray_active;
+    public GameObject hpBar;
     public Image realHpBar;
     float maxHp;
     float nowHp;
@@ -33,15 +35,30 @@ public class Enemy_BOSS : MonoBehaviour
         ray_active = false;
         isDying = false;
         isDead = false;
+        dyingTime = 0;
 
         maxHp = 10;
-        nowHp = 1;
+        nowHp = 10;
     }
     void Update()
     {
-        if (!attack && !isDying && !damaged)
+        if (!attack && !isDying && !damaged && gamemanager.startedGame)
         {
             StartCoroutine("AttackDelay");
+        }
+
+        if (isDying)
+        {
+            dyingTime += Time.deltaTime;
+        }
+
+        if (dyingTime >= 4f)
+        {
+            anim.SetTrigger("isDead");
+            isDying = false;
+            isDead = true;
+            StartCoroutine("Dead");
+            dyingTime = 0;
         }
     }
 
@@ -64,7 +81,7 @@ public class Enemy_BOSS : MonoBehaviour
             Boss_Attack[ran].SetActive(false);
             attack = false;
         }
-        else if(pick == 1)
+        else if (pick == 1)
         {
             int randomA = Random.Range(0, Boss_Attack.Length);
             int randomB;
@@ -99,13 +116,11 @@ public class Enemy_BOSS : MonoBehaviour
         damaged = false;
     }
 
-    void Dead()
+    IEnumerator Dead()
     {
-        anim.SetTrigger("isDead");
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("B_dead") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-        {
-            gameObject.SetActive(false);
-        }
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
+        hpBar.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -115,25 +130,31 @@ public class Enemy_BOSS : MonoBehaviour
             damaged = true;
             nowHp -= 1;
             realHpBar.fillAmount = (float)nowHp / (float)maxHp;
-            anim.SetTrigger("isDamaged");
 
-            if (nowHp == 0)
+            if (!isDying)
             {
-                anim.SetTrigger("isDying");
+                anim.SetTrigger("isDamaged");
+            }
+
+            if (nowHp <= 0)
+            {
+                anim.SetBool("isDying", true);
                 isDying = true;
 
-                Dead();
             }
 
             StartCoroutine(canDamaged());
         }
 
-        if(isDying)
-        {
-            if(collision.gameObject.tag == "PlayerA" || collision.gameObject.tag == "PlayerB")
-            {
-                Dead();
-            }
-        }
+        //if (isDying)
+        //{
+        //    if (collision.gameObject.tag == "PlayerA" || collision.gameObject.tag == "PlayerB")
+        //    {
+        //        anim.SetTrigger("isDead");
+        //        isDying = false;
+        //        isDead = true;
+        //        StartCoroutine("Dead");
+        //    }
+        //}
     }
 }
