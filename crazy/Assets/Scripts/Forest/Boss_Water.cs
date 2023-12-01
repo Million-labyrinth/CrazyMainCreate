@@ -6,21 +6,17 @@ using UnityEngine;
 public class Boss_Water : MonoBehaviour
 {
 
-    GameObject scanObject; // upRay �� �νĵǴ� ������Ʈ ����
-    SpriteRenderer sprite;
+    GameObject scanObject; // Ray 인식 오브젝트
     public Enemy_BOSS boss;
-    bool isHitBlock; // ���ٱ� Ray �� Block �� �ν����� ��, Block �μ���
-    bool isActivation; // Ray �� �ƹ��͵� �ν� �ȵǸ� ���ٱ� Ȱ��ȭ
+    bool isHitBlock; // 블럭 피격 시, 코드 중복 실행 방지
     public Collider2D collider;
 
     void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
         collider.enabled = false;
 
         isHitBlock = false;
-        isActivation = false;
     }
 
     void Start()
@@ -30,18 +26,17 @@ public class Boss_Water : MonoBehaviour
 
     void OnEnable()
     {
-        sprite.enabled = true; // Sprite Renderer �� ������ ���� �߻��ؼ� �߰��� �ڵ�
 
         isHitBlock = false;
     }
 
     void Update()
     {
-        if (boss.ray_active)
+        if(boss.ray_active)
         {
             Ray();
             collider.enabled = true;
-        }else
+        } else if(!boss.ray_active)
         {
             collider.enabled = false;
         }
@@ -57,7 +52,6 @@ public class Boss_Water : MonoBehaviour
         if (rayHit != null)
         {
             scanObject = rayHit.gameObject;
-            isActivation = false;
 
             if (!isHitBlock && scanObject.tag == "Block")
             {
@@ -84,7 +78,6 @@ public class Boss_Water : MonoBehaviour
         {
             scanObject = null;
             isHitBlock = false;
-            isActivation = true;
         }
     }
     void OnDrawGizmosSelected()
