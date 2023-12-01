@@ -38,10 +38,11 @@ public class Enemy_BOSS : MonoBehaviour
     {
         attack = true;
         yield return new WaitForSeconds(2f);
-        int pick = UnityEngine.Random.Range(0, 2);
+        int pick = Random.Range(0, 2);
+        Debug.Log(pick);
         if (pick == 0)
         {
-            int ran = UnityEngine.Random.Range(0, Boss_Attack.Length);
+            int ran = Random.Range(0, Boss_Attack.Length);
             Boss_Attack[ran].SetActive(true);
             yield return new WaitForSeconds(1f);
             ray_active = true;
@@ -50,31 +51,30 @@ public class Enemy_BOSS : MonoBehaviour
             attack = false;
             ray_active = false;
         }
-        else 
+        else if(pick == 1)
         {
             int randomA = Random.Range(0, Boss_Attack.Length);
-            int randomB = Random.Range(0, Boss_Attack.Length);
+            int randomB;
 
             // 중복 제거
-            if (randomA == randomB)
+            do
             {
-                while (randomA != randomB)
+                randomB = Random.Range(0, Boss_Attack.Length);
+                Debug.Log(randomA + ", " + randomB);
+
+                if (randomA != randomB)
                 {
-                    randomB = Random.Range(0, Boss_Attack.Length);
+                    Boss_Attack[randomA].SetActive(true);
+                    Boss_Attack[randomB].SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    ray_active = true;
+                    yield return new WaitForSeconds(0.85f);
+                    Boss_Attack[randomA].SetActive(false);
+                    Boss_Attack[randomB].SetActive(false);
+                    attack = false;
+                    ray_active = false;
                 }
-              }
-            else if (randomA != randomB)
-            {
-                Boss_Attack[randomA].SetActive(true);
-                Boss_Attack[randomB].SetActive(true);
-                yield return new WaitForSeconds(1f);
-                ray_active = true;
-                yield return new WaitForSeconds(0.85f);
-                Boss_Attack[randomA].SetActive(false);
-                Boss_Attack[randomB].SetActive(false);
-                attack = false;
-                ray_active = false;
-            }
+            } while (randomA == randomB);
         }
     }
 

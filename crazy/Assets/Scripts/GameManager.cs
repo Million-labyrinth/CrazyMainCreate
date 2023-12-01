@@ -76,22 +76,20 @@ public class GameManager : MonoBehaviour
     {
         // 플레이어 스폰
         int randomA = Random.Range(0, spawnPoints.Length);
-        int randomB = Random.Range(0, spawnPoints.Length);
+        int randomB;
 
         // 중복 제거
-        if (randomA == randomB)
+        do
         {
-            while (randomA != randomB)
-            {
-                randomB = Random.Range(0, spawnPoints.Length);
-            }
-        }
+            randomB = Random.Range(0, spawnPoints.Length);
 
-        if (randomA != randomB)
-        {
-            playerA.transform.position = spawnPoints[randomA].position;
-            playerB.transform.position = spawnPoints[randomB].position;
-        }
+            if (randomA != randomB)
+            {
+                playerA.transform.position = spawnPoints[randomA].position;
+                playerB.transform.position = spawnPoints[randomB].position;
+                break;
+            }
+        } while (randomA == randomB);
 
         playerA.collider.enabled = false;
         playerB.collider.enabled = false;
