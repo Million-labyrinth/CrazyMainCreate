@@ -25,7 +25,7 @@ public class Enemy_BOSS : MonoBehaviour
     }
     void Update()
     {
-        if (attack)
+        if (!attack)
         {
             StartCoroutine("AttackDelay");
         }
@@ -75,7 +75,7 @@ public class Enemy_BOSS : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "upWater" && !damaged)
+        if((collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater") && !damaged)
         {
             damaged = true;
             nowHp -= 1;
