@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(!gameManager.isFinishGame && gameManager.startedGame)
+        if (!gameManager.isFinishGame && gameManager.startedGame)
         {
             Move();
             Ray();
@@ -269,7 +269,8 @@ public class Player : MonoBehaviour
             if (scanObject.layer == 3 || scanObject.layer == 11)
             {
                 playerAmakeBalloon = false;
-            } else
+            }
+            else
             {
                 playerAmakeBalloon = true;
             }
@@ -303,11 +304,11 @@ public class Player : MonoBehaviour
         }
 
         // PVE 플레이어 Ray (몬스터 피격 판정)
-        if(gameManager.gameMode == "PVE")
+        if (gameManager.gameMode == "PVE")
         {
             Collider2D pvePlayerARay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Enemy"));
-            
-            if(pvePlayerARay != null)
+
+            if (pvePlayerARay != null)
             {
                 if (pvePlayerARay.gameObject.tag == "enemy" && !useShield && !damagedEnemy)
                 {
@@ -565,7 +566,7 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if(!gameManager.isFinishGame)
+        if (!gameManager.isFinishGame)
         {
             if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "hitCollider")
             {
@@ -638,7 +639,7 @@ public class Player : MonoBehaviour
                     item.AddActiveItem(collision.gameObject, 0);
                     break;
                 case "purpleDevil":
-                    if(!getPurpleDevil)
+                    if (!getPurpleDevil)
                     {
                         getPurpleDevil = true;
                         purpleDevilTime = 0;
@@ -715,7 +716,7 @@ public class Player : MonoBehaviour
         playerDead = true;
         isDying = false;
 
-        if(gameManager.gameMode == "PVP")
+        if (gameManager.gameMode == "PVP")
         {
             gameManager.Death();
         }
