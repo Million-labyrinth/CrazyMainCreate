@@ -169,14 +169,16 @@ public class GameManager : MonoBehaviour
             StartWinAnimation(bwin);
             bwin.SetActive(true);
             BObj.SetActive(true);
+            playerB.playerSpeed = 0;
 
             playerB.dyingTime = 0;
 
             if (playerB.isDying)
             {
-                playerB.anim.SetTrigger("finishGame"); // 애니메이션 추가 필요
                 playerB.isDying = false;
             }
+
+            playerB.anim.SetTrigger("finishGame"); // 애니메이션 추가 필요
         }
         // A Win
         else if (playerA.playerDead == false && playerB.playerDead == true)
@@ -187,12 +189,14 @@ public class GameManager : MonoBehaviour
             awin.SetActive(true);
             AObj.SetActive(true);
             playerA.dyingTime = 0;
+            playerA.playerSpeed = 0;
 
             if (playerA.isDying)
             {
-                playerA.anim.SetTrigger("finishGame"); // 애니메이션 추가 필요
                 playerA.isDying = false;
             }
+
+            playerA.anim.SetTrigger("finishGame"); // 애니메이션 추가 필요
         }
         Wintitle();
         // 끝나면 바뀐 값들 초기화(나중에 함수로 만들어서 재시작시 초기화)
@@ -215,6 +219,17 @@ public class GameManager : MonoBehaviour
         Debug.Log("PVEClear");
         StartWinAnimation(PVEClear);
         PVEClear.SetActive(true);
+
+        if(!playerA.playerDead)
+        {
+            playerA.anim.SetTrigger("finishGame");
+            playerA.playerSpeed = 0;
+        }
+        if(!playerB.playerDead)
+        {
+            playerB.anim.SetTrigger("finishGame");
+            playerB.playerSpeed = 0;
+        }
     }
 
     public void PVELoseGame()

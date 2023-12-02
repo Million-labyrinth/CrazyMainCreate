@@ -97,6 +97,7 @@ public class Player : MonoBehaviour
         playerSpeedRemeber = playerSpeed;
 
         damagedEnemy = false;
+        anim.SetBool("finishGame", false);
 
     }
 
@@ -132,7 +133,7 @@ public class Player : MonoBehaviour
             {
                 dyingTime += Time.deltaTime;
 
-                if (dyingTime > 4)
+                if (dyingTime > 4 && !playerDead)
                 {
                     DeadTime();
                 }
@@ -153,6 +154,9 @@ public class Player : MonoBehaviour
                     playerRenderer.color = new Color(1, 1, 1);
                 }
             }
+        } else if(gameManager.isFinishGame)
+        {
+
         }
     }
     void LateUpdate()
@@ -332,14 +336,12 @@ public class Player : MonoBehaviour
 
                         if(!bossLogic.isDying)
                         {
-                            Debug.Log("1번");
                             anim.SetTrigger("hitByEnemy");
                             anim.SetBool("isDamaged", true);
                             damagedEnemy = true;
                             DeadTime();
                         } else if(bossLogic.isDying)
                         {
-                            Debug.Log("2번");
                             bossLogic.Dead();
                         }
                     }

@@ -83,11 +83,10 @@ public class Boss_Water : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0f, 1f, 0f);
-        // playerARay ���
         Gizmos.DrawWireSphere(transform.position, 0.45f);
     }
 
-
+    // 블럭 피격 시, 중복 피격 판정 방지
     IEnumerator hitBlock()
     {
         yield return new WaitForSeconds(0.5f);

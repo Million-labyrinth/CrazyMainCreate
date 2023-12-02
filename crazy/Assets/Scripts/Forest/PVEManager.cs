@@ -70,6 +70,10 @@ public class PVEManager : MonoBehaviour
         {
             SceneManager.LoadScene("ForestStage3");
         }
+        else if (SceneManager.GetActiveScene().name.Contains("3"))
+        {
+            Invoke("goTitle", 5f);
+        }
         else 
         {
            // gameManager.Wintitle();

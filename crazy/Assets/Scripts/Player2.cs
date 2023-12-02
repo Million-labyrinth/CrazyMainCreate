@@ -100,6 +100,7 @@ public class Player2 : MonoBehaviour
         playerSpeedRemeber = playerSpeed;
 
         damagedEnemy = false;
+        anim.SetBool("finishGame", false);
     }
 
     void Start()
@@ -142,7 +143,7 @@ public class Player2 : MonoBehaviour
             {
                 dyingTime += Time.deltaTime;
 
-                if (dyingTime > 4)
+                if (dyingTime > 4 && !playerDead)
                 {
                     DeadTime();
                 }
@@ -327,12 +328,38 @@ public class Player2 : MonoBehaviour
 
             if (pvePlayerBRay != null)
             {
-                if (pvePlayerBRay.gameObject.tag == "enemy" && !useShield && !damagedEnemy)
+                if(!useShield && !damagedEnemy)
                 {
-                    anim.SetTrigger("hitByEnemy");
-                    anim.SetBool("isDamaged", true);
-                    damagedEnemy = true;
-                    DeadTime();
+                    // 일반 몬스터
+                    if (pvePlayerBRay.gameObject.tag == "enemy")
+                    {
+                        monsterAi enemyMiniLogic = pvePlayerBRay.gameObject.GetComponent<monsterAi>();
+
+                        if (!enemyMiniLogic.isDie)
+                        {
+                            anim.SetTrigger("hitByEnemy");
+                            anim.SetBool("isDamaged", true);
+                            damagedEnemy = true;
+                            DeadTime();
+                        }
+                    }
+                    // 보스 몬스터
+                    else if (pvePlayerBRay.gameObject.tag == "boss")
+                    {
+                        Enemy_BOSS bossLogic = pvePlayerBRay.gameObject.GetComponent<Enemy_BOSS>();
+
+                        if (!bossLogic.isDying)
+                        {
+                            anim.SetTrigger("hitByEnemy");
+                            anim.SetBool("isDamaged", true);
+                            damagedEnemy = true;
+                            DeadTime();
+                        }
+                        else if (bossLogic.isDying)
+                        {
+                            bossLogic.Dead();
+                        }
+                    }
                 }
             }
         }

@@ -38,7 +38,7 @@ public class Enemy_BOSS : MonoBehaviour
         dyingTime = 0;
 
         maxHp = 10;
-        nowHp = 1;
+        nowHp = 10;
     }
     void Update()
     {
@@ -51,13 +51,14 @@ public class Enemy_BOSS : MonoBehaviour
         {
             dyingTime += Time.deltaTime;
         }
-
+        // 체력이 0 된 후 4초가 지나면 사망 판정
         if (dyingTime >= 4f)
         {
             Dead();
         }
     }
 
+    // 공격 딜레이 및 패턴 설정
     IEnumerator AttackDelay()
     {
         attack = true;
@@ -106,26 +107,31 @@ public class Enemy_BOSS : MonoBehaviour
         }
     }
 
+    // 피격 딜레이 설정
     IEnumerator canDamaged()
     {
         yield return new WaitForSeconds(0.5f);
         damaged = false;
     }
 
+    // 사망 함수
     public void Dead()
     {
         anim.SetTrigger("isDead");
-        isDying = false;
         isDead = true;
         StartCoroutine("Deactivation");
         dyingTime = 0;
+        gamemanager.isFinishGame = true;
+        gamemanager.PVEWinGame();
     }
 
+    // 사망 시 1초 후 게임오브젝트 비활성화
     IEnumerator Deactivation()
     {
         yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);
         hpBar.SetActive(false);
+        isDying = false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -145,6 +151,7 @@ public class Enemy_BOSS : MonoBehaviour
             {
                 anim.SetBool("isDying", true);
                 isDying = true;
+                StopCoroutine("AttackDelay");
 
             }
 
