@@ -623,6 +623,7 @@ MonoBehaviour:
   mapSelect: {fileID: 0}
   title_to_scene: {fileID: 0}
   alert: {fileID: 1451610002}
+  board: {fileID: 859592564}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 236126695}
   playFieldName: {fileID: 0}
@@ -1447,6 +1448,12 @@ MonoBehaviour:
   PVPMap5: {fileID: 1368372046}
   PVEMap: {fileID: 719081455}
   idmgr: {fileID: 258510945}
+  mapSelectBtn: {fileID: 1037572732}
+  mapSelectBtnClose: {fileID: 1719272808}
+  PVEMapSelect: {fileID: 315560970}
+  Pvemapicon: {fileID: 1642047802}
+  random: {fileID: 1164463473}
+  randommapicon: {fileID: 1025701681}
 --- !u!114 &258510945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4928,6 +4935,7 @@ MonoBehaviour:
   mapSelect: {fileID: 0}
   title_to_scene: {fileID: 904319493}
   alert: {fileID: 1451610002}
+  board: {fileID: 0}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 0}
   playFieldName: {fileID: 0}
@@ -10249,6 +10257,7 @@ MonoBehaviour:
   mapSelect: {fileID: 0}
   title_to_scene: {fileID: 0}
   alert: {fileID: 1162894170}
+  board: {fileID: 859592564}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 236126695}
   playFieldName: {fileID: 0}
@@ -10400,6 +10409,7 @@ MonoBehaviour:
   mapSelect: {fileID: 0}
   title_to_scene: {fileID: 0}
   alert: {fileID: 0}
+  board: {fileID: 0}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 0}
   playFieldName: {fileID: 0}
@@ -10544,6 +10554,7 @@ MonoBehaviour:
   mapSelect: {fileID: 0}
   title_to_scene: {fileID: 1804050427}
   alert: {fileID: 1162894170}
+  board: {fileID: 0}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 0}
   playFieldName: {fileID: 0}
@@ -11701,6 +11712,7 @@ MonoBehaviour:
   mapSelect: {fileID: 342584365}
   title_to_scene: {fileID: 0}
   alert: {fileID: 1162894170}
+  board: {fileID: 859592564}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 236126695}
   playFieldName: {fileID: 0}

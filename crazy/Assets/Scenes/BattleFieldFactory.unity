@@ -2136,6 +2136,7 @@ MonoBehaviour:
   mapSelect: {fileID: 0}
   title_to_scene: {fileID: 230049225}
   alert: {fileID: 25932984}
+  board: {fileID: 0}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 0}
   playFieldName: {fileID: 668978697}
@@ -2490,6 +2491,7 @@ MonoBehaviour:
   mapSelect: {fileID: 0}
   title_to_scene: {fileID: 0}
   alert: {fileID: 25932984}
+  board: {fileID: 25932984}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 0}
   playFieldName: {fileID: 668978697}
@@ -10412,6 +10414,7 @@ MonoBehaviour:
   mapSelect: {fileID: 0}
   title_to_scene: {fileID: 800058141}
   alert: {fileID: 25932984}
+  board: {fileID: 0}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 0}
   playFieldName: {fileID: 0}
@@ -18486,6 +18489,7 @@ MonoBehaviour:
   mapSelect: {fileID: 0}
   title_to_scene: {fileID: 1363414720}
   alert: {fileID: 0}
+  board: {fileID: 0}
   ttM: {fileID: 0}
   gameRoomUIBUtton: {fileID: 0}
   playFieldName: {fileID: 668978697}

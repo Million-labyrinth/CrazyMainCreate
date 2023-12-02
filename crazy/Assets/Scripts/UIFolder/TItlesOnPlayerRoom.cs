@@ -17,7 +17,12 @@ public class TitlesOnPlayerRoom : MonoBehaviour
     public GameObject PVEMap;
     public IDMgr idmgr;
     public static bool shouldInitialize = true; // 초기화를 진행할지 여부를 결정하는 변수
-
+    public GameObject mapSelectBtn;
+    public GameObject mapSelectBtnClose;
+    public GameObject PVEMapSelect;
+    public GameObject Pvemapicon;
+    public GameObject random;
+    public GameObject randommapicon;
 
     // public GameObject Player2;
 
@@ -47,7 +52,12 @@ public class TitlesOnPlayerRoom : MonoBehaviour
 
                 PlayerPrefs.SetString("PVPorPVE", PVPorPVE);
                 PlayerPrefs.Save();
-
+                mapSelectBtn.SetActive(false);
+                mapSelectBtnClose.SetActive(true);
+                PVEMapSelect.SetActive(true);
+                random.SetActive(false);
+                Pvemapicon.SetActive(true);
+                randommapicon.SetActive(false);
 
                 PVEMap.SetActive(true);
                 DeactivePVPMap();

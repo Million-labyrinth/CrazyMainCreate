@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
 
 public class GameRoomUIBUtton : MonoBehaviour
@@ -18,11 +18,12 @@ public class GameRoomUIBUtton : MonoBehaviour
 
     void Start()
     {
-        if(bazzi.activeInHierarchy)
+        if (bazzi.activeInHierarchy)
         {
             UI_IDinput_Title.inputTitle.is1P = false;
             UI_IDinput_Title.inputTitle.is2P = true;
-        } else
+        }
+        else
         {
             UI_IDinput_Title.inputTitle.is1P = true;
             UI_IDinput_Title.inputTitle.is2P = false;

@@ -10,6 +10,7 @@ public class ReStartButton : MonoBehaviour
     public MapSelect mapSelect;
     public Button title_to_scene;
     public GameObject alert;
+    public GameObject board;
     public TitletoManual ttM;
     public GameRoomUIBUtton gameRoomUIBUtton;
     public Text playFieldName;
@@ -75,6 +76,11 @@ public class ReStartButton : MonoBehaviour
     {
         //gameRoomUIBUtton.BackBoard.SetActive(false);
         alert.SetActive(false);
+        if (board.name != "Homealertimg")
+        {
+            board.SetActive(false);
+        }
+
     }
     public void closeMapSelectAlert() // 
     {
