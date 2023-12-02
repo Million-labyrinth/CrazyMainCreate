@@ -30,7 +30,7 @@ public class monsterAi : MonoBehaviour
     bool addRightDir;
     Vector3 enemyDir;
 
-    bool isDie;
+    public bool isDie;
     
     public GameManager gameManager;
     public PVEManager pveManager;

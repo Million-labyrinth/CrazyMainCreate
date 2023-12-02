@@ -10,8 +10,8 @@ public class Enemy_BOSS : MonoBehaviour
     public GameManager gamemanager;
     bool attack;
     bool damaged;
-    bool isDying;
-    bool isDead;
+    public bool isDying;
+    public bool isDead;
     float dyingTime;
 
 
@@ -21,7 +21,7 @@ public class Enemy_BOSS : MonoBehaviour
     float maxHp;
     float nowHp;
 
-    Animator anim;
+    public Animator anim;
 
     void Awake()
     {
@@ -38,7 +38,7 @@ public class Enemy_BOSS : MonoBehaviour
         dyingTime = 0;
 
         maxHp = 10;
-        nowHp = 10;
+        nowHp = 1;
     }
     void Update()
     {
@@ -54,11 +54,7 @@ public class Enemy_BOSS : MonoBehaviour
 
         if (dyingTime >= 4f)
         {
-            anim.SetTrigger("isDead");
-            isDying = false;
-            isDead = true;
-            StartCoroutine("Dead");
-            dyingTime = 0;
+            Dead();
         }
     }
 
@@ -116,7 +112,16 @@ public class Enemy_BOSS : MonoBehaviour
         damaged = false;
     }
 
-    IEnumerator Dead()
+    public void Dead()
+    {
+        anim.SetTrigger("isDead");
+        isDying = false;
+        isDead = true;
+        StartCoroutine("Deactivation");
+        dyingTime = 0;
+    }
+
+    IEnumerator Deactivation()
     {
         yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);
@@ -145,16 +150,5 @@ public class Enemy_BOSS : MonoBehaviour
 
             StartCoroutine(canDamaged());
         }
-
-        //if (isDying)
-        //{
-        //    if (collision.gameObject.tag == "PlayerA" || collision.gameObject.tag == "PlayerB")
-        //    {
-        //        anim.SetTrigger("isDead");
-        //        isDying = false;
-        //        isDead = true;
-        //        StartCoroutine("Dead");
-        //    }
-        //}
     }
 }

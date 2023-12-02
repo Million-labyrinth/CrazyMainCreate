@@ -16200,7 +16200,7 @@ GameObject:
   - component: {fileID: 512440710}
   m_Layer: 18
   m_Name: BOSS
-  m_TagString: enemy
+  m_TagString: boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16346,9 +16346,12 @@ MonoBehaviour:
   - {fileID: 1065816321}
   Boss_Life: 1
   gamemanager: {fileID: 868673170}
+  isDying: 0
+  isDead: 0
   ray_active: 0
   hpBar: {fileID: 1342195450}
   realHpBar: {fileID: 1067110113}
+  anim: {fileID: 0}
 --- !u!50 &512440709
 Rigidbody2D:
   serializedVersion: 4

@@ -28,6 +28,7 @@ TagManager:
   - Bullet
   - powerItem2
   - enemy
+  - boss
   layers:
   - Default
   - TransparentFX

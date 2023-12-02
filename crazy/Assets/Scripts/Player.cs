@@ -259,7 +259,7 @@ public class Player : MonoBehaviour
     void Ray()
     {
         // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
-        Collider2D playerARay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("BalloonGroup") | LayerMask.GetMask("Player B") | LayerMask.GetMask("Enemy"));
+        Collider2D playerARay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("BalloonGroup") | LayerMask.GetMask("Player B"));
         GameObject scanObject;
         if (playerARay != null)
         {
@@ -310,12 +310,39 @@ public class Player : MonoBehaviour
 
             if (pvePlayerARay != null)
             {
-                if (pvePlayerARay.gameObject.tag == "enemy" && !useShield && !damagedEnemy)
+                if (!useShield && !damagedEnemy)
                 {
-                    anim.SetTrigger("hitByEnemy");
-                    anim.SetBool("isDamaged", true);
-                    damagedEnemy = true;
-                    DeadTime();
+                    // 일반 몬스터
+                    if(pvePlayerARay.gameObject.tag == "enemy")
+                    {
+                        monsterAi enemyMiniLogic = pvePlayerARay.gameObject.GetComponent<monsterAi>(); 
+
+                        if(!enemyMiniLogic.isDie)
+                        {
+                            anim.SetTrigger("hitByEnemy");
+                            anim.SetBool("isDamaged", true);
+                            damagedEnemy = true;
+                            DeadTime();
+                        }
+                    }
+                    // 보스 몬스터
+                    else if(pvePlayerARay.gameObject.tag == "boss")
+                    {
+                        Enemy_BOSS bossLogic = pvePlayerARay.gameObject.GetComponent<Enemy_BOSS>();
+
+                        if(!bossLogic.isDying)
+                        {
+                            Debug.Log("1번");
+                            anim.SetTrigger("hitByEnemy");
+                            anim.SetBool("isDamaged", true);
+                            damagedEnemy = true;
+                            DeadTime();
+                        } else if(bossLogic.isDying)
+                        {
+                            Debug.Log("2번");
+                            bossLogic.Dead();
+                        }
+                    }
                 }
             }
         }
