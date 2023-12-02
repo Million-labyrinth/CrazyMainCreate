@@ -29,6 +29,7 @@ TagManager:
   - powerItem2
   - enemy
   - boss
+  - bossWater
   layers:
   - Default
   - TransparentFX

@@ -336,7 +336,7 @@ public class Balloon : MonoBehaviour
     {
 
         // 다른 물풍선의 물줄기에 맞으면 바로 터지게 만듦
-        if (obj.gameObject.tag == "upWater" || obj.gameObject.tag == "downWater" || obj.gameObject.tag == "leftWater" || obj.gameObject.tag == "rightWater")
+        if (obj.gameObject.tag == "upWater" || obj.gameObject.tag == "downWater" || obj.gameObject.tag == "leftWater" || obj.gameObject.tag == "rightWater" || obj.gameObject.tag == "bossWater")
         {
             // 물줄기 위에서는 작동을 안하게 만듦
             if (!waterLineActive)

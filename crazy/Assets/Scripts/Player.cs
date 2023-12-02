@@ -597,7 +597,7 @@ public class Player : MonoBehaviour
 
         if (!gameManager.isFinishGame)
         {
-            if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "hitCollider")
+            if (collision.gameObject.tag == "upWater" || collision.gameObject.tag == "downWater" || collision.gameObject.tag == "leftWater" || collision.gameObject.tag == "rightWater" || collision.gameObject.tag == "hitCollider" || collision.gameObject.tag == "bossWater")
             {
                 Debug.Log(collision.gameObject.name);
                 if (useShield == true)
