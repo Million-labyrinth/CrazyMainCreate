@@ -28,7 +28,7 @@ public class itemSound : MonoBehaviour
                 if (atkcheck[i].activeSelf == true)
                 {
                     audioSource.clip = bossBoomSound;
-                    audioSource.Play();
+                    Invoke("Sound", 0.65f);
                     Debug.Log(atkcheck[i].name + " BossAttackSound");
                     // 여기에서 소리가 한 번만 재생되도록 하기 위해 break; 추가
                     break;
@@ -36,15 +36,19 @@ public class itemSound : MonoBehaviour
             }
         }
     }
-/*
-     void OnTriggerEnter2D(Collider2D collider)
-     {
-         if (collider.gameObject.tag=="PlayerA" || collider.gameObject.tag=="PlayerB")
+    void Sound()
+    {
+        audioSource.Play();
+    }
+    /*
+         void OnTriggerEnter2D(Collider2D collider)
          {
-            audioSource.clip = itemAddSound;
-            audioSource.Play();
-            Debug.Log(audioSource.isPlaying);
-            Debug.Log("player item add"+collider.gameObject.tag);
-         }
-     }*/
+             if (collider.gameObject.tag=="PlayerA" || collider.gameObject.tag=="PlayerB")
+             {
+                audioSource.clip = itemAddSound;
+                audioSource.Play();
+                Debug.Log(audioSource.isPlaying);
+                Debug.Log("player item add"+collider.gameObject.tag);
+             }
+         }*/
 }

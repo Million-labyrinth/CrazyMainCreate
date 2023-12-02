@@ -62,9 +62,9 @@ public class TitlesOnPlayerRoom : MonoBehaviour
             {
                 playerRoom.SetActive(true);
             }
-           
+
         }
-}
+    }
     public void DeactivePVPMap()
     {
         PVPMap1.SetActive(false);
@@ -72,5 +72,6 @@ public class TitlesOnPlayerRoom : MonoBehaviour
         PVPMap3.SetActive(false);
         PVPMap4.SetActive(false);
         PVPMap5.SetActive(false);
+
     }
 }

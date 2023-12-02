@@ -10,9 +10,12 @@ public class ScenesManager : MonoBehaviour
     public InputField inputID1;
     public InputField ExtendID1;
     public InputField ExtendID2;
-   
+
+
+
     void Start()
     {
+
         receivedVariable = PlayerPrefs.GetInt("MyVariable", 0); //��ư ��ũ��Ʈ���� ������ ���� ����
 
         if (receivedVariable == 2)
@@ -32,5 +35,6 @@ public class ScenesManager : MonoBehaviour
             PlayerPrefs.Save(); //�ٲ��� �ʰ� ����
         }
     }
+
 
 }

@@ -28,7 +28,12 @@ public class UI_IDinput_Title : IDMgr
     public GameObject PVPMap4;
     public GameObject PVPMap5;
     public GameObject PVEMap;
-
+    public GameObject mapSelectBtn;
+    public GameObject mapSelectBtnClose;
+    public GameObject PVEMapSelect;
+    public GameObject Pvemapicon;
+    public GameObject random;
+    public GameObject randommapicon;
     public IDMgr idmgr;
 
 
@@ -57,7 +62,7 @@ public class UI_IDinput_Title : IDMgr
         is2P = false;
     }
 
-    public void Clicked_Btn1() //로그인 버튼 누를시 인풋 필트의 텍스트에 값 들어가기
+    public void Clicked_Btn() //로그인 버튼 누를시 인풋 필트의 텍스트에 값 들어가기
     {
         if (P1UI.activeSelf)
         {
@@ -75,7 +80,12 @@ public class UI_IDinput_Title : IDMgr
                     Player2XIMG.SetActive(true);
                     PVPorPVE = "PVE";
                     idmgr.DeletePlayer2();
-
+                    mapSelectBtn.SetActive(false);
+                    mapSelectBtnClose.SetActive(true);
+                    PVEMapSelect.SetActive(true);
+                    random.SetActive(false);
+                    Pvemapicon.SetActive(true);
+                    randommapicon.SetActive(false);
                     PlayerPrefs.SetString("PVPorPVE", PVPorPVE);
                     PlayerPrefs.Save();
 
@@ -104,10 +114,7 @@ public class UI_IDinput_Title : IDMgr
         }
 
 
-    }
 
-    public void Clicked_Btn2() //로그인 버튼 누를시 인풋 필트의 텍스트에 값 들어가기
-    {
         if (P2UI.activeSelf)
         {
             if (!string.IsNullOrEmpty(inputPlayer_Expend_1.text) && !string.IsNullOrEmpty(inputPlayer_Expend_2.text))
@@ -125,7 +132,7 @@ public class UI_IDinput_Title : IDMgr
                     Player2.SetActive(true);
                     Player2XIMG.SetActive(false);
                     PlayerPrefs.SetInt("PlayerRoomState", 1);
-                   
+
                 }
                 else
                 {
