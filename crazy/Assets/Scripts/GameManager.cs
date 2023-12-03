@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
         StartWinAnimation(PVEClear);
         PVEClear.SetActive(true);
 
-        if(!playerA.playerDead)
+        if (!playerA.playerDead)
         {
             playerA.anim.SetTrigger("finishGame");
             playerA.playerSpeed = 0;

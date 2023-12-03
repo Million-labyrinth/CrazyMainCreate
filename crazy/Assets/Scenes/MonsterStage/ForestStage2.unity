@@ -13755,7 +13755,7 @@ MonoBehaviour:
   playerA: {fileID: 1814193088}
   playerB: {fileID: 435125920}
   bazzi: {fileID: 435125915}
-  restart: {fileID: 0}
+  restart: {fileID: 1223850386}
 --- !u!4 &1908152663
 Transform:
   m_ObjectHideFlags: 0

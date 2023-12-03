@@ -60,7 +60,7 @@ public class PVEManager : MonoBehaviour
 
         StopCoroutine(WinGame());
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         // 다음 스테이지로 씬 이동
         if (SceneManager.GetActiveScene().name.Contains("1"))
         {
@@ -72,14 +72,14 @@ public class PVEManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name.Contains("3"))
         {
-            Invoke("goTitle", 5f);
+            goTitle();
         }
         else 
         {
            // gameManager.Wintitle();
         }
     }
-    void goTitle()
+    public void goTitle()
     {
         restart.GoPlayerRoom();
     }
@@ -93,8 +93,8 @@ public class PVEManager : MonoBehaviour
         StopCoroutine(LoseGame());
         Debug.Log("lose");
 
-        yield return new WaitForSeconds(2f);
-        Invoke("goTitle", 5f);
+        yield return new WaitForSeconds(5f);
+        goTitle();
         // 맵 선택 창으로 이동
 
     }
