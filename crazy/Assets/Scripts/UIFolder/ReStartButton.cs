@@ -20,7 +20,7 @@ public class ReStartButton : MonoBehaviour
 
     public void GoPlayerRoom()
     {
-        if (playFieldName.text.Contains("Forest"))
+        if (playFieldName.text.Contains("Forest") && UI_IDinput_Title.inputTitle.is1P && !UI_IDinput_Title.inputTitle.is2P)
         {
             playerRoomState = 2; // 새로운 값을 설정
 
