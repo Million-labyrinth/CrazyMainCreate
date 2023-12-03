@@ -144,24 +144,22 @@ public class GameManager : MonoBehaviour
     {
         //ui 승패 애니메이션 출력
         Namespace.SetActive(true);
-
+        
 
         // Draw
         if (playerA.playerDead == true && playerB.playerDead == true || curTime <= 0.9)
         {
-
             audiosource.clip = loseSound; // lose Sound 필요
             audiosource.Play();
             Debug.Log("Draw");
             // draw_Ani.SetBool("draw", true);//드로우 애니메이션 실행
             StartWinAnimation(draw);
             draw.SetActive(true);
-        }
 
+        }
         // B Win
         else if (playerA.playerDead == true && playerB.playerDead == false)
         {
-
             audiosource.clip = winSound;
             audiosource.Play();
             Debug.Log("player B Win");
@@ -183,6 +181,8 @@ public class GameManager : MonoBehaviour
         // A Win
         else if (playerA.playerDead == false && playerB.playerDead == true)
         {
+            audiosource.clip = winSound;
+            audiosource.Play();
             Debug.Log("player A Win");
             // awin_Ani.SetBool("a", true);//플레이어a 애니메이션 실행
             StartWinAnimation(awin);
