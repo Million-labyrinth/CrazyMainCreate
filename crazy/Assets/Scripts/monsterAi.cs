@@ -31,12 +31,14 @@ public class monsterAi : MonoBehaviour
     Vector3 enemyDir;
 
     public bool isDie;
-    
+
     public GameManager gameManager;
     public PVEManager pveManager;
+    AudioSource audioSource;
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         //AIRay();
         //targetPosition = GetRandomPosition();
         layerMask = LayerMask.GetMask("Block") | LayerMask.GetMask("MoveBlock") | LayerMask.GetMask("Object") | LayerMask.GetMask("Balloon") | LayerMask.GetMask("Water");
@@ -82,7 +84,7 @@ public class monsterAi : MonoBehaviour
         //{
         //    targetPosition = GetRandomPosition();
         //}
-        if(gameManager.startedGame && !gameManager.isFinishGame && !isDie)
+        if (gameManager.startedGame && !gameManager.isFinishGame && !isDie)
         {
             AIUpRay();
             AIDownRay();
@@ -101,7 +103,8 @@ public class monsterAi : MonoBehaviour
             {
                 anim.SetBool("allBlocked", false);
             }
-        } else if(gameManager.isFinishGame)
+        }
+        else if (gameManager.isFinishGame)
         {
             anim.SetBool("allBlocked", true);
         }
@@ -403,6 +406,7 @@ public class monsterAi : MonoBehaviour
         yield return null;
         isDie = true;
         anim.SetTrigger("die");
+        audioSource.Play();
         yield return new WaitForSeconds(0.7f);
         gameObject.SetActive(false);
         pveManager.enemyCount--;

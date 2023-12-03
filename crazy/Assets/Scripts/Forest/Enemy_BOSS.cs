@@ -19,7 +19,7 @@ public class Enemy_BOSS : MonoBehaviour
     public GameObject hpBar;
     public Image realHpBar;
     float maxHp;
-    float nowHp;
+    public float nowHp;
 
     public Animator anim;
 
