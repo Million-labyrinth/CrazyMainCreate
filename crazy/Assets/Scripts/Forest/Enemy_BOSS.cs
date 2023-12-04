@@ -13,6 +13,7 @@ public class Enemy_BOSS : MonoBehaviour
     public bool isDying;
     public bool isDead;
     float dyingTime;
+    public GameObject[] Boss_Move_Attack;
 
 
     public bool ray_active;
@@ -105,6 +106,8 @@ public class Enemy_BOSS : MonoBehaviour
                 }
             } while (randomA == randomB);
         }
+
+        
     }
 
     // 피격 딜레이 설정
