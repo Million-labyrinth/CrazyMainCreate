@@ -15,7 +15,7 @@ public class UI_IDInput_Ingame : IDMgr
 
         textPlayer_1.text = strPlayer_1;
         textPlayer_2.text = strPlayer_2;
-        textPlayer_A.text = strPlayer_1;
-        textPlayer_B.text = strPlayer_2;
+        textPlayer_A.text = strPlayer_1 == null ? "" : strPlayer_1;
+        textPlayer_B.text = strPlayer_2 == null ? "" : strPlayer_2;
     }
 }
