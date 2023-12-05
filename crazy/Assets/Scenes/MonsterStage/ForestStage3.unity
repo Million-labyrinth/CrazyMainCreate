@@ -29657,6 +29657,11 @@ MonoBehaviour:
   - {fileID: 1471594461}
   - {fileID: 1776487395}
   - {fileID: 1282808014}
+  - {fileID: 1762889169}
+  - {fileID: 56526830}
+  - {fileID: 1065816321}
+  - {fileID: 2012382488}
+  - {fileID: 771319940}
 --- !u!82 &693066777
 AudioSource:
   m_ObjectHideFlags: 0
@@ -44609,7 +44614,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &975965907
 Transform:
   m_ObjectHideFlags: 0
