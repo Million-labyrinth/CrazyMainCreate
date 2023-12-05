@@ -142,12 +142,11 @@ public class GameManager : MonoBehaviour
     // PVP 판정
     public async void Judgment()
     {
-        //ui 승패 애니메이션 출력
-        Namespace.SetActive(true);
+        
         
 
         // Draw
-        if ((playerA.playerDead == true && playerB.playerDead == true )|| curTime <= 0.9)
+        if ((playerA.playerDead == true && playerB.playerDead == true ))
         {
             audiosource.clip = loseSound; // lose Sound 필요
             audiosource.Play();
@@ -160,6 +159,8 @@ public class GameManager : MonoBehaviour
         // B Win
         else if (playerA.playerDead == true && playerB.playerDead == false)
         {
+            //ui 승패 애니메이션 출력
+            Namespace.SetActive(true);
             audiosource.clip = winSound;
             audiosource.Play();
             Debug.Log("player B Win");
@@ -181,6 +182,8 @@ public class GameManager : MonoBehaviour
         // A Win
         else if (playerA.playerDead == false && playerB.playerDead == true)
         {
+            //ui 승패 애니메이션 출력
+            Namespace.SetActive(true);
             audiosource.clip = winSound;
             audiosource.Play();
             Debug.Log("player A Win");
