@@ -121,13 +121,15 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Time out Draw");
                 audiosource.clip = loseSound; // lose Sound 필요
                 audiosource.Play();
-                Wintitle();
+                //Wintitle();
                 //draw_Ani.SetBool("draw", true);
                 StartWinAnimation(draw);
                 draw.SetActive(true);
                 curTime = 0;
                 isFinishGame = true;
                 timeOver = true;
+                yield return new WaitForSeconds(0.3f);
+                Judgment();
                 yield break;
             }
         }
@@ -146,7 +148,7 @@ public class GameManager : MonoBehaviour
         
 
         // Draw
-        if ((playerA.playerDead == true && playerB.playerDead == true ))
+        if ((playerA.playerDead == true && playerB.playerDead == true ) || timeOver)
         {
             audiosource.clip = loseSound; // lose Sound 필요
             audiosource.Play();
