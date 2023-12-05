@@ -275,23 +275,25 @@ public class Player2 : MonoBehaviour
     void Ray()
     {
 
-        // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray + 상대 플레이어 피격 Ray
-        Collider2D playerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, -0.35f), 0.45f, LayerMask.GetMask("Balloon") | LayerMask.GetMask("BalloonGroup") | LayerMask.GetMask("Player A") | LayerMask.GetMask("Enemy"));
+        // 물풍선을 겹치게 생성 못하게 만들 때 필요한 Ray
+        Collider2D playerBallonRay = Physics2D.OverlapCircle(transform.position - new Vector3(0, 0.35f), 0.45f, LayerMask.GetMask("Balloon"));
+
+        if (playerBallonRay != null)
+        {
+            playerBmakeBalloon = false;
+        }
+        else
+        {
+            playerBmakeBalloon = true;
+        }
+
+        // 상대 플레이어 피격 Ray
+        Collider2D playerBRay = Physics2D.OverlapCircle(transform.position - new Vector3(0, 0.35f), 0.45f, LayerMask.GetMask("Player A"));
         GameObject scanObject;
 
         if (playerBRay != null)
         {
             scanObject = playerBRay.gameObject;
-
-            // 물풍선 생성 가능 여부
-            if (scanObject.layer == 3 || scanObject.layer == 11)
-            {
-                playerBmakeBalloon = false;
-            }
-            else
-            {
-                playerBmakeBalloon = true;
-            }
 
             if (scanObject.tag == "PlayerA")
             {
@@ -318,17 +320,17 @@ public class Player2 : MonoBehaviour
         else
         {
             scanObject = null;
-            playerBmakeBalloon = true;
         }
+
 
         // PVE playerB Ray (enemy 피격 판정)
         if (gameManager.gameMode == "PVE")
         {
-            Collider2D pvePlayerBRay = Physics2D.OverlapCircle(rigid.position - new Vector2(0, -0.35f), 0.45f, LayerMask.GetMask("Enemy"));
+            Collider2D pvePlayerBRay = Physics2D.OverlapCircle(transform.position - new Vector3(0, 0.35f), 0.45f, LayerMask.GetMask("Enemy"));
 
             if (pvePlayerBRay != null)
             {
-                if(!useShield && !damagedEnemy)
+                if (!useShield && !damagedEnemy)
                 {
                     // 일반 몬스터
                     if (pvePlayerBRay.gameObject.tag == "enemy")
