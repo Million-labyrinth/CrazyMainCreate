@@ -1208,7 +1208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &236126692
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4004,23 +4004,23 @@ MonoBehaviour:
   MapIcon: {fileID: 1642047802}
   MapNameText: {fileID: 1677745169}
   OtherIcons:
+  - {fileID: 1025701681}
+  - {fileID: 1092656949}
   - {fileID: 1998791763}
   - {fileID: 1405316255}
-  - {fileID: 1092656949}
-  - {fileID: 1025701681}
-  - {fileID: 1025701681}
+  - {fileID: 1051783977}
   OtherMapName:
   - {fileID: 335197071}
   - {fileID: 1129877158}
   - {fileID: 538928586}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1909460471}
+  - {fileID: 1036269551}
   OtherMapBorder:
   - {fileID: 1495079800}
   - {fileID: 1555393410}
   - {fileID: 1088434729}
-  - {fileID: 1618393201}
-  - {fileID: 1659260869}
+  - {fileID: 209555382}
+  - {fileID: 1140776013}
   RandomSceneNames: []
 --- !u!114 &719081460
 MonoBehaviour:
