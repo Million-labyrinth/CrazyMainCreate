@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Time out Draw");
                 audiosource.clip = loseSound; // lose Sound 필요
                 audiosource.Play();
-
+                Wintitle();
                 //draw_Ani.SetBool("draw", true);
                 StartWinAnimation(draw);
                 draw.SetActive(true);
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
         
 
         // Draw
-        if (playerA.playerDead == true && playerB.playerDead == true || curTime <= 0.9)
+        if ((playerA.playerDead == true && playerB.playerDead == true )|| curTime <= 0.9)
         {
             audiosource.clip = loseSound; // lose Sound 필요
             audiosource.Play();
@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
             // draw_Ani.SetBool("draw", true);//드로우 애니메이션 실행
             StartWinAnimation(draw);
             draw.SetActive(true);
-
+            
         }
         // B Win
         else if (playerA.playerDead == true && playerB.playerDead == false)
@@ -198,6 +198,7 @@ public class GameManager : MonoBehaviour
 
             playerA.anim.SetTrigger("finishGame"); // 애니메이션 추가 필요
         }
+
         Wintitle();
         // 끝나면 바뀐 값들 초기화(나중에 함수로 만들어서 재시작시 초기화)
         isFinishGame = true;
